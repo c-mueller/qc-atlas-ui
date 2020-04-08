@@ -15,6 +15,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NisqAnalyzerComponent } from './components/nisq-analyzer/nisq-analyzer/nisq-analyzer.component';
+import { ProvenanceComponent } from './components/provenance/provenance/provenance.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +27,13 @@ import { MatIconModule } from '@angular/material/icon';
     ProvidersComponent,
     SdksComponent,
     TagsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NisqAnalyzerComponent,
+    ProvenanceComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MatToolbarModule,
     MatSidenavModule,

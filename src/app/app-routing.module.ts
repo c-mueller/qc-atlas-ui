@@ -6,6 +6,8 @@ import { ProvidersComponent } from './components/overview/providers/providers.co
 import { SdksComponent } from './components/overview/sdks/sdks.component';
 import { TagsComponent } from './components/overview/tags/tags.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NisqAnalyzerComponent } from './components/nisq-analyzer/nisq-analyzer/nisq-analyzer.component';
+import { ProvenanceComponent } from './components/provenance/provenance/provenance.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path: 'overview/providers', component: ProvidersComponent},
   {path: 'overview/sdks', component: SdksComponent},
   {path: 'overview/tags', component: TagsComponent},
+  {path: 'nisq-analyzer', component: NisqAnalyzerComponent},
+  {path: 'provenance', component: ProvenanceComponent},
   {
     path: '',
     redirectTo: '/overview',

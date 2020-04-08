@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() { }
+  activeIndex = 0;
+  tabs = ['algorithms', 'providers', 'sdks', 'tags'];
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.navigate();
+  }
+
+  tabIndexChanged(index: any): void {
+    this.activeIndex = index;
+    this.navigate();
+  }
+
+  navigate(): void {
+    this.router.navigate(['overview/' + this.tabs[this.activeIndex]]);
   }
 
 }

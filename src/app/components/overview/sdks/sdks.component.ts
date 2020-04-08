@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sdks',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SdksComponent implements OnInit {
 
-  constructor() { }
+  activeIndex = 2;
+  tabs = ['algorithms', 'providers', 'sdks', 'tags'];
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
+  }
+
+  tabIndexChanged(index: any): void {
+    this.activeIndex = index;
+    this.router.navigate(['overview/' + this.tabs[this.activeIndex]]);
   }
 
 }

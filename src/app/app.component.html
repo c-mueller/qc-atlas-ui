@@ -1,1 +1,14 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <mat-icon aria-hidden="false" aria-label="Bookmarks">bookmarks</mat-icon>
+    <span>QC Atlas UI</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <mat-tab-group (selectedIndexChange)="tabIndexChanged($event)" backgroundColor="primary">
+      <mat-tab label="Overview"></mat-tab>
+      <mat-tab label="NISQ Analyzer"></mat-tab>
+      <mat-tab label="Provenance"></mat-tab>
+    </mat-tab-group>
+  </mat-toolbar-row>
+</mat-toolbar>
 <router-outlet></router-outlet>

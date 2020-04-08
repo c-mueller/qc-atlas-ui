@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-algorithms',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlgorithmsComponent implements OnInit {
 
-  constructor() { }
+  activeIndex = 0;
+  tabs = ['algorithms', 'providers', 'sdks', 'tags'];
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
+  tabIndexChanged(index: any): void {
+    this.activeIndex = index;
+    this.router.navigate(['overview/' + this.tabs[this.activeIndex]]);
+  }
 }

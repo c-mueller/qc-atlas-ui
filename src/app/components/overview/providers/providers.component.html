@@ -1,1 +1,11 @@
-<p>providers works!</p>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <mat-tab-group [selectedIndex]="this.activeIndex" (selectedIndexChange)="tabIndexChanged($event)" backgroundColor="primary">
+      <mat-tab label="Algorithms"></mat-tab>
+      <mat-tab label="Providers"></mat-tab>
+      <mat-tab label="SDKs"></mat-tab>
+      <mat-tab label="Tags"></mat-tab>
+    </mat-tab-group>
+  </mat-toolbar-row>
+</mat-toolbar>
+<p>providers works</p>

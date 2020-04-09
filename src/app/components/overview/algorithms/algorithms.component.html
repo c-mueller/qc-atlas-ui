@@ -8,4 +8,6 @@
     </mat-tab-group>
   </mat-toolbar-row>
 </mat-toolbar>
-<p>algorithms works</p>
+<div *ngFor="let algorithm of algorithms">
+  {{algorithm.name}}
+</div>

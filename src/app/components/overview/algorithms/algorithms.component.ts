@@ -81,14 +81,20 @@ export class AlgorithmsComponent implements OnInit {
         };
         if (type === 'input') {
           this.algorithmService.addInputParameter(parameter, this.selectedAlgorithm.id).subscribe(
-            data => {
+            () => {
               this.getAlgorithmById(this.selectedAlgorithm.id);
+              this.snackBar.open('Successfully added input parameter', 'Ok', {
+                duration: 2000,
+              });
             }
           );
         } else {
           this.algorithmService.addOutputParameter(parameter, this.selectedAlgorithm.id).subscribe(
-            data => {
+            () => {
               this.getAlgorithmById(this.selectedAlgorithm.id);
+              this.snackBar.open('Successfully added output parameter', 'Ok', {
+                duration: 2000,
+              });
             }
           );
         }

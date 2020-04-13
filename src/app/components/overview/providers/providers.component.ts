@@ -50,7 +50,12 @@ export class ProvidersComponent implements OnInit {
   providerSelected(provider: Provider): void {
     this.selectedProvider = provider;
     this.qpus = [];
-    this.providerService.getQPUforProvider(provider.id).subscribe(
+    this.getQPUForProvider(provider.id);
+
+  }
+
+  getQPUForProvider(providerId: number): void {
+    this.providerService.getQPUforProvider(providerId).subscribe(
       data => {
         this.qpus = data.qpuDtoList;
       }
@@ -78,6 +83,29 @@ export class ProvidersComponent implements OnInit {
   }
 
   addProvider(): void {
+  }
+
+  importQpusJSON(): void {
+    const dialogRef = this.dialog.open(ImportDialogComponent, {
+      width: '250px',
+      data: {title: 'Import new QPUs'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.providerService.createQPU(this.selectedProvider.id, result).subscribe(
+          data => {
+            this.getQPUForProvider(this.selectedProvider.id);
+            this.snackBar.open('Successfully added new QPUs', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
+  }
+
+  addQpus(): void {
   }
 
   private getAllProviders(): void {

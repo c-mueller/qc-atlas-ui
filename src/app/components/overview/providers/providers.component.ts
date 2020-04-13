@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Provider } from '../../../model/provider.model';
 import { ProviderService } from '../../../services/provider.service';
 import { Qpu } from '../../../model/qpu.model';
+import { ImportDialogComponent } from '../../importer/import-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-providers',
@@ -19,9 +22,10 @@ export class ProvidersComponent implements OnInit {
   qpus: Array<Qpu> = [];
   selectedColor = 'primary';
 
-  displayedQpuColumns: string[] = ['id', 'maxGateTime', 'numberOfQubits', 't1', 'name']
+  displayedQpuColumns: string[] = ['id', 'maxGateTime', 'numberOfQubits', 't1', 'name'];
 
-  constructor(private router: Router, private providerService: ProviderService) {
+  constructor(private router: Router, private providerService: ProviderService,
+              public dialog: MatDialog, private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -45,11 +49,35 @@ export class ProvidersComponent implements OnInit {
 
   providerSelected(provider: Provider): void {
     this.selectedProvider = provider;
+    this.qpus = [];
     this.providerService.getQPUforProvider(provider.id).subscribe(
       data => {
         this.qpus = data.qpuDtoList;
       }
     );
+  }
+
+  importJSON(): void {
+    const dialogRef = this.dialog.open(ImportDialogComponent, {
+      width: '250px',
+      data: {title: 'Import new providers'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.providerService.createProvider(result).subscribe(
+          data => {
+            this.providers.push(data);
+            this.snackBar.open('Successfully added new provider', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
+  }
+
+  addProvider(): void {
   }
 
   private getAllProviders(): void {

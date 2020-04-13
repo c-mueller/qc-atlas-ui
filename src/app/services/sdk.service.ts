@@ -13,10 +13,8 @@ export class SdkService {
   constructor(private httpClient: HttpClient) {
   }
 
-  createSdk(): Observable<any> {
-    return this.httpClient.post(environment.API_URL + this.sdkEndpoint, {
-      name: 'Qiskit'
-    });
+  createSdk(jsonString: string): Observable<any> {
+    return this.httpClient.post(environment.API_URL + this.sdkEndpoint, JSON.parse(jsonString));
   }
 
   getAllSdks(): Observable<any> {

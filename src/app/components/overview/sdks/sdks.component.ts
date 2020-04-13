@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SdkService } from '../../../services/sdk.service';
 import { Sdk } from '../../../model/sdk.model';
+import { ImportDialogComponent } from '../../importer/import-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sdks',
@@ -19,7 +22,8 @@ export class SdksComponent implements OnInit {
   overviewPage = 'overview/';
   selectedColor = 'primary';
 
-  constructor(private router: Router, private sdkService: SdkService) {
+  constructor(private router: Router, private sdkService: SdkService,
+              public dialog: MatDialog, private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -54,5 +58,28 @@ export class SdksComponent implements OnInit {
 
   sdkSelected(sdk: Sdk): void {
     this.selectedSdk = sdk;
+  }
+
+  importJSON(): void {
+    const dialogRef = this.dialog.open(ImportDialogComponent, {
+      width: '250px',
+      data: {title: 'Import new SDKs'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.sdkService.createSdk(result).subscribe(
+          data => {
+            this.sdks.push(data);
+            this.snackBar.open('Successfully added new SDK', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
+  }
+
+  addSdk(): void {
   }
 }

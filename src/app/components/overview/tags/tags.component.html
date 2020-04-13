@@ -21,4 +21,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedTagsColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedTagsColumns;"></tr>
   </table>
+  <div class="action-button-row">
+    <button mat-raised-button color="primary" (click)="addTag()">Add Tag</button>
+    <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+  </div>
 </div>

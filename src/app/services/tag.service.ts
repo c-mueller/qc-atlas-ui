@@ -16,4 +16,8 @@ export class TagService {
   getAllTags(): Observable<any> {
     return this.httpClient.get(environment.API_URL + this.tagEndpoint);
   }
+
+  createTag(jsonString: string): Observable<any> {
+    return this.httpClient.post(environment.API_URL + this.tagEndpoint, JSON.parse(jsonString));
+  }
 }

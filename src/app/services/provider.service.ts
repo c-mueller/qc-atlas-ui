@@ -18,12 +18,8 @@ export class ProviderService {
     return this.httpClient.get(environment.API_URL + this.providerEndpoint);
   }
 
-  createProvider(): Observable<any> {
-    return this.httpClient.post(environment.API_URL + this.providerEndpoint, {
-      name: 'IBM',
-      accessKey: '1234567',
-      secretKey: 'pass'
-    });
+  createProvider(jsonString: string): Observable<any> {
+    return this.httpClient.post(environment.API_URL + this.providerEndpoint, JSON.parse(jsonString));
   }
 
   getQPUforProvider(providerId: number): Observable<any> {

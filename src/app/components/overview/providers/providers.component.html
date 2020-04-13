@@ -17,6 +17,10 @@
               {{provider.name}}</button>
             <mat-divider></mat-divider>
       </div>
+    <div class="action-button-row">
+      <button mat-raised-button color="primary" (click)="addProvider()">Add provider</button>
+      <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+    </div>
   </mat-drawer>
   <mat-drawer-content>
     <mat-card>

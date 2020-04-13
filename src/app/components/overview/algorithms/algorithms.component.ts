@@ -6,6 +6,7 @@ import { ImplementationService } from '../../../services/implementation.service'
 import { Implementation } from '../../../model/implementation.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ImportDialogComponent } from '../../importer/import-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-algorithms',
@@ -35,7 +36,8 @@ export class AlgorithmsComponent implements OnInit {
 
 
   constructor(private router: Router, private algorithmService: AlgorithmService,
-              private implementationService: ImplementationService, public dialog: MatDialog) {
+              private implementationService: ImplementationService, public dialog: MatDialog,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -102,6 +104,9 @@ export class AlgorithmsComponent implements OnInit {
         this.algorithmService.createAlgorithm(result).subscribe(
           data => {
             this.algorithms.push(data);
+            this.snackBar.open('Successfully added new algorithm', 'Ok', {
+              duration: 2000,
+            });
           }
         );
       }

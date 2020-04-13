@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TagService } from '../../../services/tag.service';
 import { Tag } from '../../../model/tag.model';
+import { ImportDialogComponent } from '../../importer/import-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tags',
@@ -17,7 +20,8 @@ export class TagsComponent implements OnInit {
 
   displayedTagsColumns: string[] = ['key', 'value'];
 
-  constructor(private router: Router, private tagService: TagService) {
+  constructor(private router: Router, private tagService: TagService,
+              public dialog: MatDialog, private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -36,6 +40,29 @@ export class TagsComponent implements OnInit {
         this.tags = data.tagsDtos;
       }
     );
+  }
+
+  importJSON(): void {
+    const dialogRef = this.dialog.open(ImportDialogComponent, {
+      width: '250px',
+      data: {title: 'Import new tags'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.tagService.createTag(result).subscribe(
+          data => {
+            this.getAllTags();
+            this.snackBar.open('Successfully added new tag', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
+  }
+
+  addTag(): void {
   }
 
 }

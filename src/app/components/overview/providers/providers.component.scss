@@ -16,3 +16,13 @@
 table {
   width: 100%;
 }
+
+.action-button-row {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.action-button-row button,
+.action-button-row a {
+  margin-right: 8px;
+}

@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <mat-tab-group [selectedIndex]="this.activeIndex" (selectedIndexChange)="tabIndexChanged($event)" backgroundColor="primary">
+    <mat-tab-group [selectedIndex]="this.activeIndex" (selectedIndexChange)="tabIndexChanged($event)"
+                   backgroundColor="primary">
       <mat-tab label="Algorithms"></mat-tab>
       <mat-tab label="Providers"></mat-tab>
       <mat-tab label="SDKs"></mat-tab>
@@ -8,6 +9,18 @@
     </mat-tab-group>
   </mat-toolbar-row>
 </mat-toolbar>
-<div *ngFor="let algorithm of algorithms">
-  {{algorithm.name}}
-</div>
+<mat-drawer-container class="algorithm-container">
+  <mat-drawer mode="side" opened>
+    <mat-list>
+      <div mat-subheader>Algorithms</div>
+      <mat-list-item *ngFor="let algorithm of algorithms">
+        <mat-icon mat-list-icon>bookmark</mat-icon>
+        <button (click)="algorithmSelected(algorithm)" [color]="getColor(algorithm.id)" mat-raised-button>
+          <div mat-line>{{algorithm.name}}</div>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>Main content</mat-drawer-content>
+</mat-drawer-container>
+

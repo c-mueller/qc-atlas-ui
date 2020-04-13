@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NisqAnalyzerComponent } from './components/nisq-analyzer/nisq-analyzer/nisq-analyzer.component';
 import { ProvenanceComponent } from './components/provenance/provenance/provenance.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatTabsModule,
     MatIconModule,
+    MatListModule,
     HttpClientModule,
     MatButtonModule,
   ],

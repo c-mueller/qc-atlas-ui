@@ -15,6 +15,9 @@ export class AlgorithmsComponent implements OnInit {
   page = 0;
   size = 50;
   algorithms: Array<Algorithm> = [];
+  selectedColor = 'primary';
+
+  selectedAlgorithm: Algorithm;
 
   constructor(private router: Router, private algorithmService: AlgorithmService) {
   }
@@ -23,6 +26,9 @@ export class AlgorithmsComponent implements OnInit {
     this.algorithmService.getAllAlgorithms(this.page, this.size).subscribe(
       data => {
         this.algorithms = data.algorithmDtos;
+        if (this.algorithms.length > 0) {
+          this.selectedAlgorithm = this.algorithms[0];
+        }
       }
     );
   }
@@ -30,5 +36,16 @@ export class AlgorithmsComponent implements OnInit {
   tabIndexChanged(index: any): void {
     this.activeIndex = index;
     this.router.navigate(['overview/' + this.tabs[this.activeIndex]]);
+  }
+
+  algorithmSelected(algorithm: Algorithm): void {
+    this.selectedAlgorithm = algorithm;
+  }
+
+  getColor(id: number): string {
+    if (id === this.selectedAlgorithm.id) {
+      return this.selectedColor;
+    }
+    return null;
   }
 }

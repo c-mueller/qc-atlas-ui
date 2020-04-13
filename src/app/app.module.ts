@@ -20,6 +20,8 @@ import { NisqAnalyzerComponent } from './components/nisq-analyzer/nisq-analyzer/
 import { ProvenanceComponent } from './components/provenance/provenance/provenance.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatSidenavModule,
     MatTabsModule,
+    MatCardModule,
+    MatTableModule,
     MatIconModule,
     MatListModule,
     HttpClientModule,

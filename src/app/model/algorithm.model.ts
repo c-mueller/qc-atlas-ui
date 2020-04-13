@@ -1,4 +1,4 @@
-import { Parameter } from './parameter.model';
+import { Parameter, Parameters } from './parameters.model';
 import { Content } from './content.model';
 import { Tag } from './tag.model';
 import { Link } from './link.model';
@@ -6,9 +6,9 @@ import { Link } from './link.model';
 export class Algorithm {
   id: number;
   name: string;
-  inputParameters: Parameter[];
+  inputParameters: Parameters;
   content: Content;
-  outputParameters: Parameter[];
+  outputParameters: Parameters;
   tags: Tag[];
   links: Link[];
 }

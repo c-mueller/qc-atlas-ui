@@ -16,8 +16,12 @@ export class AlgorithmsComponent implements OnInit {
   size = 50;
   algorithms: Array<Algorithm> = [];
   selectedColor = 'primary';
+  overviewPage = 'overview/';
 
   selectedAlgorithm: Algorithm;
+
+  displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
+  displayedTagsColumns: string[] = ['key', 'value'];
 
   constructor(private router: Router, private algorithmService: AlgorithmService) {
   }
@@ -35,11 +39,12 @@ export class AlgorithmsComponent implements OnInit {
 
   tabIndexChanged(index: any): void {
     this.activeIndex = index;
-    this.router.navigate(['overview/' + this.tabs[this.activeIndex]]);
+    this.router.navigate([this.overviewPage + this.tabs[this.activeIndex]]);
   }
 
   algorithmSelected(algorithm: Algorithm): void {
     this.selectedAlgorithm = algorithm;
+    console.log(this.selectedAlgorithm);
   }
 
   getColor(id: number): string {

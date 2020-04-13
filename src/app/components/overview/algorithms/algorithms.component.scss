@@ -1,9 +1,21 @@
 .algorithm-container {
   width: 100%;
-  height: 40rem;
+  height: 100%;
+  margin: 10px;
+}
+
+.algorithm-content {
+  margin: 10px;
+}
+
+.algorithm-parameters {
   margin: 10px;
 }
 
 .mat-list-icon {
   color: rgba(0, 0, 0, 0.54);
+}
+
+table {
+  width: 100%;
 }

@@ -39,4 +39,33 @@ export class AlgorithmService {
       }
     });
   }
+
+  createAntoherAlgorithm(): Observable<any> {
+    return this.httpClient.post(environment.API_URL + this.endPoint, {
+      name: 'Shor',
+      inputParameters: {
+        parameters: [{
+          name: 'N',
+          type: 'Integer',
+          description: 'Number to be factorized',
+          restriction: 'N > 0,N odd'
+        }]
+      },
+      outputParameters: {parameters: [{name: 'Factor', type: 'Integer'}]},
+      content: {
+        expectedSpeedup: 'exponential',
+        numberOfQubits: '$2n$',
+        numberOfGates: '$4n^3$',
+        algoAuthor: 'Shor',
+        description: 'The algorithm of Shor is a ploynomial-time quantum computer algorithm for factorizing integers. It solves the following problem: GIven an integer N, find its prime factors. The American mathematician Peter Shor invented the algorithm in 1994.'
+      },
+      tags: [
+        {
+          id: '47',
+          key: 'Algorithm class',
+          value: 'Factorization'
+        }
+      ]
+    });
+  }
 }

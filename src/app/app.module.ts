@@ -9,6 +9,8 @@ import { ProvidersComponent } from './components/overview/providers/providers.co
 import { SdksComponent } from './components/overview/sdks/sdks.component';
 import { TagsComponent } from './components/overview/tags/tags.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ImportDialogComponent } from './components/importer/import-dialog.component';
+
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -23,6 +25,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     TagsComponent,
     PageNotFoundComponent,
     NisqAnalyzerComponent,
+    ImportDialogComponent,
     ProvenanceComponent,
   ],
   imports: [
@@ -48,8 +55,16 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatExpansionModule,
     MatListModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
     HttpClientModule,
     MatButtonModule,
+  ],
+  entryComponents: [
+    ImportDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

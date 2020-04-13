@@ -30,6 +30,10 @@
           </div>
         </mat-expansion-panel>
       </mat-accordion>
+    <div class="action-button-row">
+      <button mat-raised-button color="primary" (click)="addAlgo()">Add algorithm</button>
+      <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+    </div>
   </mat-drawer>
   <mat-drawer-content>
     <div *ngIf="implementationOpened;then showImpl else showAlgo"></div>

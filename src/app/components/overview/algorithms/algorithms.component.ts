@@ -4,6 +4,8 @@ import { AlgorithmService } from '../../../services/algorithm.service';
 import { Algorithm } from '../../../model/algorithm.model';
 import { ImplementationService } from '../../../services/implementation.service';
 import { Implementation } from '../../../model/implementation.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ImportDialogComponent } from '../../importer/import-dialog.component';
 
 @Component({
   selector: 'app-algorithms',
@@ -32,7 +34,8 @@ export class AlgorithmsComponent implements OnInit {
   displayedImplementationColumns: string[] = ['name', 'sdk'];
 
 
-  constructor(private router: Router, private algorithmService: AlgorithmService, private implementationService: ImplementationService) {
+  constructor(private router: Router, private algorithmService: AlgorithmService,
+              private implementationService: ImplementationService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -86,5 +89,25 @@ export class AlgorithmsComponent implements OnInit {
       return this.selectedColor;
     }
     return null;
+  }
+
+  importJSON(): void {
+    const dialogRef = this.dialog.open(ImportDialogComponent, {
+      width: '250px',
+      data: {title: 'Import new algorithm'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.algorithmService.createAlgorithm(result).subscribe(
+          data => {
+            this.algorithms.push(data);
+          }
+        );
+      }
+    });
+  }
+
+  addAlgo(): void {
   }
 }

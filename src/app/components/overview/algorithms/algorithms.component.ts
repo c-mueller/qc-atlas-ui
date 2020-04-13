@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ImportDialogComponent } from '../../importer/import-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../../environments/environment';
+import { AddParameterDialogComponent } from './dialogs/add-parameter-dialog.component';
+import { Parameter } from '../../../model/parameter.model';
 
 @Component({
   selector: 'app-algorithms',
@@ -39,6 +41,10 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllAlgorithms();
+  }
+
+  getAllAlgorithms(): void {
     this.algorithmService.getAllAlgorithms().subscribe(
       data => {
         this.algorithms = data.algorithmDtos;
@@ -48,6 +54,46 @@ export class AlgorithmsComponent implements OnInit {
         }
       }
     );
+  }
+
+  getAlgorithmById(id: number): void {
+    this.algorithmService.getAlgorithmById(id).subscribe(
+      data => {
+        console.log(data);
+        this.selectedAlgorithm = data;
+      }
+    );
+  }
+
+  addParameter(type: string): void {
+    const dialogRef = this.dialog.open(AddParameterDialogComponent, {
+      width: '250px',
+      data: {title: 'Add new parameter'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const parameter: Parameter = {
+          name: result.name,
+          description: result.description,
+          type: result.type,
+          restriction: result.restriction
+        };
+        if (type === 'input') {
+          this.algorithmService.addInputParameter(parameter, this.selectedAlgorithm.id).subscribe(
+            data => {
+              this.getAlgorithmById(this.selectedAlgorithm.id);
+            }
+          );
+        } else {
+          this.algorithmService.addOutputParameter(parameter, this.selectedAlgorithm.id).subscribe(
+            data => {
+              this.getAlgorithmById(this.selectedAlgorithm.id);
+            }
+          );
+        }
+      }
+    });
   }
 
   tabIndexChanged(index: any): void {

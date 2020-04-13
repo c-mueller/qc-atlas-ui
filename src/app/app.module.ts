@@ -30,6 +30,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddParameterDialogComponent } from './components/overview/algorithms/dialogs/add-parameter-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     NisqAnalyzerComponent,
     ImportDialogComponent,
     ProvenanceComponent,
+    AddParameterDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatButtonModule,
   ],
   entryComponents: [
-    ImportDialogComponent
+    ImportDialogComponent,
+    AddParameterDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

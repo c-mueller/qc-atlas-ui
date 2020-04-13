@@ -7,6 +7,7 @@ import { Implementation } from '../../../model/implementation.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ImportDialogComponent } from '../../importer/import-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-algorithms',
@@ -17,15 +18,12 @@ export class AlgorithmsComponent implements OnInit {
 
   activeIndex = 0;
   tabs = ['algorithms', 'providers', 'sdks', 'tags'];
-  page = 0;
-  size = 50;
 
   algorithms: Array<Algorithm> = [];
   implementations: Array<Implementation> = [];
   implementationOpened = false;
 
   selectedColor = 'primary';
-  overviewPage = 'overview/';
 
   selectedAlgorithm: Algorithm;
   selectedImplementation: Implementation;
@@ -41,7 +39,7 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.algorithmService.getAllAlgorithms(this.page, this.size).subscribe(
+    this.algorithmService.getAllAlgorithms().subscribe(
       data => {
         this.algorithms = data.algorithmDtos;
         // set initial selected algorithm
@@ -54,7 +52,7 @@ export class AlgorithmsComponent implements OnInit {
 
   tabIndexChanged(index: any): void {
     this.activeIndex = index;
-    this.router.navigate([this.overviewPage + this.tabs[this.activeIndex]]);
+    this.router.navigate([environment.OVERVIEW_PAGE + this.tabs[this.activeIndex]]);
   }
 
   algorithmSelected(algorithm: Algorithm): void {

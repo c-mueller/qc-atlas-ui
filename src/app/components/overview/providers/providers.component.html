@@ -9,10 +9,10 @@
     </mat-tab-group>
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-drawer-container class="provider-container">
+<mat-drawer-container class="entity-container">
   <mat-drawer mode="side" opened>
       <div *ngFor="let provider of providers" (click)="providerSelected(provider)">
-            <button class="provider-button" mat-button [color]="getProviderColor(provider.id)">
+            <button class="entity-content" mat-button [color]="getProviderColor(provider.id)">
               <mat-icon mat-list-icon>cloud</mat-icon>
               {{provider.name}}</button>
             <mat-divider></mat-divider>
@@ -28,17 +28,17 @@
         <mat-card-title>{{selectedProvider.name}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div class="provider-content">
+        <div class="entity-content">
           <h3>Access Key</h3>
           {{selectedProvider.accessKey}}
         </div>
         <mat-divider></mat-divider>
-        <div class="provider-content">
+        <div class="entity-content">
           <h3>Secret Key</h3>
           {{selectedProvider.secretKey}}
         </div>
         <mat-divider></mat-divider>
-        <div class="provider-content">
+        <div class="entity-content">
           <h3>QPUs</h3>
           <table mat-table [dataSource]="qpus" class="mat-elevation-z0">
             <ng-container matColumnDef="id">

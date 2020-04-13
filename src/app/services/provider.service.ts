@@ -8,25 +8,25 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class ProviderService {
 
-  providerEndpoint = '/providers/';
-  qpuEndpoint = '/qpus/';
 
   constructor(private httpClient: HttpClient) {
   }
 
   getAllProviders(): Observable<any> {
-    return this.httpClient.get(environment.API_URL + this.providerEndpoint);
+    return this.httpClient.get(environment.API_URL + environment.PROVIDER_ENDPOINT);
   }
 
   createProvider(jsonString: string): Observable<any> {
-    return this.httpClient.post(environment.API_URL + this.providerEndpoint, JSON.parse(jsonString));
+    return this.httpClient.post(environment.API_URL + environment.PROVIDER_ENDPOINT, JSON.parse(jsonString));
   }
 
   getQPUforProvider(providerId: number): Observable<any> {
-    return this.httpClient.get(environment.API_URL + this.providerEndpoint + providerId + this.qpuEndpoint);
+    return this.httpClient.get(environment.API_URL + environment.PROVIDER_ENDPOINT + providerId
+      + environment.QPU_ENDPOINT);
   }
 
   createQPU(providerId: number, jsonString: string): Observable<any> {
-    return this.httpClient.post(environment.API_URL + this.providerEndpoint + providerId + this.qpuEndpoint, JSON.parse(jsonString));
+    return this.httpClient.post(environment.API_URL + environment.PROVIDER_ENDPOINT + providerId
+      + environment.QPU_ENDPOINT, JSON.parse(jsonString));
   }
 }

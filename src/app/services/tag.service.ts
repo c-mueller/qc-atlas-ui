@@ -8,16 +8,14 @@ import { environment } from '../../environments/environment';
 })
 export class TagService {
 
-  tagEndpoint = '/tags/';
-
   constructor(private httpClient: HttpClient) {
   }
 
   getAllTags(): Observable<any> {
-    return this.httpClient.get(environment.API_URL + this.tagEndpoint);
+    return this.httpClient.get(environment.API_URL + environment.TAG_ENDPOINT);
   }
 
   createTag(jsonString: string): Observable<any> {
-    return this.httpClient.post(environment.API_URL + this.tagEndpoint, JSON.parse(jsonString));
+    return this.httpClient.post(environment.API_URL + environment.TAG_ENDPOINT, JSON.parse(jsonString));
   }
 }

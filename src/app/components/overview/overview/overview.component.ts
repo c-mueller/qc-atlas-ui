@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-overview',
@@ -24,7 +25,7 @@ export class OverviewComponent implements OnInit {
   }
 
   navigate(): void {
-    this.router.navigate(['overview/' + this.tabs[this.activeIndex]]);
+    this.router.navigate([environment.OVERVIEW_PAGE + this.tabs[this.activeIndex]]);
   }
 
 }

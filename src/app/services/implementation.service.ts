@@ -7,17 +7,16 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class ImplementationService {
-
-  implementationEndpoint = '/implementations/';
-
   constructor(private httpClient: HttpClient) {
   }
 
   getImplementationsForId(algoId: number): Observable<any> {
-    return this.httpClient.get(environment.API_URL + '/algorithms/' + algoId + this.implementationEndpoint);
+    return this.httpClient.get(environment.API_URL + environment.ALGORITHM_ENDPOINT + algoId
+      + environment.IMPLEMENTATION_ENDPOINT);
   }
 
   createImplementation(algoId: number, jsonString: string): Observable<any> {
-    return this.httpClient.post(environment.API_URL + '/algorithms/' + algoId + this.implementationEndpoint, JSON.parse(jsonString));
+    return this.httpClient.post(environment.API_URL + environment.ALGORITHM_ENDPOINT + algoId
+      + environment.IMPLEMENTATION_ENDPOINT, JSON.parse(jsonString));
   }
 }

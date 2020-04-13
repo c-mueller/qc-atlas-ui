@@ -8,16 +8,14 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class AlgorithmService {
 
-  endPoint = '/algorithms/';
-
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllAlgorithms(page: number, size: number): Observable<any> {
-    return this.httpClient.get(environment.API_URL + this.endPoint + '?page=' + page + '&size=' + size);
+  getAllAlgorithms(): Observable<any> {
+    return this.httpClient.get(environment.API_URL + environment.ALGORITHM_ENDPOINT);
   }
 
   createAlgorithm(jsonString: string): Observable<any> {
-    return this.httpClient.post(environment.API_URL + this.endPoint, JSON.parse(jsonString));
+    return this.httpClient.post(environment.API_URL + environment.ALGORITHM_ENDPOINT, JSON.parse(jsonString));
   }
 }

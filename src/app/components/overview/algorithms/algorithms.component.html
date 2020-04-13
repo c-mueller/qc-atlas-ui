@@ -9,7 +9,7 @@
     </mat-tab-group>
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-drawer-container class="algorithm-container">
+<mat-drawer-container class="entity-container">
   <mat-drawer mode="side" opened>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let algorithm of algorithms">
@@ -40,7 +40,7 @@
     </div>
   </mat-drawer>
   <mat-drawer-content>
-    <div *ngIf="implementationOpened;then showImpl else showAlgo"></div>
+    <div *ngIf="implementationOpened; then showImpl else showAlgo"></div>
     <ng-template #showAlgo>
     <mat-card *ngIf="selectedAlgorithm">
       <mat-card-header>
@@ -48,12 +48,12 @@
         <mat-card-subtitle>Id: {{selectedAlgorithm.id}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <div class="algorithm-content">
+        <div class="entity-content">
           <h3>Content</h3>
           {{selectedAlgorithm.content.description}}
         </div>
         <mat-divider></mat-divider>
-        <div class="algorithm-parameters">
+        <div class="entity-content">
           <h3>Input Parameters</h3>
           <table mat-table [dataSource]="selectedAlgorithm.inputParameters.parameters" class="mat-elevation-z0">
             <ng-container matColumnDef="name">
@@ -77,7 +77,7 @@
           </table>
         </div>
         <mat-divider></mat-divider>
-        <div class="algorithm-parameters">
+        <div class="entity-content">
           <h3>Output Parameters</h3>
           <table mat-table [dataSource]="selectedAlgorithm.outputParameters.parameters" class="mat-elevation-z0">
             <ng-container matColumnDef="name">
@@ -101,7 +101,7 @@
           </table>
         </div>
         <mat-divider></mat-divider>
-        <div class="algorithm-parameters">
+        <div class="entity-content">
           <h3>Tags</h3>
           <table mat-table [dataSource]="selectedAlgorithm.tags" class="mat-elevation-z0">
             <ng-container matColumnDef="key">
@@ -117,7 +117,7 @@
           </table>
         </div>
         <mat-divider></mat-divider>
-        <div class="algorithm-parameters">
+        <div class="entity-content">
           <h3>Implementations</h3>
           <table mat-table [dataSource]="implementations" class="mat-elevation-z0">
             <ng-container matColumnDef="name">
@@ -142,31 +142,31 @@
           <mat-card-subtitle>Implementation: {{selectedImplementation.name}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <div class="algorithm-parameters">
+          <div class="entity-content">
           <h3>Programming language</h3>
           {{selectedImplementation.programmingLanguage}}
           </div>
           <mat-divider></mat-divider>
-          <div class="algorithm-parameters">
+          <div class="entity-content">
           <h3>File location</h3>
           {{selectedImplementation.fileLocation}}
           </div>
           <mat-divider></mat-divider>
-          <div class="algorithm-parameters">
+          <div class="entity-content">
           <h3>Selection rule</h3>
           {{selectedImplementation.selectionRule}}
           </div>
           <mat-divider></mat-divider>
-          <div class="algorithm-parameters">
+          <div class="entity-content">
           <h3>SDK</h3>
           {{selectedImplementation.sdk}}
           </div>
           <mat-divider></mat-divider>
-          <div class="algorithm-parameters">
+          <div class="entity-content">
           <h3>Content</h3>
           {{selectedImplementation.content}}
           </div>
-          <div class="algorithm-parameters">
+          <div class="entity-content">
             <h3>Input Parameters</h3>
             <table mat-table [dataSource]="selectedImplementation.inputParameters.parameters" class="mat-elevation-z0">
               <ng-container matColumnDef="name">
@@ -190,7 +190,7 @@
             </table>
           </div>
           <mat-divider></mat-divider>
-          <div class="algorithm-parameters">
+          <div class="entity-content">
             <h3>Output Parameters</h3>
             <table mat-table [dataSource]="selectedImplementation.outputParameters.parameters" class="mat-elevation-z0">
               <ng-container matColumnDef="name">
@@ -213,7 +213,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedParametersColumns;"></tr>
             </table>
           </div>
-          <div class="algorithm-parameters">
+          <div class="entity-content">
             <h3>Tags</h3>
             <table mat-table [dataSource]="selectedImplementation.tags" class="mat-elevation-z0">
               <ng-container matColumnDef="key">

@@ -5,6 +5,7 @@ import { Sdk } from '../../../model/sdk.model';
 import { ImportDialogComponent } from '../../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-sdks',
@@ -19,7 +20,6 @@ export class SdksComponent implements OnInit {
   sdks: Array<Sdk> = [];
   selectedSdk: Sdk;
 
-  overviewPage = 'overview/';
   selectedColor = 'primary';
 
   constructor(private router: Router, private sdkService: SdkService,
@@ -32,7 +32,7 @@ export class SdksComponent implements OnInit {
 
   tabIndexChanged(index: any): void {
     this.activeIndex = index;
-    this.router.navigate([this.overviewPage + this.tabs[this.activeIndex]]);
+    this.router.navigate([environment.OVERVIEW_PAGE + this.tabs[this.activeIndex]]);
   }
 
   getAllSdks(): void {

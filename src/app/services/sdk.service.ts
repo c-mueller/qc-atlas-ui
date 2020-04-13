@@ -8,16 +8,15 @@ import { environment } from '../../environments/environment';
 })
 export class SdkService {
 
-  sdkEndpoint = '/sdks/';
 
   constructor(private httpClient: HttpClient) {
   }
 
   createSdk(jsonString: string): Observable<any> {
-    return this.httpClient.post(environment.API_URL + this.sdkEndpoint, JSON.parse(jsonString));
+    return this.httpClient.post(environment.API_URL + environment.SDK_ENDPOINT, JSON.parse(jsonString));
   }
 
   getAllSdks(): Observable<any> {
-    return this.httpClient.get(environment.API_URL + this.sdkEndpoint);
+    return this.httpClient.get(environment.API_URL + environment.SDK_ENDPOINT);
   }
 }

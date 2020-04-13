@@ -15,15 +15,18 @@
         <mat-expansion-panel *ngFor="let algorithm of algorithms">
           <mat-expansion-panel-header (click)="algorithmSelected(algorithm)">
             <mat-panel-title>
-              <mat-icon mat-list-icon>developer_board</mat-icon>
-              <button mat-button [color]="getAlgoColor(algorithm.id)">{{algorithm.name}}</button>
+              <button mat-button [color]="getAlgoColor(algorithm.id)">
+                <mat-icon mat-list-icon>developer_board</mat-icon>
+                {{algorithm.name}}</button>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div *ngIf="!(implementations.length > 0)">
             No implementations yet.
           </div>
           <div *ngFor="let implementation of implementations">
-            <button mat-button (click)="openImplementation(implementation)" [color]="getImplColor(implementation.id)">{{implementation.name}}</button>
+            <button mat-button (click)="openImplementation(implementation)" [color]="getImplColor(implementation.id)">
+              <mat-icon>settings_ethernet</mat-icon>
+              {{implementation.name}}</button>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
@@ -100,14 +103,6 @@
             <ng-container matColumnDef="value">
               <th mat-header-cell *matHeaderCellDef>Value</th>
               <td mat-cell *matCellDef="let element">{{element.value}}</td>
-            </ng-container>
-            <ng-container matColumnDef="description">
-              <th mat-header-cell *matHeaderCellDef>Description</th>
-              <td mat-cell *matCellDef="let element">{{element.description}}</td>
-            </ng-container>
-            <ng-container matColumnDef="restriction">
-              <th mat-header-cell *matHeaderCellDef>Restriction</th>
-              <td mat-cell *matCellDef="let element">{{element.restriction}}</td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedTagsColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedTagsColumns;"></tr>

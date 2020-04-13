@@ -13,10 +13,7 @@ export class TagService {
   constructor(private httpClient: HttpClient) {
   }
 
-  createTag(): Observable<any> {
-    return this.httpClient.post(environment.API_URL + this.tagEndpoint, {
-      key: 'Algorithm class',
-      value: 'Factorization'
-    });
+  getAllTags(): Observable<any> {
+    return this.httpClient.get(environment.API_URL + this.tagEndpoint);
   }
 }

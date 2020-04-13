@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <mat-tab-group [selectedIndex]="this.activeIndex" (selectedIndexChange)="tabIndexChanged($event)" backgroundColor="primary">
+    <mat-tab-group [selectedIndex]="this.activeIndex" (selectedIndexChange)="tabIndexChanged($event)"
+                   backgroundColor="primary">
       <mat-tab label="Algorithms"></mat-tab>
       <mat-tab label="Providers"></mat-tab>
       <mat-tab label="SDKs"></mat-tab>
@@ -11,8 +12,10 @@
 <mat-drawer-container class="sdk-container">
   <mat-drawer mode="side" opened>
     <div *ngFor="let sdk of sdks" (click)="sdkSelected(sdk)">
-      <mat-icon mat-list-icon>cloud</mat-icon>
-      <button class="sdk-button" mat-button [color]="getSdkColor(sdk.id)">{{sdk.name}}</button>
+      <button class="sdk-button" mat-button [color]="getSdkColor(sdk.id)">
+        <mat-icon mat-list-icon>code</mat-icon>
+        {{sdk.name}}
+      </button>
       <mat-divider></mat-divider>
     </div>
   </mat-drawer>

@@ -8,4 +8,26 @@
     </mat-tab-group>
   </mat-toolbar-row>
 </mat-toolbar>
-<p>sdks works</p>
+<mat-drawer-container class="sdk-container">
+  <mat-drawer mode="side" opened>
+    <div *ngFor="let sdk of sdks" (click)="sdkSelected(sdk)">
+      <mat-icon mat-list-icon>cloud</mat-icon>
+      <button class="sdk-button" mat-button [color]="getSdkColor(sdk.id)">{{sdk.name}}</button>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{selectedSdk.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="sdk-content">
+          <h3>Id</h3>
+          {{selectedSdk.id}}
+        </div>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+    </mat-card>
+  </mat-drawer-content>
+</mat-drawer-container>

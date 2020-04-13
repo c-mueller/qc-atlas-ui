@@ -1,4 +1,4 @@
-import { Parameter, Parameters } from './parameters.model';
+import { Parameters } from './parameters.model';
 import { Content } from './content.model';
 import { Tag } from './tag.model';
 import { Link } from './link.model';

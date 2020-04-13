@@ -113,6 +113,30 @@ export class AlgorithmsComponent implements OnInit {
     });
   }
 
+  importImplJSON(): void {
+    const dialogRef = this.dialog.open(ImportDialogComponent, {
+      width: '250px',
+      data: {title: 'Import new implementation'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.implementationService.createImplementation(this.selectedAlgorithm.id, result).subscribe(
+          data => {
+            console.log(data);
+            this.implementations.push(data);
+            this.snackBar.open('Successfully added new implementation', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
+  }
+
   addAlgo(): void {
+  }
+
+  addImpl(): void {
   }
 }

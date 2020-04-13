@@ -17,43 +17,7 @@ export class ImplementationService {
     return this.httpClient.get(environment.API_URL + '/algorithms/' + algoId + this.implementationEndpoint);
   }
 
-  createImplementation(algoId: number): Observable<any> {
-    return this.httpClient.post(environment.API_URL + '/algorithms/' + algoId +  this.implementationEndpoint, {
-      name: 'qiskit-aqua-shor',
-      programmingLanguage: 'Python',
-      fileLocation: 'https://github.com/Qiskit/qiskit-aqua/blob/master/qiskit/aqua/algorithms/factorizers/shor.py',
-      selectionRule: 'executable(N, shor-15-qiskit) :- N > 2.',
-      sdk: 'Qiskit',
-      inputParameters: {
-        parameters: [
-          {
-            name: 'N',
-            type: 'Integer',
-            restriction: 'N>2',
-            description: 'Integer to be factored'
-          }
-        ]
-      },
-      outputParameters: {
-        parameters: [
-          {
-            name: 'factors',
-            type: 'IntegerArray',
-            restriction: '',
-            description: 'Factors of N'
-          }
-        ]
-      },
-      content: {
-        numberOfQubits: '$2n+3$'
-      },
-      tags: [
-        {
-          id: '47',
-          key: 'Algorithm class',
-          value: 'Factorization'
-        }
-      ]
-    });
+  createImplementation(algoId: number, jsonString: string): Observable<any> {
+    return this.httpClient.post(environment.API_URL + '/algorithms/' + algoId + this.implementationEndpoint, JSON.parse(jsonString));
   }
 }

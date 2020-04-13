@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlgorithmService } from '../../../services/algorithm.service';
 import { Algorithm } from '../../../model/algorithm.model';
+import { ImplementationService } from '../../../services/implementation.service';
+import { Implementation } from '../../../model/implementation.model';
 
 @Component({
   selector: 'app-algorithms',
@@ -19,19 +21,22 @@ export class AlgorithmsComponent implements OnInit {
   overviewPage = 'overview/';
 
   selectedAlgorithm: Algorithm;
+  implementations: Array<Implementation> = [];
 
   displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
   displayedTagsColumns: string[] = ['key', 'value'];
+  displayedImplementationColumns: string[] = ['name', 'sdk'];
 
-  constructor(private router: Router, private algorithmService: AlgorithmService) {
+  constructor(private router: Router, private algorithmService: AlgorithmService, private implementationService: ImplementationService) {
   }
 
   ngOnInit(): void {
     this.algorithmService.getAllAlgorithms(this.page, this.size).subscribe(
       data => {
         this.algorithms = data.algorithmDtos;
+        // set initial selected algorithm
         if (this.algorithms.length > 0) {
-          this.selectedAlgorithm = this.algorithms[0];
+          this.algorithmSelected(this.algorithms[0]);
         }
       }
     );
@@ -44,7 +49,16 @@ export class AlgorithmsComponent implements OnInit {
 
   algorithmSelected(algorithm: Algorithm): void {
     this.selectedAlgorithm = algorithm;
-    console.log(this.selectedAlgorithm);
+    this.getImplementations(this.selectedAlgorithm.id);
+  }
+
+  getImplementations(id: number) {
+    this.implementationService.getImplementationsForId(this.selectedAlgorithm.id).subscribe(
+      data => {
+        this.implementations = data.implementationDtos;
+        console.log(this.implementations);
+      }
+    );
   }
 
   getColor(id: number): string {

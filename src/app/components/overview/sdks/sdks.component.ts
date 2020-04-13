@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { SdkService } from '../../../services/sdk.service';
 
 @Component({
   selector: 'app-sdks',
@@ -11,15 +12,26 @@ export class SdksComponent implements OnInit {
   activeIndex = 2;
   tabs = ['algorithms', 'providers', 'sdks', 'tags'];
 
-  constructor(private router: Router) {
+  overviewPage = 'overview/';
+
+  constructor(private router: Router, private sdkService: SdkService) {
   }
 
   ngOnInit(): void {
+    this.getAllSdks();
   }
 
   tabIndexChanged(index: any): void {
     this.activeIndex = index;
-    this.router.navigate(['overview/' + this.tabs[this.activeIndex]]);
+    this.router.navigate([this.overviewPage + this.tabs[this.activeIndex]]);
+  }
+
+  getAllSdks(): void {
+    this.sdkService.getAllSdks().subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 
 }

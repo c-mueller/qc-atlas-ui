@@ -15,7 +15,7 @@
         <mat-expansion-panel *ngFor="let algorithm of algorithms">
           <mat-expansion-panel-header (click)="algorithmSelected(algorithm)">
             <mat-panel-title>
-              <mat-icon mat-list-icon>bookmark</mat-icon>
+              <mat-icon mat-list-icon>developer_board</mat-icon>
               <button mat-button [color]="getAlgoColor(algorithm.id)">{{algorithm.name}}</button>
             </mat-panel-title>
           </mat-expansion-panel-header>

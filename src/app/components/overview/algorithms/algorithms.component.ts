@@ -16,16 +16,21 @@ export class AlgorithmsComponent implements OnInit {
   tabs = ['algorithms', 'providers', 'sdks', 'tags'];
   page = 0;
   size = 50;
+
   algorithms: Array<Algorithm> = [];
+  implementations: Array<Implementation> = [];
+  implementationOpened = false;
+
   selectedColor = 'primary';
   overviewPage = 'overview/';
 
   selectedAlgorithm: Algorithm;
-  implementations: Array<Implementation> = [];
+  selectedImplementation: Implementation;
 
   displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
   displayedTagsColumns: string[] = ['key', 'value'];
   displayedImplementationColumns: string[] = ['name', 'sdk'];
+
 
   constructor(private router: Router, private algorithmService: AlgorithmService, private implementationService: ImplementationService) {
   }
@@ -48,21 +53,36 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   algorithmSelected(algorithm: Algorithm): void {
+    this.implementationOpened = false;
     this.selectedAlgorithm = algorithm;
-    this.getImplementations(this.selectedAlgorithm.id);
+    this.getImplementations();
   }
 
-  getImplementations(id: number) {
+  getImplementations(): void {
     this.implementationService.getImplementationsForId(this.selectedAlgorithm.id).subscribe(
       data => {
         this.implementations = data.implementationDtos;
-        console.log(this.implementations);
       }
     );
   }
 
-  getColor(id: number): string {
+  openImplementation(implementation: Implementation): void {
+    this.implementationOpened = true;
+    this.selectedImplementation = implementation;
+  }
+
+  getAlgoColor(id: number): string {
     if (id === this.selectedAlgorithm.id) {
+      return this.selectedColor;
+    }
+    return null;
+  }
+
+  getImplColor(id: number): string {
+    if (!this.selectedImplementation) {
+      return null;
+    }
+    if (id === this.selectedImplementation.id) {
       return this.selectedColor;
     }
     return null;

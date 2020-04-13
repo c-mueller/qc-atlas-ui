@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { MatTableModule } from '@angular/material/table';
     TagsComponent,
     PageNotFoundComponent,
     NisqAnalyzerComponent,
-    ProvenanceComponent
+    ProvenanceComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +46,7 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatTableModule,
     MatIconModule,
+    MatExpansionModule,
     MatListModule,
     HttpClientModule,
     MatButtonModule,

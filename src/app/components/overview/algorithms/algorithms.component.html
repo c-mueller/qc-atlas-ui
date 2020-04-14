@@ -84,10 +84,11 @@
           </div>
           <mat-divider></mat-divider>
           <div class="entity-content">
-            <h3>Output Parameters</h3>
-            <button (click)="addParameter('output')" mat-button>
-              <mat-icon>add</mat-icon>
-            </button>
+            <h3>Output Parameters
+              <button (click)="addParameter('output')" mat-button>
+                <mat-icon>add</mat-icon>
+              </button>
+            </h3>
             <table mat-table [dataSource]="selectedAlgorithm.outputParameters.parameters" class="mat-elevation-z0">
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>

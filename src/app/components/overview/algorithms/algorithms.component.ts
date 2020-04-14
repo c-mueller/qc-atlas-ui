@@ -67,8 +67,8 @@ export class AlgorithmsComponent implements OnInit {
 
   addParameter(type: string): void {
     const dialogRef = this.dialog.open(AddParameterDialogComponent, {
-      width: '250px',
-      data: {title: 'Add new parameter'}
+      width: '400px',
+      data: {title: 'Add new ' + type + ' parameter'}
     });
 
     dialogRef.afterClosed().subscribe(result => {

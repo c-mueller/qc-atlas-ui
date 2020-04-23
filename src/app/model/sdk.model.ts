@@ -1,4 +1,4 @@
 export class Sdk {
-  id: number;
+  id?: number;
   name: string;
 }

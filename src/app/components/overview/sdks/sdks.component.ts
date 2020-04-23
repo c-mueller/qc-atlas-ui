@@ -6,6 +6,7 @@ import { ImportDialogComponent } from '../../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../../environments/environment';
+import { AddSdkDialogComponent } from './dialogs/add-sdk-dialog.component';
 
 @Component({
   selector: 'app-sdks',
@@ -82,5 +83,24 @@ export class SdksComponent implements OnInit {
   }
 
   addSdk(): void {
+    const dialogRef = this.dialog.open(AddSdkDialogComponent, {
+      width: '400px',
+      data: {title: 'Add new SDK'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const sdk: Sdk = {
+          name: result.name
+        };
+        this.sdkService.addSdk(sdk).subscribe(
+          () => {
+            this.getAllSdks();
+            this.snackBar.open('Successfully added SDK', 'Ok', {
+              duration: 2000,
+            });
+          });
+      }
+    });
   }
 }

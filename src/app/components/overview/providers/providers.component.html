@@ -15,12 +15,13 @@
 </div>
 <mat-drawer-container class="entity-container">
   <mat-drawer mode="side" opened>
-      <div *ngFor="let provider of providers" (click)="providerSelected(provider)">
-            <button class="entity-content" mat-button [color]="getProviderColor(provider.id)">
-              <mat-icon mat-list-icon>cloud</mat-icon>
-              {{provider.name}}</button>
-            <mat-divider></mat-divider>
-      </div>
+    <div *ngFor="let provider of providers" (click)="providerSelected(provider)">
+      <button class="entity-content" mat-button [color]="getProviderColor(provider.id)">
+        <mat-icon mat-list-icon>cloud</mat-icon>
+        {{provider.name}}
+      </button>
+      <mat-divider></mat-divider>
+    </div>
     <div class="action-button-row">
       <button mat-raised-button color="primary" (click)="addProvider()">Add provider</button>
       <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>

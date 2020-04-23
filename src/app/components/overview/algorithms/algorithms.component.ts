@@ -288,7 +288,6 @@ export class AlgorithmsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         this.selectedImplementation = null;
         const resultContent: Content = {
           description: result.description
@@ -304,7 +303,6 @@ export class AlgorithmsComponent implements OnInit {
           outputParameters: result.outputParameters,
           tags: [result.tag]
         };
-        console.log(implementation);
         this.implementationService.addImplementation(this.selectedAlgorithm.id, implementation).subscribe(
           data => {
             console.log(data);

@@ -59,7 +59,6 @@ export class AlgorithmsComponent implements OnInit {
   getAlgorithmById(id: number): void {
     this.algorithmService.getAlgorithmById(id).subscribe(
       data => {
-        console.log(data);
         this.selectedAlgorithm = data;
       }
     );
@@ -154,6 +153,7 @@ export class AlgorithmsComponent implements OnInit {
         this.algorithmService.createAlgorithm(result).subscribe(
           data => {
             this.algorithms.push(data);
+            this.algorithmSelected(data);
             this.snackBar.open('Successfully added new algorithm', 'Ok', {
               duration: 2000,
             });
@@ -173,7 +173,6 @@ export class AlgorithmsComponent implements OnInit {
       if (result) {
         this.implementationService.createImplementation(this.selectedAlgorithm.id, result).subscribe(
           data => {
-            console.log(data);
             this.implementations.push(data);
             this.snackBar.open('Successfully added new implementation', 'Ok', {
               duration: 2000,

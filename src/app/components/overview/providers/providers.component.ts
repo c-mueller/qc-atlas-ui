@@ -74,6 +74,7 @@ export class ProvidersComponent implements OnInit {
         this.providerService.createProvider(result).subscribe(
           data => {
             this.providers.push(data);
+            this.selectedProvider = data;
             this.snackBar.open('Successfully added new provider', 'Ok', {
               duration: 2000,
             });

@@ -38,6 +38,7 @@ export class SdksComponent implements OnInit {
   getAllSdks(): void {
     this.sdkService.getAllSdks().subscribe(
       data => {
+        console.log(data);
         this.sdks = data.sdkDtos;
         if (!this.selectedSdk && this.sdks.length > 0) {
           this.sdkSelected(this.sdks[0]);

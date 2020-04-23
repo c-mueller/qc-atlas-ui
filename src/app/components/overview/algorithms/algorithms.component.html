@@ -9,6 +9,10 @@
     </mat-tab-group>
   </mat-toolbar-row>
 </mat-toolbar>
+<div class="action-button-row" *ngIf="algorithms.length === 0">
+  <button mat-raised-button color="primary" (click)="addAlgo()">Add algorithm</button>
+  <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+</div>
 <mat-drawer-container class="entity-container">
   <mat-drawer mode="side" opened>
     <mat-accordion>

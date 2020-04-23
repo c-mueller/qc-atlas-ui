@@ -9,8 +9,12 @@
     </mat-tab-group>
   </mat-toolbar-row>
 </mat-toolbar>
+<div class="action-button-row" *ngIf="sdks.length === 0">
+  <button mat-raised-button color="primary" (click)="addSdk()">Add SDK</button>
+  <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+</div>
 <mat-drawer-container class="entity-container">
-  <mat-drawer mode="side" opened>
+  <mat-drawer style="height: 100px" mode="side" opened>
     <div *ngFor="let sdk of sdks" (click)="sdkSelected(sdk)">
       <button class="entity-content" mat-button [color]="getSdkColor(sdk.id)">
         <mat-icon mat-list-icon>code</mat-icon>
@@ -23,7 +27,7 @@
       <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
     </div>
   </mat-drawer>
-  <mat-drawer-content>
+  <mat-drawer-content *ngIf="selectedSdk">
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{selectedSdk.name}}</mat-card-title>

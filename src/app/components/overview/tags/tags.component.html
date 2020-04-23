@@ -9,7 +9,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="algorithm-parameters">
-  <table mat-table [dataSource]="tags" class="mat-elevation-z0">
+  <table *ngIf="tags.length > 0" mat-table [dataSource]="tags" class="mat-elevation-z0">
     <ng-container matColumnDef="key">
       <th mat-header-cell *matHeaderCellDef>Key</th>
       <td mat-cell *matCellDef="let element">{{element.key}}</td>

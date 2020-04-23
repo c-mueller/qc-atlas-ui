@@ -9,6 +9,10 @@
     </mat-tab-group>
   </mat-toolbar-row>
 </mat-toolbar>
+<div class="action-button-row" *ngIf="providers.length === 0">
+  <button mat-raised-button color="primary" (click)="addProvider()">Add provider</button>
+  <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+</div>
 <mat-drawer-container class="entity-container">
   <mat-drawer mode="side" opened>
       <div *ngFor="let provider of providers" (click)="providerSelected(provider)">
@@ -22,7 +26,7 @@
       <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
     </div>
   </mat-drawer>
-  <mat-drawer-content>
+  <mat-drawer-content *ngIf="selectedProvider">
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{selectedProvider.name}}</mat-card-title>

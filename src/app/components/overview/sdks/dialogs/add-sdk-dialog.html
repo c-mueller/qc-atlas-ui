@@ -1,11 +1,13 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
+  <form [formGroup]="sdkForm">
   <mat-form-field class="input-field">
     <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="data.name" required>
+    <input id="name" formControlName="name" matInput [(ngModel)]="data.name" required>
   </mat-form-field>
+  </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button [disabled]="name.errors?.required" mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
 </div>

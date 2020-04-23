@@ -1,15 +1,39 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-tag-dialog-component',
   templateUrl: 'add-tag-dialog.html'
 })
-export class AddTagDialogComponent {
+export class AddTagDialogComponent implements OnInit {
+
+  tagForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<AddTagDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
+
+  get key() {
+    return this.tagForm.get('key');
+  }
+
+  get value() {
+    return this.tagForm.get('value');
+  }
+
+  ngOnInit(): void {
+    this.tagForm = new FormGroup({
+      'key': new FormControl(this.data.key, [
+        Validators.required,
+        Validators.maxLength(255)
+      ]),
+      'value': new FormControl(this.data.value, [
+        Validators.required,
+        Validators.maxLength(255)
+      ])
+    });
   }
 
   onNoClick(): void {

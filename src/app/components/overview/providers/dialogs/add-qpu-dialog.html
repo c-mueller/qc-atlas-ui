@@ -23,6 +23,6 @@
   <button mat-button (click)="onNoClick()">Cancel</button>
   <button
     [disabled]="name.errors?.required || numberOfQubits.errors?.required || t1.errors?.required || maxGateTime.errors?.required ||numberOfQubits.errors?.pattern || maxGateTime.errors?.pattern || t1.errors?.pattern"
-    mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok
+    mat-button [mat-dialog-close]="data">Ok
   </button>
 </div>

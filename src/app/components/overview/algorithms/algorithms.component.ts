@@ -120,7 +120,7 @@ export class AlgorithmsComponent implements OnInit {
           type: result.type,
           restriction: result.restriction
         };
-        this.algorithmService.addParameter(parameter, this.selectedImplementation.id, type).subscribe(
+        this.algorithmService.addParameter(parameter, this.selectedAlgorithm.id, type).subscribe(
           () => {
             this.getAlgorithmById(this.selectedAlgorithm.id);
             this.snackBar.open('Successfully added input parameter', 'Ok', {
@@ -191,6 +191,17 @@ export class AlgorithmsComponent implements OnInit {
         );
       }
     });
+  }
+
+  deleteAlgorithm(): void {
+    this.algorithmService.deleteAlgorithm(this.selectedAlgorithm.id).subscribe(
+      () => {
+        this.getAllAlgorithms();
+        this.snackBar.open('Successfully deleted algorithm.', 'Ok', {
+          duration: 2000,
+        });
+      }
+    );
   }
 
   importImplJSON(): void {

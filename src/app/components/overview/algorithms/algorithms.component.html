@@ -35,8 +35,10 @@
           </button>
         </div>
         <div class="action-button-row">
-          <button mat-raised-button color="primary" (click)="addImpl()">Add implementation</button>
+          <button mat-raised-button color="primary" disabled (click)="addImpl()">Add implementation</button>
           <button mat-raised-button color="accent" (click)="importImplJSON()">Import JSON</button>
+          <button mat-raised-button color="warn" disabled (click)="deleteAlgorithm()">Delete Algorithm</button>
+
         </div>
       </mat-expansion-panel>
     </mat-accordion>

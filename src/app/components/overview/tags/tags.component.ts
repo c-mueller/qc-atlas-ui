@@ -38,7 +38,6 @@ export class TagsComponent implements OnInit {
   getAllTags(): void {
     this.tagService.getAllTags().subscribe(
       data => {
-        console.log(data);
         this.tags = data.tagsDtos;
       }
     );

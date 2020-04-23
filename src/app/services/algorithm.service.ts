@@ -20,6 +20,10 @@ export class AlgorithmService {
     return this.httpClient.post(environment.API_URL + environment.ALGORITHM_ENDPOINT, JSON.parse(jsonString));
   }
 
+  addAlgorithm(algorithm: Algorithm): Observable<any> {
+    return this.httpClient.post(environment.API_URL + environment.ALGORITHM_ENDPOINT, algorithm);
+  }
+
   addParameter(parameter: Parameter, algorithmId: number, type: string): Observable<any> {
     return type === 'input' ? this.addInputParameter(parameter, algorithmId) : this.addOutputParameter(parameter, algorithmId);
   }

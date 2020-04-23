@@ -7,6 +7,7 @@ import { ImportDialogComponent } from '../../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../../environments/environment';
+import { AddProviderDialogComponent } from './dialogs/add-provider-dialog.component';
 
 @Component({
   selector: 'app-providers',
@@ -85,6 +86,29 @@ export class ProvidersComponent implements OnInit {
   }
 
   addProvider(): void {
+    const dialogRef = this.dialog.open(AddProviderDialogComponent, {
+      width: '400px',
+      data: {title: 'Add new Provider'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const provider: Provider = {
+          name: result.name,
+          accessKey: result.accessKey,
+          secretKey: result.secretKey
+        };
+        this.providerService.addProvider(provider).subscribe(
+          data => {
+            this.providers.push(data);
+            this.selectedProvider = data;
+            this.snackBar.open('Successfully added new provider', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
   }
 
   importQpusJSON(): void {

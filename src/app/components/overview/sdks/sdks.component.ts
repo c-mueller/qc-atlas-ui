@@ -94,8 +94,9 @@ export class SdksComponent implements OnInit {
           name: result.name
         };
         this.sdkService.addSdk(sdk).subscribe(
-          () => {
-            this.getAllSdks();
+          data => {
+            this.sdks.push(data);
+            this.selectedSdk = data;
             this.snackBar.open('Successfully added SDK', 'Ok', {
               duration: 2000,
             });

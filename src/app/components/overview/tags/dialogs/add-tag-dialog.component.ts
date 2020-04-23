@@ -19,6 +19,7 @@ export class AddTagDialogComponent {
 }
 
 export interface DialogData {
+  title: string;
   key: string;
   value: string;
 }

@@ -33,6 +33,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddParameterDialogComponent } from './components/overview/algorithms/dialogs/add-parameter-dialog.component';
 import { AddSdkDialogComponent } from './components/overview/sdks/dialogs/add-sdk-dialog.component';
 import { AddTagDialogComponent } from './components/overview/tags/dialogs/add-tag-dialog.component';
+import { AddAlgorithmDialogComponent } from './components/overview/algorithms/dialogs/add-algorithm-dialog.component';
+import { AddProviderDialogComponent } from './components/overview/providers/dialogs/add-provider-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { AddTagDialogComponent } from './components/overview/tags/dialogs/add-ta
     ProvenanceComponent,
     AddParameterDialogComponent,
     AddSdkDialogComponent,
-    AddTagDialogComponent
+    AddTagDialogComponent,
+    AddAlgorithmDialogComponent,
+    AddProviderDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,9 @@ import { AddTagDialogComponent } from './components/overview/tags/dialogs/add-ta
     ImportDialogComponent,
     AddParameterDialogComponent,
     AddSdkDialogComponent,
-    AddTagDialogComponent
+    AddTagDialogComponent,
+    AddAlgorithmDialogComponent,
+    AddProviderDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

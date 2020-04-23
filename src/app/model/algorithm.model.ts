@@ -4,11 +4,11 @@ import { Tag } from './tag.model';
 import { Link } from './link.model';
 
 export class Algorithm {
-  id: number;
+  id?: number;
   name: string;
   inputParameters: Parameters;
   content: Content;
   outputParameters: Parameters;
   tags: Tag[];
-  links: Link[];
+  links?: Link[];
 }

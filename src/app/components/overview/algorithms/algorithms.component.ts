@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../../environments/environment';
 import { AddParameterDialogComponent } from './dialogs/add-parameter-dialog.component';
 import { Parameter } from '../../../model/parameter.model';
+import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.component';
 
 @Component({
   selector: 'app-algorithms',
@@ -208,6 +209,30 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   addAlgo(): void {
+    const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {
+      width: '400px',
+      data: {title: 'Add new algorithm'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const algorithm: Algorithm = {
+          name: result.name,
+          inputParameters: result.inputParameters,
+          content: result.content,
+          outputParameters: result.outputParameters,
+          tags: result.tags
+        };
+        this.algorithmService.addAlgorithm(algorithm).subscribe(
+          data => {
+            this.algorithms.push(data);
+            this.snackBar.open('Successfully added new algorithm', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
   }
 
   addImpl(): void {

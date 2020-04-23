@@ -2,13 +2,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 
 @Component({
-  selector: 'app-add-sdk-dialog-component',
-  templateUrl: 'add-sdk-dialog.html'
+  selector: 'app-add-provider-dialog-component',
+  templateUrl: 'add-provider-dialog.html'
 })
-export class AddSdkDialogComponent {
+export class AddProviderDialogComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<AddSdkDialogComponent>,
+    public dialogRef: MatDialogRef<AddProviderDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
@@ -21,4 +21,6 @@ export class AddSdkDialogComponent {
 export interface DialogData {
   title: string;
   name: string;
+  accessKey: string;
+  secretKey: string;
 }

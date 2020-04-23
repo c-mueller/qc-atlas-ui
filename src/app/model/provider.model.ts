@@ -1,5 +1,5 @@
 export class Provider {
-  id: number;
+  id?: number;
   name: string;
   accessKey: string;
   secretKey: string;

@@ -54,7 +54,7 @@ export class TagsComponent implements OnInit {
       if (result) {
         this.tagService.createTag(result).subscribe(
           data => {
-            this.getAllTags();
+            this.tags.push(data);
             this.snackBar.open('Successfully added new tag', 'Ok', {
               duration: 2000,
             });
@@ -76,7 +76,7 @@ export class TagsComponent implements OnInit {
           key: result.key,
           value: result.value
         };
-        this.tagService.addTag(result).subscribe(
+        this.tagService.addTag(tag).subscribe(
           () => {
             this.getAllTags();
             this.snackBar.open('Successfully added new tag', 'Ok', {

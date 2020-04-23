@@ -4,6 +4,14 @@
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="data.name">
   </mat-form-field>
+  <mat-form-field class="input-field">
+    <mat-label>Access Key</mat-label>
+    <input matInput [(ngModel)]="data.accessKey">
+  </mat-form-field>
+  <mat-form-field class="input-field">
+    <mat-label>Secret Key</mat-label>
+    <input matInput [(ngModel)]="data.secretKey">
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

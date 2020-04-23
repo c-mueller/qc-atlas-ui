@@ -1,17 +1,20 @@
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Tag } from '../../../../model/tag.model';
 import { Parameters } from '../../../../model/parameters.model';
 import { AddParameterDialogComponent } from './add-parameter-dialog.component';
 import { Parameter } from '../../../../model/parameter.model';
 import { MatTable } from '@angular/material/table';
 import { Sdk } from '../../../../model/sdk.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-implementation-dialog-component',
   templateUrl: 'add-implementation-dialog.html'
 })
-export class AddImplementationDialogComponent {
+export class AddImplementationDialogComponent implements OnInit {
+
+  implementationForm: FormGroup;
 
   inputParameters: Parameters = new Parameters();
   outputParameters: Parameters = new Parameters();
@@ -30,6 +33,54 @@ export class AddImplementationDialogComponent {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+
+  get name() {
+    return this.implementationForm.get('name');
+  }
+
+  get fileLocation() {
+    return this.implementationForm.get('fileLocation');
+  }
+
+  get selectionRule() {
+    return this.implementationForm.get('selectionRule');
+  }
+
+  get programmingLanguage() {
+    return this.implementationForm.get('programmingLanguage');
+  }
+
+  ngOnInit(): void {
+    this.implementationForm = new FormGroup({
+      'name': new FormControl(this.data.name, [
+        Validators.required,
+        Validators.maxLength(255)
+      ]),
+      'fileLocation': new FormControl(this.data.fileLocation, [
+        Validators.required,
+        Validators.maxLength(255),
+        Validators.pattern('^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&\'\\(\\)\\*\\+,;=.]+$')
+      ]),
+      'selectionRule': new FormControl(this.data.selectionRule, [
+        Validators.required,
+        Validators.maxLength(255)
+      ]),
+      'programmingLanguage': new FormControl(this.data.programmingLanguage, [
+        Validators.required,
+        Validators.maxLength(255)
+      ]),
+    });
+
+    this.dialogRef.beforeClosed().subscribe(
+      () => {
+        this.data.name = this.implementationForm.get('name').value;
+        this.data.fileLocation = this.implementationForm.get('fileLocation').value;
+        this.data.selectionRule = this.implementationForm.get('selectionRule').value;
+        this.data.programmingLanguage = this.implementationForm.get('programmingLanguage').value;
+      }
+    );
   }
 
   addParameter(type: string) {

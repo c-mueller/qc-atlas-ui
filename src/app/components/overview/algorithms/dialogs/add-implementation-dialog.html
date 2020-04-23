@@ -6,15 +6,17 @@
   </mat-form-field>
   <mat-form-field class="input-field">
     <mat-label>Description</mat-label>
-    <input matInput [(ngModel)]="data.content">
+    <input matInput [(ngModel)]="data.description">
   </mat-form-field>
   <mat-form-field class="input-field">
     <mat-label>File location</mat-label>
     <input matInput [(ngModel)]="data.fileLocation">
   </mat-form-field>
-  <mat-form-field class="input-field">
+  <mat-form-field appearance="fill" class="input-field">
     <mat-label>SDK</mat-label>
-    <input matInput [(ngModel)]="data.sdk">
+    <mat-select [(ngModel)]="data.sdk">
+      <mat-option *ngFor="let sdk of data.sdks" [value]="sdk">{{sdk.name}}</mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field class="input-field">
     <mat-label>Selection rule</mat-label>
@@ -76,7 +78,7 @@
   </table>
   <h5 mat-dialog-title>Tag</h5>
   <mat-form-field appearance="fill" class="input-field">
-    <mat-label>Select</mat-label>
+    <mat-label>Tag</mat-label>
     <mat-select [(ngModel)]="data.tag">
       <mat-option *ngFor="let tag of data.tags" [value]="tag">{{tag.key}} {{tag.value}}</mat-option>
     </mat-select>

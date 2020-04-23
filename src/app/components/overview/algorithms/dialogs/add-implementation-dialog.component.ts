@@ -5,6 +5,7 @@ import { Parameters } from '../../../../model/parameters.model';
 import { AddParameterDialogComponent } from './add-parameter-dialog.component';
 import { Parameter } from '../../../../model/parameter.model';
 import { MatTable } from '@angular/material/table';
+import { Sdk } from '../../../../model/sdk.model';
 
 @Component({
   selector: 'app-add-implementation-dialog-component',
@@ -71,12 +72,13 @@ export class AddImplementationDialogComponent {
 export interface DialogData {
   title: string;
   name: string;
-  content: string;
+  description: string;
   fileLocation: string;
   inputParameters: Parameters;
   outputParameters: Parameters;
   programmingLanguage: string;
   sdk: string;
+  sdks: Sdk[];
   selectionRule: string;
   tag: Tag;
   tags: Tag[];

@@ -15,6 +15,8 @@ import { TagService } from '../../../services/tag.service';
 import { Tag } from '../../../model/tag.model';
 import { Content } from '../../../model/content.model';
 import { AddImplementationDialogComponent } from './dialogs/add-implementation-dialog.component';
+import { Sdk } from '../../../model/sdk.model';
+import { SdkService } from '../../../services/sdk.service';
 
 @Component({
   selector: 'app-algorithms',
@@ -28,6 +30,7 @@ export class AlgorithmsComponent implements OnInit {
 
   algorithms: Array<Algorithm> = [];
   tags: Array<Tag> = [];
+  sdks: Array<Sdk> = [];
   implementations: Array<Implementation> = [];
   implementationOpened = false;
 
@@ -43,12 +46,21 @@ export class AlgorithmsComponent implements OnInit {
 
   constructor(private router: Router, private algorithmService: AlgorithmService,
               private implementationService: ImplementationService, public dialog: MatDialog,
-              private snackBar: MatSnackBar, private tagService: TagService) {
+              private snackBar: MatSnackBar, private tagService: TagService, private sdkService: SdkService) {
   }
 
   ngOnInit(): void {
     this.getAllAlgorithms();
     this.getTags();
+    this.getSdks();
+  }
+
+  getSdks(): void {
+    this.sdkService.getAllSdks().subscribe(
+      data => {
+        this.sdks = data.sdkDtos;
+      }
+    );
   }
 
   getAllAlgorithms(): void {
@@ -271,18 +283,19 @@ export class AlgorithmsComponent implements OnInit {
   addImpl(): void {
     const dialogRef = this.dialog.open(AddImplementationDialogComponent, {
       width: '600px',
-      data: {title: 'Add new implementation', tags: this.tags}
+      data: {title: 'Add new implementation', tags: this.tags, sdks: this.sdks}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log(result);
         this.selectedImplementation = null;
         const resultContent: Content = {
-          description: result.content
+          description: result.description
         };
         const implementation: Implementation = {
           name: result.name,
-          sdk: result.sdk,
+          sdk: result.sdk.name,
           content: resultContent,
           fileLocation: result.fileLocation,
           programmingLanguage: result.programmingLanguage,
@@ -291,8 +304,10 @@ export class AlgorithmsComponent implements OnInit {
           outputParameters: result.outputParameters,
           tags: [result.tag]
         };
+        console.log(implementation);
         this.implementationService.addImplementation(this.selectedAlgorithm.id, implementation).subscribe(
           data => {
+            console.log(data);
             this.implementations.push(data);
             this.selectedImplementation = data;
             this.implementationOpened = true;

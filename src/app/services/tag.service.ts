@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Tag } from '../model/tag.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,10 @@ import { environment } from '../../environments/environment';
 export class TagService {
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  addTag(tag: Tag): Observable<any> {
+    return this.httpClient.post(environment.API_URL + environment.TAG_ENDPOINT, tag);
   }
 
   getAllTags(): Observable<any> {

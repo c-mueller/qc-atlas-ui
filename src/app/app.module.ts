@@ -32,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddParameterDialogComponent } from './components/overview/algorithms/dialogs/add-parameter-dialog.component';
 import { AddSdkDialogComponent } from './components/overview/sdks/dialogs/add-sdk-dialog.component';
+import { AddTagDialogComponent } from './components/overview/tags/dialogs/add-tag-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AddSdkDialogComponent } from './components/overview/sdks/dialogs/add-sd
     ImportDialogComponent,
     ProvenanceComponent,
     AddParameterDialogComponent,
-    AddSdkDialogComponent
+    AddSdkDialogComponent,
+    AddTagDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import { AddSdkDialogComponent } from './components/overview/sdks/dialogs/add-sd
   entryComponents: [
     ImportDialogComponent,
     AddParameterDialogComponent,
-    AddSdkDialogComponent
+    AddSdkDialogComponent,
+    AddTagDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

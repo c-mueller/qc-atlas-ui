@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Add new Tag</h1>
+<div mat-dialog-content>
+  <mat-form-field class="input-field">
+  <mat-label>Key</mat-label>
+  <input matInput [(ngModel)]="data.key">
+</mat-form-field>
+  <mat-form-field class="input-field">
+    <mat-label>Value</mat-label>
+    <input matInput [(ngModel)]="data.value">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

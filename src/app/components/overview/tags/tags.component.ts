@@ -6,6 +6,7 @@ import { ImportDialogComponent } from '../../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../../environments/environment';
+import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';
 
 @Component({
   selector: 'app-tags',
@@ -64,6 +65,27 @@ export class TagsComponent implements OnInit {
   }
 
   addTag(): void {
+    const dialogRef = this.dialog.open(AddTagDialogComponent, {
+      width: '400px',
+      data: {title: 'Add new Tag'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const tag: Tag = {
+          key: result.key,
+          value: result.value
+        };
+        this.tagService.addTag(result).subscribe(
+          () => {
+            this.getAllTags();
+            this.snackBar.open('Successfully added new tag', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
   }
 
 }

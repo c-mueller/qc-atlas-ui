@@ -1,17 +1,18 @@
 import { Tag } from './tag.model';
 import { Link } from './link.model';
 import { Parameters } from './parameters.model';
+import { Content } from './content.model';
 
 export class Implementation {
-  content: string;
-  fileLocation: string;
-  id: number;
-  inputParameters: Parameters;
+  id?: number;
   name: string;
+  content?: Content;
+  sdk: string;
+  fileLocation: string;
+  inputParameters: Parameters;
   outputParameters: Parameters;
   programmingLanguage: string;
-  sdk: string;
   selectionRule: string;
   tags: Tag[];
-  links: Link[];
+  links?: Link[];
 }

@@ -2,17 +2,15 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { Component, Inject, ViewChild } from '@angular/core';
 import { Tag } from '../../../../model/tag.model';
 import { Parameters } from '../../../../model/parameters.model';
-import { Link } from '../../../../model/link.model';
-import { Content } from '../../../../model/content.model';
 import { AddParameterDialogComponent } from './add-parameter-dialog.component';
 import { Parameter } from '../../../../model/parameter.model';
 import { MatTable } from '@angular/material/table';
 
 @Component({
-  selector: 'app-add-algorithm-dialog-component',
-  templateUrl: 'add-algorithm-dialog.html'
+  selector: 'app-add-implementation-dialog-component',
+  templateUrl: 'add-implementation-dialog.html'
 })
-export class AddAlgorithmDialogComponent {
+export class AddImplementationDialogComponent {
 
   inputParameters: Parameters = new Parameters();
   outputParameters: Parameters = new Parameters();
@@ -23,7 +21,7 @@ export class AddAlgorithmDialogComponent {
   displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
 
   constructor(
-    public dialogRef: MatDialogRef<AddAlgorithmDialogComponent>,
+    public dialogRef: MatDialogRef<AddImplementationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, public dialog: MatDialog) {
     this.inputParameters.parameters = [];
     this.outputParameters.parameters = [];
@@ -41,7 +39,6 @@ export class AddAlgorithmDialogComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         const parameter: Parameter = {
           name: result.name,
           description: result.description,
@@ -74,10 +71,13 @@ export class AddAlgorithmDialogComponent {
 export interface DialogData {
   title: string;
   name: string;
+  content: string;
+  fileLocation: string;
   inputParameters: Parameters;
-  content: Content;
   outputParameters: Parameters;
+  programmingLanguage: string;
+  sdk: string;
+  selectionRule: string;
   tag: Tag;
   tags: Tag[];
-  links: Link[];
 }

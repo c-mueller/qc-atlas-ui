@@ -14,6 +14,7 @@ import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.comp
 import { TagService } from '../../../services/tag.service';
 import { Tag } from '../../../model/tag.model';
 import { Content } from '../../../model/content.model';
+import { AddImplementationDialogComponent } from './dialogs/add-implementation-dialog.component';
 
 @Component({
   selector: 'app-algorithms',
@@ -263,5 +264,36 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   addImpl(): void {
+    const dialogRef = this.dialog.open(AddImplementationDialogComponent, {
+      width: '600px',
+      data: {title: 'Add new implementation', tags: this.tags}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const resultContent: Content = {
+          description: result.content
+        };
+        const implementation: Implementation = {
+          name: result.name,
+          sdk: result.sdk,
+          fileLocation: result.fileLocation,
+          programmingLanguage: result.programmingLanguage,
+          selectionRule: result.selectionRule,
+          inputParameters: result.inputParameters,
+          outputParameters: result.outputParameters,
+          tags: [result.tag]
+        };
+        this.implementationService.addImplementation(this.selectedAlgorithm.id, implementation).subscribe(
+          data => {
+            this.implementations.push(data);
+            this.selectedImplementation = data;
+            this.snackBar.open('Successfully added new implementation', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
   }
 }

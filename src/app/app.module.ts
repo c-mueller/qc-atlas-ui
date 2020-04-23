@@ -37,6 +37,7 @@ import { AddAlgorithmDialogComponent } from './components/overview/algorithms/di
 import { AddProviderDialogComponent } from './components/overview/providers/dialogs/add-provider-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { AddImplementationDialogComponent } from './components/overview/algorithms/dialogs/add-implementation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MatOptionModule } from '@angular/material/core';
     AddSdkDialogComponent,
     AddTagDialogComponent,
     AddAlgorithmDialogComponent,
-    AddProviderDialogComponent
+    AddProviderDialogComponent,
+    AddImplementationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,8 @@ import { MatOptionModule } from '@angular/material/core';
     AddSdkDialogComponent,
     AddTagDialogComponent,
     AddAlgorithmDialogComponent,
-    AddProviderDialogComponent
+    AddProviderDialogComponent,
+    AddImplementationDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

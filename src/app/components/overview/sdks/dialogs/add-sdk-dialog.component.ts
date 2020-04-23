@@ -30,6 +30,12 @@ export class AddSdkDialogComponent implements OnInit {
         Validators.maxLength(255)
       ])
     });
+
+    this.dialogRef.beforeClosed().subscribe(
+      () => {
+        this.data.name = this.sdkForm.get('name').value;
+      }
+    );
   }
 
 }

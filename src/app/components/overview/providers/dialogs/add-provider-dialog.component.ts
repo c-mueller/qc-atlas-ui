@@ -46,8 +46,15 @@ export class AddProviderDialogComponent implements OnInit {
         Validators.maxLength(255)
       ])
     });
-  }
 
+    this.dialogRef.beforeClosed().subscribe(
+      () => {
+        this.data.name = this.providerForm.get('name').value;
+        this.data.accessKey = this.providerForm.get('accessKey').value;
+        this.data.secretKey = this.providerForm.get('secretKey').value;
+      }
+    );
+  }
 }
 
 export interface DialogData {

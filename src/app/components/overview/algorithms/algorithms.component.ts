@@ -252,9 +252,9 @@ export class AlgorithmsComponent implements OnInit {
       width: '600px',
       data: {title: 'Add new algorithm', tags: this.tags}
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log(result);
         this.selectedAlgorithm = null;
         this.implementations = null;
         const resultContent: Content = {

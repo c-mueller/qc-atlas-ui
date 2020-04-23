@@ -34,6 +34,13 @@ export class AddTagDialogComponent implements OnInit {
         Validators.maxLength(255)
       ])
     });
+
+    this.dialogRef.beforeClosed().subscribe(
+      () => {
+        this.data.key = this.tagForm.get('key').value;
+        this.data.value = this.tagForm.get('value').value;
+      }
+    );
   }
 
   onNoClick(): void {

@@ -1,5 +1,5 @@
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Tag } from '../../../../model/tag.model';
 import { Parameters } from '../../../../model/parameters.model';
 import { Link } from '../../../../model/link.model';
@@ -7,12 +7,15 @@ import { Content } from '../../../../model/content.model';
 import { AddParameterDialogComponent } from './add-parameter-dialog.component';
 import { Parameter } from '../../../../model/parameter.model';
 import { MatTable } from '@angular/material/table';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-algorithm-dialog-component',
   templateUrl: 'add-algorithm-dialog.html'
 })
-export class AddAlgorithmDialogComponent {
+export class AddAlgorithmDialogComponent implements OnInit {
+
+  algorithmForm: FormGroup;
 
   inputParameters: Parameters = new Parameters();
   outputParameters: Parameters = new Parameters();
@@ -29,6 +32,10 @@ export class AddAlgorithmDialogComponent {
     this.outputParameters.parameters = [];
   }
 
+  get name() {
+    return this.algorithmForm.get('name');
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -41,7 +48,6 @@ export class AddAlgorithmDialogComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         const parameter: Parameter = {
           name: result.name,
           description: result.description,
@@ -67,6 +73,21 @@ export class AddAlgorithmDialogComponent {
   addToOutputParams(parameter: Parameter) {
     this.outputParameters.parameters.push(parameter);
     this.data.outputParameters = this.outputParameters;
+  }
+
+  ngOnInit(): void {
+    this.algorithmForm = new FormGroup({
+      'name': new FormControl(this.data.name, [
+        Validators.required,
+        Validators.maxLength(255)
+      ])
+    });
+
+    this.dialogRef.beforeClosed().subscribe(
+      () => {
+        this.data.name = this.algorithmForm.get('name').value;
+      }
+    );
   }
 
 }

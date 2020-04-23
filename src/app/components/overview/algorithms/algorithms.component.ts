@@ -64,7 +64,15 @@ export class AlgorithmsComponent implements OnInit {
     );
   }
 
-  addParameter(type: string): void {
+  getImplementationById(algoId: number, implId: number): void {
+    this.implementationService.getImplementationById(algoId, implId).subscribe(
+      data => {
+        this.selectedImplementation = data;
+      }
+    );
+  }
+
+  addImplParameter(type: string): void {
     const dialogRef = this.dialog.open(AddParameterDialogComponent, {
       width: '400px',
       data: {title: 'Add new ' + type + ' parameter'}
@@ -78,25 +86,41 @@ export class AlgorithmsComponent implements OnInit {
           type: result.type,
           restriction: result.restriction
         };
-        if (type === 'input') {
-          this.algorithmService.addInputParameter(parameter, this.selectedAlgorithm.id).subscribe(
+        this.implementationService.addParameter(parameter, this.selectedAlgorithm.id, this.selectedImplementation.id, type)
+          .subscribe(
             () => {
-              this.getAlgorithmById(this.selectedAlgorithm.id);
+              this.getImplementationById(this.selectedAlgorithm.id, this.selectedImplementation.id);
               this.snackBar.open('Successfully added input parameter', 'Ok', {
                 duration: 2000,
               });
             }
           );
-        } else {
-          this.algorithmService.addOutputParameter(parameter, this.selectedAlgorithm.id).subscribe(
-            () => {
-              this.getAlgorithmById(this.selectedAlgorithm.id);
-              this.snackBar.open('Successfully added output parameter', 'Ok', {
-                duration: 2000,
-              });
-            }
-          );
-        }
+      }
+    });
+  }
+
+
+  addAlgoParameter(type: string): void {
+    const dialogRef = this.dialog.open(AddParameterDialogComponent, {
+      width: '400px',
+      data: {title: 'Add new ' + type + ' parameter'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const parameter: Parameter = {
+          name: result.name,
+          description: result.description,
+          type: result.type,
+          restriction: result.restriction
+        };
+        this.algorithmService.addParameter(parameter, this.selectedImplementation.id, type).subscribe(
+          () => {
+            this.getAlgorithmById(this.selectedAlgorithm.id);
+            this.snackBar.open('Successfully added input parameter', 'Ok', {
+              duration: 2000,
+            });
+          });
       }
     });
   }

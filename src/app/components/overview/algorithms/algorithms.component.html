@@ -61,7 +61,7 @@
           <mat-divider></mat-divider>
           <div class="entity-content">
             <h3>Input Parameters
-              <button (click)="addParameter('input')" mat-button>
+              <button (click)="addAlgoParameter('input')" mat-button>
                 <mat-icon>add</mat-icon>
               </button>
             </h3>
@@ -89,7 +89,7 @@
           <mat-divider></mat-divider>
           <div class="entity-content">
             <h3>Output Parameters
-              <button (click)="addParameter('output')" mat-button>
+              <button (click)="addAlgoParameter('output')" mat-button>
                 <mat-icon>add</mat-icon>
               </button>
             </h3>
@@ -183,7 +183,11 @@
             {{selectedImplementation.content}}
           </div>
           <div class="entity-content">
-            <h3>Input Parameters</h3>
+            <h3>Input Parameters
+              <button (click)="addImplParameter('input')" mat-button>
+                <mat-icon>add</mat-icon>
+              </button>
+            </h3>
             <table mat-table [dataSource]="selectedImplementation.inputParameters.parameters" class="mat-elevation-z0">
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -207,7 +211,11 @@
           </div>
           <mat-divider></mat-divider>
           <div class="entity-content">
-            <h3>Output Parameters</h3>
+            <h3>Output Parameters
+              <button (click)="addImplParameter('output')" mat-button>
+                <mat-icon>add</mat-icon>
+              </button>
+            </h3>
             <table mat-table [dataSource]="selectedImplementation.outputParameters.parameters" class="mat-elevation-z0">
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>

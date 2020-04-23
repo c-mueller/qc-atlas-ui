@@ -157,10 +157,12 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   getAlgoColor(id: number): string {
+    if (!this.selectedAlgorithm) {
+      return null;
+    }
     if (id === this.selectedAlgorithm.id) {
       return this.selectedColor;
     }
-    return null;
   }
 
   getImplColor(id: number): string {
@@ -241,6 +243,8 @@ export class AlgorithmsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.selectedAlgorithm = null;
+        this.implementations = null;
         const resultContent: Content = {
           description: result.content
         };
@@ -254,6 +258,7 @@ export class AlgorithmsComponent implements OnInit {
         this.algorithmService.addAlgorithm(algorithm).subscribe(
           data => {
             this.algorithms.push(data);
+            this.algorithmSelected(data);
             this.snackBar.open('Successfully added new algorithm', 'Ok', {
               duration: 2000,
             });
@@ -271,12 +276,14 @@ export class AlgorithmsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.selectedImplementation = null;
         const resultContent: Content = {
           description: result.content
         };
         const implementation: Implementation = {
           name: result.name,
           sdk: result.sdk,
+          content: resultContent,
           fileLocation: result.fileLocation,
           programmingLanguage: result.programmingLanguage,
           selectionRule: result.selectionRule,
@@ -288,6 +295,7 @@ export class AlgorithmsComponent implements OnInit {
           data => {
             this.implementations.push(data);
             this.selectedImplementation = data;
+            this.implementationOpened = true;
             this.snackBar.open('Successfully added new implementation', 'Ok', {
               duration: 2000,
             });

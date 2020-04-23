@@ -25,7 +25,7 @@
             </button>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div *ngIf="!(implementations.length > 0)">
+        <div *ngIf="!implementations || !(implementations.length > 0)">
           No implementations yet.
         </div>
         <div *ngFor="let implementation of implementations">
@@ -67,7 +67,7 @@
                 <mat-icon>add</mat-icon>
               </button>
             </h3>
-            <table mat-table [dataSource]="selectedAlgorithm.inputParameters.parameters" class="mat-elevation-z0">
+            <table *ngIf="selectedAlgorithm.inputParameters" mat-table [dataSource]="selectedAlgorithm.inputParameters.parameters" class="mat-elevation-z0">
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>
                 <td mat-cell *matCellDef="let element">{{element.name}}</td>
@@ -95,7 +95,7 @@
                 <mat-icon>add</mat-icon>
               </button>
             </h3>
-            <table mat-table [dataSource]="selectedAlgorithm.outputParameters.parameters" class="mat-elevation-z0">
+            <table *ngIf="selectedAlgorithm.outputParameters" mat-table [dataSource]="selectedAlgorithm.outputParameters.parameters" class="mat-elevation-z0">
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>
                 <td mat-cell *matCellDef="let element">{{element.name}}</td>
@@ -119,7 +119,7 @@
           <mat-divider></mat-divider>
           <div class="entity-content">
             <h3>Tags</h3>
-            <table mat-table [dataSource]="selectedAlgorithm.tags" class="mat-elevation-z0">
+            <table mat-table *ngIf="selectedAlgorithm" [dataSource]="selectedAlgorithm.tags" class="mat-elevation-z0">
               <ng-container matColumnDef="key">
                 <th mat-header-cell *matHeaderCellDef>Key</th>
                 <td mat-cell *matCellDef="let element">{{element.key}}</td>
@@ -135,7 +135,7 @@
           <mat-divider></mat-divider>
           <div class="entity-content">
             <h3>Implementations</h3>
-            <table mat-table [dataSource]="implementations" class="mat-elevation-z0">
+            <table mat-table *ngIf="implementations" [dataSource]="implementations" class="mat-elevation-z0">
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>
                 <td mat-cell *matCellDef="let element">
@@ -154,7 +154,7 @@
       </mat-card>
     </ng-template>
     <ng-template #showImpl>
-      <mat-card *ngIf="selectedAlgorithm">
+      <mat-card *ngIf="selectedAlgorithm && selectedImplementation">
         <mat-card-header>
           <mat-card-title>{{selectedAlgorithm.name}}</mat-card-title>
           <mat-card-subtitle>Implementation: {{selectedImplementation.name}}</mat-card-subtitle>

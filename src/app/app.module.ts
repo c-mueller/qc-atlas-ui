@@ -38,6 +38,7 @@ import { AddProviderDialogComponent } from './components/overview/providers/dial
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { AddImplementationDialogComponent } from './components/overview/algorithms/dialogs/add-implementation-dialog.component';
+import { AddQpuDialogComponent } from './components/overview/providers/dialogs/add-qpu-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AddImplementationDialogComponent } from './components/overview/algorith
     AddTagDialogComponent,
     AddAlgorithmDialogComponent,
     AddProviderDialogComponent,
-    AddImplementationDialogComponent
+    AddImplementationDialogComponent,
+    AddQpuDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,8 @@ import { AddImplementationDialogComponent } from './components/overview/algorith
     AddTagDialogComponent,
     AddAlgorithmDialogComponent,
     AddProviderDialogComponent,
-    AddImplementationDialogComponent
+    AddImplementationDialogComponent,
+    AddQpuDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

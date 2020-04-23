@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { Provider } from '../model/provider.model';
+import { Qpu } from '../model/qpu.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,10 @@ export class ProviderService {
   createQPU(providerId: number, jsonString: string): Observable<any> {
     return this.httpClient.post(environment.API_URL + environment.PROVIDER_ENDPOINT + providerId
       + environment.QPU_ENDPOINT, JSON.parse(jsonString));
+  }
+
+  addQPU(providerId: number, qpu: Qpu): Observable<any> {
+    return this.httpClient.post(environment.API_URL + environment.PROVIDER_ENDPOINT + providerId
+    + environment.QPU_ENDPOINT, qpu);
   }
 }

@@ -1,7 +1,7 @@
 export class Qpu {
-  id: number;
+  id?: number;
   maxGateTime: number;
   name: string;
-  numerOfQubits: number;
+  numberOfQubits: number;
   t1: number;
 }

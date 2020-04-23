@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../../environments/environment';
 import { AddProviderDialogComponent } from './dialogs/add-provider-dialog.component';
+import { AddQpuDialogComponent } from './dialogs/add-qpu-dialog.component';
 
 @Component({
   selector: 'app-providers',
@@ -36,7 +37,7 @@ export class ProvidersComponent implements OnInit {
 
   tabIndexChanged(index: any): void {
     this.activeIndex = index;
-    this.router.navigate([environment.OVERVIEW_PAGE+ this.tabs[this.activeIndex]]);
+    this.router.navigate([environment.OVERVIEW_PAGE + this.tabs[this.activeIndex]]);
   }
 
   getProviderColor(id: number): string {
@@ -120,7 +121,7 @@ export class ProvidersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.providerService.createQPU(this.selectedProvider.id, result).subscribe(
-          data => {
+          () => {
             this.getQPUForProvider(this.selectedProvider.id);
             this.snackBar.open('Successfully added new QPUs', 'Ok', {
               duration: 2000,
@@ -131,7 +132,31 @@ export class ProvidersComponent implements OnInit {
     });
   }
 
-  addQpus(): void {
+  addQpu(): void {
+    console.log('W');
+    const dialogRef = this.dialog.open(AddQpuDialogComponent, {
+      width: '400px',
+      data: {title: 'Add new QPU'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const qpu: Qpu = {
+          maxGateTime: result.maxGateTime,
+          name: result.name,
+          numberOfQubits: result.numberOfQubits,
+          t1: result.t1
+        };
+        this.providerService.addQPU(this.selectedProvider.id, qpu).subscribe(
+          () => {
+            this.getQPUForProvider(this.selectedProvider.id);
+            this.snackBar.open('Successfully added new QPUs', 'Ok', {
+              duration: 2000,
+            });
+          }
+        );
+      }
+    });
   }
 
   private getAllProviders(): void {

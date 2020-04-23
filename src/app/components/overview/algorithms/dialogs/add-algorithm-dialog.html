@@ -4,6 +4,17 @@
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="data.name">
   </mat-form-field>
+  <mat-form-field class="input-field">
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="data.content">
+  </mat-form-field>
+  <h5 mat-dialog-title>Tag</h5>
+  <mat-form-field appearance="fill" class="input-field">
+    <mat-label>Select</mat-label>
+    <mat-select [(ngModel)]="data.tag">
+      <mat-option *ngFor="let tag of data.tags" [value]="tag">{{tag.key}} {{tag.value}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

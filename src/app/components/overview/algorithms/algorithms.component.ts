@@ -11,6 +11,9 @@ import { environment } from '../../../../environments/environment';
 import { AddParameterDialogComponent } from './dialogs/add-parameter-dialog.component';
 import { Parameter } from '../../../model/parameter.model';
 import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.component';
+import { TagService } from '../../../services/tag.service';
+import { Tag } from '../../../model/tag.model';
+import { Content } from '../../../model/content.model';
 
 @Component({
   selector: 'app-algorithms',
@@ -23,6 +26,7 @@ export class AlgorithmsComponent implements OnInit {
   tabs = ['algorithms', 'providers', 'sdks', 'tags'];
 
   algorithms: Array<Algorithm> = [];
+  tags: Array<Tag> = [];
   implementations: Array<Implementation> = [];
   implementationOpened = false;
 
@@ -38,11 +42,12 @@ export class AlgorithmsComponent implements OnInit {
 
   constructor(private router: Router, private algorithmService: AlgorithmService,
               private implementationService: ImplementationService, public dialog: MatDialog,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar, private tagService: TagService) {
   }
 
   ngOnInit(): void {
     this.getAllAlgorithms();
+    this.getTags();
   }
 
   getAllAlgorithms(): void {
@@ -208,20 +213,31 @@ export class AlgorithmsComponent implements OnInit {
     });
   }
 
+  getTags(): void {
+    this.tagService.getAllTags().subscribe(
+      data => {
+        this.tags = data.tagsDtos;
+      }
+    );
+  }
+
   addAlgo(): void {
     const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {
-      width: '400px',
-      data: {title: 'Add new algorithm'}
+      width: '600px',
+      data: {title: 'Add new algorithm', tags: this.tags}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        const resultContent: Content = {
+          description: result.content
+        };
         const algorithm: Algorithm = {
           name: result.name,
           inputParameters: result.inputParameters,
-          content: result.content,
+          content: resultContent,
           outputParameters: result.outputParameters,
-          tags: result.tags
+          tags: [result.tag]
         };
         this.algorithmService.addAlgorithm(algorithm).subscribe(
           data => {

@@ -20,6 +20,10 @@ export class AddAlgorithmDialogComponent {
     this.dialogRef.close();
   }
 
+  addToInputParameters(data: any) {
+    console.log(data);
+  }
+
 }
 
 export interface DialogData {
@@ -28,6 +32,7 @@ export interface DialogData {
   inputParameters: Parameters;
   content: Content;
   outputParameters: Parameters;
+  tag: Tag;
   tags: Tag[];
   links: Link[];
 }

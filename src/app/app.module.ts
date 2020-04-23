@@ -35,6 +35,8 @@ import { AddSdkDialogComponent } from './components/overview/sdks/dialogs/add-sd
 import { AddTagDialogComponent } from './components/overview/tags/dialogs/add-tag-dialog.component';
 import { AddAlgorithmDialogComponent } from './components/overview/algorithms/dialogs/add-algorithm-dialog.component';
 import { AddProviderDialogComponent } from './components/overview/providers/dialogs/add-provider-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,9 @@ import { AddProviderDialogComponent } from './components/overview/providers/dial
     MatSnackBarModule,
     MatFormFieldModule,
     HttpClientModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
     MatButtonModule,
   ],
   entryComponents: [

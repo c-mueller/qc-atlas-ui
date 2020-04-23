@@ -25,7 +25,7 @@ export class ProvidersComponent implements OnInit {
   qpus: Array<Qpu> = [];
   selectedColor = 'primary';
 
-  displayedQpuColumns: string[] = ['id', 'maxGateTime', 'numberOfQubits', 't1', 'name'];
+  displayedQpuColumns: string[] = ['name', 'id', 'maxGateTime', 'numberOfQubits', 't1'];
 
   constructor(private router: Router, private providerService: ProviderService,
               public dialog: MatDialog, private snackBar: MatSnackBar) {
@@ -133,7 +133,6 @@ export class ProvidersComponent implements OnInit {
   }
 
   addQpu(): void {
-    console.log('W');
     const dialogRef = this.dialog.open(AddQpuDialogComponent, {
       width: '400px',
       data: {title: 'Add new QPU'}

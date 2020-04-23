@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c82f3b89-34b6-410a-8fd4-4863e2ddaa66" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/model/qpu.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/qpu.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/provider.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/provider.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -31,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add-qpu-dialog.component.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="add-qpu-dialog.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="70" column="13" lean-forward="true" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+            <state relative-caret-position="292">
+              <caret line="53" column="51" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
               </folding>
@@ -55,10 +49,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="providers.component.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="providers.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/overview/providers/providers.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
+            <state relative-caret-position="606">
               <caret line="123" column="12" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="12" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
@@ -100,8 +94,8 @@
       <file leaf-file-name="add-qpu-dialog.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+            <state relative-caret-position="360">
+              <caret line="24" column="213" selection-start-line="24" selection-start-column="213" selection-end-line="24" selection-end-column="213" />
             </state>
           </provider>
         </entry>
@@ -170,8 +164,8 @@
       <find>after</find>
       <find>formControlName</find>
       <find>addQpu</find>
-      <find>addqpus</find>
       <find>getQpu</find>
+      <find>addqpus</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/app/components/overview/providers/dialogs</dir>
@@ -229,11 +223,11 @@
         <option value="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-provider-dialog.html" />
         <option value="$PROJECT_DIR$/src/app/model/qpu.model.ts" />
         <option value="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.html" />
-        <option value="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.html" />
         <option value="$PROJECT_DIR$/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.component.ts" />
         <option value="$PROJECT_DIR$/src/app/services/provider.service.ts" />
         <option value="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.html" />
+        <option value="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.component.ts" />
       </list>
     </option>
   </component>
@@ -509,7 +503,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49259000" />
+    <option name="totallyTimeSpent" value="49907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
@@ -890,13 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
@@ -914,16 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="70" column="13" lean-forward="true" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/services/provider.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
@@ -936,10 +913,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/overview/providers/providers.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
+        <state relative-caret-position="606">
           <caret line="123" column="12" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="12" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="213" selection-start-line="24" selection-start-column="213" selection-end-line="24" selection-end-column="213" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="53" column="51" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
           </folding>
         </state>
       </provider>

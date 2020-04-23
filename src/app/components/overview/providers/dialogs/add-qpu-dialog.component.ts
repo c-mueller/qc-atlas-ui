@@ -42,13 +42,16 @@ export class AddQpuDialogComponent implements OnInit {
         Validators.maxLength(255)
       ]),
       'maxGateTime': new FormControl(this.data.maxGateTime, [
-        Validators.required
+        Validators.required,
+        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
       ]),
       'numberOfQubits': new FormControl(this.data.numberOfQubits, [
-        Validators.required
+        Validators.required,
+        Validators.pattern('[0-9]+')
       ]),
       't1': new FormControl(this.data.t1, [
-        Validators.required
+        Validators.required,
+        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
       ])
     });
 

@@ -6,7 +6,6 @@ import { Qpu } from '../../model/qpu.model';
 import { ImportDialogComponent } from '../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../../environments/environment';
 import { AddProviderDialogComponent } from './dialogs/add-provider-dialog.component';
 import { AddQpuDialogComponent } from './dialogs/add-qpu-dialog.component';
 
@@ -33,11 +32,6 @@ export class ProvidersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProviders();
-  }
-
-  tabIndexChanged(index: any): void {
-    this.activeIndex = index;
-    this.router.navigate([environment.OVERVIEW_PAGE + this.tabs[this.activeIndex]]);
   }
 
   getProviderColor(id: number): string {

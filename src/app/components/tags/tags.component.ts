@@ -5,7 +5,6 @@ import { Tag } from '../../model/tag.model';
 import { ImportDialogComponent } from '../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../../environments/environment';
 import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';
 
 @Component({
@@ -28,11 +27,6 @@ export class TagsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllTags();
-  }
-
-  tabIndexChanged(index: any): void {
-    this.activeIndex = index;
-    this.router.navigate([environment.OVERVIEW_PAGE + this.tabs[this.activeIndex]]);
   }
 
   getAllTags(): void {

@@ -2,38 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c82f3b89-34b6-410a-8fd4-4863e2ddaa66" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/algorithms.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/algorithms.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/algorithms.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/algorithms.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/dialogs/add-algorithm-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-algorithm-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/dialogs/add-algorithm-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-algorithm-dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/dialogs/add-implementation-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-implementation-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/dialogs/add-implementation-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-implementation-dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/dialogs/add-parameter-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-parameter-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/dialogs/add-parameter-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-parameter-dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-provider-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/dialogs/add-provider-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-provider-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/dialogs/add-provider-dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/dialogs/add-qpu-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/dialogs/add-qpu-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/dialogs/add-qpu-dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/providers.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/providers.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/providers.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/sdks/dialogs/add-sdk-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/sdks/dialogs/add-sdk-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/sdks/dialogs/add-sdk-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/sdks/dialogs/add-sdk-dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/sdks/sdks.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/sdks/sdks.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/sdks/sdks.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/sdks/sdks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/tags/dialogs/add-tag-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/tags/dialogs/add-tag-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/tags/dialogs/add-tag-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/tags/dialogs/add-tag-dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/tags/tags.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/tags/tags.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/tags/tags.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/tags/tags.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/tags/tags.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/tags/tags.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/tags/tags.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/tags/tags.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/tags/tags.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/tags/tags.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -46,53 +19,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="add-sdk-dialog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/components/sdks/dialogs/add-sdk-dialog.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="81" selection-start-line="11" selection-start-column="81" selection-end-line="11" selection-end-column="81" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add-sdk-dialog.component.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/components/sdks/dialogs/add-sdk-dialog.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="56" selection-start-line="35" selection-start-column="56" selection-end-line="35" selection-end-column="56" />
-              <folding>
-                <element signature="e#0#73#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add-tag-dialog.component.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/components/tags/dialogs/add-tag-dialog.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="58" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
-              <folding>
-                <element signature="e#0#73#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add-tag-dialog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/components/tags/dialogs/add-tag-dialog.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="106" selection-start-line="15" selection-start-column="106" selection-end-line="15" selection-end-column="106" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="tags.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/tags/tags.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+            <state relative-caret-position="435">
+              <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,6 +57,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="providers.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/components/providers/providers.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="416">
+              <caret line="34" column="3" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="app.component.spec.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/app.component.spec.ts">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,11 +80,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app-routing.module.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app-routing.module.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="algorithms.component.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="144" selection-start-line="144" selection-end-line="144" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="environment.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/environments/environment.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sdks.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="339">
+              <caret line="30" column="3" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -202,7 +184,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/app/components/overview/overview/overview.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/overview/algorithms/add-parameter-dialog.html" />
-        <option value="$PROJECT_DIR$/src/environments/environment.ts" />
         <option value="$PROJECT_DIR$/src/app/components/overview/sdks/dialogs/add-parameter-dialog.component.ts" />
         <option value="$PROJECT_DIR$/src/app/model/sdk.model.ts" />
         <option value="$PROJECT_DIR$/src/app/services/sdk.service.ts" />
@@ -244,13 +225,14 @@
         <option value="$PROJECT_DIR$/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/src/app/app.component.scss" />
         <option value="$PROJECT_DIR$/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/components/tags/tags.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-implementation-dialog.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-algorithm-dialog.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" />
         <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/src/environments/environment.ts" />
+        <option value="$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/components/tags/tags.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" />
       </list>
     </option>
   </component>
@@ -493,16 +475,15 @@
       <workItem from="1586361866752" duration="2078000" />
       <workItem from="1586764253334" duration="2047000" />
       <workItem from="1587625242627" duration="1362000" />
-      <workItem from="1587734543052" duration="1721000" />
+      <workItem from="1587734543052" duration="1819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52833000" />
+    <option name="totallyTimeSpent" value="52931000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Cargo" order="3" />
@@ -543,13 +524,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/components/sdks/sdks.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/services/tag.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -775,16 +749,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3963">
-          <caret line="18" column="56" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/importer/import-dialog.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -836,20 +800,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/providers/providers.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/sdks/dialogs/add-sdk-dialog.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -881,13 +831,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="106" selection-start-line="15" selection-start-column="106" selection-end-line="15" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/tags/tags.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -924,6 +867,56 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/environments/environment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="30" column="3" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/tags/tags.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/providers/providers.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="34" column="3" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="144" selection-start-line="144" selection-end-line="144" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

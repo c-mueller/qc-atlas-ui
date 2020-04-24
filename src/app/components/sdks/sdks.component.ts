@@ -5,7 +5,6 @@ import { Sdk } from '../../model/sdk.model';
 import { ImportDialogComponent } from '../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../../environments/environment';
 import { AddSdkDialogComponent } from './dialogs/add-sdk-dialog.component';
 
 @Component({
@@ -29,11 +28,6 @@ export class SdksComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllSdks();
-  }
-
-  tabIndexChanged(index: any): void {
-    this.activeIndex = index;
-    this.router.navigate([environment.OVERVIEW_PAGE + this.tabs[this.activeIndex]]);
   }
 
   getAllSdks(): void {

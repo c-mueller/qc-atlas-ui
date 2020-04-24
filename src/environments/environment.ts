@@ -15,9 +15,6 @@ export const environment = {
   TAG_ENDPOINT: '/tags/',
   INPUT_PARAMETERS: '/inputparameters',
   OUTPUT_PARAMETERS: '/outputparameters',
-
-  // Frontend related stuff
-  OVERVIEW_PAGE: 'overview/',
 };
 
 /*

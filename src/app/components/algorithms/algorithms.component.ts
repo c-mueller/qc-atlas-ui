@@ -7,7 +7,6 @@ import { Implementation } from '../../model/implementation.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ImportDialogComponent } from '../importer/import-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../../environments/environment';
 import { AddParameterDialogComponent } from './dialogs/add-parameter-dialog.component';
 import { Parameter } from '../../model/parameter.model';
 import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.component';
@@ -142,11 +141,6 @@ export class AlgorithmsComponent implements OnInit {
           });
       }
     });
-  }
-
-  tabIndexChanged(index: any): void {
-    this.activeIndex = index;
-    this.router.navigate([environment.OVERVIEW_PAGE + this.tabs[this.activeIndex]]);
   }
 
   algorithmSelected(algorithm: Algorithm): void {

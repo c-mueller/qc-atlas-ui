@@ -10,3 +10,7 @@ export class Algorithm {
   outputParameters?: Parameters;
   tags: Tag[];
 }
+
+export class AlgorithmDto {
+  algorithmDtos: Algorithm[];
+}

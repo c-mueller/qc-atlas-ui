@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,15 +6,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   tabs = ['algorithms', 'providers', 'sdks', 'tags'];
-  activeIndex = 0;
+  activeIndex: number;
 
   constructor(private router: Router, private route: ActivatedRoute) {
   }
 
   tabIndexChanged(index: number): void {
     this.activeIndex = index;
+    localStorage.setItem('activeIndex', JSON.stringify(this.activeIndex));
     this.router.navigate([this.tabs[this.activeIndex]], {relativeTo: this.route});
+  }
+
+  ngOnInit(): void {
+    this.activeIndex = JSON.parse(localStorage.getItem('activeIndex'));
   }
 }

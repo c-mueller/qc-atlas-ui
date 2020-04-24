@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <img src="../assets/logo.png" class="logo-img">
     <span>QC Atlas</span>
-    <mat-tab-group class="tabs" (selectedIndexChange)="tabIndexChanged($event)" backgroundColor="primary">
+    <mat-tab-group class="tabs" [selectedIndex]="activeIndex" (selectedIndexChange)="tabIndexChanged($event)" backgroundColor="primary">
     <mat-tab label="Algorithms"></mat-tab>
     <mat-tab label="Providers"></mat-tab>
     <mat-tab label="SDKs"></mat-tab>

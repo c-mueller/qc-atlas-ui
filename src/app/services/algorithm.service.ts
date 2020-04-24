@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { Parameter } from '../model/parameter.model';
+import { AlgorithmDto } from '../model/algorithm.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +26,11 @@ export class AlgorithmService {
   }
 
   getAlgorithmById(id: number): Observable<any> {
-    return this.httpClient.get(environment.API_URL + environment.ALGORITHM_ENDPOINT + id);
+    return this.httpClient.get<any>(environment.API_URL + environment.ALGORITHM_ENDPOINT + id);
   }
 
-  getAllAlgorithms(): Observable<any> {
-    return this.httpClient.get(environment.API_URL + environment.ALGORITHM_ENDPOINT);
+  getAllAlgorithms(): Observable<AlgorithmDto> {
+    return this.httpClient.get<AlgorithmDto>(environment.API_URL + environment.ALGORITHM_ENDPOINT);
   }
 
   addParameter(parameter: Parameter, algorithmId: number, type: string): Observable<any> {

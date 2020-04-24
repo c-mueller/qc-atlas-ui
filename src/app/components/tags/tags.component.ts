@@ -14,7 +14,7 @@ import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';
 })
 export class TagsComponent implements OnInit {
 
-  tags: Array<Tag> = [];
+  tags: Tag[] = [];
 
   displayedTagsColumns: string[] = ['key', 'value'];
 
@@ -36,18 +36,16 @@ export class TagsComponent implements OnInit {
 
   importJSON(): void {
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
-      width: '250px',
-      data: {title: 'Import new tags'}
+      width: '400px',
+      data: {title: 'Import new Tag'}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.tagService.createTagWithJson(result).subscribe(
-          data => {
-            this.tags.push(data);
-            this.snackBar.open('Successfully added new tag', 'Ok', {
-              duration: 2000,
-            });
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        this.tagService.createTagWithJson(dialogResult).subscribe(
+          () => {
+            this.getAllTags();
+            this.callSnackBar();
           }
         );
       }
@@ -60,22 +58,25 @@ export class TagsComponent implements OnInit {
       data: {title: 'Add new Tag'}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
         const tag: Tag = {
-          key: result.key,
-          value: result.value
+          key: dialogResult.key,
+          value: dialogResult.value
         };
         this.tagService.createTag(tag).subscribe(
           () => {
             this.getAllTags();
-            this.snackBar.open('Successfully added new tag', 'Ok', {
-              duration: 2000,
-            });
+            this.callSnackBar();
           }
         );
       }
     });
   }
 
+  private callSnackBar(): void {
+    this.snackBar.open('Successfully added new Tag', 'OK', {
+      duration: 2000,
+    });
+  }
 }

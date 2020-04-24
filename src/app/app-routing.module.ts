@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'tags', component: TagsComponent},
   {
     path: '',
-    redirectTo: '/overview',
+    redirectTo: '/algorithms',
     pathMatch: 'full'
   },
   {path: '**', component: PageNotFoundComponent}

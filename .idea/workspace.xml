@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c82f3b89-34b6-410a-8fd4-4863e2ddaa66" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/importer/import-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/json-import-dialog/json-import-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/importer/import-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/json-import-dialog/json-import-dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/tags/tags.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/tags/tags.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -66,16 +59,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app-routing.module.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app-routing.module.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
+            <state relative-caret-position="240">
+              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="algorithms.component.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="algorithms.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="416">
@@ -230,7 +226,6 @@
         <option value="$PROJECT_DIR$/src/app/app.component.scss" />
         <option value="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-implementation-dialog.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/algorithms/dialogs/add-algorithm-dialog.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
         <option value="$PROJECT_DIR$/src/environments/environment.ts" />
         <option value="$PROJECT_DIR$/src/app/components/json-import-dialog/import-dialog.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/json-import-dialog/json-import-dialog.ts" />
@@ -240,6 +235,7 @@
         <option value="$PROJECT_DIR$/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
       </list>
     </option>
   </component>
@@ -289,53 +285,6 @@
               <item name="qc-atlas-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="qc-atlas-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qc-atlas-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="qc-atlas-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qc-atlas-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="qc-atlas-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qc-atlas-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="json-import-dialog" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="qc-atlas-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qc-atlas-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="providers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="qc-atlas-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qc-atlas-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="sdks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="qc-atlas-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qc-atlas-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="tags" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="qc-atlas-ui" type="b2602c69:ProjectViewProjectNode" />
@@ -446,12 +395,12 @@
       <workItem from="1586361866752" duration="2078000" />
       <workItem from="1586764253334" duration="2047000" />
       <workItem from="1587625242627" duration="1362000" />
-      <workItem from="1587734543052" duration="2206000" />
+      <workItem from="1587734543052" duration="2249000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53318000" />
+    <option name="totallyTimeSpent" value="53361000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
@@ -811,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/environments/environment.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -888,6 +830,16 @@
           <caret line="213" column="64" selection-start-line="213" selection-start-column="64" selection-end-line="213" selection-end-column="64" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>

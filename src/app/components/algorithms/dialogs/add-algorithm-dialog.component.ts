@@ -2,7 +2,6 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Tag } from '../../../model/tag.model';
 import { Parameters } from '../../../model/parameters.model';
-import { Link } from '../../../model/link.model';
 import { Content } from '../../../model/content.model';
 import { AddParameterDialogComponent } from './add-parameter-dialog.component';
 import { Parameter } from '../../../model/parameter.model';
@@ -100,5 +99,4 @@ export interface DialogData {
   outputParameters: Parameters;
   tag: Tag;
   tags: Tag[];
-  links: Link[];
 }

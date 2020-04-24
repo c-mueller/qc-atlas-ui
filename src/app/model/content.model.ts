@@ -1,3 +1,3 @@
 export class Content {
-  description: string;
+  description?: string;
 }

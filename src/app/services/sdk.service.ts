@@ -13,12 +13,12 @@ export class SdkService {
   constructor(private httpClient: HttpClient) {
   }
 
-  createSdk(jsonString: string): Observable<any> {
-    return this.httpClient.post(environment.API_URL + environment.SDK_ENDPOINT, JSON.parse(jsonString));
+  createSdk(sdk: Sdk): Observable<any> {
+    return this.httpClient.post(environment.API_URL + environment.SDK_ENDPOINT, sdk);
   }
 
-  addSdk(sdk: Sdk): Observable<any> {
-    return this.httpClient.post(environment.API_URL + environment.SDK_ENDPOINT, sdk);
+  createSdkWithJson(jsonString: string): Observable<any> {
+    return this.httpClient.post(environment.API_URL + environment.SDK_ENDPOINT, JSON.parse(jsonString));
   }
 
   getAllSdks(): Observable<any> {

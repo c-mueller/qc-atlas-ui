@@ -42,7 +42,7 @@ export class TagsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.tagService.createTag(result).subscribe(
+        this.tagService.createTagWithJson(result).subscribe(
           data => {
             this.tags.push(data);
             this.snackBar.open('Successfully added new tag', 'Ok', {
@@ -66,7 +66,7 @@ export class TagsComponent implements OnInit {
           key: result.key,
           value: result.value
         };
-        this.tagService.addTag(tag).subscribe(
+        this.tagService.createTag(tag).subscribe(
           () => {
             this.getAllTags();
             this.snackBar.open('Successfully added new tag', 'Ok', {

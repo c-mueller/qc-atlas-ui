@@ -60,7 +60,7 @@ export class SdksComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.sdkService.createSdk(result).subscribe(
+        this.sdkService.createSdkWithJson(result).subscribe(
           data => {
             this.sdks.push(data);
             this.selectedSdk = data;
@@ -84,7 +84,7 @@ export class SdksComponent implements OnInit {
         const sdk: Sdk = {
           name: result.name
         };
-        this.sdkService.addSdk(sdk).subscribe(
+        this.sdkService.createSdk(sdk).subscribe(
           data => {
             this.sdks.push(data);
             this.selectedSdk = data;

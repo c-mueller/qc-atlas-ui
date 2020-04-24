@@ -24,13 +24,15 @@ import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dia
 })
 export class AlgorithmsComponent implements OnInit {
 
-  algorithms: Array<Algorithm> = [];
-  tags: Array<Tag> = [];
-  sdks: Array<Sdk> = [];
-  implementations: Array<Implementation> = [];
+  algorithms: Algorithm[] = [];
+
+  tags: Tag[] = [];
+  sdks: Sdk[] = [];
+
+  implementations: Implementation[] = [];
   implementationOpened = false;
 
-  selectedColor = 'primary';
+  isSelectedColor = 'primary';
 
   selectedAlgorithm: Algorithm;
   selectedImplementation: Implementation;
@@ -65,7 +67,7 @@ export class AlgorithmsComponent implements OnInit {
         this.algorithms = data.algorithmDtos;
         // set initial selected algorithm
         if (this.algorithms.length > 0) {
-          this.algorithmSelected(this.algorithms[0]);
+          this.onAlgorithmSelected(this.algorithms[0]);
         }
       }
     );
@@ -140,7 +142,7 @@ export class AlgorithmsComponent implements OnInit {
     });
   }
 
-  algorithmSelected(algorithm: Algorithm): void {
+  onAlgorithmSelected(algorithm: Algorithm): void {
     this.implementationOpened = false;
     this.selectedAlgorithm = algorithm;
     this.getImplementations();
@@ -159,21 +161,21 @@ export class AlgorithmsComponent implements OnInit {
     this.selectedImplementation = implementation;
   }
 
-  getAlgoColor(id: number): string {
+  getColorOfAlgorithmButton(id: number): string {
     if (!this.selectedAlgorithm) {
       return null;
     }
     if (id === this.selectedAlgorithm.id) {
-      return this.selectedColor;
+      return this.isSelectedColor;
     }
   }
 
-  getImplColor(id: number): string {
+  getColorOfImplementationButton(id: number): string {
     if (!this.selectedImplementation) {
       return null;
     }
     if (id === this.selectedImplementation.id) {
-      return this.selectedColor;
+      return this.isSelectedColor;
     }
     return null;
   }
@@ -189,7 +191,7 @@ export class AlgorithmsComponent implements OnInit {
         this.algorithmService.createAlgorithmWithJson(result).subscribe(
           data => {
             this.algorithms.push(data);
-            this.algorithmSelected(data);
+            this.onAlgorithmSelected(data);
             this.snackBar.open('Successfully added new algorithm', 'Ok', {
               duration: 2000,
             });
@@ -260,7 +262,7 @@ export class AlgorithmsComponent implements OnInit {
         this.algorithmService.createAlgorithm(algorithm).subscribe(
           data => {
             this.algorithms.push(data);
-            this.algorithmSelected(data);
+            this.onAlgorithmSelected(data);
             this.snackBar.open('Successfully added new algorithm', 'Ok', {
               duration: 2000,
             });

@@ -28,8 +28,8 @@ export class TagsComponent implements OnInit {
 
   getAllTags(): void {
     this.tagService.getAllTags().subscribe(
-      data => {
-        this.tags = data.tagsDtos;
+      tags => {
+        this.tags = tags.tagsDtos;
       }
     );
   }

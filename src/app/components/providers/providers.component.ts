@@ -22,7 +22,7 @@ export class ProvidersComponent implements OnInit {
 
   qpus: Qpu[] = [];
 
-  selectedColor = 'primary';
+  isSelectedColor = 'primary';
   displayedQpuColumns: string[] = ['name', 'id', 'maxGateTime', 'numberOfQubits', 't1'];
 
   constructor(private router: Router, private providerService: ProviderService,
@@ -33,16 +33,16 @@ export class ProvidersComponent implements OnInit {
     this.getAllProviders();
   }
 
-  getProviderColor(id: number): string {
+  getColorOfProviderButton(id: number): string {
     if (!this.selectedProvider) {
       return null;
     }
     if (id === this.selectedProvider.id) {
-      return this.selectedColor;
+      return this.isSelectedColor;
     }
   }
 
-  providerSelected(provider: Provider): void {
+  onProviderSelected(provider: Provider): void {
     this.selectedProvider = provider;
     this.qpus = [];
     this.getQpuForProvider(provider.id);
@@ -153,7 +153,7 @@ export class ProvidersComponent implements OnInit {
 
   private selectInitialProvider() {
     if (!this.selectedProvider && this.providers.length > 0) {
-      this.providerSelected(this.providers[0]);
+      this.onProviderSelected(this.providers[0]);
     }
   }
 

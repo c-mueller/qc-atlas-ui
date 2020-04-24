@@ -8,10 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'qc-atlas-ui';
-  tabs = ['overview', 'nisq-analyzer', 'provenance'];
+  tabs = ['algorithms', 'providers', 'sdks', 'tags'];
   activeIndex = 0;
 
-  constructor(private router: Router, private route: ActivatedRoute){}
+  constructor(private router: Router, private route: ActivatedRoute) {
+  }
 
   tabIndexChanged(index: number): void {
     this.activeIndex = index;

@@ -12,11 +12,11 @@ export class AlgorithmService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllAlgorithms(): Observable<any> {
-    return this.httpClient.get(environment.API_URL + environment.ALGORITHM_ENDPOINT);
+  createAlgorithm(algorithm: Algorithm): Observable<any> {
+    return this.httpClient.post(environment.API_URL + environment.ALGORITHM_ENDPOINT, algorithm);
   }
 
-  createAlgorithm(jsonString: string): Observable<any> {
+  createAlgorithmWithJson(jsonString: string): Observable<any> {
     return this.httpClient.post(environment.API_URL + environment.ALGORITHM_ENDPOINT, JSON.parse(jsonString));
   }
 
@@ -24,8 +24,12 @@ export class AlgorithmService {
     return this.httpClient.delete(environment.API_URL + environment.ALGORITHM_ENDPOINT + id);
   }
 
-  addAlgorithm(algorithm: Algorithm): Observable<any> {
-    return this.httpClient.post(environment.API_URL + environment.ALGORITHM_ENDPOINT, algorithm);
+  getAlgorithmById(id: number): Observable<any> {
+    return this.httpClient.get(environment.API_URL + environment.ALGORITHM_ENDPOINT + id);
+  }
+
+  getAllAlgorithms(): Observable<any> {
+    return this.httpClient.get(environment.API_URL + environment.ALGORITHM_ENDPOINT);
   }
 
   addParameter(parameter: Parameter, algorithmId: number, type: string): Observable<any> {
@@ -40,9 +44,5 @@ export class AlgorithmService {
   addOutputParameter(parameter: Parameter, algorithmId: number): Observable<any> {
     return this.httpClient.post(environment.API_URL + environment.ALGORITHM_ENDPOINT + algorithmId
       + environment.OUTPUT_PARAMETERS, parameter);
-  }
-
-  getAlgorithmById(id: number): Observable<any> {
-    return this.httpClient.get(environment.API_URL + environment.ALGORITHM_ENDPOINT + id);
   }
 }

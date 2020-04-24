@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c82f3b89-34b6-410a-8fd4-4863e2ddaa66" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app/components/providers/providers.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/providers.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/sdks/sdks.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/tags/tags.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/tags/tags.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/provider.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/provider.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/sdk.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/sdk.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/tag.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/tag.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/algorithms/algorithms.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/algorithm.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/algorithm.service.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -42,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="providers.component.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="providers.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/providers/providers.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+            <state relative-caret-position="885">
+              <caret line="59" column="2" lean-forward="true" selection-start-line="59" selection-start-column="2" selection-end-line="59" selection-end-column="2" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -63,10 +58,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="algorithm.service.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="algorithm.service.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/services/algorithm.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-53" />
+            <state relative-caret-position="330">
+              <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
@@ -228,12 +228,12 @@
         <option value="$PROJECT_DIR$/theme.scss" />
         <option value="$PROJECT_DIR$/src/app/app.component.scss" />
         <option value="$PROJECT_DIR$/src/app/app.component.html" />
-        <option value="$PROJECT_DIR$/src/app/services/algorithm.service.ts" />
         <option value="$PROJECT_DIR$/src/app/services/tag.service.ts" />
         <option value="$PROJECT_DIR$/src/app/services/sdk.service.ts" />
         <option value="$PROJECT_DIR$/src/app/services/provider.service.ts" />
         <option value="$PROJECT_DIR$/src/app/services/qpu.service.ts" />
         <option value="$PROJECT_DIR$/src/app/components/providers/providers.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/services/algorithm.service.ts" />
       </list>
     </option>
   </component>
@@ -414,7 +414,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54509000" />
+    <option name="totallyTimeSpent" value="54638000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
@@ -432,11 +432,11 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="CheckStyle" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.109375" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.109375" />
       <window_info id="Capture Tool" order="2" />
       <window_info anchor="bottom" id="TypeScript" order="7" weight="0.24573864" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28898427" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28898427" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -779,11 +779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/services/algorithm.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-53" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -843,10 +838,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/providers/providers.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+        <state relative-caret-position="885">
+          <caret line="59" column="2" lean-forward="true" selection-start-line="59" selection-start-column="2" selection-end-line="59" selection-end-column="2" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/services/algorithm.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>

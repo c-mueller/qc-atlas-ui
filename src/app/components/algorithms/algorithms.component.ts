@@ -186,7 +186,7 @@ export class AlgorithmsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.algorithmService.createAlgorithm(result).subscribe(
+        this.algorithmService.createAlgorithmWithJson(result).subscribe(
           data => {
             this.algorithms.push(data);
             this.algorithmSelected(data);
@@ -258,7 +258,7 @@ export class AlgorithmsComponent implements OnInit {
           outputParameters: result.outputParameters,
           tags: [result.tag]
         };
-        this.algorithmService.addAlgorithm(algorithm).subscribe(
+        this.algorithmService.createAlgorithm(algorithm).subscribe(
           data => {
             this.algorithms.push(data);
             this.algorithmSelected(data);

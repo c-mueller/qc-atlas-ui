@@ -57,13 +57,11 @@ export class SdksComponent implements OnInit {
       data: {title: 'Import new SDK'}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.sdkService.createSdkWithJson(result).subscribe(
-          data => {
-            this.sdks.push(data);
-            this.selectedSdk = data;
-            this.callSnackBar();
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        this.sdkService.createSdkWithJson(dialogResult).subscribe(
+          sdkResult => {
+            this.processSdkResult(sdkResult);
           }
         );
       }
@@ -78,17 +76,25 @@ export class SdksComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const sdk: Sdk = {
-          name: dialogResult.name
-        };
+        const sdk: Sdk = this.createSdkFromDialogResult(dialogResult);
         this.sdkService.createSdk(sdk).subscribe(
-          data => {
-            this.sdks.push(data);
-            this.selectedSdk = data;
-            this.callSnackBar();
+          sdkResult => {
+            this.processSdkResult(sdkResult);
           });
       }
     });
+  }
+
+  private createSdkFromDialogResult(dialogResult: any): Sdk {
+    return {
+      name: dialogResult.name
+    };
+  }
+
+  private processSdkResult(sdkResult: Sdk): void {
+    this.sdks.push(sdkResult);
+    this.selectedSdk = sdkResult;
+    this.callSnackBar();
   }
 
   private callSnackBar(): void {

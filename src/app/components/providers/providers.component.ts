@@ -82,11 +82,7 @@ export class ProvidersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const provider: Provider = {
-          name: dialogResult.name,
-          accessKey: dialogResult.accessKey,
-          secretKey: dialogResult.secretKey
-        };
+        const provider: Provider = this.createProviderFromDialogResult(dialogResult);
         this.providerService.createProvider(provider).subscribe(
           providerResult => {
             this.processProviderResult(providerResult);
@@ -124,12 +120,7 @@ export class ProvidersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const qpu: Qpu = {
-          maxGateTime: dialogResult.maxGateTime,
-          name: dialogResult.name,
-          numberOfQubits: dialogResult.numberOfQubits,
-          t1: dialogResult.t1
-        };
+        const qpu: Qpu = this.createQpuFromDialogResult(dialogResult);
         this.qpuService.createQpu(this.selectedProvider.id, qpu).subscribe(
           () => {
             this.getQpuForProvider(this.selectedProvider.id);
@@ -140,6 +131,23 @@ export class ProvidersComponent implements OnInit {
         );
       }
     });
+  }
+
+  private createQpuFromDialogResult(dialogResult: any): Qpu {
+    return {
+      maxGateTime: dialogResult.maxGateTime,
+      name: dialogResult.name,
+      numberOfQubits: dialogResult.numberOfQubits,
+      t1: dialogResult.t1
+    };
+  }
+
+  private createProviderFromDialogResult(dialogResult: any): Provider {
+    return {
+      name: dialogResult.name,
+      accessKey: dialogResult.accessKey,
+      secretKey: dialogResult.secretKey
+    };
   }
 
   private getAllProviders(): void {

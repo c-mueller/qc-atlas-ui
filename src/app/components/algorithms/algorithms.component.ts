@@ -116,21 +116,15 @@ export class AlgorithmsComponent implements OnInit {
     });
   }
 
-
   createAlgorithmParameter(type: string): void {
     const dialogRef = this.dialog.open(AddParameterDialogComponent, {
       width: '400px',
       data: {title: 'Add new ' + type + ' parameter'}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const parameter: Parameter = {
-          name: result.name,
-          description: result.description,
-          type: result.type,
-          restriction: result.restriction
-        };
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        const parameter: Parameter = this.createParameterFromDialogResult(dialogResult);
         this.algorithmService.addParameter(parameter, this.selectedAlgorithm.id, type).subscribe(
           () => {
             this.getAlgorithmById(this.selectedAlgorithm.id);
@@ -150,8 +144,8 @@ export class AlgorithmsComponent implements OnInit {
 
   getImplementations(): void {
     this.implementationService.getImplementationsForId(this.selectedAlgorithm.id).subscribe(
-      data => {
-        this.implementations = data.implementationDtos;
+      implementations => {
+        this.implementations = implementations.implementationDtos;
       }
     );
   }
@@ -189,12 +183,8 @@ export class AlgorithmsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.algorithmService.createAlgorithmWithJson(result).subscribe(
-          data => {
-            this.algorithms.push(data);
-            this.onAlgorithmSelected(data);
-            this.snackBar.open('Successfully added new algorithm', 'Ok', {
-              duration: 2000,
-            });
+          algorithmResult => {
+            this.processAlgorithmResult(algorithmResult);
           }
         );
       }
@@ -221,11 +211,8 @@ export class AlgorithmsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.implementationService.createImplementationWithJson(this.selectedAlgorithm.id, result).subscribe(
-          data => {
-            this.implementations.push(data);
-            this.snackBar.open('Successfully added new implementation', 'Ok', {
-              duration: 2000,
-            });
+          implementationResult => {
+            this.processImplementationResult(implementationResult);
           }
         );
       }
@@ -245,27 +232,15 @@ export class AlgorithmsComponent implements OnInit {
       width: '600px',
       data: {title: 'Add new algorithm', tags: this.tags}
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
         this.selectedAlgorithm = null;
         this.implementations = null;
-        const resultContent: Content = {
-          description: result.content
-        };
-        const algorithm: Algorithm = {
-          name: result.name,
-          inputParameters: result.inputParameters,
-          content: resultContent,
-          outputParameters: result.outputParameters,
-          tags: [result.tag]
-        };
+        const resultContent: Content = this.createContentFromDialogResult(dialogResult);
+        const algorithm: Algorithm = this.createAlgorithmFromDialogResult(dialogResult, resultContent);
         this.algorithmService.createAlgorithm(algorithm).subscribe(
-          data => {
-            this.algorithms.push(data);
-            this.onAlgorithmSelected(data);
-            this.snackBar.open('Successfully added new algorithm', 'Ok', {
-              duration: 2000,
-            });
+          algorithmResult => {
+            this.processAlgorithmResult(algorithmResult);
           }
         );
       }
@@ -278,34 +253,73 @@ export class AlgorithmsComponent implements OnInit {
       data: {title: 'Add new implementation', tags: this.tags, sdks: this.sdks}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
         this.selectedImplementation = null;
-        const resultContent: Content = {
-          description: result.description
-        };
-        const implementation: Implementation = {
-          name: result.name,
-          sdk: result.sdk.name,
-          content: resultContent,
-          fileLocation: result.fileLocation,
-          programmingLanguage: result.programmingLanguage,
-          selectionRule: result.selectionRule,
-          inputParameters: result.inputParameters,
-          outputParameters: result.outputParameters,
-          tags: [result.tag]
-        };
+        const resultContent: Content = this.createContentFromDialogResult(dialogResult);
+        const implementation: Implementation = this.createImplementationFromDialogResult(dialogResult, resultContent);
         this.implementationService.createImplementation(this.selectedAlgorithm.id, implementation).subscribe(
-          data => {
-            this.implementations.push(data);
-            this.selectedImplementation = data;
-            this.implementationOpened = true;
-            this.snackBar.open('Successfully added new implementation', 'Ok', {
-              duration: 2000,
-            });
+          implementationResult => {
+            this.processImplementationResult(implementationResult);
           }
         );
       }
     });
+  }
+
+  private createParameterFromDialogResult(dialogResult: any): Parameter {
+    return {
+      name: dialogResult.name,
+      description: dialogResult.description,
+      type: dialogResult.type,
+      restriction: dialogResult.restriction
+    };
+  }
+
+  private processAlgorithmResult(algorithmResult: Algorithm): void {
+    this.algorithms.push(algorithmResult);
+    this.onAlgorithmSelected(algorithmResult);
+    this.snackBar.open('Successfully added new algorithm', 'Ok', {
+      duration: 2000,
+    });
+  }
+
+  private processImplementationResult(implementationResult: Implementation): void {
+    this.implementations.push(implementationResult);
+    this.selectedImplementation = implementationResult;
+    this.implementationOpened = true;
+    this.snackBar.open('Successfully added new implementation', 'Ok', {
+      duration: 2000,
+    });
+  }
+
+  private createAlgorithmFromDialogResult(dialogResult: any, resultContent: Content): Algorithm {
+    return {
+      name: dialogResult.name,
+      inputParameters: dialogResult.inputParameters,
+      content: resultContent,
+      outputParameters: dialogResult.outputParameters,
+      tags: [dialogResult.tag]
+    };
+  }
+
+  private createImplementationFromDialogResult(dialogResult: any, resultContent: Content): Implementation {
+    return {
+      name: dialogResult.name,
+      sdk: dialogResult.sdk.name,
+      content: resultContent,
+      fileLocation: dialogResult.fileLocation,
+      programmingLanguage: dialogResult.programmingLanguage,
+      selectionRule: dialogResult.selectionRule,
+      inputParameters: dialogResult.inputParameters,
+      outputParameters: dialogResult.outputParameters,
+      tags: [dialogResult.tag]
+    };
+  }
+
+  private createContentFromDialogResult(dialogResult: any): Content {
+    return {
+      description: dialogResult.description
+    };
   }
 }

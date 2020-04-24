@@ -60,10 +60,7 @@ export class TagsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const tag: Tag = {
-          key: dialogResult.key,
-          value: dialogResult.value
-        };
+        const tag: Tag = this.createTagFromDialogResult(dialogResult);
         this.tagService.createTag(tag).subscribe(
           () => {
             this.getAllTags();
@@ -72,6 +69,13 @@ export class TagsComponent implements OnInit {
         );
       }
     });
+  }
+
+  private createTagFromDialogResult(dialogResult: any): Tag {
+    return {
+      key: dialogResult.key,
+      value: dialogResult.value
+    };
   }
 
   private callSnackBar(): void {

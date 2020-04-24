@@ -87,7 +87,7 @@ export class AlgorithmsComponent implements OnInit {
     );
   }
 
-  addImplParameter(type: string): void {
+  createImplementationParameter(type: string): void {
     const dialogRef = this.dialog.open(AddParameterDialogComponent, {
       width: '400px',
       data: {title: 'Add new ' + type + ' parameter'}
@@ -115,7 +115,7 @@ export class AlgorithmsComponent implements OnInit {
   }
 
 
-  addAlgoParameter(type: string): void {
+  createAlgorithmParameter(type: string): void {
     const dialogRef = this.dialog.open(AddParameterDialogComponent, {
       width: '400px',
       data: {title: 'Add new ' + type + ' parameter'}
@@ -178,7 +178,7 @@ export class AlgorithmsComponent implements OnInit {
     return null;
   }
 
-  importJSON(): void {
+  createAlgorithmWithJson(): void {
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new algorithm'}
@@ -210,7 +210,7 @@ export class AlgorithmsComponent implements OnInit {
     );
   }
 
-  importImplJSON(): void {
+  createImplementationWithJson(): void {
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new implementation'}
@@ -238,7 +238,7 @@ export class AlgorithmsComponent implements OnInit {
     );
   }
 
-  addAlgo(): void {
+  createAlgorithm(): void {
     const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {
       width: '600px',
       data: {title: 'Add new algorithm', tags: this.tags}
@@ -270,7 +270,7 @@ export class AlgorithmsComponent implements OnInit {
     });
   }
 
-  addImpl(): void {
+  createImplementation(): void {
     const dialogRef = this.dialog.open(AddImplementationDialogComponent, {
       width: '600px',
       data: {title: 'Add new implementation', tags: this.tags, sdks: this.sdks}
@@ -295,7 +295,6 @@ export class AlgorithmsComponent implements OnInit {
         };
         this.implementationService.createImplementation(this.selectedAlgorithm.id, implementation).subscribe(
           data => {
-            console.log(data);
             this.implementations.push(data);
             this.selectedImplementation = data;
             this.implementationOpened = true;

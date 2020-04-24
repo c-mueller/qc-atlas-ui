@@ -17,11 +17,12 @@ import { QpuService } from '../../services/qpu.service';
 })
 export class ProvidersComponent implements OnInit {
 
-  providers: Array<Provider> = [];
+  providers: Provider[] = [];
   selectedProvider: Provider;
-  qpus: Array<Qpu> = [];
-  selectedColor = 'primary';
 
+  qpus: Qpu[] = [];
+
+  selectedColor = 'primary';
   displayedQpuColumns: string[] = ['name', 'id', 'maxGateTime', 'numberOfQubits', 't1'];
 
   constructor(private router: Router, private providerService: ProviderService,
@@ -39,7 +40,6 @@ export class ProvidersComponent implements OnInit {
     if (id === this.selectedProvider.id) {
       return this.selectedColor;
     }
-    return null;
   }
 
   providerSelected(provider: Provider): void {
@@ -57,62 +57,54 @@ export class ProvidersComponent implements OnInit {
     );
   }
 
-  importJSON(): void {
+  createProviderWithJson(): void {
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
-      width: '250px',
-      data: {title: 'Import new providers'}
+      width: '400px',
+      data: {title: 'Import new Provider'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.providerService.createProviderWithJson(result).subscribe(
-          data => {
-            this.providers.push(data);
-            this.selectedProvider = data;
-            this.snackBar.open('Successfully added new provider', 'Ok', {
-              duration: 2000,
-            });
+          providerResult => {
+            this.processProviderResult(providerResult);
           }
         );
       }
     });
   }
 
-  addProvider(): void {
+  createProvider(): void {
     const dialogRef = this.dialog.open(AddProviderDialogComponent, {
       width: '400px',
       data: {title: 'Add new Provider'}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
         const provider: Provider = {
-          name: result.name,
-          accessKey: result.accessKey,
-          secretKey: result.secretKey
+          name: dialogResult.name,
+          accessKey: dialogResult.accessKey,
+          secretKey: dialogResult.secretKey
         };
         this.providerService.createProvider(provider).subscribe(
-          data => {
-            this.providers.push(data);
-            this.selectedProvider = data;
-            this.snackBar.open('Successfully added new provider', 'Ok', {
-              duration: 2000,
-            });
+          providerResult => {
+            this.processProviderResult(providerResult);
           }
         );
       }
     });
   }
 
-  importQpuJSON(): void {
+  createQpuWithJson(): void {
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new QPU'}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.qpuService.createQpuWithJson(this.selectedProvider.id, result).subscribe(
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        this.qpuService.createQpuWithJson(this.selectedProvider.id, dialogResult).subscribe(
           () => {
             this.getQpuForProvider(this.selectedProvider.id);
             this.snackBar.open('Successfully added new QPU', 'Ok', {
@@ -124,19 +116,19 @@ export class ProvidersComponent implements OnInit {
     });
   }
 
-  addQpu(): void {
+  createQpu(): void {
     const dialogRef = this.dialog.open(AddQpuDialogComponent, {
       width: '400px',
       data: {title: 'Add new QPU'}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
         const qpu: Qpu = {
-          maxGateTime: result.maxGateTime,
-          name: result.name,
-          numberOfQubits: result.numberOfQubits,
-          t1: result.t1
+          maxGateTime: dialogResult.maxGateTime,
+          name: dialogResult.name,
+          numberOfQubits: dialogResult.numberOfQubits,
+          t1: dialogResult.t1
         };
         this.qpuService.createQpu(this.selectedProvider.id, qpu).subscribe(
           () => {
@@ -152,12 +144,28 @@ export class ProvidersComponent implements OnInit {
 
   private getAllProviders(): void {
     this.providerService.getAllProviders().subscribe(
-      data => {
-        this.providers = data.providerDtoList;
-        if (!this.selectedProvider && this.providers.length > 0) {
-          this.providerSelected(this.providers[0]);
-        }
+      providers => {
+        this.providers = providers.providerDtoList;
+        this.selectInitialProvider();
       }
     );
+  }
+
+  private selectInitialProvider() {
+    if (!this.selectedProvider && this.providers.length > 0) {
+      this.providerSelected(this.providers[0]);
+    }
+  }
+
+  private processProviderResult(providerResult: Provider): void {
+    this.providers.push(providerResult);
+    this.selectedProvider = providerResult;
+    this.callSnackBar();
+  }
+
+  private callSnackBar(): void {
+    this.snackBar.open('Successfully added new Provider', 'Ok', {
+      duration: 2000,
+    });
   }
 }

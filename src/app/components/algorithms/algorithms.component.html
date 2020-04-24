@@ -1,6 +1,6 @@
 <div class="action-button-row" *ngIf="algorithms.length === 0">
-  <button mat-raised-button color="primary" (click)="addAlgo()">Add algorithm</button>
-  <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+  <button mat-raised-button color="primary" (click)="createAlgorithm()">Add algorithm</button>
+  <button mat-raised-button color="accent" (click)="createAlgorithmWithJson()">Import JSON</button>
 </div>
 <mat-drawer-container class="entity-container">
   <mat-drawer mode="side" opened>
@@ -24,16 +24,16 @@
           </button>
         </div>
         <div class="action-button-row">
-          <button mat-raised-button color="primary" (click)="addImpl()">Add implementation</button>
-          <button mat-raised-button color="accent" (click)="importImplJSON()">Import JSON</button>
+          <button mat-raised-button color="primary" (click)="createImplementation()">Add implementation</button>
+          <button mat-raised-button color="accent" (click)="createImplementationWithJson()">Import JSON</button>
           <button mat-raised-button color="warn" disabled (click)="deleteAlgorithm()">Delete Algorithm</button>
 
         </div>
       </mat-expansion-panel>
     </mat-accordion>
     <div class="action-button-row">
-      <button mat-raised-button color="primary" (click)="addAlgo()">Add algorithm</button>
-      <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+      <button mat-raised-button color="primary" (click)="createAlgorithm()">Add algorithm</button>
+      <button mat-raised-button color="accent" (click)="createAlgorithmWithJson()">Import JSON</button>
     </div>
   </mat-drawer>
   <mat-drawer-content>
@@ -52,7 +52,7 @@
           <mat-divider></mat-divider>
           <div class="entity-content">
             <h3>Input Parameters
-              <button (click)="addAlgoParameter('input')" mat-button>
+              <button (click)="createAlgorithmParameter('input')" mat-button>
                 <mat-icon>add</mat-icon>
               </button>
             </h3>
@@ -80,7 +80,7 @@
           <mat-divider></mat-divider>
           <div class="entity-content">
             <h3>Output Parameters
-              <button (click)="addAlgoParameter('output')" mat-button>
+              <button (click)="createAlgorithmParameter('output')" mat-button>
                 <mat-icon>add</mat-icon>
               </button>
             </h3>
@@ -175,7 +175,7 @@
           </div>
           <div class="entity-content">
             <h3>Input Parameters
-              <button (click)="addImplParameter('input')" mat-button>
+              <button (click)="createImplementationParameter('input')" mat-button>
                 <mat-icon>add</mat-icon>
               </button>
             </h3>
@@ -203,7 +203,7 @@
           <mat-divider></mat-divider>
           <div class="entity-content">
             <h3>Output Parameters
-              <button (click)="addImplParameter('output')" mat-button>
+              <button (click)="createImplementationParameter('output')" mat-button>
                 <mat-icon>add</mat-icon>
               </button>
             </h3>

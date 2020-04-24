@@ -1,6 +1,6 @@
 <div class="action-button-row" *ngIf="providers.length === 0">
-  <button mat-raised-button color="primary" (click)="addProvider()">Add provider</button>
-  <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+  <button mat-raised-button color="primary" (click)="createProvider()">Add provider</button>
+  <button mat-raised-button color="accent" (click)="createProviderWithJson()">Import JSON</button>
 </div>
 <mat-drawer-container class="entity-container">
   <mat-drawer mode="side" opened>
@@ -12,8 +12,8 @@
       <mat-divider></mat-divider>
     </div>
     <div class="action-button-row">
-      <button mat-raised-button color="primary" (click)="addProvider()">Add provider</button>
-      <button mat-raised-button color="accent" (click)="importJSON()">Import JSON</button>
+      <button mat-raised-button color="primary" (click)="createProvider()">Add provider</button>
+      <button mat-raised-button color="accent" (click)="createProviderWithJson()">Import JSON</button>
     </div>
   </mat-drawer>
   <mat-drawer-content *ngIf="selectedProvider">
@@ -59,8 +59,8 @@
             <tr mat-row *matRowDef="let row; columns: displayedQpuColumns;"></tr>
           </table>
           <div class="action-button-row">
-            <button mat-raised-button color="primary" (click)="addQpu()">Add QPU</button>
-            <button mat-raised-button color="accent" (click)="importQpuJSON()">Import JSON</button>
+            <button mat-raised-button color="primary" (click)="createQpu()">Add QPU</button>
+            <button mat-raised-button color="accent" (click)="createQpuWithJson()">Import JSON</button>
           </div>
         </div>
       </mat-card-content>

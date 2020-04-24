@@ -14,7 +14,7 @@ import { AddSdkDialogComponent } from './dialogs/add-sdk-dialog.component';
 })
 export class SdksComponent implements OnInit {
 
-  sdks: Array<Sdk> = [];
+  sdks: Sdk[] = [];
   selectedSdk: Sdk;
 
   selectedColor = 'primary';
@@ -45,7 +45,6 @@ export class SdksComponent implements OnInit {
     if (id === this.selectedSdk.id) {
       return this.selectedColor;
     }
-    return null;
   }
 
   sdkSelected(sdk: Sdk): void {
@@ -54,8 +53,8 @@ export class SdksComponent implements OnInit {
 
   importJSON(): void {
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
-      width: '250px',
-      data: {title: 'Import new SDKs'}
+      width: '400px',
+      data: {title: 'Import new SDK'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -64,9 +63,7 @@ export class SdksComponent implements OnInit {
           data => {
             this.sdks.push(data);
             this.selectedSdk = data;
-            this.snackBar.open('Successfully added new SDK', 'Ok', {
-              duration: 2000,
-            });
+            this.callSnackBar();
           }
         );
       }
@@ -79,20 +76,24 @@ export class SdksComponent implements OnInit {
       data: {title: 'Add new SDK'}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
         const sdk: Sdk = {
-          name: result.name
+          name: dialogResult.name
         };
         this.sdkService.createSdk(sdk).subscribe(
           data => {
             this.sdks.push(data);
             this.selectedSdk = data;
-            this.snackBar.open('Successfully added SDK', 'Ok', {
-              duration: 2000,
-            });
+            this.callSnackBar();
           });
       }
+    });
+  }
+
+  private callSnackBar(): void {
+    this.snackBar.open('Successfully added new SDK', 'Ok', {
+      duration: 2000,
     });
   }
 }

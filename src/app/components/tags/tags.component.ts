@@ -34,7 +34,7 @@ export class TagsComponent implements OnInit {
     );
   }
 
-  importJSON(): void {
+  createTagWithJson(): void {
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '400px',
       data: {title: 'Import new Tag'}
@@ -52,7 +52,7 @@ export class TagsComponent implements OnInit {
     });
   }
 
-  addTag(): void {
+  createTag(): void {
     const dialogRef = this.dialog.open(AddTagDialogComponent, {
       width: '400px',
       data: {title: 'Add new Tag'}

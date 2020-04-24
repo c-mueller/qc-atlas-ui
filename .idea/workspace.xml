@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c82f3b89-34b6-410a-8fd4-4863e2ddaa66" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/nisq-analyzer/nisq-analyzer/nisq-analyzer.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/nisq-analyzer/nisq-analyzer/nisq-analyzer.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/nisq-analyzer/nisq-analyzer/nisq-analyzer.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/nisq-analyzer/nisq-analyzer/nisq-analyzer.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/algorithms/algorithms.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/overview/algorithms/algorithms.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/overview/overview.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/overview/overview.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/overview/overview.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/overview/overview.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/overview/providers/providers.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/sdks/sdks.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/overview/sdks/sdks.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/overview/tags/tags.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/overview/tags/tags.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/provenance/provenance/provenance.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/provenance/provenance/provenance.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/provenance/provenance/provenance.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/provenance/provenance/provenance.component.ts" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -71,8 +51,8 @@
       <file leaf-file-name="app.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+            <state>
+              <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -80,8 +60,8 @@
       <file leaf-file-name="app.component.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/app.component.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+            <state relative-caret-position="45">
+              <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -454,12 +434,12 @@
       <workItem from="1586361866752" duration="2078000" />
       <workItem from="1586764253334" duration="2047000" />
       <workItem from="1587625242627" duration="1362000" />
-      <workItem from="1587734543052" duration="1238000" />
+      <workItem from="1587734543052" duration="1358000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52350000" />
+    <option name="totallyTimeSpent" value="52470000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
@@ -861,15 +841,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+        <state>
+          <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app.component.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        <state relative-caret-position="45">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
         </state>
       </provider>
     </entry>

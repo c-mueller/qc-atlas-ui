@@ -10,7 +10,6 @@ import { ProvidersComponent } from './components/providers/providers.component';
 import { SdksComponent } from './components/sdks/sdks.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ImportDialogComponent } from './components/importer/import-dialog.component';
 import { AddImplementationDialogComponent } from './components/algorithms/dialogs/add-implementation-dialog.component';
 import { AddQpuDialogComponent } from './components/providers/dialogs/add-qpu-dialog.component';
 import { AddParameterDialogComponent } from './components/algorithms/dialogs/add-parameter-dialog.component';
@@ -35,6 +34,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { JsonImportDialogComponent } from './components/json-import-dialog/json-import-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,14 +46,14 @@ import { MatOptionModule } from '@angular/material/core';
     TagsComponent,
     PageNotFoundComponent,
     // dialogs
-    ImportDialogComponent,
     AddParameterDialogComponent,
     AddSdkDialogComponent,
     AddTagDialogComponent,
     AddAlgorithmDialogComponent,
     AddProviderDialogComponent,
     AddImplementationDialogComponent,
-    AddQpuDialogComponent
+    AddQpuDialogComponent,
+    JsonImportDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,14 +81,14 @@ import { MatOptionModule } from '@angular/material/core';
     MatButtonModule,
   ],
   entryComponents: [
-    ImportDialogComponent,
     AddParameterDialogComponent,
     AddSdkDialogComponent,
     AddTagDialogComponent,
     AddAlgorithmDialogComponent,
     AddProviderDialogComponent,
     AddImplementationDialogComponent,
-    AddQpuDialogComponent
+    AddQpuDialogComponent,
+    JsonImportDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

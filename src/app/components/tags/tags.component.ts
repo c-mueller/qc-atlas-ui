@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TagService } from '../../services/tag.service';
 import { Tag } from '../../model/tag.model';
-import { ImportDialogComponent } from '../importer/import-dialog.component';
+import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';
@@ -13,9 +13,6 @@ import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';
   styleUrls: ['./tags.component.scss']
 })
 export class TagsComponent implements OnInit {
-
-  activeIndex = 3;
-  tabs = ['algorithms', 'providers', 'sdks', 'tags'];
 
   tags: Array<Tag> = [];
 
@@ -38,7 +35,7 @@ export class TagsComponent implements OnInit {
   }
 
   importJSON(): void {
-    const dialogRef = this.dialog.open(ImportDialogComponent, {
+    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new tags'}
     });

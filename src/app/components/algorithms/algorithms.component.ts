@@ -5,7 +5,6 @@ import { Algorithm } from '../../model/algorithm.model';
 import { ImplementationService } from '../../services/implementation.service';
 import { Implementation } from '../../model/implementation.model';
 import { MatDialog } from '@angular/material/dialog';
-import { ImportDialogComponent } from '../importer/import-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddParameterDialogComponent } from './dialogs/add-parameter-dialog.component';
 import { Parameter } from '../../model/parameter.model';
@@ -16,6 +15,7 @@ import { Content } from '../../model/content.model';
 import { AddImplementationDialogComponent } from './dialogs/add-implementation-dialog.component';
 import { Sdk } from '../../model/sdk.model';
 import { SdkService } from '../../services/sdk.service';
+import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dialog.component';
 
 @Component({
   selector: 'app-algorithms',
@@ -23,9 +23,6 @@ import { SdkService } from '../../services/sdk.service';
   styleUrls: ['./algorithms.component.scss']
 })
 export class AlgorithmsComponent implements OnInit {
-
-  activeIndex = 0;
-  tabs = ['algorithms', 'providers', 'sdks', 'tags'];
 
   algorithms: Array<Algorithm> = [];
   tags: Array<Tag> = [];
@@ -182,7 +179,7 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   importJSON(): void {
-    const dialogRef = this.dialog.open(ImportDialogComponent, {
+    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new algorithm'}
     });
@@ -214,7 +211,7 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   importImplJSON(): void {
-    const dialogRef = this.dialog.open(ImportDialogComponent, {
+    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new implementation'}
     });

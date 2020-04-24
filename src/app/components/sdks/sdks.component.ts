@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SdkService } from '../../services/sdk.service';
 import { Sdk } from '../../model/sdk.model';
-import { ImportDialogComponent } from '../importer/import-dialog.component';
+import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddSdkDialogComponent } from './dialogs/add-sdk-dialog.component';
@@ -13,9 +13,6 @@ import { AddSdkDialogComponent } from './dialogs/add-sdk-dialog.component';
   styleUrls: ['./sdks.component.scss']
 })
 export class SdksComponent implements OnInit {
-
-  activeIndex = 2;
-  tabs = ['algorithms', 'providers', 'sdks', 'tags'];
 
   sdks: Array<Sdk> = [];
   selectedSdk: Sdk;
@@ -56,7 +53,7 @@ export class SdksComponent implements OnInit {
   }
 
   importJSON(): void {
-    const dialogRef = this.dialog.open(ImportDialogComponent, {
+    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new SDKs'}
     });

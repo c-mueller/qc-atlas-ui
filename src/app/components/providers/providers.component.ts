@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Provider } from '../../model/provider.model';
 import { ProviderService } from '../../services/provider.service';
 import { Qpu } from '../../model/qpu.model';
-import { ImportDialogComponent } from '../importer/import-dialog.component';
+import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddProviderDialogComponent } from './dialogs/add-provider-dialog.component';
@@ -15,9 +15,6 @@ import { AddQpuDialogComponent } from './dialogs/add-qpu-dialog.component';
   styleUrls: ['./providers.component.scss']
 })
 export class ProvidersComponent implements OnInit {
-
-  activeIndex = 1;
-  tabs = ['algorithms', 'providers', 'sdks', 'tags'];
 
   providers: Array<Provider> = [];
   selectedProvider: Provider;
@@ -60,7 +57,7 @@ export class ProvidersComponent implements OnInit {
   }
 
   importJSON(): void {
-    const dialogRef = this.dialog.open(ImportDialogComponent, {
+    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new providers'}
     });
@@ -107,7 +104,7 @@ export class ProvidersComponent implements OnInit {
   }
 
   importQpusJSON(): void {
-    const dialogRef = this.dialog.open(ImportDialogComponent, {
+    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new QPUs'}
     });

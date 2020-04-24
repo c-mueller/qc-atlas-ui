@@ -1,8 +1,8 @@
 <mat-toolbar color="primary" class="toolbar">
   <mat-toolbar-row>
-    <img src="../assets/logo.png" style="height: 50px; margin: 5px">
+    <img src="../assets/logo.png" class="logo-img">
     <span>QC Atlas</span>
-    <mat-tab-group (selectedIndexChange)="tabIndexChanged($event)" backgroundColor="primary">
+    <mat-tab-group class="tabs" (selectedIndexChange)="tabIndexChanged($event)" backgroundColor="primary">
     <mat-tab label="Algorithms"></mat-tab>
     <mat-tab label="Providers"></mat-tab>
     <mat-tab label="SDKs"></mat-tab>

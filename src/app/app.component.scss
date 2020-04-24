@@ -1,7 +1,15 @@
 .toolbar {
-  margin-right: 1em;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
   z-index: 1000;
+}
+
+.tabs {
+  margin-left: 1em;
+}
+
+.logo-img {
+  height: 50px;
+  margin: 5px;
 }

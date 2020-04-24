@@ -81,6 +81,7 @@ import { JsonImportDialogComponent } from './components/json-import-dialog/json-
     MatButtonModule,
   ],
   entryComponents: [
+    // dialogs need to be provided as entry component
     AddParameterDialogComponent,
     AddSdkDialogComponent,
     AddTagDialogComponent,

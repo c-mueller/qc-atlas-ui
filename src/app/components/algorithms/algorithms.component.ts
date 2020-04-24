@@ -218,7 +218,7 @@ export class AlgorithmsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.implementationService.createImplementation(this.selectedAlgorithm.id, result).subscribe(
+        this.implementationService.createImplementationWithJson(this.selectedAlgorithm.id, result).subscribe(
           data => {
             this.implementations.push(data);
             this.snackBar.open('Successfully added new implementation', 'Ok', {
@@ -245,7 +245,6 @@ export class AlgorithmsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         this.selectedAlgorithm = null;
         this.implementations = null;
         const resultContent: Content = {
@@ -294,7 +293,7 @@ export class AlgorithmsComponent implements OnInit {
           outputParameters: result.outputParameters,
           tags: [result.tag]
         };
-        this.implementationService.addImplementation(this.selectedAlgorithm.id, implementation).subscribe(
+        this.implementationService.createImplementation(this.selectedAlgorithm.id, implementation).subscribe(
           data => {
             console.log(data);
             this.implementations.push(data);

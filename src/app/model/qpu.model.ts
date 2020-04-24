@@ -5,3 +5,7 @@ export class Qpu {
   numberOfQubits: number;
   t1: number;
 }
+
+export class QpuDtoList {
+  qpuDtoList: Qpu[];
+}

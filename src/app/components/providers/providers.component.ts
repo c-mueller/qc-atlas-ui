@@ -50,7 +50,7 @@ export class ProvidersComponent implements OnInit {
   }
 
   getQpuForProvider(providerId: number): void {
-    this.qpuService.getQpuforProvider(providerId).subscribe(
+    this.qpuService.getQpusforProvider(providerId).subscribe(
       data => {
         this.qpus = data.qpuDtoList;
       }

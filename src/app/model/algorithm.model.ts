@@ -11,6 +11,6 @@ export class Algorithm {
   tags: Tag[];
 }
 
-export class AlgorithmDto {
+export class AlgorithmDtos {
   algorithmDtos: Algorithm[];
 }

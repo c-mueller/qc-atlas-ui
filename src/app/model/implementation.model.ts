@@ -14,3 +14,7 @@ export class Implementation {
   selectionRule: string;
   tags: Tag[];
 }
+
+export class ImplementationDtos {
+  implementationDtos: Implementation[];
+}

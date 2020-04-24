@@ -53,20 +53,20 @@ export class AddImplementationDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.implementationForm = new FormGroup({
-      'name': new FormControl(this.data.name, [
+      name: new FormControl(this.data.name, [
         Validators.required,
         Validators.maxLength(255)
       ]),
-      'fileLocation': new FormControl(this.data.fileLocation, [
+      fileLocation: new FormControl(this.data.fileLocation, [
         Validators.required,
         Validators.maxLength(255),
         Validators.pattern('^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&\'\\(\\)\\*\\+,;=.]+$')
       ]),
-      'selectionRule': new FormControl(this.data.selectionRule, [
+      selectionRule: new FormControl(this.data.selectionRule, [
         Validators.required,
         Validators.maxLength(255)
       ]),
-      'programmingLanguage': new FormControl(this.data.programmingLanguage, [
+      programmingLanguage: new FormControl(this.data.programmingLanguage, [
         Validators.required,
         Validators.maxLength(255)
       ]),

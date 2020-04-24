@@ -25,11 +25,11 @@ export class AddTagDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.tagForm = new FormGroup({
-      'key': new FormControl(this.data.key, [
+      key: new FormControl(this.data.key, [
         Validators.required,
         Validators.maxLength(255)
       ]),
-      'value': new FormControl(this.data.value, [
+      value: new FormControl(this.data.value, [
         Validators.required,
         Validators.maxLength(255)
       ])

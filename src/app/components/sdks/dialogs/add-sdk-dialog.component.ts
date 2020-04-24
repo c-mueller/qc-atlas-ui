@@ -25,7 +25,7 @@ export class AddSdkDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.sdkForm = new FormGroup({
-      'name': new FormControl(this.data.name, [
+      name: new FormControl(this.data.name, [
         Validators.required,
         Validators.maxLength(255)
       ])

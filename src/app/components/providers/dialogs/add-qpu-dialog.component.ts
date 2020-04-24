@@ -37,19 +37,19 @@ export class AddQpuDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.qpuForm = new FormGroup({
-      'name': new FormControl(this.data.name, [
+      name: new FormControl(this.data.name, [
         Validators.required,
         Validators.maxLength(255)
       ]),
-      'maxGateTime': new FormControl(this.data.maxGateTime, [
+      maxGateTime: new FormControl(this.data.maxGateTime, [
         Validators.required,
         Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
       ]),
-      'numberOfQubits': new FormControl(this.data.numberOfQubits, [
+      numberOfQubits: new FormControl(this.data.numberOfQubits, [
         Validators.required,
         Validators.pattern('[0-9]+')
       ]),
-      't1': new FormControl(this.data.t1, [
+      t1: new FormControl(this.data.t1, [
         Validators.required,
         Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
       ])

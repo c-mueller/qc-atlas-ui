@@ -76,7 +76,7 @@ export class AddAlgorithmDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.algorithmForm = new FormGroup({
-      'name': new FormControl(this.data.name, [
+      name: new FormControl(this.data.name, [
         Validators.required,
         Validators.maxLength(255)
       ])

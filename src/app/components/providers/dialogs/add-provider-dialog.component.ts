@@ -33,15 +33,15 @@ export class AddProviderDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.providerForm = new FormGroup({
-      'name': new FormControl(this.data.name, [
+      name: new FormControl(this.data.name, [
         Validators.required,
         Validators.maxLength(255)
       ]),
-      'accessKey': new FormControl(this.data.accessKey, [
+      accessKey: new FormControl(this.data.accessKey, [
         Validators.required,
         Validators.maxLength(255)
       ]),
-      'secretKey': new FormControl(this.data.secretKey, [
+      secretKey: new FormControl(this.data.secretKey, [
         Validators.required,
         Validators.maxLength(255)
       ])

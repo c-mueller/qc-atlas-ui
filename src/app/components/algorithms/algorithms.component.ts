@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlgorithmService } from '../../../services/algorithm.service';
-import { Algorithm } from '../../../model/algorithm.model';
-import { ImplementationService } from '../../../services/implementation.service';
-import { Implementation } from '../../../model/implementation.model';
+import { AlgorithmService } from '../../services/algorithm.service';
+import { Algorithm } from '../../model/algorithm.model';
+import { ImplementationService } from '../../services/implementation.service';
+import { Implementation } from '../../model/implementation.model';
 import { MatDialog } from '@angular/material/dialog';
-import { ImportDialogComponent } from '../../importer/import-dialog.component';
+import { ImportDialogComponent } from '../importer/import-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { AddParameterDialogComponent } from './dialogs/add-parameter-dialog.component';
-import { Parameter } from '../../../model/parameter.model';
+import { Parameter } from '../../model/parameter.model';
 import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.component';
-import { TagService } from '../../../services/tag.service';
-import { Tag } from '../../../model/tag.model';
-import { Content } from '../../../model/content.model';
+import { TagService } from '../../services/tag.service';
+import { Tag } from '../../model/tag.model';
+import { Content } from '../../model/content.model';
 import { AddImplementationDialogComponent } from './dialogs/add-implementation-dialog.component';
-import { Sdk } from '../../../model/sdk.model';
-import { SdkService } from '../../../services/sdk.service';
+import { Sdk } from '../../model/sdk.model';
+import { SdkService } from '../../services/sdk.service';
 
 @Component({
   selector: 'app-algorithms',

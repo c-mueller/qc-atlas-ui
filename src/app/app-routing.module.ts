@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlgorithmsComponent } from './components/overview/algorithms/algorithms.component';
-import { ProvidersComponent } from './components/overview/providers/providers.component';
-import { SdksComponent } from './components/overview/sdks/sdks.component';
-import { TagsComponent } from './components/overview/tags/tags.component';
+import { AlgorithmsComponent } from './components/algorithms/algorithms.component';
+import { ProvidersComponent } from './components/providers/providers.component';
+import { SdksComponent } from './components/sdks/sdks.component';
+import { TagsComponent } from './components/tags/tags.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 

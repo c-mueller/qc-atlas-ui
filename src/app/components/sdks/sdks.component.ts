@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SdkService } from '../../../services/sdk.service';
-import { Sdk } from '../../../model/sdk.model';
-import { ImportDialogComponent } from '../../importer/import-dialog.component';
+import { SdkService } from '../../services/sdk.service';
+import { Sdk } from '../../model/sdk.model';
+import { ImportDialogComponent } from '../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { AddSdkDialogComponent } from './dialogs/add-sdk-dialog.component';
 
 @Component({

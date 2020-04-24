@@ -1,11 +1,11 @@
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { Tag } from '../../../../model/tag.model';
-import { Parameters } from '../../../../model/parameters.model';
+import { Tag } from '../../../model/tag.model';
+import { Parameters } from '../../../model/parameters.model';
 import { AddParameterDialogComponent } from './add-parameter-dialog.component';
-import { Parameter } from '../../../../model/parameter.model';
+import { Parameter } from '../../../model/parameter.model';
 import { MatTable } from '@angular/material/table';
-import { Sdk } from '../../../../model/sdk.model';
+import { Sdk } from '../../../model/sdk.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -31,11 +31,6 @@ export class AddImplementationDialogComponent implements OnInit {
     this.outputParameters.parameters = [];
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-
   get name() {
     return this.implementationForm.get('name');
   }
@@ -50,6 +45,10 @@ export class AddImplementationDialogComponent implements OnInit {
 
   get programmingLanguage() {
     return this.implementationForm.get('programmingLanguage');
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
   ngOnInit(): void {

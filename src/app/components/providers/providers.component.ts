@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Provider } from '../../../model/provider.model';
-import { ProviderService } from '../../../services/provider.service';
-import { Qpu } from '../../../model/qpu.model';
-import { ImportDialogComponent } from '../../importer/import-dialog.component';
+import { Provider } from '../../model/provider.model';
+import { ProviderService } from '../../services/provider.service';
+import { Qpu } from '../../model/qpu.model';
+import { ImportDialogComponent } from '../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { AddProviderDialogComponent } from './dialogs/add-provider-dialog.component';
 import { AddQpuDialogComponent } from './dialogs/add-qpu-dialog.component';
 

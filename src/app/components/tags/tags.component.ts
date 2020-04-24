@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TagService } from '../../../services/tag.service';
-import { Tag } from '../../../model/tag.model';
-import { ImportDialogComponent } from '../../importer/import-dialog.component';
+import { TagService } from '../../services/tag.service';
+import { Tag } from '../../model/tag.model';
+import { ImportDialogComponent } from '../importer/import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';
 
 @Component({

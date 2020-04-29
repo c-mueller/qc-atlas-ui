@@ -12,7 +12,7 @@ export class QpuService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getQpusforProvider(providerId: number): Observable<QpuDtoList> {
+  getQpusForProvider(providerId: number): Observable<QpuDtoList> {
     return this.httpClient.get<QpuDtoList>(environment.API_URL + environment.PROVIDER_ENDPOINT + providerId
       + environment.QPU_ENDPOINT);
   }

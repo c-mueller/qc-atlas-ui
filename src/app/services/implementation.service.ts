@@ -12,7 +12,7 @@ export class ImplementationService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getImplementationsForId(algoId: number): Observable<ImplementationDtos> {
+  getImplementationsForAlgorithm(algoId: number): Observable<ImplementationDtos> {
     return this.httpClient.get<ImplementationDtos>(environment.API_URL + environment.ALGORITHM_ENDPOINT + algoId
       + environment.IMPLEMENTATION_ENDPOINT);
   }

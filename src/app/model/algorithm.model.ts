@@ -1,6 +1,7 @@
 import { Parameters } from './parameters.model';
 import { Content } from './content.model';
 import { Tag } from './tag.model';
+import { Link } from './link.model';
 
 export class Algorithm {
   id?: number;
@@ -9,6 +10,7 @@ export class Algorithm {
   content?: Content;
   outputParameters?: Parameters;
   tags: Tag[];
+  _links?: Link[];
 }
 
 export class AlgorithmDtos {

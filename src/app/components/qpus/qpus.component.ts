@@ -1,12 +1,12 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AddQpuDialogComponent } from './dialogs/add-qpu-dialog.component';
 import { Qpu, QpuDtoList } from '../../model/qpu.model';
-import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dialog.component';
+import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
 import { QpuService } from '../../services/qpu.service';
 import { Provider } from '../../model/provider.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { MissingEntityDialogComponent } from '../json-import-dialog/missing-entity-dialog.component';
+import { MissingEntityDialogComponent } from '../dialogs/missing-entity-dialog.component';
 import { Sdk } from '../../model/sdk.model';
 import { SdkService } from '../../services/sdk.service';
 

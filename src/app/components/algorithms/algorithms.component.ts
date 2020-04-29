@@ -15,8 +15,8 @@ import { Content } from '../../model/content.model';
 import { AddImplementationDialogComponent } from './dialogs/add-implementation-dialog.component';
 import { Sdk } from '../../model/sdk.model';
 import { SdkService } from '../../services/sdk.service';
-import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dialog.component';
-import { MissingEntityDialogComponent } from '../json-import-dialog/missing-entity-dialog.component';
+import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
+import { MissingEntityDialogComponent } from '../dialogs/missing-entity-dialog.component';
 
 @Component({
   selector: 'app-algorithms',

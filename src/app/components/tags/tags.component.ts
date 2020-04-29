@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TagService } from '../../services/tag.service';
 import { Tag } from '../../model/tag.model';
-import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dialog.component';
+import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';

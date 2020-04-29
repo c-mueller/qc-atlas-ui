@@ -17,6 +17,9 @@ import { AddSdkDialogComponent } from './components/sdks/dialogs/add-sdk-dialog.
 import { AddTagDialogComponent } from './components/tags/dialogs/add-tag-dialog.component';
 import { AddAlgorithmDialogComponent } from './components/algorithms/dialogs/add-algorithm-dialog.component';
 import { AddProviderDialogComponent } from './components/providers/dialogs/add-provider-dialog.component';
+import { JsonImportDialogComponent } from './components/dialogs/json-import-dialog.component';
+import { QpusComponent } from './components/qpus/qpus.component';
+import { MissingEntityDialogComponent } from './components/dialogs/missing-entity-dialog.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -34,9 +37,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
-import { JsonImportDialogComponent } from './components/json-import-dialog/json-import-dialog.component';
-import { QpusComponent } from './components/qpus/qpus.component';
-import { MissingEntityDialogComponent } from './components/json-import-dialog/missing-entity-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({

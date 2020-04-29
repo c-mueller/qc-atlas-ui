@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Provider } from '../../model/provider.model';
 import { ProviderService } from '../../services/provider.service';
-import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dialog.component';
+import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddProviderDialogComponent } from './dialogs/add-provider-dialog.component';

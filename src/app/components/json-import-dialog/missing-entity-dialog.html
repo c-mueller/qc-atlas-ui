@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Missing entity {{data.missingEntity}}</h1>
+<div mat-dialog-content>
+  No {{data.missingEntity}} found! Please make sure to add at least one before adding {{data.currentEntity}}.
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="goToMissingEntity()">Go to {{this.data.missingEntity}}</button>
+</div>

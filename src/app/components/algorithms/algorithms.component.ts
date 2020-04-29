@@ -86,6 +86,11 @@ export class AlgorithmsComponent implements OnInit {
     this.implementationService.getImplementationById(algoId, implId).subscribe(
       data => {
         this.selectedImplementation = data;
+        this.tagService.getTagsForImplementation(algoId, implId).subscribe(
+          tagData => {
+            this.tags = tagData.tagsDtos;
+          }
+        );
       }
     );
   }
@@ -141,6 +146,7 @@ export class AlgorithmsComponent implements OnInit {
     this.implementationOpened = false;
     this.selectedAlgorithm = algorithm;
     this.getImplementations();
+    this.getTagsForAlgorithm();
   }
 
   getImplementations(): void {
@@ -178,6 +184,7 @@ export class AlgorithmsComponent implements OnInit {
   createAlgorithmWithJson(): void {
     if (this.tags.length === 0) {
       this.createMissingEntityDialog();
+      return;
     }
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
@@ -234,6 +241,7 @@ export class AlgorithmsComponent implements OnInit {
   createAlgorithm(): void {
     if (this.tags.length === 0) {
       this.createMissingEntityDialog();
+      return;
     }
     const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {
       width: '600px',
@@ -274,12 +282,19 @@ export class AlgorithmsComponent implements OnInit {
     });
   }
 
+  private getTagsForAlgorithm(): void {
+    this.tagService.getTagsForAlgorithm(this.selectedAlgorithm.id).subscribe(
+      tagData => {
+        this.tags = tagData.tagsDtos;
+      }
+    );
+  }
+
   private createMissingEntityDialog(): void {
     const missingDialog = this.dialog.open(MissingEntityDialogComponent, {
       width: '600px',
       data: {missingEntity: 'tags', currentEntity: 'algorithms'}
     });
-    return;
   }
 
   private createParameterFromDialogResult(dialogResult: any): Parameter {

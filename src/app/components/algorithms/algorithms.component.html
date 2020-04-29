@@ -108,7 +108,7 @@
           <mat-divider></mat-divider>
           <div class="entity-content">
             <h3>Tags</h3>
-            <table mat-table *ngIf="selectedAlgorithm" [dataSource]="selectedAlgorithm.tags" class="mat-elevation-z0">
+            <table mat-table *ngIf="selectedAlgorithm" [dataSource]="this.tags" class="mat-elevation-z0">
               <ng-container matColumnDef="key">
                 <th mat-header-cell *matHeaderCellDef>Key</th>
                 <td mat-cell *matCellDef="let element">{{element.key}}</td>
@@ -230,7 +230,7 @@
           </div>
           <div class="entity-content">
             <h3>Tags</h3>
-            <table mat-table [dataSource]="selectedImplementation.tags" class="mat-elevation-z0">
+            <table mat-table [dataSource]="this.tags" class="mat-elevation-z0">
               <ng-container matColumnDef="key">
                 <th mat-header-cell *matHeaderCellDef>Key</th>
                 <td mat-cell *matCellDef="let element">{{element.key}}</td>

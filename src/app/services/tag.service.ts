@@ -23,4 +23,14 @@ export class TagService {
   getAllTags(): Observable<TagsDtos> {
     return this.httpClient.get<TagsDtos>(environment.API_URL + environment.TAG_ENDPOINT);
   }
+
+  getTagsForImplementation(algoId: number, implId: number): Observable<TagsDtos> {
+    return this.httpClient.get<TagsDtos>(environment.API_URL + environment.ALGORITHM_ENDPOINT + algoId
+      + environment.IMPLEMENTATION_ENDPOINT + implId + environment.TAG_ENDPOINT);
+  }
+
+  getTagsForAlgorithm(algoId: number): Observable<TagsDtos> {
+    return this.httpClient.get<TagsDtos>(environment.API_URL + environment.ALGORITHM_ENDPOINT + algoId
+      + environment.TAG_ENDPOINT);
+  }
 }

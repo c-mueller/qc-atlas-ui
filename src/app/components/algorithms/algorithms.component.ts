@@ -16,6 +16,7 @@ import { AddImplementationDialogComponent } from './dialogs/add-implementation-d
 import { Sdk } from '../../model/sdk.model';
 import { SdkService } from '../../services/sdk.service';
 import { JsonImportDialogComponent } from '../json-import-dialog/json-import-dialog.component';
+import { MissingEntityDialogComponent } from '../json-import-dialog/missing-entity-dialog.component';
 
 @Component({
   selector: 'app-algorithms',
@@ -143,7 +144,7 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   getImplementations(): void {
-    this.implementationService.getImplementationsForId(this.selectedAlgorithm.id).subscribe(
+    this.implementationService.getImplementationsForAlgorithm(this.selectedAlgorithm.id).subscribe(
       implementations => {
         this.implementations = implementations.implementationDtos;
       }
@@ -175,6 +176,9 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   createAlgorithmWithJson(): void {
+    if (this.tags.length === 0) {
+      this.createMissingEntityDialog();
+    }
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '250px',
       data: {title: 'Import new algorithm'}
@@ -228,6 +232,9 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   createAlgorithm(): void {
+    if (this.tags.length === 0) {
+      this.createMissingEntityDialog();
+    }
     const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {
       width: '600px',
       data: {title: 'Add new algorithm', tags: this.tags}
@@ -265,6 +272,14 @@ export class AlgorithmsComponent implements OnInit {
         );
       }
     });
+  }
+
+  private createMissingEntityDialog(): void {
+    const missingDialog = this.dialog.open(MissingEntityDialogComponent, {
+      width: '600px',
+      data: {missingEntity: 'tags', currentEntity: 'algorithms'}
+    });
+    return;
   }
 
   private createParameterFromDialogResult(dialogResult: any): Parameter {

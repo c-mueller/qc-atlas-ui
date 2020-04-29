@@ -11,7 +11,7 @@ import { SdksComponent } from './components/sdks/sdks.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddImplementationDialogComponent } from './components/algorithms/dialogs/add-implementation-dialog.component';
-import { AddQpuDialogComponent } from './components/providers/dialogs/add-qpu-dialog.component';
+import { AddQpuDialogComponent } from './components/qpus/dialogs/add-qpu-dialog.component';
 import { AddParameterDialogComponent } from './components/algorithms/dialogs/add-parameter-dialog.component';
 import { AddSdkDialogComponent } from './components/sdks/dialogs/add-sdk-dialog.component';
 import { AddTagDialogComponent } from './components/tags/dialogs/add-tag-dialog.component';
@@ -35,6 +35,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { JsonImportDialogComponent } from './components/json-import-dialog/json-import-dialog.component';
+import { QpusComponent } from './components/qpus/qpus.component';
+import { MissingEntityDialogComponent } from './components/json-import-dialog/missing-entity-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { JsonImportDialogComponent } from './components/json-import-dialog/json-
     AddImplementationDialogComponent,
     AddQpuDialogComponent,
     JsonImportDialogComponent,
+    MissingEntityDialogComponent,
+    QpusComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,8 @@ import { JsonImportDialogComponent } from './components/json-import-dialog/json-
     AddProviderDialogComponent,
     AddImplementationDialogComponent,
     AddQpuDialogComponent,
-    JsonImportDialogComponent
+    JsonImportDialogComponent,
+    MissingEntityDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,19 +7,36 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  tabs = ['algorithms', 'providers', 'sdks', 'tags'];
-  activeIndex: number;
+  activeLinkIndex = -1;
+  navLinks: any[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-  }
-
-  tabIndexChanged(index: number): void {
-    this.activeIndex = index;
-    localStorage.setItem('activeIndex', JSON.stringify(this.activeIndex));
-    this.router.navigate([this.tabs[this.activeIndex]], {relativeTo: this.route});
+  constructor(private router: Router) {
+    this.navLinks = [
+      {
+        label: 'Algorithms',
+        link: './algorithms',
+        index: 0
+      },
+      {
+        label: 'Providers',
+        link: './providers',
+        index: 1
+      },
+      {
+        label: 'SDKs',
+        link: './sdks',
+        index: 2
+      },
+      {
+        label: 'Tags',
+        link: './tags',
+        index: 3
+      }];
   }
 
   ngOnInit(): void {
-    this.activeIndex = JSON.parse(localStorage.getItem('activeIndex'));
+    this.router.events.subscribe((res) => {
+      this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
+    });
   }
 }

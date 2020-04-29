@@ -13,8 +13,8 @@ export const environment = {
   QPU_ENDPOINT: '/qpus/',
   SDK_ENDPOINT: '/sdks/',
   TAG_ENDPOINT: '/tags/',
-  INPUT_PARAMETERS: '/inputparameters',
-  OUTPUT_PARAMETERS: '/outputparameters',
+  INPUT_PARAMETERS: '/inputParameters',
+  OUTPUT_PARAMETERS: '/outputParameters',
 };
 
 /*

@@ -24,4 +24,8 @@ export class SdkService {
   getAllSdks(): Observable<SdkDtos> {
     return this.httpClient.get<SdkDtos>(environment.API_URL + environment.SDK_ENDPOINT);
   }
+
+  getSdkByHref(href: string): Observable<Sdk> {
+    return this.httpClient.get<Sdk>(href);
+  }
 }

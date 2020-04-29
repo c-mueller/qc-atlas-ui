@@ -37,6 +37,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { JsonImportDialogComponent } from './components/json-import-dialog/json-import-dialog.component';
 import { QpusComponent } from './components/qpus/qpus.component';
 import { MissingEntityDialogComponent } from './components/json-import-dialog/missing-entity-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { MissingEntityDialogComponent } from './components/json-import-dialog/mi
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatButtonModule,
   ],
   entryComponents: [

@@ -18,11 +18,13 @@
       <input id="t1" formControlName="t1" matInput required>
     </mat-form-field>
   </form>
+  <h1 mat-dialog-title>Supported SDKs</h1>
+  <mat-checkbox *ngFor="let sdk of data.sdks" (change)="onSdkCheckboxChange(sdk, $event)">{{sdk.name}}</mat-checkbox>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
   <button
-    [disabled]="name.errors?.required || numberOfQubits.errors?.required || t1.errors?.required || maxGateTime.errors?.required ||numberOfQubits.errors?.pattern || maxGateTime.errors?.pattern || t1.errors?.pattern"
+    [disabled]="isRequiredDataMissing()"
     mat-button [mat-dialog-close]="data">Ok
   </button>
 </div>

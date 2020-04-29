@@ -6,6 +6,7 @@ import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.compone
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddSdkDialogComponent } from './dialogs/add-sdk-dialog.component';
+import { Util } from '../../util/Util';
 
 @Component({
   selector: 'app-sdks',
@@ -24,11 +25,7 @@ export class SdksComponent implements OnInit {
               public dialog: MatDialog, private snackBar: MatSnackBar) {
   }
 
-  private static createSdkFromDialogResult(dialogResult: any): Sdk {
-    return {
-      name: dialogResult.name
-    };
-  }
+
 
   ngOnInit(): void {
     this.getAllSdks();
@@ -81,7 +78,7 @@ export class SdksComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const sdk: Sdk = SdksComponent.createSdkFromDialogResult(dialogResult);
+        const sdk: Sdk = Util.createSdkFromDialogResult(dialogResult);
         this.sdkService.createSdk(sdk).subscribe(
           sdkResult => {
             this.handleSdkCreationResult(sdkResult);

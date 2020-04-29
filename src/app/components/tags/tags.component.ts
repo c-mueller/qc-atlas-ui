@@ -6,6 +6,7 @@ import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.compone
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';
+import { Util } from '../../util/Util';
 
 @Component({
   selector: 'app-tags',
@@ -59,7 +60,7 @@ export class TagsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const tag: Tag = this.createTagFromDialogResult(dialogResult);
+        const tag: Tag = Util.createTagFromDialogResult(dialogResult);
         this.tagService.createTag(tag).subscribe(
           () => {
             this.handleTagCreationResult();
@@ -72,13 +73,6 @@ export class TagsComponent implements OnInit {
   private handleTagCreationResult(): void {
     this.getAllTags();
     this.callSnackBar();
-  }
-
-  private createTagFromDialogResult(dialogResult: any): Tag {
-    return {
-      key: dialogResult.key,
-      value: dialogResult.value
-    };
   }
 
   private callSnackBar(): void {

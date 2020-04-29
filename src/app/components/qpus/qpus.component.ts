@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MissingEntityDialogComponent } from '../dialogs/missing-entity-dialog.component';
 import { Sdk } from '../../model/sdk.model';
 import { SdkService } from '../../services/sdk.service';
+import { Util } from '../../util/Util';
 
 @Component({
   selector: 'app-qpus',
@@ -26,15 +27,7 @@ export class QpusComponent implements OnInit, OnChanges {
   constructor(private qpuService: QpuService, private snackBar: MatSnackBar, public dialog: MatDialog, private sdkService: SdkService) {
   }
 
-  private static createQpuFromDialogResult(dialogResult: any): Qpu {
-    return {
-      maxGateTime: dialogResult.maxGateTime,
-      name: dialogResult.name,
-      numberOfQubits: dialogResult.numberOfQubits,
-      t1: dialogResult.t1,
-      supportedSdkIds: dialogResult.supportedSdkIds,
-    };
-  }
+
 
   ngOnInit(): void {
     this.getQpuForProvider(this.selectedProvider.id);
@@ -108,7 +101,7 @@ export class QpusComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const qpu: Qpu = QpusComponent.createQpuFromDialogResult(dialogResult);
+        const qpu: Qpu = Util.createQpuFromDialogResult(dialogResult);
         this.qpuService.createQpu(this.selectedProvider.id, qpu).subscribe(
           () => {
             this.handleQpuCreationResult();
@@ -130,16 +123,10 @@ export class QpusComponent implements OnInit, OnChanges {
   private handleSupportedSdkLink(qpu: Qpu, hrefToSupportedSdk: string): void {
     this.sdkService.getSdkByHref(hrefToSupportedSdk).subscribe(
       sdk => {
-        QpusComponent.createSupportedSdkIdsIfNotExist(qpu);
+        Util.createSupportedSdkIdsIfNotExist(qpu);
         qpu.supportedSdkIds.push(sdk.id);
       }
     );
-  }
-
-  private static createSupportedSdkIdsIfNotExist(qpu: Qpu): void {
-    if (!qpu.supportedSdkIds) {
-      qpu.supportedSdkIds = [];
-    }
   }
 
   private getLinkKeysAsArray(qpu: Qpu) {

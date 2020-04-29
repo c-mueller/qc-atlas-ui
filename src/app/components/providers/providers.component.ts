@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddProviderDialogComponent } from './dialogs/add-provider-dialog.component';
 import { QpuService } from '../../services/qpu.service';
+import { Util } from '../../util/Util';
 
 @Component({
   selector: 'app-providers',
@@ -67,7 +68,7 @@ export class ProvidersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const provider: Provider = ProvidersComponent.createProviderFromDialogResult(dialogResult);
+        const provider: Provider = Util.createProviderFromDialogResult(dialogResult);
         this.providerService.createProvider(provider).subscribe(
           providerResult => {
             this.processProviderResult(providerResult);
@@ -75,14 +76,6 @@ export class ProvidersComponent implements OnInit {
         );
       }
     });
-  }
-
-  private static createProviderFromDialogResult(dialogResult: any): Provider {
-    return {
-      name: dialogResult.name,
-      accessKey: dialogResult.accessKey,
-      secretKey: dialogResult.secretKey
-    };
   }
 
   private getAllProviders(): void {

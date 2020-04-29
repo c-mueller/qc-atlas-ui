@@ -10,7 +10,7 @@ import { ProvidersComponent } from './components/providers/providers.component';
 import { SdksComponent } from './components/sdks/sdks.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AddImplementationDialogComponent } from './components/algorithms/dialogs/add-implementation-dialog.component';
+import { AddImplementationDialogComponent } from './components/implementations/dialogs/add-implementation-dialog.component';
 import { AddQpuDialogComponent } from './components/qpus/dialogs/add-qpu-dialog.component';
 import { AddParameterDialogComponent } from './components/algorithms/dialogs/add-parameter-dialog.component';
 import { AddSdkDialogComponent } from './components/sdks/dialogs/add-sdk-dialog.component';
@@ -38,6 +38,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ImplementationsComponent } from './components/implementations/implementations.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     JsonImportDialogComponent,
     MissingEntityDialogComponent,
     QpusComponent,
+    ImplementationsComponent,
   ],
   imports: [
     BrowserModule,

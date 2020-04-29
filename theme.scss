@@ -28,6 +28,11 @@ table {
   margin: 10px;
 }
 
+.mat-cell {
+  border-right: 1px solid lightgrey;
+  padding: 5px !important;
+}
+
 .mat-list-icon {
   color: rgba(0, 0, 0, 0.54);
 }

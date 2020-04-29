@@ -16,11 +16,18 @@ export class SdksComponent implements OnInit {
 
   sdks: Sdk[] = [];
   selectedSdk: Sdk;
+  firstEntry = 0;
 
   isSelectedColor = 'primary';
 
   constructor(private router: Router, private sdkService: SdkService,
               public dialog: MatDialog, private snackBar: MatSnackBar) {
+  }
+
+  private static createSdkFromDialogResult(dialogResult: any): Sdk {
+    return {
+      name: dialogResult.name
+    };
   }
 
   ngOnInit(): void {
@@ -29,17 +36,21 @@ export class SdksComponent implements OnInit {
 
   getAllSdks(): void {
     this.sdkService.getAllSdks().subscribe(
-      data => {
-        this.sdks = data.sdkDtos;
+      sdkData => {
+        this.sdks = sdkData.sdkDtos;
         if (this.isNoSdkSelected()) {
-          this.sdkSelected(this.sdks[0]);
+          this.makeSelectedSdk(this.sdks[this.firstEntry]);
         }
       }
     );
   }
 
+  makeSelectedSdk(sdk: Sdk): void {
+    this.selectedSdk = sdk;
+  }
+
   getColorOfSdkButton(id: number): string {
-    if (!this.selectedSdk) {
+    if (this.isNoSdkSelected()) {
       return null;
     }
     if (id === this.selectedSdk.id) {
@@ -47,11 +58,7 @@ export class SdksComponent implements OnInit {
     }
   }
 
-  sdkSelected(sdk: Sdk): void {
-    this.selectedSdk = sdk;
-  }
-
-  importJSON(): void {
+  createSdkWithJson(): void {
     const dialogRef = this.dialog.open(JsonImportDialogComponent, {
       width: '400px',
       data: {title: 'Import new SDK'}
@@ -61,14 +68,14 @@ export class SdksComponent implements OnInit {
       if (dialogResult) {
         this.sdkService.createSdkWithJson(dialogResult).subscribe(
           sdkResult => {
-            this.processSdkResult(sdkResult);
+            this.handleSdkCreationResult(sdkResult);
           }
         );
       }
     });
   }
 
-  addSdk(): void {
+  createSdk(): void {
     const dialogRef = this.dialog.open(AddSdkDialogComponent, {
       width: '400px',
       data: {title: 'Add new SDK'}
@@ -76,10 +83,10 @@ export class SdksComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const sdk: Sdk = this.createSdkFromDialogResult(dialogResult);
+        const sdk: Sdk = SdksComponent.createSdkFromDialogResult(dialogResult);
         this.sdkService.createSdk(sdk).subscribe(
           sdkResult => {
-            this.processSdkResult(sdkResult);
+            this.handleSdkCreationResult(sdkResult);
           });
       }
     });
@@ -89,15 +96,9 @@ export class SdksComponent implements OnInit {
     return !this.selectedSdk && this.sdks.length > 0;
   }
 
-  private createSdkFromDialogResult(dialogResult: any): Sdk {
-    return {
-      name: dialogResult.name
-    };
-  }
-
-  private processSdkResult(sdkResult: Sdk): void {
+  private handleSdkCreationResult(sdkResult: Sdk): void {
     this.sdks.push(sdkResult);
-    this.selectedSdk = sdkResult;
+    this.makeSelectedSdk(sdkResult);
     this.callSnackBar();
   }
 

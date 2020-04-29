@@ -44,8 +44,7 @@ export class TagsComponent implements OnInit {
       if (dialogResult) {
         this.tagService.createTagWithJson(dialogResult).subscribe(
           () => {
-            this.getAllTags();
-            this.callSnackBar();
+            this.handleTagCreationResult();
           }
         );
       }
@@ -63,12 +62,16 @@ export class TagsComponent implements OnInit {
         const tag: Tag = this.createTagFromDialogResult(dialogResult);
         this.tagService.createTag(tag).subscribe(
           () => {
-            this.getAllTags();
-            this.callSnackBar();
+            this.handleTagCreationResult();
           }
         );
       }
     });
+  }
+
+  private handleTagCreationResult(): void {
+    this.getAllTags();
+    this.callSnackBar();
   }
 
   private createTagFromDialogResult(dialogResult: any): Tag {

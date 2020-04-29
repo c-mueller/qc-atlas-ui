@@ -38,9 +38,7 @@ export class SdksComponent implements OnInit {
     this.sdkService.getAllSdks().subscribe(
       sdkData => {
         this.sdks = sdkData.sdkDtos;
-        if (this.isNoSdkSelected()) {
-          this.makeSelectedSdk(this.sdks[this.firstEntry]);
-        }
+        this.selectInitialSdk();
       }
     );
   }
@@ -90,6 +88,12 @@ export class SdksComponent implements OnInit {
           });
       }
     });
+  }
+
+  private selectInitialSdk(): void {
+    if (this.isNoSdkSelected()) {
+      this.makeSelectedSdk(this.sdks[this.firstEntry]);
+    }
   }
 
   private isNoSdkSelected(): boolean {

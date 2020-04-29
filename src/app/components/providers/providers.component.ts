@@ -38,7 +38,7 @@ export class ProvidersComponent implements OnInit {
     }
   }
 
-  onProviderSelected(provider: Provider): void {
+  makeSelectedProvider(provider: Provider): void {
     this.selectedProvider = provider;
   }
 
@@ -67,7 +67,7 @@ export class ProvidersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const provider: Provider = this.createProviderFromDialogResult(dialogResult);
+        const provider: Provider = ProvidersComponent.createProviderFromDialogResult(dialogResult);
         this.providerService.createProvider(provider).subscribe(
           providerResult => {
             this.processProviderResult(providerResult);
@@ -77,7 +77,7 @@ export class ProvidersComponent implements OnInit {
     });
   }
 
-  private createProviderFromDialogResult(dialogResult: any): Provider {
+  private static createProviderFromDialogResult(dialogResult: any): Provider {
     return {
       name: dialogResult.name,
       accessKey: dialogResult.accessKey,
@@ -96,7 +96,7 @@ export class ProvidersComponent implements OnInit {
 
   private selectInitialProvider() {
     if (!this.selectedProvider && this.providers.length > 0) {
-      this.onProviderSelected(this.providers[0]);
+      this.makeSelectedProvider(this.providers[0]);
     }
   }
 

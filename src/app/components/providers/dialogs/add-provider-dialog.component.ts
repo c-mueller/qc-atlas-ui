@@ -31,6 +31,10 @@ export class AddProviderDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  isRequiredDataMissing(): boolean {
+    return this.name.errors?.required || this.accessKey.errors?.required || this.secretKey.errors?.required;
+  }
+
   ngOnInit(): void {
     this.providerForm = new FormGroup({
       name: new FormControl(this.data.name, [
@@ -49,7 +53,7 @@ export class AddProviderDialogComponent implements OnInit {
 
     this.dialogRef.beforeClosed().subscribe(
       () => {
-        this.data.name = this.providerForm.get('name').value;
+        this.data.name =  this.providerForm.get('name').value;
         this.data.accessKey = this.providerForm.get('accessKey').value;
         this.data.secretKey = this.providerForm.get('secretKey').value;
       }

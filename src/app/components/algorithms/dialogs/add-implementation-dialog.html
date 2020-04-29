@@ -91,7 +91,7 @@
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
   <button mat-button
-          [disabled]="name.errors?.required || programmingLanguage.errors?.required || selectionRule.errors?.required || fileLocation.errors?.required || fileLocation.errors?.pattern"
+          [disabled]="isRequiredDataMissing()"
           [mat-dialog-close]="data">Ok
   </button>
 </div>

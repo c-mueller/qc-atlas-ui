@@ -51,6 +51,11 @@ export class AddImplementationDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  isRequiredDataMissing(): boolean {
+    return this.name.errors?.required || this.programmingLanguage.errors?.required
+      || this.selectionRule.errors?.required || this.fileLocation.errors?.required || this.fileLocation.errors?.pattern;
+  }
+
   ngOnInit(): void {
     this.implementationForm = new FormGroup({
       name: new FormControl(this.data.name, [

@@ -38,6 +38,10 @@ export class AddSdkDialogComponent implements OnInit {
     );
   }
 
+  isRequiredDataMissing(): boolean {
+    return this.name.errors?.required;
+  }
+
 }
 
 export interface DialogData {

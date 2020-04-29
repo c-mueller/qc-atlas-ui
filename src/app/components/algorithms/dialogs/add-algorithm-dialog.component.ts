@@ -89,6 +89,10 @@ export class AddAlgorithmDialogComponent implements OnInit {
     );
   }
 
+  isRequiredDataMissing(): boolean {
+    return this.name.errors?.required || !this.data.tag;
+  }
+
 }
 
 export interface DialogData {

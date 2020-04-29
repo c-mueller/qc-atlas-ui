@@ -31,7 +31,7 @@ export class SdksComponent implements OnInit {
     this.sdkService.getAllSdks().subscribe(
       data => {
         this.sdks = data.sdkDtos;
-        if (!this.selectedSdk && this.sdks.length > 0) {
+        if (this.isNoSdkSelected()) {
           this.sdkSelected(this.sdks[0]);
         }
       }
@@ -83,6 +83,10 @@ export class SdksComponent implements OnInit {
           });
       }
     });
+  }
+
+  private isNoSdkSelected(): boolean {
+    return !this.selectedSdk && this.sdks.length > 0;
   }
 
   private createSdkFromDialogResult(dialogResult: any): Sdk {

@@ -1,2 +1,13 @@
-<button mat-button color="primary" (click)="goBack()"><mat-icon>arrow_left</mat-icon>Back</button>
-<h1 style="text-align: center">Page not found!</h1>
+<link rel="stylesheet" href="https://unpkg.com/98.css"/>
+<div class="window"
+     style="position: absolute; top: 50%; left: 50%; margin: -125px 0 0 -200px;  width: 400px; height: 250px">
+  <div class="title-bar">
+    <div class="title-bar-text">
+      Error
+    </div>
+  </div>
+  <div class="window-body" style="text-align: center">
+    <p style="font-size: 30px">Page not found!</p>
+    <button (click)="goBack()"> Go back</button>
+  </div>
+</div>

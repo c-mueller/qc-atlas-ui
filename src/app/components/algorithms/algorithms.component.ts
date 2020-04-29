@@ -6,8 +6,6 @@ import { ImplementationService } from '../../services/implementation.service';
 import { Implementation } from '../../model/implementation.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AddParameterDialogComponent } from './dialogs/add-parameter-dialog.component';
-import { Parameter } from '../../model/parameter.model';
 import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.component';
 import { TagService } from '../../services/tag.service';
 import { Tag } from '../../model/tag.model';
@@ -39,7 +37,7 @@ export class AlgorithmsComponent implements OnInit {
   selectedAlgorithm: Algorithm;
   selectedImplementation: Implementation;
 
-  displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
+
   displayedTagsColumns: string[] = ['key', 'value'];
   displayedImplementationColumns: string[] = ['name', 'sdk'];
 
@@ -73,32 +71,6 @@ export class AlgorithmsComponent implements OnInit {
         }
       }
     );
-  }
-
-  getAlgorithmById(id: number): void {
-    this.algorithmService.getAlgorithmById(id).subscribe(
-      data => {
-        this.selectedAlgorithm = data;
-      }
-    );
-  }
-
-  createAlgorithmParameter(type: string): void {
-    const dialogRef = this.dialog.open(AddParameterDialogComponent, {
-      width: '400px',
-      data: {title: 'Add new ' + type + ' parameter'}
-    });
-
-    dialogRef.afterClosed().subscribe(dialogResult => {
-      if (dialogResult) {
-        const parameter: Parameter = Util.createParameterFromDialogResult(dialogResult);
-        this.algorithmService.addParameter(parameter, this.selectedAlgorithm.id, type).subscribe(
-          () => {
-            this.getAlgorithmById(this.selectedAlgorithm.id);
-            this.callSnackBar('parameter');
-          });
-      }
-    });
   }
 
   onAlgorithmSelected(algorithm: Algorithm): void {
@@ -196,17 +168,6 @@ export class AlgorithmsComponent implements OnInit {
         );
       }
     });
-  }
-
-  deleteAlgorithm(): void {
-    this.algorithmService.deleteAlgorithm(this.selectedAlgorithm.id).subscribe(
-      () => {
-        this.getAllAlgorithms();
-        this.snackBar.open('Successfully deleted algorithm.', 'Ok', {
-          duration: 2000,
-        });
-      }
-    );
   }
 
   getTags(): void {

@@ -39,6 +39,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ImplementationsComponent } from './components/implementations/implementations.component';
+import { ParametersComponent } from './components/parameters/parameters.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ImplementationsComponent } from './components/implementations/implement
     MissingEntityDialogComponent,
     QpusComponent,
     ImplementationsComponent,
+    ParametersComponent,
   ],
   imports: [
     BrowserModule,

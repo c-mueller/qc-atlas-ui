@@ -21,10 +21,6 @@ export class AlgorithmService {
     return this.httpClient.post<Algorithm>(environment.API_URL + environment.ALGORITHM_ENDPOINT, JSON.parse(jsonString));
   }
 
-  deleteAlgorithm(id: number): Observable<any> {
-    return this.httpClient.delete(environment.API_URL + environment.ALGORITHM_ENDPOINT + id);
-  }
-
   getAlgorithmById(id: number): Observable<Algorithm> {
     return this.httpClient.get<Algorithm>(environment.API_URL + environment.ALGORITHM_ENDPOINT + id);
   }

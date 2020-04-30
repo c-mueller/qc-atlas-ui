@@ -7,7 +7,7 @@ import { Content } from '../model/content.model';
 import { Algorithm } from '../model/algorithm.model';
 import { Parameter } from '../model/parameter.model';
 
-export class Util {
+export class EntityCreator {
 
   public static createTagFromDialogResult(dialogResult: any): Tag {
     return {

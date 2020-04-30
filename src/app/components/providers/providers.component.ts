@@ -5,8 +5,8 @@ import { ProviderService } from '../../services/provider.service';
 import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProviderDialogComponent } from './dialogs/add-provider-dialog.component';
-import { Util } from '../../util/Util';
-import { SnackbarService } from '../../services/snackbar.service';
+import { EntityCreator } from '../../util/entity.creator';
+import { UtilService } from '../../util/util.service';
 
 @Component({
   selector: 'app-providers',
@@ -22,7 +22,7 @@ export class ProvidersComponent implements OnInit {
 
 
   constructor(private router: Router, private providerService: ProviderService,
-              public dialog: MatDialog, private snackbarService: SnackbarService) {
+              public dialog: MatDialog, private utilService: UtilService) {
   }
 
   ngOnInit(): void {
@@ -43,10 +43,7 @@ export class ProvidersComponent implements OnInit {
   }
 
   createProviderWithJson(): void {
-    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
-      width: '400px',
-      data: {title: 'Import new Provider'}
-    });
+    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'Provider');
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -60,14 +57,11 @@ export class ProvidersComponent implements OnInit {
   }
 
   createProvider(): void {
-    const dialogRef = this.dialog.open(AddProviderDialogComponent, {
-      width: '400px',
-      data: {title: 'Add new Provider'}
-    });
+    const dialogRef = this.utilService.createDialog(AddProviderDialogComponent, 'Provider');
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const provider: Provider = Util.createProviderFromDialogResult(dialogResult);
+        const provider: Provider = EntityCreator.createProviderFromDialogResult(dialogResult);
         this.providerService.createProvider(provider).subscribe(
           providerResult => {
             this.processProviderResult(providerResult);
@@ -95,6 +89,6 @@ export class ProvidersComponent implements OnInit {
   private processProviderResult(providerResult: Provider): void {
     this.providers.push(providerResult);
     this.selectedProvider = providerResult;
-    this.snackbarService.callSnackBar('Provider');
+    this.utilService.callSnackBar('Provider');
   }
 }

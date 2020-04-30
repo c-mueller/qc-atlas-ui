@@ -7,6 +7,8 @@ import { Parameter } from '../../../model/parameter.model';
 import { MatTable } from '@angular/material/table';
 import { Sdk } from '../../../model/sdk.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EntityCreator } from '../../../util/entity.creator';
+import { UtilService } from '../../../util/util.service';
 
 @Component({
   selector: 'app-add-implementation-dialog-component',
@@ -25,8 +27,8 @@ export class AddImplementationDialogComponent implements OnInit {
   displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
 
   constructor(
-    public dialogRef: MatDialogRef<AddImplementationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, public dialog: MatDialog) {
+    public dialogRef: MatDialogRef<AddImplementationDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public dialog: MatDialog, private utilService: UtilService) {
     this.inputParameters.parameters = [];
     this.outputParameters.parameters = [];
   }
@@ -87,21 +89,13 @@ export class AddImplementationDialogComponent implements OnInit {
     );
   }
 
-  addParameter(type: string) {
-    const dialogRef = this.dialog.open(AddParameterDialogComponent, {
-      width: '400px',
-      data: {title: 'Add new ' + type + ' parameter'}
-    });
+  addParameter(parameterType: string) {
+    const dialogRef = this.utilService.createDialog(AddParameterDialogComponent, parameterType + 'parameter');
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const parameter: Parameter = {
-          name: result.name,
-          description: result.description,
-          type: result.type,
-          restriction: result.restriction
-        };
-        type === 'input' ? this.addToInputParams(parameter) : this.addToOutputParams(parameter);
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        const parameter: Parameter = EntityCreator.createParameterFromDialogResult(dialogResult);
+        parameterType === 'input' ? this.addToInputParams(parameter) : this.addToOutputParams(parameter);
         if (this.tableIn) {
           this.tableIn.renderRows();
         }

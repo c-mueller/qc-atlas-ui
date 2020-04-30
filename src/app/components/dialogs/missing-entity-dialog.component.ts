@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-missing-entity-dialog-component',
@@ -10,7 +10,7 @@ export class MissingEntityDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<MissingEntityDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private router: Router, private route: ActivatedRoute) {
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private router: Router) {
   }
 
   onNoClick(): void {

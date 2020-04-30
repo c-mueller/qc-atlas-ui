@@ -4,10 +4,9 @@ import { SdkService } from '../../services/sdk.service';
 import { Sdk } from '../../model/sdk.model';
 import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddSdkDialogComponent } from './dialogs/add-sdk-dialog.component';
-import { Util } from '../../util/Util';
-import { SnackbarService } from '../../services/snackbar.service';
+import { EntityCreator } from '../../util/entity.creator';
+import { UtilService } from '../../util/util.service';
 
 @Component({
   selector: 'app-sdks',
@@ -23,9 +22,8 @@ export class SdksComponent implements OnInit {
   isSelectedColor = 'primary';
 
   constructor(private router: Router, private sdkService: SdkService,
-              public dialog: MatDialog, private snackbarService: SnackbarService) {
+              public dialog: MatDialog, private utilService: UtilService) {
   }
-
 
 
   ngOnInit(): void {
@@ -55,10 +53,7 @@ export class SdksComponent implements OnInit {
   }
 
   createSdkWithJson(): void {
-    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
-      width: '400px',
-      data: {title: 'Import new SDK'}
-    });
+    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'JSON SDK');
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -72,14 +67,11 @@ export class SdksComponent implements OnInit {
   }
 
   createSdk(): void {
-    const dialogRef = this.dialog.open(AddSdkDialogComponent, {
-      width: '400px',
-      data: {title: 'Add new SDK'}
-    });
+    const dialogRef = this.utilService.createDialog(AddSdkDialogComponent, 'SDK');
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const sdk: Sdk = Util.createSdkFromDialogResult(dialogResult);
+        const sdk: Sdk = EntityCreator.createSdkFromDialogResult(dialogResult);
         this.sdkService.createSdk(sdk).subscribe(
           sdkResult => {
             this.handleSdkCreationResult(sdkResult);
@@ -101,6 +93,6 @@ export class SdksComponent implements OnInit {
   private handleSdkCreationResult(sdkResult: Sdk): void {
     this.sdks.push(sdkResult);
     this.makeSelectedSdk(sdkResult);
-    this.snackbarService.callSnackBar('SDK');
+    this.utilService.callSnackBar('SDK');
   }
 }

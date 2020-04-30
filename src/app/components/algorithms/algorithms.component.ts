@@ -5,7 +5,6 @@ import { Algorithm } from '../../model/algorithm.model';
 import { ImplementationService } from '../../services/implementation.service';
 import { Implementation } from '../../model/implementation.model';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.component';
 import { TagService } from '../../services/tag.service';
 import { Tag } from '../../model/tag.model';
@@ -14,9 +13,8 @@ import { AddImplementationDialogComponent } from '../implementations/dialogs/add
 import { Sdk } from '../../model/sdk.model';
 import { SdkService } from '../../services/sdk.service';
 import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
-import { MissingEntityDialogComponent } from '../dialogs/missing-entity-dialog.component';
-import { Util } from '../../util/Util';
-import { SnackbarService } from '../../services/snackbar.service';
+import { EntityCreator } from '../../util/entity.creator';
+import { UtilService } from '../../util/util.service';
 
 @Component({
   selector: 'app-algorithms',
@@ -26,10 +24,8 @@ import { SnackbarService } from '../../services/snackbar.service';
 export class AlgorithmsComponent implements OnInit {
 
   algorithms: Algorithm[] = [];
-
   tags: Tag[] = [];
   sdks: Sdk[] = [];
-
   implementations: Implementation[] = [];
   implementationOpened = false;
 
@@ -38,14 +34,12 @@ export class AlgorithmsComponent implements OnInit {
   selectedAlgorithm: Algorithm;
   selectedImplementation: Implementation;
 
-
   displayedTagsColumns: string[] = ['key', 'value'];
   displayedImplementationColumns: string[] = ['name', 'sdk'];
 
-
-  constructor(private router: Router, private algorithmService: AlgorithmService, private snackbarService: SnackbarService,
+  constructor(private router: Router, private algorithmService: AlgorithmService, private utilService: UtilService,
               private implementationService: ImplementationService, public dialog: MatDialog,
-              private snackBar: MatSnackBar, private tagService: TagService, private sdkService: SdkService) {
+              private tagService: TagService, private sdkService: SdkService) {
   }
 
   ngOnInit(): void {
@@ -90,10 +84,7 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   createImplementationWithJson(): void {
-    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
-      width: '250px',
-      data: {title: 'Import new implementation'}
-    });
+    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'JSON Implementation');
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -107,16 +98,13 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   createImplementation(): void {
-    const dialogRef = this.dialog.open(AddImplementationDialogComponent, {
-      width: '600px',
-      data: {title: 'Add new implementation', tags: this.tags, sdks: this.sdks}
-    });
+    const dialogRef = this.utilService.createDialog(AddImplementationDialogComponent, 'Implementation', this.sdks, this.tags);
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
         this.selectedImplementation = null;
-        const resultContent: Content = Util.createContentFromDialogResult(dialogResult);
-        const implementation: Implementation = Util.createImplementationFromDialogResult(dialogResult, resultContent);
+        const resultContent: Content = EntityCreator.createContentFromDialogResult(dialogResult);
+        const implementation: Implementation = EntityCreator.createImplementationFromDialogResult(dialogResult, resultContent);
         this.implementationService.createImplementation(this.selectedAlgorithm.id, implementation).subscribe(
           implementationResult => {
             this.processImplementationResult(implementationResult);
@@ -151,14 +139,8 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   createAlgorithmWithJson(): void {
-    if (this.tags.length === 0) {
-      this.createMissingEntityDialog();
-      return;
-    }
-    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
-      width: '250px',
-      data: {title: 'Import new algorithm'}
-    });
+    this.checkIfTagsExist();
+    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'JSON Algorithm');
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -180,20 +162,15 @@ export class AlgorithmsComponent implements OnInit {
   }
 
   createAlgorithm(): void {
-    if (this.tags.length === 0) {
-      this.createMissingEntityDialog();
-      return;
-    }
-    const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {
-      width: '600px',
-      data: {title: 'Add new algorithm', tags: this.tags}
-    });
+    this.checkIfTagsExist();
+    const dialogRef = this.utilService.createDialog(AddAlgorithmDialogComponent, 'Algorithm', null, this.tags);
+
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
         this.selectedAlgorithm = null;
         this.implementations = null;
-        const resultContent: Content = Util.createContentFromDialogResult(dialogResult);
-        const algorithm: Algorithm = Util.createAlgorithmFromDialogResult(dialogResult, resultContent);
+        const resultContent: Content = EntityCreator.createContentFromDialogResult(dialogResult);
+        const algorithm: Algorithm = EntityCreator.createAlgorithmFromDialogResult(dialogResult, resultContent);
         this.algorithmService.createAlgorithm(algorithm).subscribe(
           algorithmResult => {
             this.processAlgorithmResult(algorithmResult);
@@ -203,11 +180,18 @@ export class AlgorithmsComponent implements OnInit {
     });
   }
 
+  private checkIfTagsExist(): void {
+    if (this.tags.length === 0) {
+      this.utilService.createMissingEntityDialog('tags', 'algorithm');
+      return;
+    }
+  }
+
   private processImplementationResult(implementationResult: Implementation): void {
     this.implementations.push(implementationResult);
     this.selectedImplementation = implementationResult;
     this.implementationOpened = true;
-    this.snackbarService.callSnackBar('implementation');
+    this.utilService.callSnackBar('implementation');
   }
 
   private getTagsForAlgorithm(): void {
@@ -218,16 +202,9 @@ export class AlgorithmsComponent implements OnInit {
     );
   }
 
-  private createMissingEntityDialog(): void {
-    const missingDialog = this.dialog.open(MissingEntityDialogComponent, {
-      width: '600px',
-      data: {missingEntity: 'tags', currentEntity: 'algorithms'}
-    });
-  }
-
   private processAlgorithmResult(algorithmResult: Algorithm): void {
     this.algorithms.push(algorithmResult);
     this.onAlgorithmSelected(algorithmResult);
-    this.snackbarService.callSnackBar('algorithm');
+    this.utilService.callSnackBar('algorithm');
   }
 }

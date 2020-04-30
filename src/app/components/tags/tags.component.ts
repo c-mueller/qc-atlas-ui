@@ -4,10 +4,9 @@ import { TagService } from '../../services/tag.service';
 import { Tag } from '../../model/tag.model';
 import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';
-import { Util } from '../../util/Util';
-import { SnackbarService } from '../../services/snackbar.service';
+import { EntityCreator } from '../../util/entity.creator';
+import { UtilService } from '../../util/util.service';
 
 @Component({
   selector: 'app-tags',
@@ -21,7 +20,7 @@ export class TagsComponent implements OnInit {
   displayedTagsColumns: string[] = ['key', 'value'];
 
   constructor(private router: Router, private tagService: TagService,
-              public dialog: MatDialog, private snackbarService: SnackbarService) {
+              public dialog: MatDialog, private utilService: UtilService) {
   }
 
   ngOnInit(): void {
@@ -37,10 +36,7 @@ export class TagsComponent implements OnInit {
   }
 
   createTagWithJson(): void {
-    const dialogRef = this.dialog.open(JsonImportDialogComponent, {
-      width: '400px',
-      data: {title: 'Import new Tag'}
-    });
+    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'JSON Tag');
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -54,14 +50,11 @@ export class TagsComponent implements OnInit {
   }
 
   createTag(): void {
-    const dialogRef = this.dialog.open(AddTagDialogComponent, {
-      width: '400px',
-      data: {title: 'Add new Tag'}
-    });
+    const dialogRef = this.utilService.createDialog(AddTagDialogComponent, 'Tag');
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const tag: Tag = Util.createTagFromDialogResult(dialogResult);
+        const tag: Tag = EntityCreator.createTagFromDialogResult(dialogResult);
         this.tagService.createTag(tag).subscribe(
           () => {
             this.handleTagCreationResult();
@@ -73,6 +66,6 @@ export class TagsComponent implements OnInit {
 
   private handleTagCreationResult(): void {
     this.getAllTags();
-    this.snackbarService.callSnackBar('tags');
+    this.utilService.callSnackBar('Tag');
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Algorithm } from '../../model/algorithm.model';
-import { Util } from '../../util/Util';
+import { EntityCreator } from '../../util/entity.creator';
 import { AddParameterDialogComponent } from './dialogs/add-parameter-dialog.component';
 import { Parameter } from '../../model/parameter.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,7 +8,7 @@ import { AlgorithmService } from '../../services/algorithm.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Implementation } from '../../model/implementation.model';
 import { ImplementationService } from '../../services/implementation.service';
-import { SnackbarService } from '../../services/snackbar.service';
+import { UtilService } from '../../util/util.service';
 
 @Component({
   selector: 'app-parameters',
@@ -22,7 +22,7 @@ export class ParametersComponent implements OnInit, OnChanges {
   displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
 
   constructor(public dialog: MatDialog, private algorithmService: AlgorithmService, private snackBar: MatSnackBar,
-              private implementationService: ImplementationService, private snackbarService: SnackbarService) {
+              private implementationService: ImplementationService, private utilService: UtilService) {
   }
 
   ngOnInit(): void {
@@ -39,18 +39,15 @@ export class ParametersComponent implements OnInit, OnChanges {
   }
 
   createAlgorithmParameter(parameterType: string): void {
-    const dialogRef = this.dialog.open(AddParameterDialogComponent, {
-      width: '400px',
-      data: {title: 'Add new ' + parameterType + ' parameter'}
-    });
+    const dialogRef = this.utilService.createDialog(AddParameterDialogComponent, parameterType + 'parameter');
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const parameter: Parameter = Util.createParameterFromDialogResult(dialogResult);
+        const parameter: Parameter = EntityCreator.createParameterFromDialogResult(dialogResult);
         this.algorithmService.addParameter(parameter, this.selectedAlgorithm.id, parameterType).subscribe(
           () => {
             this.getAlgorithmById(this.selectedAlgorithm.id);
-            this.snackbarService.callSnackBar('parameter');
+            this.utilService.callSnackBar('parameter');
           });
       }
     });
@@ -64,16 +61,13 @@ export class ParametersComponent implements OnInit, OnChanges {
     );
   }
 
-  createImplementationParameter(type: string): void {
-    const dialogRef = this.dialog.open(AddParameterDialogComponent, {
-      width: '400px',
-      data: {title: 'Add new ' + type + ' parameter'}
-    });
+  createImplementationParameter(parameterType: string): void {
+    const dialogRef = this.utilService.createDialog(AddParameterDialogComponent, parameterType + 'parameter');
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        const parameter = Util.createParameterFromDialogResult(dialogResult);
-        this.implementationService.addParameter(parameter, this.selectedAlgorithm.id, this.selectedImplementation.id, type)
+        const parameter = EntityCreator.createParameterFromDialogResult(dialogResult);
+        this.implementationService.addParameter(parameter, this.selectedAlgorithm.id, this.selectedImplementation.id, parameterType)
           .subscribe(
             () => {
               this.handleParameterCreation();
@@ -109,7 +103,6 @@ export class ParametersComponent implements OnInit, OnChanges {
 
   private handleParameterCreation(): void {
     this.getImplementationById(this.selectedAlgorithm.id, this.selectedImplementation.id);
-    this.snackbarService.callSnackBar('parameter');
+    this.utilService.callSnackBar('parameter');
   }
-
 }

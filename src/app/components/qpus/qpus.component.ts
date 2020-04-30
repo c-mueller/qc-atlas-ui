@@ -19,6 +19,8 @@ export class QpusComponent implements OnInit, OnChanges {
 
   qpus: Qpu[] = [];
   sdks: Sdk[] = [];
+  currentEntity = 'QPU';
+  sdkEntity = 'SDKs';
   @Input() selectedProvider: Provider;
 
   displayedQpuColumns: string[] = ['name', 'id', 'maxGateTime', 'numberOfQubits', 't1', 'supportedSdkIds'];
@@ -68,7 +70,7 @@ export class QpusComponent implements OnInit, OnChanges {
 
   createQpuWithJson(): void {
     this.checkIfSdksExist();
-    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'JSON QPU');
+    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'JSON ' + this.currentEntity);
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -83,7 +85,7 @@ export class QpusComponent implements OnInit, OnChanges {
 
   createQpu(): void {
     this.checkIfSdksExist();
-    const dialogRef = this.utilService.createDialog(AddQpuDialogComponent, 'QPU', this.sdks);
+    const dialogRef = this.utilService.createDialog(AddQpuDialogComponent, this.currentEntity, this.sdks);
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -99,14 +101,14 @@ export class QpusComponent implements OnInit, OnChanges {
 
   private checkIfSdksExist(): void {
     if (!this.isSdksExisting()) {
-      this.utilService.createMissingEntityDialog('sdk', 'qpu');
+      this.utilService.createMissingEntityDialog(this.sdkEntity, this.currentEntity);
       return;
     }
   }
 
   private handleQpuCreationResult(): void {
     this.getQpuForProvider(this.selectedProvider.id);
-    this.utilService.callSnackBar('QPU');
+    this.utilService.callSnackBar(this.currentEntity);
   }
 
   private isSupportedSdkLinkExisting(linkKey: string): boolean {

@@ -17,6 +17,7 @@ export class ProvidersComponent implements OnInit {
 
   providers: Provider[] = [];
   selectedProvider: Provider;
+  currentEntity = 'Provider';
 
   constructor(private router: Router, private providerService: ProviderService,
               public dialog: MatDialog, private utilService: UtilService) {
@@ -35,7 +36,7 @@ export class ProvidersComponent implements OnInit {
   }
 
   createProviderWithJson(): void {
-    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'Provider');
+    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'JSON ' + this.currentEntity);
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -49,7 +50,7 @@ export class ProvidersComponent implements OnInit {
   }
 
   createProvider(): void {
-    const dialogRef = this.utilService.createDialog(AddProviderDialogComponent, 'Provider');
+    const dialogRef = this.utilService.createDialog(AddProviderDialogComponent, this.currentEntity);
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -81,6 +82,6 @@ export class ProvidersComponent implements OnInit {
   private processProviderResult(providerResult: Provider): void {
     this.providers.push(providerResult);
     this.selectedProvider = providerResult;
-    this.utilService.callSnackBar('Provider');
+    this.utilService.callSnackBar(this.currentEntity);
   }
 }

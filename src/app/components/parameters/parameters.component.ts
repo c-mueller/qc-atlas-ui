@@ -20,6 +20,7 @@ export class ParametersComponent implements OnInit, OnChanges {
   @Input() selectedAlgorithm: Algorithm;
   @Input() selectedImplementation: Implementation;
   displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
+  currentEntity = 'parameter';
 
   constructor(public dialog: MatDialog, private algorithmService: AlgorithmService, private snackBar: MatSnackBar,
               private implementationService: ImplementationService, private utilService: UtilService) {
@@ -39,7 +40,7 @@ export class ParametersComponent implements OnInit, OnChanges {
   }
 
   createAlgorithmParameter(parameterType: string): void {
-    const dialogRef = this.utilService.createDialog(AddParameterDialogComponent, parameterType + 'parameter');
+    const dialogRef = this.utilService.createDialog(AddParameterDialogComponent, parameterType + this.currentEntity);
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -47,7 +48,7 @@ export class ParametersComponent implements OnInit, OnChanges {
         this.algorithmService.addParameter(parameter, this.selectedAlgorithm.id, parameterType).subscribe(
           () => {
             this.getAlgorithmById(this.selectedAlgorithm.id);
-            this.utilService.callSnackBar('parameter');
+            this.utilService.callSnackBar(this.currentEntity);
           });
       }
     });
@@ -62,7 +63,7 @@ export class ParametersComponent implements OnInit, OnChanges {
   }
 
   createImplementationParameter(parameterType: string): void {
-    const dialogRef = this.utilService.createDialog(AddParameterDialogComponent, parameterType + 'parameter');
+    const dialogRef = this.utilService.createDialog(AddParameterDialogComponent, parameterType + this.currentEntity);
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -103,6 +104,6 @@ export class ParametersComponent implements OnInit, OnChanges {
 
   private handleParameterCreation(): void {
     this.getImplementationById(this.selectedAlgorithm.id, this.selectedImplementation.id);
-    this.utilService.callSnackBar('parameter');
+    this.utilService.callSnackBar(this.currentEntity);
   }
 }

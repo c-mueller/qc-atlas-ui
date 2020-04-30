@@ -18,6 +18,7 @@ export class SdksComponent implements OnInit {
   sdks: Sdk[] = [];
   selectedSdk: Sdk;
   firstEntry = 0;
+  currentEntity = 'SDK';
 
   constructor(private router: Router, private sdkService: SdkService,
               public dialog: MatDialog, private utilService: UtilService) {
@@ -46,7 +47,7 @@ export class SdksComponent implements OnInit {
   }
 
   createSdkWithJson(): void {
-    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'JSON SDK');
+    const dialogRef = this.utilService.createDialog(JsonImportDialogComponent, 'JSON ' + this.currentEntity);
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -60,7 +61,7 @@ export class SdksComponent implements OnInit {
   }
 
   createSdk(): void {
-    const dialogRef = this.utilService.createDialog(AddSdkDialogComponent, 'SDK');
+    const dialogRef = this.utilService.createDialog(AddSdkDialogComponent, this.currentEntity);
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
@@ -86,6 +87,6 @@ export class SdksComponent implements OnInit {
   private handleSdkCreationResult(sdkResult: Sdk): void {
     this.sdks.push(sdkResult);
     this.makeSelectedSdk(sdkResult);
-    this.utilService.callSnackBar('SDK');
+    this.utilService.callSnackBar(this.currentEntity);
   }
 }

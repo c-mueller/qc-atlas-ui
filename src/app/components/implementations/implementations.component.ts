@@ -4,7 +4,6 @@ import { ImplementationService } from '../../services/implementation.service';
 import { TagService } from '../../services/tag.service';
 import { Tag } from '../../model/tag.model';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sdk } from '../../model/sdk.model';
 import { Algorithm } from '../../model/algorithm.model';
 
@@ -25,7 +24,7 @@ export class ImplementationsComponent implements OnInit, OnChanges {
   tags: Tag[] = [];
   sdks: Sdk[] = [];
 
-  constructor(private implementationService: ImplementationService, private tagService: TagService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(private implementationService: ImplementationService, private tagService: TagService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {

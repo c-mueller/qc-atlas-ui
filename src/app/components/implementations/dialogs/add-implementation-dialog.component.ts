@@ -2,7 +2,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Tag } from '../../../model/tag.model';
 import { Parameters } from '../../../model/parameters.model';
-import { AddParameterDialogComponent } from '../../algorithms/dialogs/add-parameter-dialog.component';
+import { AddParameterDialogComponent } from '../../parameters/dialogs/add-parameter-dialog.component';
 import { Parameter } from '../../../model/parameter.model';
 import { MatTable } from '@angular/material/table';
 import { Sdk } from '../../../model/sdk.model';

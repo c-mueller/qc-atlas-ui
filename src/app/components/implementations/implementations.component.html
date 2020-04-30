@@ -29,61 +29,7 @@
       {{selectedImplementation.content.description}}
     </div>
     <!-- TODO: move to parameters component -->
-    <div class="entity-content">
-      <h3>Input Parameters
-        <button (click)="createImplementationParameter('input')" mat-button>
-          <mat-icon>add</mat-icon>
-        </button>
-      </h3>
-      <table mat-table [dataSource]="selectedImplementation.inputParameters.parameters" class="mat-elevation-z0">
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element">{{element.name}}</td>
-        </ng-container>
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef>Type</th>
-          <td mat-cell *matCellDef="let element">{{element.type}}</td>
-        </ng-container>
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Description</th>
-          <td mat-cell *matCellDef="let element">{{element.description}}</td>
-        </ng-container>
-        <ng-container matColumnDef="restriction">
-          <th mat-header-cell *matHeaderCellDef>Restriction</th>
-          <td mat-cell *matCellDef="let element">{{element.restriction}}</td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedParametersColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedParametersColumns;"></tr>
-      </table>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="entity-content">
-      <h3>Output Parameters
-        <button (click)="createImplementationParameter('output')" mat-button>
-          <mat-icon>add</mat-icon>
-        </button>
-      </h3>
-      <table mat-table [dataSource]="selectedImplementation.outputParameters.parameters" class="mat-elevation-z0">
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element">{{element.name}}</td>
-        </ng-container>
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef>Type</th>
-          <td mat-cell *matCellDef="let element">{{element.type}}</td>
-        </ng-container>
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Description</th>
-          <td mat-cell *matCellDef="let element">{{element.description}}</td>
-        </ng-container>
-        <ng-container matColumnDef="restriction">
-          <th mat-header-cell *matHeaderCellDef>Restriction</th>
-          <td mat-cell *matCellDef="let element">{{element.restriction}}</td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedParametersColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedParametersColumns;"></tr>
-      </table>
-    </div>
+   <app-parameters [selectedImplementation]="selectedImplementation"></app-parameters>
     <div class="entity-content">
       <h3>Tags</h3>
       <table mat-table [dataSource]="this.tags" class="mat-elevation-z0">

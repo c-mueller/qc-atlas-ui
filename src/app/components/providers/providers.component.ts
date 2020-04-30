@@ -4,10 +4,9 @@ import { Provider } from '../../model/provider.model';
 import { ProviderService } from '../../services/provider.service';
 import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddProviderDialogComponent } from './dialogs/add-provider-dialog.component';
-import { QpuService } from '../../services/qpu.service';
 import { Util } from '../../util/Util';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-providers',
@@ -23,7 +22,7 @@ export class ProvidersComponent implements OnInit {
 
 
   constructor(private router: Router, private providerService: ProviderService,
-              private qpuService: QpuService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+              public dialog: MatDialog, private snackbarService: SnackbarService) {
   }
 
   ngOnInit(): void {
@@ -96,12 +95,6 @@ export class ProvidersComponent implements OnInit {
   private processProviderResult(providerResult: Provider): void {
     this.providers.push(providerResult);
     this.selectedProvider = providerResult;
-    this.callSnackBar();
-  }
-
-  private callSnackBar(): void {
-    this.snackBar.open('Successfully added new Provider', 'Ok', {
-      duration: 2000,
-    });
+    this.snackbarService.callSnackBar('Provider');
   }
 }

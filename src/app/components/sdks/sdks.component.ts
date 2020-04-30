@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddSdkDialogComponent } from './dialogs/add-sdk-dialog.component';
 import { Util } from '../../util/Util';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-sdks',
@@ -22,7 +23,7 @@ export class SdksComponent implements OnInit {
   isSelectedColor = 'primary';
 
   constructor(private router: Router, private sdkService: SdkService,
-              public dialog: MatDialog, private snackBar: MatSnackBar) {
+              public dialog: MatDialog, private snackbarService: SnackbarService) {
   }
 
 
@@ -100,12 +101,6 @@ export class SdksComponent implements OnInit {
   private handleSdkCreationResult(sdkResult: Sdk): void {
     this.sdks.push(sdkResult);
     this.makeSelectedSdk(sdkResult);
-    this.callSnackBar();
-  }
-
-  private callSnackBar(): void {
-    this.snackBar.open('Successfully added new SDK', 'Ok', {
-      duration: 2000,
-    });
+    this.snackbarService.callSnackBar('SDK');
   }
 }

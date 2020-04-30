@@ -3,7 +3,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Tag } from '../../../model/tag.model';
 import { Parameters } from '../../../model/parameters.model';
 import { Content } from '../../../model/content.model';
-import { AddParameterDialogComponent } from './add-parameter-dialog.component';
+import { AddParameterDialogComponent } from '../../parameters/dialogs/add-parameter-dialog.component';
 import { Parameter } from '../../../model/parameter.model';
 import { MatTable } from '@angular/material/table';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

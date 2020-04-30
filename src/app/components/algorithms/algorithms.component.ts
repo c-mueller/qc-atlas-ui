@@ -16,6 +16,7 @@ import { SdkService } from '../../services/sdk.service';
 import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
 import { MissingEntityDialogComponent } from '../dialogs/missing-entity-dialog.component';
 import { Util } from '../../util/Util';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-algorithms',
@@ -42,7 +43,7 @@ export class AlgorithmsComponent implements OnInit {
   displayedImplementationColumns: string[] = ['name', 'sdk'];
 
 
-  constructor(private router: Router, private algorithmService: AlgorithmService,
+  constructor(private router: Router, private algorithmService: AlgorithmService, private snackbarService: SnackbarService,
               private implementationService: ImplementationService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private tagService: TagService, private sdkService: SdkService) {
   }
@@ -206,7 +207,7 @@ export class AlgorithmsComponent implements OnInit {
     this.implementations.push(implementationResult);
     this.selectedImplementation = implementationResult;
     this.implementationOpened = true;
-    this.callSnackBar('implementation');
+    this.snackbarService.callSnackBar('implementation');
   }
 
   private getTagsForAlgorithm(): void {
@@ -227,12 +228,6 @@ export class AlgorithmsComponent implements OnInit {
   private processAlgorithmResult(algorithmResult: Algorithm): void {
     this.algorithms.push(algorithmResult);
     this.onAlgorithmSelected(algorithmResult);
-    this.callSnackBar('algorithm');
-  }
-
-  private callSnackBar(addedEntity: string) {
-    this.snackBar.open('Successfully added new ' + addedEntity, 'Ok', {
-      duration: 2000,
-    });
+    this.snackbarService.callSnackBar('algorithm');
   }
 }

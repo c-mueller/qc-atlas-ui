@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddTagDialogComponent } from './dialogs/add-tag-dialog.component';
 import { Util } from '../../util/Util';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-tags',
@@ -20,7 +21,7 @@ export class TagsComponent implements OnInit {
   displayedTagsColumns: string[] = ['key', 'value'];
 
   constructor(private router: Router, private tagService: TagService,
-              public dialog: MatDialog, private snackBar: MatSnackBar) {
+              public dialog: MatDialog, private snackbarService: SnackbarService) {
   }
 
   ngOnInit(): void {
@@ -72,12 +73,6 @@ export class TagsComponent implements OnInit {
 
   private handleTagCreationResult(): void {
     this.getAllTags();
-    this.callSnackBar();
-  }
-
-  private callSnackBar(): void {
-    this.snackBar.open('Successfully added new Tag', 'OK', {
-      duration: 2000,
-    });
+    this.snackbarService.callSnackBar('tags');
   }
 }

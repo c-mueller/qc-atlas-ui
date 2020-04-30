@@ -4,12 +4,12 @@ import { Qpu, QpuDtoList } from '../../model/qpu.model';
 import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
 import { QpuService } from '../../services/qpu.service';
 import { Provider } from '../../model/provider.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MissingEntityDialogComponent } from '../dialogs/missing-entity-dialog.component';
 import { Sdk } from '../../model/sdk.model';
 import { SdkService } from '../../services/sdk.service';
 import { Util } from '../../util/Util';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-qpus',
@@ -24,9 +24,9 @@ export class QpusComponent implements OnInit, OnChanges {
 
   displayedQpuColumns: string[] = ['name', 'id', 'maxGateTime', 'numberOfQubits', 't1', 'supportedSdkIds'];
 
-  constructor(private qpuService: QpuService, private snackBar: MatSnackBar, public dialog: MatDialog, private sdkService: SdkService) {
+  constructor(private qpuService: QpuService, private snackbarService: SnackbarService,
+              public dialog: MatDialog, private sdkService: SdkService) {
   }
-
 
 
   ngOnInit(): void {
@@ -81,8 +81,7 @@ export class QpusComponent implements OnInit, OnChanges {
       if (dialogResult) {
         this.qpuService.createQpuWithJson(this.selectedProvider.id, dialogResult).subscribe(
           () => {
-            this.getQpuForProvider(this.selectedProvider.id);
-            this.callSnackbar();
+            this.handleQpuCreationResult();
           }
         );
       }
@@ -113,7 +112,7 @@ export class QpusComponent implements OnInit, OnChanges {
 
   private handleQpuCreationResult(): void {
     this.getQpuForProvider(this.selectedProvider.id);
-    this.callSnackbar();
+    this.snackbarService.callSnackBar('QPU');
   }
 
   private isSupportedSdkLinkExisting(linkKey: string): boolean {
@@ -146,12 +145,6 @@ export class QpusComponent implements OnInit, OnChanges {
     const missingDialog = this.dialog.open(MissingEntityDialogComponent, {
       width: '600px',
       data: {missingEntity: 'sdks', currentEntity: 'qpus'}
-    });
-  }
-
-  private callSnackbar(): void {
-    this.snackBar.open('Successfully added new QPU', 'Ok', {
-      duration: 2000,
     });
   }
 }

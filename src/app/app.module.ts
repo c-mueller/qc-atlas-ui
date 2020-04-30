@@ -12,7 +12,7 @@ import { TagsComponent } from './components/tags/tags.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddImplementationDialogComponent } from './components/implementations/dialogs/add-implementation-dialog.component';
 import { AddQpuDialogComponent } from './components/qpus/dialogs/add-qpu-dialog.component';
-import { AddParameterDialogComponent } from './components/algorithms/dialogs/add-parameter-dialog.component';
+import { AddParameterDialogComponent } from './components/parameters/dialogs/add-parameter-dialog.component';
 import { AddSdkDialogComponent } from './components/sdks/dialogs/add-sdk-dialog.component';
 import { AddTagDialogComponent } from './components/tags/dialogs/add-tag-dialog.component';
 import { AddAlgorithmDialogComponent } from './components/algorithms/dialogs/add-algorithm-dialog.component';

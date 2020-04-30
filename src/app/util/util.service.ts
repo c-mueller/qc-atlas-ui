@@ -10,6 +10,8 @@ import { Tag } from '../model/tag.model';
 })
 export class UtilService {
 
+  isSelectedColor = 'primary';
+
   constructor(private snackBar: MatSnackBar, public dialog: MatDialog) {
   }
 

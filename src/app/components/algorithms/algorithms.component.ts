@@ -29,8 +29,6 @@ export class AlgorithmsComponent implements OnInit {
   implementations: Implementation[] = [];
   implementationOpened = false;
 
-  isSelectedColor = 'primary';
-
   selectedAlgorithm: Algorithm;
   selectedImplementation: Implementation;
 
@@ -124,7 +122,7 @@ export class AlgorithmsComponent implements OnInit {
       return null;
     }
     if (id === this.selectedAlgorithm.id) {
-      return this.isSelectedColor;
+      return this.utilService.isSelectedColor;
     }
   }
 
@@ -133,7 +131,7 @@ export class AlgorithmsComponent implements OnInit {
       return null;
     }
     if (id === this.selectedImplementation.id) {
-      return this.isSelectedColor;
+      return this.utilService.isSelectedColor;
     }
     return null;
   }

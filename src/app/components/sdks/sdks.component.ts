@@ -19,8 +19,6 @@ export class SdksComponent implements OnInit {
   selectedSdk: Sdk;
   firstEntry = 0;
 
-  isSelectedColor = 'primary';
-
   constructor(private router: Router, private sdkService: SdkService,
               public dialog: MatDialog, private utilService: UtilService) {
   }
@@ -48,7 +46,7 @@ export class SdksComponent implements OnInit {
       return null;
     }
     if (id === this.selectedSdk.id) {
-      return this.isSelectedColor;
+      return this.utilService.isSelectedColor;
     }
   }
 

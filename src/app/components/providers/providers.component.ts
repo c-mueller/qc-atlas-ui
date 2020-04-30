@@ -18,9 +18,6 @@ export class ProvidersComponent implements OnInit {
   providers: Provider[] = [];
   selectedProvider: Provider;
 
-  isSelectedColor = 'primary';
-
-
   constructor(private router: Router, private providerService: ProviderService,
               public dialog: MatDialog, private utilService: UtilService) {
   }
@@ -34,7 +31,7 @@ export class ProvidersComponent implements OnInit {
       return null;
     }
     if (id === this.selectedProvider.id) {
-      return this.isSelectedColor;
+      return this.utilService.isSelectedColor;
     }
   }
 

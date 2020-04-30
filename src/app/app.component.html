@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="toolbar">
   <mat-toolbar-row>
-    <img src="../assets/logo.png" class="logo-img">
-    <span>QC Atlas</span>
+    <img (click)="goToHome()" src="../assets/logo.png" class="logo-img">
+    <span (click)="goToHome()">QC Atlas</span>
     <nav mat-tab-nav-bar class="tabs" backgroundColor="primary">
       <a mat-tab-link
          *ngFor="let link of navLinks"

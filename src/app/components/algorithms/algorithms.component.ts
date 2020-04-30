@@ -117,23 +117,12 @@ export class AlgorithmsComponent implements OnInit {
     this.selectedImplementation = implementation;
   }
 
-  getColorOfAlgorithmButton(id: number): string {
-    if (!this.selectedAlgorithm) {
-      return null;
-    }
-    if (id === this.selectedAlgorithm.id) {
-      return this.utilService.isSelectedColor;
-    }
+  getColorOfSelectedAlgorithm(id: number): string {
+    return this.utilService.getColorOfSelectedButton(this.selectedAlgorithm, id);
   }
 
-  getColorOfImplementationButton(id: number): string {
-    if (!this.selectedImplementation) {
-      return null;
-    }
-    if (id === this.selectedImplementation.id) {
-      return this.utilService.isSelectedColor;
-    }
-    return null;
+  getColorOfSelectedImplementation(id: number): string {
+    return this.utilService.getColorOfSelectedButton(this.selectedImplementation, id);
   }
 
   createAlgorithmWithJson(): void {

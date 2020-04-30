@@ -8,7 +8,7 @@
       <mat-expansion-panel *ngFor="let algorithm of algorithms">
         <mat-expansion-panel-header (click)="onAlgorithmSelected(algorithm)">
           <mat-panel-title>
-            <button mat-button [color]="getColorOfAlgorithmButton(algorithm.id)">
+            <button mat-button [color]="getColorOfSelectedAlgorithm(algorithm.id)">
               <mat-icon mat-list-icon>developer_board</mat-icon>
               {{algorithm.name}}
             </button>
@@ -19,7 +19,7 @@
         </div>
         <div *ngFor="let implementation of implementations">
           <button mat-button (click)="openImplementation(implementation)"
-                  [color]="getColorOfImplementationButton(implementation.id)">
+                  [color]="getColorOfSelectedImplementation(implementation.id)">
             <mat-icon>settings_ethernet</mat-icon>
             {{implementation.name}}
           </button>

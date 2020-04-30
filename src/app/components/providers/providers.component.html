@@ -5,7 +5,7 @@
 <mat-drawer-container class="entity-container">
   <mat-drawer mode="side" opened>
     <div *ngFor="let provider of providers" (click)="makeSelectedProvider(provider)">
-      <button class="entity-content" mat-button [color]="getColorOfProviderButton(provider.id)">
+      <button class="entity-content" mat-button [color]="getSelectedProviderColor(provider.id)">
         <mat-icon mat-list-icon>cloud</mat-icon>
         {{provider.name}}
       </button>

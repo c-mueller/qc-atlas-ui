@@ -26,13 +26,8 @@ export class ProvidersComponent implements OnInit {
     this.getAllProviders();
   }
 
-  getColorOfProviderButton(id: number): string {
-    if (!this.selectedProvider) {
-      return null;
-    }
-    if (id === this.selectedProvider.id) {
-      return this.utilService.isSelectedColor;
-    }
+  getSelectedProviderColor(id: number): string {
+    return this.utilService.getColorOfSelectedButton(this.selectedProvider, id);
   }
 
   makeSelectedProvider(provider: Provider): void {

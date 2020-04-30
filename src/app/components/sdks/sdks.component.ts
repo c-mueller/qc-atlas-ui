@@ -41,13 +41,8 @@ export class SdksComponent implements OnInit {
     this.selectedSdk = sdk;
   }
 
-  getColorOfSdkButton(id: number): string {
-    if (this.isNoSdkSelected()) {
-      return null;
-    }
-    if (id === this.selectedSdk.id) {
-      return this.utilService.isSelectedColor;
-    }
+  getColorOfSelectedSdk(id: number): string {
+    return this.utilService.getColorOfSelectedButton(this.selectedSdk, id);
   }
 
   createSdkWithJson(): void {

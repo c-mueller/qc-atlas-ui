@@ -5,7 +5,7 @@
 <mat-drawer-container class="entity-container">
   <mat-drawer mode="side" opened>
     <div *ngFor="let sdk of sdks" (click)="makeSelectedSdk(sdk)">
-      <button class="entity-content" mat-button [color]="getColorOfSdkButton(sdk.id)">
+      <button class="entity-content" mat-button [color]="getColorOfSelectedSdk(sdk.id)">
         <mat-icon mat-list-icon>code</mat-icon>
         {{sdk.name}}
       </button>

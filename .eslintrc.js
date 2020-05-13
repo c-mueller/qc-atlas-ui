@@ -25,35 +25,17 @@ module.exports = {
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "tsconfig.json",
+    "project": ["./tsconfig.app.json", "./tsconfig.spec.json", "./tsconfig.json"],
     "sourceType": "module"
   },
   "plugins": [
     "@typescript-eslint",
-    "@typescript-eslint/tslint"
+    "@typescript-eslint/tslint",
+    "import",
+    "jsdoc",
+    "prefer-arrow"
   ],
   "rules": {
-    "@angular-eslint/component-class-suffix": "error",
-    "@angular-eslint/component-selector": [
-      "error",
-      {
-        "type": "element",
-        "prefix": "winery",
-        "style": "kebab-case"
-      }
-    ],
-    "@angular-eslint/directive-class-suffix": "error",
-    "@angular-eslint/directive-selector": [
-      "error",
-      {
-        "type": "attribute",
-        "prefix": "winery",
-        "style": "camelCase"
-      }
-    ],
-    "@angular-eslint/no-input-rename": "error",
-    "@angular-eslint/no-output-rename": "error",
-    "@angular-eslint/use-pipe-transform-interface": "error",
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": [
       "error",
@@ -266,7 +248,7 @@ module.exports = {
     "@typescript-eslint/tslint/config": [
       "error",
       {
-        "rulesDirectory": ['codelyzer'],
+        "rulesDirectory": ["codelyzer"],
         "rules": {
           "import-spacing": true,
           "whitespace": [
@@ -276,7 +258,24 @@ module.exports = {
             "check-operator",
             "check-separator",
             "check-type"
-          ]
+          ],
+          "component-class-suffix": true,
+          "component-selector": [
+            true,
+            "element",
+            "winery",
+            "kebab-case"
+          ],
+          "directive-class-suffix": true,
+          "directive-selector": [
+            true,
+            "attribute",
+            "winery",
+            "camelCase"
+          ],
+          "no-input-rename": true,
+          "no-output-rename": true,
+          "use-pipe-transform-interface": true,
         }
       }
     ]

@@ -3,19 +3,17 @@ import { Component, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-add-parameter-dialog-component',
-  templateUrl: 'add-parameter-dialog.html'
+  templateUrl: 'add-parameter-dialog.html',
 })
 export class AddParameterDialogComponent {
-
   constructor(
     public dialogRef: MatDialogRef<AddParameterDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-  }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }
 
 export interface DialogData {

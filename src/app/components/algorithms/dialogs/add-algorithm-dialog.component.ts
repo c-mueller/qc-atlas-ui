@@ -1,32 +1,42 @@
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tag } from '../../../model/tag.model';
 import { Parameters } from '../../../model/parameters.model';
 import { Content } from '../../../model/content.model';
 import { AddParameterDialogComponent } from '../../parameters/dialogs/add-parameter-dialog.component';
 import { Parameter } from '../../../model/parameter.model';
-import { MatTable } from '@angular/material/table';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-algorithm-dialog-component',
-  templateUrl: 'add-algorithm-dialog.html'
+  templateUrl: 'add-algorithm-dialog.html',
 })
 export class AddAlgorithmDialogComponent implements OnInit {
+  @ViewChild('inputTable') tableIn: MatTable<any>;
+  @ViewChild('outputTable') tableOut: MatTable<any>;
 
   algorithmForm: FormGroup;
 
   inputParameters: Parameters = new Parameters();
   outputParameters: Parameters = new Parameters();
 
-  @ViewChild('inputTable') tableIn: MatTable<any>;
-  @ViewChild('outputTable') tableOut: MatTable<any>;
-
-  displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
+  displayedParametersColumns: string[] = [
+    'name',
+    'type',
+    'description',
+    'restriction',
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<AddAlgorithmDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, public dialog: MatDialog) {
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public dialog: MatDialog
+  ) {
     this.inputParameters.parameters = [];
     this.outputParameters.parameters = [];
   }
@@ -42,18 +52,21 @@ export class AddAlgorithmDialogComponent implements OnInit {
   addParameter(type: string) {
     const dialogRef = this.dialog.open(AddParameterDialogComponent, {
       width: '400px',
-      data: {title: 'Add new ' + type + ' parameter'}
+      data: { title: 'Add new ' + type + ' parameter' },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const parameter: Parameter = {
           name: result.name,
           description: result.description,
           type: result.type,
-          restriction: result.restriction
+          restriction: result.restriction,
         };
-        type === 'input' ? this.addToInputParams(parameter) : this.addToOutputParams(parameter);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        type === 'input'
+          ? this.addToInputParams(parameter)
+          : this.addToOutputParams(parameter);
         if (this.tableIn) {
           this.tableIn.renderRows();
         }
@@ -77,22 +90,20 @@ export class AddAlgorithmDialogComponent implements OnInit {
   ngOnInit(): void {
     this.algorithmForm = new FormGroup({
       name: new FormControl(this.data.name, [
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         Validators.required,
-        Validators.maxLength(255)
-      ])
+        Validators.maxLength(255),
+      ]),
     });
 
-    this.dialogRef.beforeClosed().subscribe(
-      () => {
-        this.data.name = this.algorithmForm.get('name').value;
-      }
-    );
+    this.dialogRef.beforeClosed().subscribe(() => {
+      this.data.name = this.algorithmForm.get('name').value;
+    });
   }
 
   isRequiredDataMissing(): boolean {
     return this.name.errors?.required || !this.data.tag;
   }
-
 }
 
 export interface DialogData {

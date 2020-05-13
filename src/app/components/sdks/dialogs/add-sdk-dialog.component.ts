@@ -4,16 +4,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-sdk-dialog-component',
-  templateUrl: 'add-sdk-dialog.html'
+  templateUrl: 'add-sdk-dialog.html',
 })
 export class AddSdkDialogComponent implements OnInit {
-
   sdkForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<AddSdkDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-  }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
 
   get name() {
     return this.sdkForm.get('name');
@@ -26,22 +25,20 @@ export class AddSdkDialogComponent implements OnInit {
   ngOnInit(): void {
     this.sdkForm = new FormGroup({
       name: new FormControl(this.data.name, [
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         Validators.required,
-        Validators.maxLength(255)
-      ])
+        Validators.maxLength(255),
+      ]),
     });
 
-    this.dialogRef.beforeClosed().subscribe(
-      () => {
-        this.data.name = this.sdkForm.get('name').value;
-      }
-    );
+    this.dialogRef.beforeClosed().subscribe(() => {
+      this.data.name = this.sdkForm.get('name').value;
+    });
   }
 
   isRequiredDataMissing(): boolean {
     return this.name.errors?.required;
   }
-
 }
 
 export interface DialogData {

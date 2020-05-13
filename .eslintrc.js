@@ -20,8 +20,7 @@ module.exports = {
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier",
-    "prettier/@typescript-eslint"
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -36,6 +35,7 @@ module.exports = {
     "prefer-arrow"
   ],
   "rules": {
+    "prettier/prettier": "error",
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": [
       "error",
@@ -78,7 +78,7 @@ module.exports = {
         "accessibility": "explicit"
       }
     ],
-    "@typescript-eslint/indent": "error",
+    "@typescript-eslint/indent": ["error", 2],
     "@typescript-eslint/interface-name-prefix": "error",
     "@typescript-eslint/member-delimiter-style": [
       "error",
@@ -205,7 +205,6 @@ module.exports = {
     "no-redeclare": "error",
     "no-restricted-imports": [
       "error",
-      "winery"
     ],
     "no-shadow": [
       "error",
@@ -263,14 +262,12 @@ module.exports = {
           "component-selector": [
             true,
             "element",
-            "winery",
             "kebab-case"
           ],
           "directive-class-suffix": true,
           "directive-selector": [
             true,
             "attribute",
-            "winery",
             "camelCase"
           ],
           "no-input-rename": true,

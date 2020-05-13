@@ -1,34 +1,50 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Implementation } from '../../model/implementation.model';
 import { ImplementationService } from '../../services/implementation.service';
 import { TagService } from '../../services/tag.service';
 import { Tag } from '../../model/tag.model';
-import { MatDialog } from '@angular/material/dialog';
 import { Sdk } from '../../model/sdk.model';
 import { Algorithm } from '../../model/algorithm.model';
 
 @Component({
   selector: 'app-implementations',
   templateUrl: './implementations.component.html',
-  styleUrls: ['./implementations.component.scss']
+  styleUrls: ['./implementations.component.scss'],
 })
 export class ImplementationsComponent implements OnInit, OnChanges {
-
-  displayedParametersColumns: string[] = ['name', 'type', 'description', 'restriction'];
-  displayedTagsColumns: string[] = ['key', 'value'];
-
   @Input() selectedImplementation: Implementation;
   @Input() selectedAlgorithm: Algorithm;
   @Input() implementations: Implementation[];
 
+  displayedParametersColumns: string[] = [
+    'name',
+    'type',
+    'description',
+    'restriction',
+  ];
+  displayedTagsColumns: string[] = ['key', 'value'];
+
   tags: Tag[] = [];
   sdks: Sdk[] = [];
 
-  constructor(private implementationService: ImplementationService, private tagService: TagService, public dialog: MatDialog) {
-  }
+  constructor(
+    private implementationService: ImplementationService,
+    private tagService: TagService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this.getImplementationById(this.selectedAlgorithm.id, this.selectedImplementation.id);
+    this.getImplementationById(
+      this.selectedAlgorithm.id,
+      this.selectedImplementation.id
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -36,20 +52,23 @@ export class ImplementationsComponent implements OnInit, OnChanges {
     this.handleSelectedAlgorithmChanges(changes);
     this.handleImplementationsChanges(changes);
 
-    this.getImplementationById(this.selectedAlgorithm.id, this.selectedImplementation.id);
+    this.getImplementationById(
+      this.selectedAlgorithm.id,
+      this.selectedImplementation.id
+    );
   }
 
   getImplementationById(algoId: number, implId: number): void {
-    this.implementationService.getImplementationById(algoId, implId).subscribe(
-      implData => {
+    this.implementationService
+      .getImplementationById(algoId, implId)
+      .subscribe((implData) => {
         this.selectedImplementation = implData;
-        this.tagService.getTagsForImplementation(algoId, implId).subscribe(
-          tagData => {
+        this.tagService
+          .getTagsForImplementation(algoId, implId)
+          .subscribe((tagData) => {
             this.tags = tagData.tagsDtos;
-          }
-        );
-      }
-    );
+          });
+      });
   }
 
   private handleSelectedAlgorithmChanges(changes: SimpleChanges): void {
@@ -69,5 +88,4 @@ export class ImplementationsComponent implements OnInit, OnChanges {
       this.selectedImplementation = changes.selectedImplementation.currentValue;
     }
   }
-
 }

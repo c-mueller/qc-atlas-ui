@@ -8,9 +8,8 @@ describe('QpusComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QpusComponent ]
-    })
-    .compileComponents();
+      declarations: [QpusComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

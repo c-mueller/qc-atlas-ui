@@ -6,16 +6,14 @@ import { Component, Inject } from '@angular/core';
   templateUrl: 'json-import-dialog.html',
 })
 export class JsonImportDialogComponent {
-
   constructor(
     public dialogRef: MatDialogRef<JsonImportDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-  }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }
 
 export interface DialogData {

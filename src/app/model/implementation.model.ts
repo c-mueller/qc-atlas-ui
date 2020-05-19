@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 import { Tag } from './tag.model';
 import { Parameters } from './parameters.model';
 import { Content } from './content.model';

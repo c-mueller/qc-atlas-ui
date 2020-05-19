@@ -5,16 +5,15 @@ import { Sdk } from '../../../model/sdk.model';
 
 @Component({
   selector: 'app-add-qpu-dialog-component',
-  templateUrl: 'add-qpu-dialog.html'
+  templateUrl: 'add-qpu-dialog.html',
 })
 export class AddQpuDialogComponent implements OnInit {
-
   qpuForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<AddQpuDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-  }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
 
   get name() {
     return this.qpuForm.get('name');
@@ -40,41 +39,53 @@ export class AddQpuDialogComponent implements OnInit {
     this.data.supportedSdkIds = [];
     this.qpuForm = new FormGroup({
       name: new FormControl(this.data.name, [
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         Validators.required,
-        Validators.maxLength(255)
+        Validators.maxLength(255),
       ]),
       maxGateTime: new FormControl(this.data.maxGateTime, [
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         Validators.required,
-        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
+        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+'),
       ]),
       numberOfQubits: new FormControl(this.data.numberOfQubits, [
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         Validators.required,
-        Validators.pattern('[0-9]+')
+        Validators.pattern('[0-9]+'),
       ]),
       t1: new FormControl(this.data.t1, [
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         Validators.required,
-        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
+        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+'),
       ]),
     });
 
-    this.dialogRef.beforeClosed().subscribe(
-      () => {
-        this.data.name = this.qpuForm.get('name').value;
-        this.data.maxGateTime = this.qpuForm.get('maxGateTime').value;
-        this.data.numberOfQubits = this.qpuForm.get('numberOfQubits').value;
-        this.data.t1 = this.qpuForm.get('t1').value;
-      }
-    );
+    this.dialogRef.beforeClosed().subscribe(() => {
+      this.data.name = this.qpuForm.get('name').value;
+      this.data.maxGateTime = this.qpuForm.get('maxGateTime').value;
+      this.data.numberOfQubits = this.qpuForm.get('numberOfQubits').value;
+      this.data.t1 = this.qpuForm.get('t1').value;
+    });
   }
 
   isRequiredDataMissing(): boolean {
-    return this.name.errors?.required || this.numberOfQubits.errors?.required || this.t1.errors?.required
-      || this.maxGateTime.errors?.required || this.numberOfQubits.errors?.pattern || this.maxGateTime.errors?.pattern
-      || this.t1.errors?.pattern || this.data.supportedSdkIds.length === 0;
+    return (
+      this.name.errors?.required ||
+      this.numberOfQubits.errors?.required ||
+      this.t1.errors?.required ||
+      this.maxGateTime.errors?.required ||
+      this.numberOfQubits.errors?.pattern ||
+      this.maxGateTime.errors?.pattern ||
+      this.t1.errors?.pattern ||
+      this.data.supportedSdkIds.length === 0
+    );
   }
 
   onSdkCheckboxChange(sdk: Sdk, event: any): void {
-    event.checked ? this.addToSupportedSdkIds(sdk.id) : this.removeFromSupportedSdkIds(sdk.id);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    event.checked
+      ? this.addToSupportedSdkIds(sdk.id)
+      : this.removeFromSupportedSdkIds(sdk.id);
   }
 
   private addToSupportedSdkIds(sdkId: number): void {
@@ -82,10 +93,11 @@ export class AddQpuDialogComponent implements OnInit {
   }
 
   private removeFromSupportedSdkIds(sdkId: number): void {
-    const indexToRemove = this.data.supportedSdkIds.findIndex(entry => entry === sdkId);
+    const indexToRemove = this.data.supportedSdkIds.findIndex(
+      (entry) => entry === sdkId
+    );
     this.data.supportedSdkIds.splice(indexToRemove, 1);
   }
-
 }
 
 export interface DialogData {

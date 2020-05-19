@@ -4,14 +4,14 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-missing-entity-dialog-component',
-  templateUrl: 'missing-entity-dialog.html'
+  templateUrl: 'missing-entity-dialog.html',
 })
 export class MissingEntityDialogComponent {
-
   constructor(
     public dialogRef: MatDialogRef<MissingEntityDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private router: Router) {
-  }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private router: Router
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -21,7 +21,6 @@ export class MissingEntityDialogComponent {
     this.router.navigate([this.data.missingEntity]);
     this.onNoClick();
   }
-
 }
 
 export interface DialogData {

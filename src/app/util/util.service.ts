@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {
-  MatDialog,
-  MatDialogConfig,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { TagDto } from 'api/models';
 import { MissingEntityDialogComponent } from '../components/dialogs/missing-entity-dialog.component';
-import { Sdk } from '../model/sdk.model';
-import { Tag } from '../model/tag.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,12 +21,11 @@ export class UtilService {
   public createDialog(
     dialogComponent: any,
     entity: string,
-    sdks?: Sdk[],
-    tags?: Tag[]
+    tags?: TagDto[]
   ): any {
     return this.dialog.open(dialogComponent, {
       width: '400px',
-      data: { title: 'Add new ' + entity, sdks, tags },
+      data: { title: 'Add new ' + entity, tags },
     });
   }
 
@@ -45,7 +39,7 @@ export class UtilService {
     });
   }
 
-  public getColorOfSelectedButton(selectedEntity: any, id: number): string {
+  public getColorOfSelectedButton(selectedEntity: any, id: string): string {
     if (!selectedEntity) {
       return null;
     }

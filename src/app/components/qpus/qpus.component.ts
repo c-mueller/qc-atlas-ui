@@ -6,13 +6,9 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Qpu, QpuDtoList } from '../../model/qpu.model';
+import { ProviderDto, QpuDto } from 'api/models';
+import { QpuService } from 'api/services/qpu.service';
 import { JsonImportDialogComponent } from '../dialogs/json-import-dialog.component';
-import { QpuService } from '../../services/qpu.service';
-import { Provider } from '../../model/provider.model';
-import { Sdk } from '../../model/sdk.model';
-import { SdkService } from '../../services/sdk.service';
-import { EntityCreator } from '../../util/entity.creator';
 import { UtilService } from '../../util/util.service';
 import { AddQpuDialogComponent } from './dialogs/add-qpu-dialog.component';
 
@@ -22,12 +18,10 @@ import { AddQpuDialogComponent } from './dialogs/add-qpu-dialog.component';
   styleUrls: ['./qpus.component.scss'],
 })
 export class QpusComponent implements OnInit, OnChanges {
-  @Input() selectedProvider: Provider;
+  @Input() selectedProvider: ProviderDto;
 
-  qpus: Qpu[] = [];
-  sdks: Sdk[] = [];
+  qpus: QpuDto[] = [];
   currentEntity = 'QPU';
-  sdkEntity = 'SDKs';
 
   displayedQpuColumns: string[] = [
     'name',
@@ -35,24 +29,21 @@ export class QpusComponent implements OnInit, OnChanges {
     'maxGateTime',
     'numberOfQubits',
     't1',
-    'supportedSdkIds',
   ];
 
   constructor(
     private qpuService: QpuService,
     private utilService: UtilService,
-    public dialog: MatDialog,
-    private sdkService: SdkService
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.getQpuForProvider(this.selectedProvider.id);
-    this.getAllSdks();
   }
 
-  getQpuForProvider(providerId: number): void {
-    this.qpuService.getQpusForProvider(providerId).subscribe((data) => {
-      this.handleQpuResult(data);
+  getQpuForProvider(providerId: string): void {
+    this.qpuService.getQpus({ providerId }).subscribe((data) => {
+      this.qpus = data.qpuDtoList;
     });
   }
 
@@ -63,24 +54,7 @@ export class QpusComponent implements OnInit, OnChanges {
     }
   }
 
-  getAllSdks(): void {
-    this.sdkService.getAllSdks().subscribe((sdks) => {
-      this.sdks = sdks.sdkDtos;
-    });
-  }
-
-  getSupportedSdksForQpus(): void {
-    for (const qpu of this.qpus) {
-      for (const linkKey of this.getLinkKeysAsArray(qpu)) {
-        if (this.isSupportedSdkLinkExisting(linkKey)) {
-          this.handleSupportedSdkLink(qpu, qpu._links[linkKey].href);
-        }
-      }
-    }
-  }
-
   createQpuWithJson(): void {
-    this.checkIfSdksExist();
     const dialogRef = this.utilService.createDialog(
       JsonImportDialogComponent,
       'JSON ' + this.currentEntity
@@ -89,7 +63,10 @@ export class QpusComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe((dialogResult) => {
       if (dialogResult) {
         this.qpuService
-          .createQpuWithJson(this.selectedProvider.id, dialogResult)
+          .createQpu({
+            providerId: this.selectedProvider.id,
+            body: JSON.parse(dialogResult),
+          })
           .subscribe(() => {
             this.handleQpuCreationResult();
           });
@@ -98,18 +75,21 @@ export class QpusComponent implements OnInit, OnChanges {
   }
 
   createQpu(): void {
-    this.checkIfSdksExist();
     const dialogRef = this.utilService.createDialog(
       AddQpuDialogComponent,
-      this.currentEntity,
-      this.sdks
+      this.currentEntity
     );
 
     dialogRef.afterClosed().subscribe((dialogResult) => {
       if (dialogResult) {
-        const qpu: Qpu = EntityCreator.createQpuFromDialogResult(dialogResult);
+        const qpu: QpuDto = {
+          maxGateTime: dialogResult.maxGateTime,
+          name: dialogResult.name,
+          numberOfQubits: dialogResult.numberOfQubits,
+          t1: dialogResult.t1,
+        };
         this.qpuService
-          .createQpu(this.selectedProvider.id, qpu)
+          .createQpu({ providerId: this.selectedProvider.id, body: qpu })
           .subscribe(() => {
             this.handleQpuCreationResult();
           });
@@ -117,42 +97,8 @@ export class QpusComponent implements OnInit, OnChanges {
     });
   }
 
-  private checkIfSdksExist(): void {
-    if (!this.isSdksExisting()) {
-      this.utilService.createMissingEntityDialog(
-        this.sdkEntity,
-        this.currentEntity
-      );
-      return;
-    }
-  }
-
   private handleQpuCreationResult(): void {
     this.getQpuForProvider(this.selectedProvider.id);
     this.utilService.callSnackBar(this.currentEntity);
-  }
-
-  private isSupportedSdkLinkExisting(linkKey: string): boolean {
-    return linkKey.includes('supportedSdk');
-  }
-
-  private handleSupportedSdkLink(qpu: Qpu, hrefToSupportedSdk: string): void {
-    this.sdkService.getSdkByHref(hrefToSupportedSdk).subscribe((sdk) => {
-      EntityCreator.createSupportedSdkIdsIfNotExist(qpu);
-      qpu.supportedSdkIds.push(sdk.id);
-    });
-  }
-
-  private getLinkKeysAsArray(qpu: Qpu) {
-    return Object.keys(qpu._links);
-  }
-
-  private handleQpuResult(data: QpuDtoList): void {
-    this.qpus = data.qpuDtoList;
-    this.getSupportedSdksForQpus();
-  }
-
-  private isSdksExisting(): boolean {
-    return this.sdks.length > 0;
   }
 }

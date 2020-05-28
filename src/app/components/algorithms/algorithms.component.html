@@ -45,13 +45,6 @@
         </mat-card-header>
         <mat-card-content>
           <div class="entity-content">
-            <h3>Content</h3>
-            {{selectedAlgorithm.content.description}}
-          </div>
-          <mat-divider></mat-divider>
-          <app-parameters [selectedAlgorithm]="selectedAlgorithm"></app-parameters>
-          <mat-divider></mat-divider>
-          <div class="entity-content">
             <h3>Tags</h3>
             <table mat-table *ngIf="selectedAlgorithm" [dataSource]="this.tags" class="mat-elevation-z0">
               <ng-container matColumnDef="key">
@@ -75,10 +68,6 @@
                 <td mat-cell *matCellDef="let element">
                   <button mat-button (click)="openImplementation(element)">{{element.name}}</button>
                 </td>
-              </ng-container>
-              <ng-container matColumnDef="sdk">
-                <th mat-header-cell *matHeaderCellDef>SDK</th>
-                <td mat-cell *matCellDef="let element">{{element.sdk}}</td>
               </ng-container>
               <tr mat-header-row *matHeaderRowDef="displayedImplementationColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedImplementationColumns;"></tr>

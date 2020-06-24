@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { TagDto } from 'api/models';
 import { MissingEntityDialogComponent } from '../components/dialogs/missing-entity-dialog.component';
 
 @Injectable({
@@ -18,11 +17,7 @@ export class UtilService {
     });
   }
 
-  public createDialog(
-    dialogComponent: any,
-    entity: string,
-    tags?: TagDto[]
-  ): any {
+  public createDialog(dialogComponent: any, entity: string, tags?: any[]): any {
     return this.dialog.open(dialogComponent, {
       width: '400px',
       data: { title: 'Add new ' + entity, tags },

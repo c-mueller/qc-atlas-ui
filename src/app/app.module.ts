@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
@@ -33,6 +34,7 @@ import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/a
 import { SoftwarePlatformViewComponent } from './components/software-platforms/software-platform-view/software-platform-view.component';
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { PublicationViewComponent } from './components/publications/publication-
     SoftwarePlatformViewComponent,
     CloudServiceViewComponent,
     PublicationViewComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,7 @@ import { PublicationViewComponent } from './components/publications/publication-
     MatTableModule,
     MatIconModule,
     MatExpansionModule,
+    MatGridListModule,
     MatListModule,
     MatInputModule,
     MatDialogModule,

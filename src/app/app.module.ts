@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApiModule } from 'api/api.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -79,6 +80,7 @@ import { TableComponent } from './components/table/table.component';
     MatSelectModule,
     MatCheckboxModule,
     MatButtonModule,
+    NgbModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component

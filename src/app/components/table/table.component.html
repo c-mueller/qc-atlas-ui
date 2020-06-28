@@ -25,7 +25,7 @@
       <mat-card-title class="p-2 flex-fill bd-highlight align-self-center" *ngFor="let column of displayedColumns">{{ column }}</mat-card-title>
     </mat-card>
 
-    <mat-card class="d-flex align-items-stretch" *ngFor="let dataEntry of data">
+    <mat-card class="d-flex align-items-stretch data-element" *ngFor="let dataEntry of data">
       <mat-card-header class="p-2 flex-fill bd-highlight align-self-center">
         <mat-card-title>{{ dataEntry[dataTitle] }}</mat-card-title>
         <mat-card-subtitle>Quantum Algorithm</mat-card-subtitle>

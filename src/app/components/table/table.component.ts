@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
   @Input() dataColumns: string[];
   @Input() usePagination: boolean;
   @Input() allowSelection: boolean;
-  @Input() variableNames: string;
+  @Input() variableNames: string[];
   @Output() selectionChange = new EventEmitter<any[]>();
   selection = new SelectionModel<any>(true, []);
   displayedColumns: string[] = [];

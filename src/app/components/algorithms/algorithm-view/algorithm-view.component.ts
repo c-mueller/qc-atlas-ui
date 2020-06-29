@@ -10,11 +10,10 @@ export class AlgorithmViewComponent implements OnInit {
   selectedAlgorithms: any[];
   usePagination = false;
   allowSelection = true;
-  tableColumns = ['Name', 'Description', 'Authors'];
-  variableNames = ['description', 'authors'];
+  tableColumns = ['Name', 'Description', 'Authors', 'Format'];
+  variableNames = ['description', 'authors', 'format'];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.algorithms = [
@@ -28,11 +27,13 @@ export class AlgorithmViewComponent implements OnInit {
           'Author Ef',
           'Author Fg',
         ],
+        format: 'String',
       },
       {
         name: 'Alg2',
         description: 'Alg 2 description',
         authors: ['Author Ab', 'Author Bc'],
+        format: 'Integer',
       },
     ];
   }
@@ -43,11 +44,13 @@ export class AlgorithmViewComponent implements OnInit {
         name: 'Alg3',
         description: 'Alg 3 description',
         authors: ['Author Cu', 'Author Kr'],
+        format: 'Boolean',
       },
       {
         name: 'Alg4',
         description: 'Alg 4 description',
         authors: ['Author Lr', 'Author Rl'],
+        format: 'Double',
       },
     ];
   }

@@ -41,7 +41,7 @@
           <p *ngIf="dataEntry[contentName].length > 3">...</p>
         </mat-card-content>
       </div>
-      <mat-card-actions class="p-2 flex-fill bd-highlight align-self-center">
+      <mat-card-actions *ngIf="allowSelection" class="p-2 flex-fill bd-highlight align-self-center">
         <mat-checkbox [checked]="selection.isSelected(dataEntry)" (click)="$event.stopPropagation()"
                       (change)="$event ? rowToggle(dataEntry, !selection.isSelected(dataEntry)) : null"></mat-checkbox>
       </mat-card-actions>

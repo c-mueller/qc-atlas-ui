@@ -13,7 +13,8 @@ export class AlgorithmViewComponent implements OnInit {
   tableColumns = ['Name', 'Description', 'Authors'];
   variableNames = ['description', 'authors'];
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.algorithms = [
@@ -21,17 +22,17 @@ export class AlgorithmViewComponent implements OnInit {
         name: 'Alg1',
         description: 'Alg 1 description',
         authors: [
-          'Bruder Hertrampf',
-          'Bruder Duell',
-          'Bruder Funke',
-          'Bruder Weyrich',
-          'Bruder Wagner',
+          'Author Ab',
+          'Author Bc',
+          'Author De',
+          'Author Ef',
+          'Author Fg',
         ],
       },
       {
         name: 'Alg2',
         description: 'Alg 2 description',
-        authors: ['Bruder Hertrampf', 'Bruder Duell'],
+        authors: ['Author Ab', 'Author Bc'],
       },
     ];
   }
@@ -41,12 +42,12 @@ export class AlgorithmViewComponent implements OnInit {
       {
         name: 'Alg3',
         description: 'Alg 3 description',
-        authors: ['Bruder Diekert', 'Bruder Funke'],
+        authors: ['Author Cu', 'Author Kr'],
       },
       {
         name: 'Alg4',
         description: 'Alg 4 description',
-        authors: ['Bruder Diekert', 'Bruder Funke'],
+        authors: ['Author Lr', 'Author Rl'],
       },
     ];
   }

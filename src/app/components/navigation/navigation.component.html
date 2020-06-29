@@ -3,7 +3,10 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-toolbar color="primary">
+      <img (click)="goToHome()" src="../assets/logo.png" class="logo-img">
+      <span (click)="goToHome()">QC Atlas</span>
+    </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item
         *ngFor="let link of navLinks"
@@ -24,8 +27,6 @@
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <!--<img (click)="goToHome()" src="../assets/logo.png" class="logo-img">-->
-        <span (click)="goToHome()">QC Atlas</span>
         <button class="settings-button" (click)="onSettings()" mat-button><mat-icon>settings</mat-icon></button>
       </mat-toolbar-row>
     </mat-toolbar>

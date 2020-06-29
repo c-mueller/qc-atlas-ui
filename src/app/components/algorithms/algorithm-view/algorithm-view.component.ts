@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class AlgorithmViewComponent implements OnInit {
   algorithms: any[];
   selectedAlgorithms: any[];
-  usePagination = false;
-  allowSelection = true;
   tableColumns = ['Name', 'Description', 'Authors', 'Format'];
   variableNames = ['description', 'authors', 'format'];
 

@@ -13,6 +13,7 @@ export class TableComponent implements OnInit {
   @Input() dataColumns: string[];
   @Input() usePagination: boolean;
   @Input() allowSelection: boolean;
+  @Input() variableNames: string;
   @Output() selectionChange = new EventEmitter<any[]>();
   selection = new SelectionModel<any>(true, []);
   displayedColumns: string[] = [];
@@ -22,7 +23,7 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.displayedColumns = this.displayedColumns.concat(this.dataColumns);
     if (this.allowSelection) {
-      this.displayedColumns.unshift('select');
+      this.displayedColumns.push('Actions');
     }
   }
 
@@ -43,6 +44,17 @@ export class TableComponent implements OnInit {
     this.changeSelection(row, !this.selection.isSelected(row));
     this.selectionChange.emit(this.selection.selected);
     console.log(this.dataTitle);
+  }
+
+  isArray(data): boolean {
+    return Array.isArray(data);
+  }
+
+  printArray(dataArray: any) {
+    let result = '';
+    for (const data of dataArray) {
+      result = result.concat(data) + ',';
+    }
   }
 
   private changeSelection(row: any, select: boolean) {

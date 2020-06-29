@@ -10,9 +10,8 @@ export class AlgorithmViewComponent implements OnInit {
   selectedAlgorithms: any[];
   usePagination = false;
   allowSelection = true;
-  tableColumns = ['name', 'description'];
-  algorithmTitleVar = 'name';
-  algorithmSubtitleVar = 'computationModel';
+  tableColumns = ['Name', 'Description', 'Authors'];
+  variableNames = ['description', 'authors'];
 
   constructor() {}
 
@@ -21,10 +20,18 @@ export class AlgorithmViewComponent implements OnInit {
       {
         name: 'Alg1',
         description: 'Alg 1 description',
+        authors: [
+          'Bruder Hertrampf',
+          'Bruder Duell',
+          'Bruder Funke',
+          'Bruder Weyrich',
+          'Bruder Wagner',
+        ],
       },
       {
         name: 'Alg2',
         description: 'Alg 2 description',
+        authors: ['Bruder Hertrampf', 'Bruder Duell'],
       },
     ];
   }
@@ -34,10 +41,12 @@ export class AlgorithmViewComponent implements OnInit {
       {
         name: 'Alg3',
         description: 'Alg 3 description',
+        authors: ['Bruder Diekert', 'Bruder Funke'],
       },
       {
         name: 'Alg4',
         description: 'Alg 4 description',
+        authors: ['Bruder Diekert', 'Bruder Funke'],
       },
     ];
   }

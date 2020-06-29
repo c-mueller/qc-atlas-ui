@@ -35,6 +35,8 @@ import { SoftwarePlatformViewComponent } from './components/software-platforms/s
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { TableComponent } from './components/table/table.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { TableComponent } from './components/table/table.component';
     CloudServiceViewComponent,
     PublicationViewComponent,
     TableComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +82,7 @@ import { TableComponent } from './components/table/table.component';
     MatSelectModule,
     MatCheckboxModule,
     MatButtonModule,
+    LayoutModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component

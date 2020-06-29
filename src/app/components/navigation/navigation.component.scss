@@ -6,9 +6,6 @@
   width: 200px;
 }
 
-.sidenav .mat-toolbar {
-  background: inherit;
-}
 .logo-img {
   height: 50px;
   margin: 5px;
@@ -22,4 +19,13 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.mat-nav-list a.routerLinkActive {
+  background: rgba(0, 0, 0, 0.08);
+}
+.mat-nav-list:hover a.routerLinkActive {
+  background: rgba(0, 0, 0, 0.08);
+}
+.mat-nav-list a.routerLinkActive:focus {
+  background: rgba(0, 0, 0, 0.08);
 }

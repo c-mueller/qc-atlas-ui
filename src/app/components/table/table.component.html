@@ -21,14 +21,17 @@
 </div> -->
 <div>
   <mat-grid-list cols="1" rowHeight="2:1">
-    <mat-card *ngFor="let dataEntry of data">
-      <mat-card-header>
+    <mat-card class="d-flex align-items-stretch">
+      <mat-card-title class="p-2 flex-fill bd-highlight align-self-center" *ngFor="let column of displayedColumns">{{ column }}</mat-card-title>
+    </mat-card>
+
+    <mat-card class="d-flex align-items-stretch data-element" *ngFor="let dataEntry of data">
+      <mat-card-header class="p-2 flex-fill bd-highlight align-self-center">
         <mat-card-title>{{ dataEntry[dataTitle] }}</mat-card-title>
         <mat-card-subtitle>Quantum Algorithm</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-      </mat-card-content>
-      <mat-card-actions>
+      <mat-card-content class="p-2 flex-fill bd-highlight align-self-center">Bla bla bla</mat-card-content>
+      <mat-card-actions class="p-2 flex-fill bd-highlight align-self-center">
         <mat-checkbox [checked]="selection.isSelected(dataEntry)" (click)="$event.stopPropagation()"
                       (change)="$event ? rowToggle(dataEntry, !selection.isSelected(dataEntry)) : null"></mat-checkbox>
       </mat-card-actions>

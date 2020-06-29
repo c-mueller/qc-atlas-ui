@@ -10,11 +10,11 @@ mat-grid-list {
   width: 80%;
 }
 
-mat-card {
+.data-element {
   transition: all .2s ease-in-out;
 }
 
-mat-card:hover {
+.data-element:hover {
   background-color: #a3dbff;
   transform: scale(1.05);
   cursor: pointer;

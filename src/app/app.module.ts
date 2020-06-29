@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApiModule } from 'api/api.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,8 +36,6 @@ import { SoftwarePlatformViewComponent } from './components/software-platforms/s
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { TableComponent } from './components/table/table.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -53,7 +52,6 @@ import { LayoutModule } from '@angular/cdk/layout';
     CloudServiceViewComponent,
     PublicationViewComponent,
     TableComponent,
-    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +80,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatSelectModule,
     MatCheckboxModule,
     MatButtonModule,
-    LayoutModule,
+    NgbModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component

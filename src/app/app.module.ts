@@ -20,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from "@angular/material/chips";
 import { ApiModule } from 'api/api.module';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +34,8 @@ import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/a
 import { SoftwarePlatformViewComponent } from './components/software-platforms/software-platform-view/software-platform-view.component';
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
+import { AlgorithmPropertiesComponent } from './components/algorithms/algorithm-properties/algorithm-properties.component';
+import { PropertyInputComponent } from './components/property-input/property-input.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import { PublicationViewComponent } from './components/publications/publication-
     SoftwarePlatformViewComponent,
     CloudServiceViewComponent,
     PublicationViewComponent,
+    AlgorithmPropertiesComponent,
+    PropertyInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +80,7 @@ import { PublicationViewComponent } from './components/publications/publication-
     MatSelectModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatChipsModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AddAlgorithmDialogComponent} from "../dialogs/add-algorithm-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {EntityModelAlgorithmDto} from "api/models/entity-model-algorithm-dto";
+import {AlgorithmService} from "api/services/algorithm.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-algorithm-view',
@@ -8,9 +11,55 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./algorithm-view.component.scss'],
 })
 export class AlgorithmViewComponent implements OnInit {
-  constructor(private dialog: MatDialog) {}
+  tabOptions: string[] = [
+    'General',
+    'Implementations',
+    'Related algorithms',
+    'Publications',
+    'Discussion',
+  ]
 
-  ngOnInit(): void {}
+  testTags: string[] = [
+    'test tag',
+    'quantum',
+    'algorithm'
+  ]
+
+  algorithm: EntityModelAlgorithmDto;
+
+  constructor(private algorithmService: AlgorithmService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private dialog: MatDialog) {}
+
+  ngOnInit(): void {
+    this.createEmptyAlgorithm();
+    this.getAlgorithmFromUrl();
+  }
+
+  getAlgorithmFromUrl(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    // this.algorithmService.getAlgorithm(id).subscribe((res: EntityModelAlgorithmDto) => {
+    //   console.log(res);
+    // }, error => {
+    //   console.log(error);
+    // });
+  }
+
+  removeTag(tag: string): void {
+    const index = this.testTags.indexOf(tag);
+    if (index !== -1) {
+      this.testTags.splice(index, 1);
+    }
+  }
+
+  createEmptyAlgorithm(): void {
+    this.algorithm = {
+      name: 'test algorithm',
+      computationModel: "QUANTUM",
+      acronym: 'test acronym',
+    }
+  }
 
   testDialog() {
      const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {

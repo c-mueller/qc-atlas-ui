@@ -1,2 +1,30 @@
-<p>algorithm-view works!</p>
-<button (click)="testDialog()">test dialog</button>
+<div class="main-container">
+  <h1 *ngIf="algorithm.name">{{algorithm.name}}</h1>
+  <h2 *ngIf="algorithm.computationModel">{{algorithm.computationModel}}</h2>
+  <mat-chip-list>
+    <mat-chip *ngFor="let tag of testTags" [removable]="true" (removed)="removeTag(tag)">
+      {{tag}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+  <mat-tab-group>
+    <mat-tab label="{{tabOptions[0]}}">
+      <app-algorithm-properties [algorithm]="algorithm"></app-algorithm-properties>
+    </mat-tab>
+    <mat-tab label="{{tabOptions[1]}}">
+      <h1>Implementations WIP</h1>
+    </mat-tab>
+    <mat-tab label="{{tabOptions[2]}}">
+      <h1>Related algorithms WIP</h1>
+    </mat-tab>
+    <mat-tab label="{{tabOptions[3]}}">
+      <h1>Publications WIP</h1>
+    </mat-tab>
+    <mat-tab label="{{tabOptions[4]}}">
+      <h1>Discussion WIP</h1>
+      <button (click)="testDialog()">test dialog</button>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+

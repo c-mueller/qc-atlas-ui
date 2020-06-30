@@ -8,6 +8,7 @@ import { PublicationViewComponent } from './components/publications/publication-
 
 const routes: Routes = [
   { path: 'algorithms', component: AlgorithmViewComponent },
+  { path: 'algorithms/:id', component: AlgorithmViewComponent },
   { path: 'software-platforms', component: SoftwarePlatformViewComponent },
   { path: 'cloud-services', component: CloudServiceViewComponent },
   { path: 'publications', component: PublicationViewComponent },

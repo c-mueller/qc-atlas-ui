@@ -1,0 +1,13 @@
+<mat-form-field class="input-wrapper">
+  <div class="input-label-wrapper">
+    <label class="input-label">{{name}}</label>
+    <button (click)="toggleEdit()" mat-button>
+      <mat-icon>{{editable ? 'save' : 'edit'}}</mat-icon>
+    </button>
+  </div>
+  <textarea id="{{name.toLowerCase()}}-input"
+            [matAutosizeMaxRows]=maxRows
+            [matTextareaAutosize]=editable
+            [disabled]=!editable
+            [(ngModel)]="value" matInput>{{value}}</textarea>
+</mat-form-field>

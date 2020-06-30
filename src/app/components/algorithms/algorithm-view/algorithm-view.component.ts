@@ -87,4 +87,13 @@ export class AlgorithmViewComponent implements OnInit {
     const newPageUrl = event;
     console.log(newPageUrl);
   }
+
+  deleteElements() {
+    console.log('Delete Elements: ');
+    console.log(this.selectedAlgorithms);
+  }
+
+  addElement() {
+    console.log('Add Element');
+  }
 }

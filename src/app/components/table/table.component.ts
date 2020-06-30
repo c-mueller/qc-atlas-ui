@@ -21,10 +21,13 @@ export class TableComponent implements OnInit {
   @Input() dataSubtitle: string;
   @Input() dataColumns: string[];
   @Input() allowSelection: boolean;
+  @Input() allowSearch: boolean;
   @Input() variableNames: string[];
   @Input() pagination: any;
   @Output() selectionChange = new EventEmitter<any[]>();
   @Output() pageChange = new EventEmitter<string>();
+  @Output() deleteElements = new EventEmitter<void>();
+  @Output() addElement = new EventEmitter<void>();
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   selection = new SelectionModel<any>(true, []);
   searchText = '';
@@ -86,6 +89,14 @@ export class TableComponent implements OnInit {
 
   changePage(link: string) {
     this.pageChange.emit(link);
+  }
+
+  onDelete() {
+    this.deleteElements.emit();
+  }
+
+  onAdd() {
+    this.addElement.emit();
   }
 
   private changeSelection(row: any, select: boolean) {

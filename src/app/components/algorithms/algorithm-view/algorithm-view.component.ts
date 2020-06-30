@@ -10,6 +10,21 @@ export class AlgorithmViewComponent implements OnInit {
   selectedAlgorithms: any[];
   tableColumns = ['Name', 'Description', 'Authors', 'Format'];
   variableNames = ['name', 'description', 'authors', 'format'];
+  pagingInfo = {
+    links: {
+      prev: 'http://previousPage',
+      next: 'http://nextPage',
+      first: 'http://firstPage',
+      last: 'http://lastPage',
+      self: 'http://currentPage',
+    },
+    info: {
+      totalElements: 400,
+      currentPage: 1,
+      totalPages: 45,
+      pageElements: 30,
+    },
+  };
 
   constructor() {}
 
@@ -56,5 +71,10 @@ export class AlgorithmViewComponent implements OnInit {
   selectionChanged(event) {
     this.selectedAlgorithms = event;
     console.log(this.selectedAlgorithms);
+  }
+
+  pageChanged(event) {
+    const newPageUrl = event;
+    console.log(newPageUrl);
   }
 }

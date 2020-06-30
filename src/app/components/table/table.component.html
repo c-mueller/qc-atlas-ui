@@ -15,8 +15,8 @@
           </div>
         </div>
       </div>
-      <table class="mb-0" mdbTable>
-        <thead>
+      <table class="mb-3" mdbTable>
+        <thead class="data-header">
         <tr>
           <th class="center-checkbox" scope="row" *ngIf="allowSelection">
             <mdb-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
@@ -36,6 +36,20 @@
           <td *ngFor="let variableName of variableNames">{{ dataEntry[variableName] }}</td>
         </tr>
         </tbody>
+        <tfoot *ngIf="pagination">
+        <tr>
+          <td colspan="1000">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination pg-blue">
+                <li *ngIf="pagination.links.first" class="page-item"><a class="page-link" (click)="changePage(pagination.links.first)">First</a></li>
+                <li *ngIf="pagination.links.prev" class="page-item"><a class="page-link" (click)="changePage(pagination.links.prev)">Previous</a></li>
+                <li *ngIf="pagination.links.next" class="page-item"><a class="page-link" (click)="changePage(pagination.links.next)">Next</a></li>
+                <li *ngIf="pagination.links.last" class="page-item"><a class="page-link" (click)="changePage(pagination.links.last)">Last</a></li>
+              </ul>
+            </nav>
+          </td>
+        </tr>
+        </tfoot>
       </table>
     </div>
   </mdb-card>

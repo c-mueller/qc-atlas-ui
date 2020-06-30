@@ -40,11 +40,12 @@
         <tr>
           <td colspan="1000">
             <nav aria-label="Page navigation example">
-              <ul class="pagination pg-blue">
-                <li *ngIf="pagination.links.first" class="page-item"><a class="page-link" (click)="changePage(pagination.links.first)">First</a></li>
-                <li *ngIf="pagination.links.prev" class="page-item"><a class="page-link" (click)="changePage(pagination.links.prev)">Previous</a></li>
-                <li *ngIf="pagination.links.next" class="page-item"><a class="page-link" (click)="changePage(pagination.links.next)">Next</a></li>
-                <li *ngIf="pagination.links.last" class="page-item"><a class="page-link" (click)="changePage(pagination.links.last)">Last</a></li>
+              <ul class="pagination pg-blue pull-right">
+                <li *ngIf="pagination._links.first.href" class="page-item"><a class="page-link" (click)="changePage(pagination._links.first.href)"> |<< </a></li>
+                <li *ngIf="pagination._links.prev.href" class="page-item"><a class="page-link" (click)="changePage(pagination._links.prev.href)"> < </a></li>
+                <li *ngIf="pagination.page.number" class="page-item"><a class="page-link"> {{ pagination.page.number }} </a></li>
+                <li *ngIf="pagination._links.next.href" class="page-item"><a class="page-link" (click)="changePage(pagination._links.next.href)"> > </a></li>
+                <li *ngIf="pagination._links.last.href" class="page-item"><a class="page-link" (click)="changePage(pagination._links.last.href)"> >>| </a></li>
               </ul>
             </nav>
           </td>

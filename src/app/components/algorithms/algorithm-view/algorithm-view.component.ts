@@ -11,18 +11,28 @@ export class AlgorithmViewComponent implements OnInit {
   tableColumns = ['Name', 'Description', 'Authors', 'Format'];
   variableNames = ['name', 'description', 'authors', 'format'];
   pagingInfo = {
-    links: {
-      prev: 'http://previousPage',
-      next: 'http://nextPage',
-      first: 'http://firstPage',
-      last: 'http://lastPage',
-      self: 'http://currentPage',
+    _links: {
+      prev: {
+        href: 'http://previousPage',
+      },
+      next: {
+        href: 'http://nextPage',
+      },
+      first: {
+        href: 'http://firstPage',
+      },
+      last: {
+        href: 'http://lastPage',
+      },
+      self: {
+        href: 'http://currentPage',
+      },
     },
-    info: {
-      totalElements: 400,
-      currentPage: 1,
-      totalPages: 45,
-      pageElements: 30,
+    page: {
+      size: 10,
+      totalElements: 2,
+      totalPages: 5,
+      number: 1,
     },
   };
 

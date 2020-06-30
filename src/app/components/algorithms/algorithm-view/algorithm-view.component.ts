@@ -35,6 +35,10 @@ export class AlgorithmViewComponent implements OnInit {
       number: 1,
     },
   };
+  paginatorConfig = {
+    amountChoices: [10, 20, 30],
+    selectedAmount: 10,
+  };
 
   constructor() {}
 
@@ -86,6 +90,11 @@ export class AlgorithmViewComponent implements OnInit {
   pageChanged(event) {
     const newPageUrl = event;
     console.log(newPageUrl);
+  }
+
+  paginatorConfigChanged(event) {
+    this.paginatorConfig = event;
+    console.log(this.paginatorConfig);
   }
 
   deleteElements() {

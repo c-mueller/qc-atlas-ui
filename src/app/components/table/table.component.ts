@@ -24,10 +24,12 @@ export class TableComponent implements OnInit {
   @Input() allowSearch: boolean;
   @Input() variableNames: string[];
   @Input() pagination: any;
+  @Input() paginatorConfig: any;
   @Output() selectionChange = new EventEmitter<any[]>();
   @Output() pageChange = new EventEmitter<string>();
   @Output() deleteElements = new EventEmitter<void>();
   @Output() addElement = new EventEmitter<void>();
+  @Output() paginationConfigChange = new EventEmitter<any>();
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   selection = new SelectionModel<any>(true, []);
   searchText = '';
@@ -97,6 +99,11 @@ export class TableComponent implements OnInit {
 
   onAdd() {
     this.addElement.emit();
+  }
+
+  onChangePagingatorConfig(selectedAmount: any) {
+    this.paginatorConfig.selectedAmount = selectedAmount;
+    this.paginationConfigChange.emit(this.paginatorConfig);
   }
 
   private changeSelection(row: any, select: boolean) {

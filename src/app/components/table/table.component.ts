@@ -32,14 +32,14 @@ export class TableComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.mdbTable.setDataSource(this.data);
-    this.previous = this.mdbTable.getDataSource();
-  }
-
   @HostListener('input')
   oninput() {
     this.searchItems();
+  }
+
+  ngOnInit(): void {
+    this.mdbTable.setDataSource(this.data);
+    this.previous = this.mdbTable.getDataSource();
   }
 
   searchItems() {

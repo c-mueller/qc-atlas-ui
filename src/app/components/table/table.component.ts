@@ -20,12 +20,7 @@ export class TableComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.displayedColumns = this.displayedColumns.concat(this.dataColumns);
-    if (this.allowSelection) {
-      this.displayedColumns.push('Actions');
-    }
-  }
+  ngOnInit(): void {}
 
   isAllSelected() {
     return this.data.length === this.selection.selected.length;

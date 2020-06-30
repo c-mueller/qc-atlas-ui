@@ -1,51 +1,20 @@
-<!-- <div>
-  <table mat-table [dataSource]="data" class="mat-elevation-z8">
-    <ng-container *ngIf="allowSelection" matColumnDef="select">
-      <mat-header-cell *matHeaderCellDef>
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngIf="allowSelection" scope="col">
         <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <mat-checkbox [checked]="selection.isSelected(row)" (click)="$event.stopPropagation()"
-                      (change)="$event ? rowToggle(row, !selection.isSelected(row)) : null"></mat-checkbox>
-      </mat-cell>
-    </ng-container>
-    <ng-container [matColumnDef]="column" *ngFor="let column of dataColumns">
-      <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
-      <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-</div> -->
-<div>
-  <mat-grid-list cols="1" rowHeight="2:1">
-    <mat-card class="d-flex align-items-stretch data-header">
-      <mat-card-title class="p-2 flex-fill bd-highlight align-self-center" *ngFor="let column of displayedColumns">{{ column }}</mat-card-title>
-    </mat-card>
-
-    <mat-card class="d-flex align-items-stretch data-element" *ngFor="let dataEntry of data">
-      <mat-card-header class="p-2 flex-fill bd-highlight align-self-center">
-        <mat-card-title>{{ dataEntry[dataTitle] }}</mat-card-title>
-        <mat-card-subtitle>Quantum Algorithm</mat-card-subtitle>
-      </mat-card-header>
-      <div class="p-2 flex-fill bd-highlight align-self-center" *ngFor="let contentName of variableNames">
-        <mat-card-content *ngIf="!isArray(dataEntry[contentName])">{{ dataEntry[contentName] }}</mat-card-content>
-        <mat-card-content *ngIf="isArray(dataEntry[contentName])">
-          <div *ngFor="let arrayContent of dataEntry[contentName];  let i = index">
-            <div *ngIf="i < 3">
-              <p>{{ arrayContent }}</p>
-            </div>
-          </div>
-          <p *ngIf="dataEntry[contentName].length > 3">...</p>
-        </mat-card-content>
-      </div>
-      <mat-card-actions *ngIf="allowSelection" class="p-2 flex-fill bd-highlight align-self-center">
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
+      </th>
+      <th *ngFor="let column of dataColumns" scope="col">{{ column }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dataEntry of data">
+      <th *ngIf="allowSelection" scope="col">
         <mat-checkbox [checked]="selection.isSelected(dataEntry)" (click)="$event.stopPropagation()"
                       (change)="$event ? rowToggle(dataEntry, !selection.isSelected(dataEntry)) : null"></mat-checkbox>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-list>
-</div>
-
+      </th>
+      <th *ngFor="let variableName of variableNames" scope="row">{{ dataEntry[variableName] }}</th>
+    </tr>
+  </tbody>
+</table>

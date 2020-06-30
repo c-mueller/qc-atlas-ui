@@ -9,7 +9,7 @@ export class AlgorithmViewComponent implements OnInit {
   algorithms: any[];
   selectedAlgorithms: any[];
   tableColumns = ['Name', 'Description', 'Authors', 'Format'];
-  variableNames = ['description', 'authors', 'format'];
+  variableNames = ['name', 'description', 'authors', 'format'];
 
   constructor() {}
 

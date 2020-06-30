@@ -1,5 +1,19 @@
 <div class="table-container table-wrapper">
   <mdb-card cascade="true" narrower="true">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+          <input
+            type="text"
+            [(ngModel)]="searchText"
+            class="form-control"
+            id="search"
+            mdbInput
+          />
+          <label for="search">Search</label>
+        </div>
+      </div>
+    </div>
     <div class="px-5">
       <table class="mb-0" mdbTable>
         <thead>

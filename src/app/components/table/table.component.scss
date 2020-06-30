@@ -1,9 +1,13 @@
 @import "theme";
 
-table {
+.table-container {
   position: relative;
   left: 10%;
   width: 80%;
+}
+
+.center-checkbox {
+  text-align: right;
 }
 
 mat-grid-list {
@@ -22,7 +26,7 @@ mat-grid-list {
 
 .data-element:hover {
   background-color: #a3dbff;
-  transform: scale(1.05);
+  transform: scale(1.1, 1.1);
   cursor: pointer;
 }
 

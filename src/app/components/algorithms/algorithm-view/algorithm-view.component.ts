@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./algorithm-view.component.scss'],
 })
 export class AlgorithmViewComponent implements OnInit {
-  algorithms: any[];
-  selectedAlgorithms: any[];
+  algorithms: any[] = [];
+  selectedAlgorithms: any[] = [];
   tableColumns = ['Name', 'Description', 'Authors', 'Format'];
   variableNames = ['name', 'description', 'authors', 'format'];
   pagingInfo = {

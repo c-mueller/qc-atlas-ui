@@ -18,10 +18,19 @@ mat-grid-list {
 
 .data-header {
   background-color: mat-color($qc-atlas-ui-primary);
+  font-weight: bold;
 }
 
 .data-element {
   transition: all .2s ease-in-out;
+}
+
+.page-control {
+  display: flex;
+  border-radius: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: mat-color($qc-atlas-ui-primary);
 }
 
 .data-element:hover {

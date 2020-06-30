@@ -48,7 +48,7 @@
             <mdb-checkbox [checked]="selection.isSelected(dataEntry)" (click)="$event.stopPropagation()"
                           (change)="$event ? rowToggle(dataEntry, !selection.isSelected(dataEntry)) : null"></mdb-checkbox>
           </th>
-          <td *ngFor="let variableName of variableNames">{{ dataEntry[variableName] }}</td>
+          <td class="crop" *ngFor="let variableName of variableNames">{{ dataEntry[variableName] }}</td>
         </tr>
         </tbody>
         <tfoot *ngIf="pagination">

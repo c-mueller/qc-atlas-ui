@@ -23,6 +23,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApiModule } from 'api/api.module';
 import { NgbModule, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +38,6 @@ import { CloudServiceViewComponent } from './components/cloud-services/cloud-ser
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { TableComponent } from './components/table/table.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [

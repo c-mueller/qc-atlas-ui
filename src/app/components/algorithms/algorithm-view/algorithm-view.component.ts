@@ -105,4 +105,9 @@ export class AlgorithmViewComponent implements OnInit {
   addElement() {
     console.log('Add Element');
   }
+
+  searchElement(event) {
+    const searchText = event;
+    console.log(searchText);
+  }
 }

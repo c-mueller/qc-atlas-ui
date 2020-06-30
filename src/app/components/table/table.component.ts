@@ -30,6 +30,7 @@ export class TableComponent implements OnInit {
   @Output() deleteElements = new EventEmitter<void>();
   @Output() addElement = new EventEmitter<void>();
   @Output() paginationConfigChange = new EventEmitter<any>();
+  @Output() searchElement = new EventEmitter<string>();
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   selection = new SelectionModel<any>(true, []);
   searchText = '';
@@ -39,7 +40,11 @@ export class TableComponent implements OnInit {
 
   @HostListener('input')
   oninput() {
-    this.searchItems();
+    // search on current table data source
+    // this.searchItems();
+
+    // search by informing parent component to do a backend call
+    this.searchElement.emit(this.searchText);
   }
 
   ngOnInit(): void {

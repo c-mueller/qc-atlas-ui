@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <table class="mb-3" mdbTable>
+      <table id="tableSortExample" class="mb-3" mdbTable>
         <thead class="data-header">
         <tr>
           <th class="center-checkbox" scope="row" *ngIf="allowSelection">
@@ -37,8 +37,9 @@
                           [checked]="selection.hasValue() && isAllSelected()"
                           [indeterminate]="selection.hasValue() && !isAllSelected()"></mdb-checkbox>
           </th>
-          <th class="th-lg" *ngFor="let column of dataColumns">
+          <th class="th-lg" *ngFor="let column of dataColumns; let i = index"  aria-controls="tableSortExample" scope="col" [mdbTableSort]="data" [sortBy]="dataColumns[i]">
             <a>{{ column }}</a>
+            <mdb-icon fas icon="sort"></mdb-icon>
           </th>
         </tr>
         </thead>

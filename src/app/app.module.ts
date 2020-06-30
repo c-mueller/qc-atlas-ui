@@ -37,6 +37,7 @@ import { CloudServiceViewComponent } from './components/cloud-services/cloud-ser
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { TableComponent } from './components/table/table.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     NavigationComponent,
   ],
   imports: [
+    MDBBootstrapModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

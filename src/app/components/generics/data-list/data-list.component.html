@@ -1,4 +1,4 @@
-<html class="table-container table-wrapper p-3">
+<html class="table-container table-wrapper p-3 mt-3">
   <mdb-card cascade="true" narrower="true">
     <div class="px-5">
       <div class="row">
@@ -54,8 +54,7 @@
           <td colspan="1000">
             <nav aria-label="Page navigation example">
               <div *ngIf="paginatorConfig" class="dropdown float-left" mdbDropdown>
-                <button mdbDropdownToggle mdbBtn class="dropdown-toggle waves-light" type="button"
-                        mdbWavesEffect>
+                <button mdbDropdownToggle mdbBtn class="dropdown-toggle waves-light config-button control-button" mdbWavesEffect>
                   Items per page: {{ paginatorConfig.selectedAmount }}
                 </button>
                 <div class="dropdown-menu dropdown-primary">
@@ -63,12 +62,12 @@
                 </div>
               </div>
               <ul class="pagination pg-blue float-right">
-                <div class="page-control">
-                  <li class="page-item"><a class="page-link" [ngClass]="{'control-disabled': !pagination._links.first}" (click)="changePage(pagination._links.first.href)"><mat-icon>first_page</mat-icon></a></li>
-                  <li class="page-item"><a class="page-link" [ngClass]="{'control-disabled': !pagination._links.prev}" (click)="changePage(pagination._links.prev.href)"><mat-icon>chevron_left</mat-icon></a></li>
-                  <li class="page-item"><a class="page-link current-page"> {{ pagination.page.number }} </a></li>
-                  <li class="page-item"><a class="page-link" [ngClass]="{'control-disabled': !pagination._links.next}" (click)="changePage(pagination._links.next.href)"><mat-icon>chevron_right</mat-icon></a></li>
-                  <li class="page-item"><a class="page-link" [ngClass]="{'control-disabled': !pagination._links.last}" (click)="changePage(pagination._links.last.href)"><mat-icon>last_page</mat-icon></a></li>
+                <div class="page-control" color="green" outline="true">
+                  <li class="page-item"><a class="page-link no-events"><mat-icon class="page-button no-select" [ngClass]="[pagination._links.first ? 'enabled' : 'disabled']" (click)="changePage(pagination._links.first.href)">first_page</mat-icon></a></li>
+                  <li class="page-item"><a class="page-link no-events"><mat-icon class="page-button no-select" [ngClass]="[pagination._links.prev ? 'enabled' : 'disabled']" (click)="changePage(pagination._links.prev.href)">chevron_left</mat-icon></a></li>
+                  <li class="page-item"><a class="page-link current-page no-select"> {{ pagination.page.number }} </a></li>
+                  <li class="page-item"><a class="page-link no-events"><mat-icon class="page-button no-select" [ngClass]="[pagination._links.next ? 'enabled' : 'disabled']" (click)="changePage(pagination._links.next.href)">chevron_right</mat-icon></a></li>
+                  <li class="page-item"><a class="page-link no-events"><mat-icon class="page-button no-select" [ngClass]="[pagination._links.last ? 'enabled' : 'disabled']" (click)="changePage(pagination._links.last.href)">last_page</mat-icon></a></li>
                 </div>
               </ul>
             </nav>

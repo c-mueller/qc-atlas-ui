@@ -52,6 +52,8 @@ mat-grid-list {
 .current-page {
   background-color: mat-color($qc-atlas-ui-primary) !important;
   cursor: default !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
 }
 
 .data-element:hover {

@@ -75,12 +75,12 @@ export class AlgorithmListComponent implements OnInit {
 
   getAlgorithms(): void {
     // TODO: Fix generated services
-    this.algorithmService.getAlgorithms().subscribe((data) => {
+    /* this.algorithmService.getAlgorithms().subscribe((data) => {
       const algorithms = data._embedded.algorithmDtoes;
       const page = data.page;
       console.log(algorithms);
       console.log(page);
-    });
+    }); */
   }
 
   adjustInput(): void {}

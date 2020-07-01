@@ -31,7 +31,6 @@ export class TableComponent implements OnInit {
   @Output() paginationConfigChange = new EventEmitter<any>();
   @Output() searchElement = new EventEmitter<string>();
   @Output() dataSorted = new EventEmitter<any>();
-  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   selection = new SelectionModel<any>(true, []);
   searchText = '';
   previous: string;
@@ -40,29 +39,10 @@ export class TableComponent implements OnInit {
 
   @HostListener('input')
   oninput() {
-    // search on current table data source
-    // this.searchItems();
-
-    // search by informing parent component to do a backend call
     this.searchElement.emit(this.searchText);
   }
 
-  ngOnInit(): void {
-    this.mdbTable.setDataSource(this.data);
-    this.previous = this.mdbTable.getDataSource();
-  }
-
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.data = this.mdbTable.getDataSource();
-    }
-    if (this.searchText) {
-      this.data = this.mdbTable.searchLocalDataBy(this.searchText);
-      this.mdbTable.setDataSource(prev);
-    }
-  }
+  ngOnInit(): void {}
 
   isAllSelected() {
     return this.data.length === this.selection.selected.length;

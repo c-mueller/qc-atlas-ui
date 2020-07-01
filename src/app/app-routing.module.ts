@@ -5,12 +5,14 @@ import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/a
 import { SoftwarePlatformViewComponent } from './components/software-platforms/software-platform-view/software-platform-view.component';
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
+import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
+import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 
 const routes: Routes = [
-  { path: 'algorithms', component: AlgorithmViewComponent },
+  { path: 'algorithms', component: AlgorithmListComponent },
   { path: 'software-platforms', component: SoftwarePlatformViewComponent },
   { path: 'cloud-services', component: CloudServiceViewComponent },
-  { path: 'publications', component: PublicationViewComponent },
+  { path: 'publications', component: PublicationListComponent },
   {
     path: '',
     redirectTo: '/algorithms',

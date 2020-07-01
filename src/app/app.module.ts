@@ -39,6 +39,8 @@ import { CloudServiceViewComponent } from './components/cloud-services/cloud-ser
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { TableComponent } from './components/table/table.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
+import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     PublicationViewComponent,
     TableComponent,
     NavigationComponent,
+    PublicationListComponent,
+    AlgorithmListComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),

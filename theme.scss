@@ -16,15 +16,6 @@ html, body {
   margin-right: 8px;
 }
 
-table {
-  width: 100%;
-}
-
-.mat-cell {
-  border-right: 1px solid lightgrey;
-  padding: 5px !important;
-}
-
 .mat-list-icon {
   color: rgba(0, 0, 0, 0.54);
 }
@@ -34,8 +25,8 @@ table {
 }
 
 @include mat-core();
-$qc-atlas-ui-primary: mat-palette($mat-blue-grey);
-$qc-atlas-ui-accent: mat-palette($mat-blue, A200, A100, A400);
+$qc-atlas-ui-primary: mat-palette($mat-indigo);
+$qc-atlas-ui-accent: mat-palette($mat-grey, A200, A100, A400);
 
 $qc-atlas-ui-warn: mat-palette($mat-red);
 

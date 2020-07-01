@@ -11,17 +11,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatChipsModule } from '@angular/material/chips';
 import { ApiModule } from 'api/api.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +43,10 @@ import { AlgorithmRelatedAlgosListComponent } from './components/algorithms/algo
 import { AlgorithmPublicationsListComponent } from './components/algorithms/algorithm-publications-list/algorithm-publications-list.component';
 import { AlgorithmImplementationsListComponent } from './components/algorithms/algorithm-implementations-list/algorithm-implementations-list.component';
 import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
+import { DataListComponent } from './components/generics/data-list/data-list.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
+import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +68,15 @@ import { ChipCollectionComponent } from './components/generics/chip-collection/c
     AlgorithmPublicationsListComponent,
     AlgorithmImplementationsListComponent,
     ChipCollectionComponent,
+    DataListComponent,
+    NavigationComponent,
+    PublicationListComponent,
+    AlgorithmListComponent,
+    ChipCollectionComponent,
+    PropertyInputComponent,
   ],
   imports: [
+    MDBBootstrapModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -75,13 +89,16 @@ import { ChipCollectionComponent } from './components/generics/chip-collection/c
     MatSidenavModule,
     MatTabsModule,
     MatCardModule,
+    MatChipsModule,
     MatTableModule,
     MatIconModule,
     MatExpansionModule,
+    MatGridListModule,
     MatListModule,
     MatInputModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatSortModule,
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,

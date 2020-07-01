@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -40,6 +41,8 @@ import { DataListComponent } from './components/generics/data-list/data-list.com
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
+import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
+import { PropertyInputComponent } from './components/generics/property-input/property-input.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,8 @@ import { AlgorithmListComponent } from './components/algorithms/algorithm-list/a
     NavigationComponent,
     PublicationListComponent,
     AlgorithmListComponent,
+    ChipCollectionComponent,
+    PropertyInputComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),
@@ -74,6 +79,7 @@ import { AlgorithmListComponent } from './components/algorithms/algorithm-list/a
     MatSidenavModule,
     MatTabsModule,
     MatCardModule,
+    MatChipsModule,
     MatTableModule,
     MatIconModule,
     MatExpansionModule,

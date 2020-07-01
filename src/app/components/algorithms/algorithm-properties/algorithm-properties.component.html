@@ -5,12 +5,12 @@
                       (onSaveChanges)="onChangesSaved($event)"></app-property-input>
 
   <app-property-input [name]="'Intent'"
-                      [value]="'test intent'"
+                      [value]="algorithm.intent"
                       [maxRows]="5"
                       (onSaveChanges)="onChangesSaved($event)"></app-property-input>
 
   <app-property-input [name]="'Problem'"
-                      [value]="'test problem'"
+                      [value]="algorithm.problem"
                       [maxRows]="5"></app-property-input>
 
   <!-- Problem types -->
@@ -23,25 +23,25 @@
   <!-- Related pattern -->
 
   <app-property-input [name]="'Input format'"
-                      [value]="'test input format'"
+                      [value]="algorithm.inputFormat"
                       [maxRows]="5"></app-property-input>
 
   <app-property-input [name]="'Parameters'"
-                      [value]="'test parameters'"
+                      [value]="algorithm.algoParameter"
                       [maxRows]="5"></app-property-input>
 
   <app-property-input [name]="'Output format'"
-                      [value]="'test output format'"
+                      [value]="algorithm.outputFormat"
                       [maxRows]="5"></app-property-input>
 
   <!-- Required compute resource properties -->
 
   <app-property-input [name]="'Solution'"
-                      [value]="'test solution'"
+                      [value]="algorithm.solution"
                       [maxRows]="5"></app-property-input>
 
   <app-property-input [name]="'assumptions'"
-                      [value]="'test assumptions'"
+                      [value]="algorithm.assumptions"
                       [maxRows]="5"></app-property-input>
   <!-- Sketch -->
   <br>

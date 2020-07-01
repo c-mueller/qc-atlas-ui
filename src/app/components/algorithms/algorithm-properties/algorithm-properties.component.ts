@@ -20,11 +20,7 @@ export class AlgorithmPropertiesComponent implements OnInit {
 
   constructor(private algorithmService: AlgorithmService) {}
 
-  ngOnInit(): void {
-    if (this.algorithm.acronym == null) {
-      this.algorithm.acronym = '';
-    }
-  }
+  ngOnInit(): void {}
 
   onChangesSaved(value): void {
     console.log(value);

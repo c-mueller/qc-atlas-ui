@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProblemTypeDto } from 'api/models/problem-type-dto';
 import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 
 @Component({
@@ -32,6 +33,7 @@ export class AlgorithmViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.createEmptyAlgorithm();
+    this.defineMissingAlgorithmFields();
     this.getAlgorithmFromUrl();
   }
 
@@ -47,7 +49,43 @@ export class AlgorithmViewComponent implements OnInit {
     );
   }
 
-  onAddTag(): void {
+  defineMissingAlgorithmFields(): void {
+    if (this.algorithm.acronym == null) {
+      this.algorithm.acronym = '';
+    }
+    if (this.algorithm.intent == null) {
+      this.algorithm.intent = '';
+    }
+    if (this.algorithm.problem == null) {
+      this.algorithm.problem = '';
+    }
+    if (this.algorithm.inputFormat == null) {
+      this.algorithm.inputFormat = '';
+    }
+    if (this.algorithm.algoParameter == null) {
+      this.algorithm.algoParameter = '';
+    }
+    if (this.algorithm.outputFormat == null) {
+      this.algorithm.outputFormat = '';
+    }
+    if (this.algorithm.solution == null) {
+      this.algorithm.solution = '';
+    }
+    if (this.algorithm.assumptions == null) {
+      this.algorithm.assumptions = '';
+    }
+    if (this.algorithm.applicationAreas == null) {
+      this.algorithm.applicationAreas = [];
+    }
+
+    // computationModel?: 'CLASSIC' | 'QUANTUM' | 'HYBRID';
+    // id?: string;
+    // name?: string;
+    // problemTypes?: Array<ProblemTypeDto>;
+    // sketch?: 'PSEUDOCODE' | 'CIRCUIT' | 'ISING_MODEL';
+  }
+
+  addTag(): void {
     console.log('add tag');
   }
 
@@ -59,9 +97,6 @@ export class AlgorithmViewComponent implements OnInit {
   }
 
   addApplicationArea(applicationArea: string): void {
-    if (this.algorithm.applicationAreas == null) {
-      this.algorithm.applicationAreas = [];
-    }
     this.algorithm.applicationAreas.push(applicationArea);
   }
 

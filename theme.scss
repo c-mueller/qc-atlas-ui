@@ -33,9 +33,3 @@ $qc-atlas-ui-warn: mat-palette($mat-red);
 $qc-atlas-ui-theme: mat-light-theme($qc-atlas-ui-primary, $qc-atlas-ui-accent, $qc-atlas-ui-warn);
 
 @include angular-material-theme($qc-atlas-ui-theme);
-
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';

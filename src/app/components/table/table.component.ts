@@ -17,14 +17,13 @@ import { MdbTableDirective } from 'angular-bootstrap-md';
 })
 export class TableComponent implements OnInit {
   @Input() data: any[];
-  @Input() dataTitle: string;
-  @Input() dataSubtitle: string;
   @Input() dataColumns: string[];
   @Input() allowSelection: boolean;
   @Input() allowSearch: boolean;
   @Input() variableNames: string[];
   @Input() pagination: any;
   @Input() paginatorConfig: any;
+  @Input() routingVariable: string;
   @Output() selectionChange = new EventEmitter<any[]>();
   @Output() pageChange = new EventEmitter<string>();
   @Output() deleteElements = new EventEmitter<void>();
@@ -81,7 +80,6 @@ export class TableComponent implements OnInit {
   rowToggle(row: any, select: boolean) {
     this.changeSelection(row, !this.selection.isSelected(row));
     this.selectionChange.emit(this.selection.selected);
-    console.log(this.dataTitle);
   }
 
   isArray(data): boolean {

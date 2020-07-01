@@ -10,6 +10,7 @@ export class AlgorithmListComponent implements OnInit {
   selectedAlgorithms: any[] = [];
   tableColumns = ['Name', 'Description', 'Authors', 'Format'];
   variableNames = ['name', 'description', 'authors', 'format'];
+  routingVariable = ['id'];
   sortData: any = {
     active: '',
     direction: '',
@@ -48,6 +49,7 @@ export class AlgorithmListComponent implements OnInit {
   ngOnInit(): void {
     this.algorithms = [
       {
+        id: '261642e3-da41-4c91-b1d9-b9ce40b698a9',
         name: 'Alg1',
         description: 'Alg 1 description',
         authors: [
@@ -60,6 +62,7 @@ export class AlgorithmListComponent implements OnInit {
         format: 'String',
       },
       {
+        id: '261642e3-da41-4c91-b1d9-b9ce40b698a7',
         name: 'Alg2',
         description: 'Alg 2 description',
         authors: ['Author Ab', 'Author Bc'],

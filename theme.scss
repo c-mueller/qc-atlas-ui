@@ -25,8 +25,8 @@ html, body {
 }
 
 @include mat-core();
-$qc-atlas-ui-primary: mat-palette($mat-blue-grey);
-$qc-atlas-ui-accent: mat-palette($mat-blue, A200, A100, A400);
+$qc-atlas-ui-primary: mat-palette($mat-indigo);
+$qc-atlas-ui-accent: mat-palette($mat-grey, A200, A100, A400);
 
 $qc-atlas-ui-warn: mat-palette($mat-red);
 

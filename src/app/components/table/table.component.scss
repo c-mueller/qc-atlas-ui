@@ -25,7 +25,8 @@ mat-grid-list {
 
 .data-header {
   background-color: mat-color($qc-atlas-ui-primary);
-  font-weight: bold;
+  font-weight: bold !important;
+  color: white !important;
 }
 
 .data-element {
@@ -57,7 +58,7 @@ mat-grid-list {
 }
 
 .data-element:hover {
-  background-color: #a3dbff;
+  background-color: mat-color($qc-atlas-ui-accent);
   transform: scale(1.05, 1.05);
   cursor: pointer;
 }

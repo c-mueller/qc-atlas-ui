@@ -4,6 +4,18 @@
   position: relative;
 }
 
+.control-button:hover {
+  color: white !important;
+}
+
+.delete-button:hover {
+  background-color: red !important;
+}
+
+.add-button:hover {
+  background-color: green !important;
+}
+
 .center-checkbox {
   text-align: right;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlgorithmService } from 'api/services/algorithm.service';
 
 @Component({
   selector: 'app-algorithm-list',
@@ -44,7 +45,7 @@ export class AlgorithmListComponent implements OnInit {
     amountChoices: [10, 20, 30],
     selectedAmount: 10,
   };
-  constructor() {}
+  constructor(private algorithmService: AlgorithmService) {}
 
   ngOnInit(): void {
     this.algorithms = [
@@ -69,6 +70,17 @@ export class AlgorithmListComponent implements OnInit {
         format: 'Integer',
       },
     ];
+    this.getAlgorithms();
+  }
+
+  getAlgorithms(): void {
+    // TODO: Fix generated services
+    this.algorithmService.getAlgorithms().subscribe((data) => {
+      const algorithms = data._embedded.algorithmDtoes;
+      const page = data.page;
+      console.log(algorithms);
+      console.log(page);
+    });
   }
 
   adjustInput(): void {}

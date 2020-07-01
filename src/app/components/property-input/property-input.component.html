@@ -5,9 +5,12 @@
       <mat-icon>{{editable ? 'save' : 'edit'}}</mat-icon>
     </button>
   </div>
-  <textarea id="{{name.toLowerCase()}}-input"
+  <input *ngIf="maxRows === 1"
+         [disabled]=!editable
+         [(ngModel)]="value" matInput>
+  <textarea *ngIf="maxRows > 1"
             [matAutosizeMaxRows]=maxRows
-            [matTextareaAutosize]=editable
+            [matTextareaAutosize]=true
             [disabled]=!editable
-            [(ngModel)]="value" matInput>{{value}}</textarea>
+            [(ngModel)]="value" matInput></textarea>
 </mat-form-field>

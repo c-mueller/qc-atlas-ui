@@ -1,24 +1,22 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-property-input',
   templateUrl: './property-input.component.html',
-  styleUrls: ['./property-input.component.scss']
+  styleUrls: ['./property-input.component.scss'],
 })
 export class PropertyInputComponent implements OnInit {
   @Output() onSaveChanges: EventEmitter<string> = new EventEmitter<string>();
 
-  @Input() name: string = '';
-  @Input() value: string = '';
-  @Input() autosize: boolean = false;
-  @Input() maxRows: number = 1;
+  @Input() name = '';
+  @Input() value = '';
+  @Input() maxRows = 1;
 
-  editable: boolean = false;
+  editable = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   toggleEdit(): void {
     if (this.editable) {

@@ -11,14 +11,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: 'add-algorithm-dialog.html',
 })
 export class AddAlgorithmDialogComponent implements OnInit {
-
   algorithmForm: FormGroup;
 
-  computationModelOption: string[] = [
-    'Quantum',
-    'Classic',
-    'Hybrid'
-  ];
+  computationModelOption: string[] = ['Quantum', 'Classic', 'Hybrid'];
 
   constructor(
     public dialogRef: MatDialogRef<AddAlgorithmDialogComponent>,
@@ -30,7 +25,7 @@ export class AddAlgorithmDialogComponent implements OnInit {
     return this.algorithmForm.get('name');
   }
   get computationModel() {
-    return this.algorithmForm.get("computationModel");
+    return this.algorithmForm.get('computationModel');
   }
 
   onNoClick(): void {
@@ -45,19 +40,19 @@ export class AddAlgorithmDialogComponent implements OnInit {
         Validators.maxLength(255),
       ]),
       computationModel: new FormControl(this.data.computationModel, [
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         Validators.required,
       ]),
     });
 
     this.dialogRef.beforeClosed().subscribe(() => {
       this.data.name = this.name.value;
-      this.data.computationModel = this.computationModel.value
+      this.data.computationModel = this.computationModel.value;
     });
   }
 
   isRequiredDataMissing(): boolean {
-    return this.name.errors?.required &&
-      this.computationModel.errors?.required;
+    return this.name.errors?.required && this.computationModel.errors?.required;
   }
 }
 

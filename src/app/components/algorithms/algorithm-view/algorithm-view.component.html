@@ -6,19 +6,22 @@
       {{tag}}
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
+    <mat-chip class="clickable-chip" (click)="onAddTag()">
+      <mat-icon>add</mat-icon>
+    </mat-chip>
   </mat-chip-list>
   <mat-tab-group>
     <mat-tab label="{{tabOptions[0]}}">
       <app-algorithm-properties [algorithm]="algorithm"></app-algorithm-properties>
     </mat-tab>
     <mat-tab label="{{tabOptions[1]}}">
-      <h1>Implementations WIP</h1>
+      <app-algorithm-implementations-list></app-algorithm-implementations-list>
     </mat-tab>
     <mat-tab label="{{tabOptions[2]}}">
-      <h1>Related algorithms WIP</h1>
+      <app-algorithm-related-algos-list></app-algorithm-related-algos-list>
     </mat-tab>
     <mat-tab label="{{tabOptions[3]}}">
-      <h1>Publications WIP</h1>
+      <app-algorithm-publications-list></app-algorithm-publications-list>
     </mat-tab>
     <mat-tab label="{{tabOptions[4]}}">
       <h1>Discussion WIP</h1>

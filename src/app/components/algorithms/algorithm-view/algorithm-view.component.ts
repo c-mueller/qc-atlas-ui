@@ -47,6 +47,10 @@ export class AlgorithmViewComponent implements OnInit {
     );
   }
 
+  onAddTag(): void {
+    console.log('add tag');
+  }
+
   removeTag(tag: string): void {
     const index = this.testTags.indexOf(tag);
     if (index !== -1) {

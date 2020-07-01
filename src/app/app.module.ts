@@ -20,7 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatChipsModule } from "@angular/material/chips";
+import { MatChipsModule } from '@angular/material/chips';
 import { ApiModule } from 'api/api.module';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +36,9 @@ import { CloudServiceViewComponent } from './components/cloud-services/cloud-ser
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { AlgorithmPropertiesComponent } from './components/algorithms/algorithm-properties/algorithm-properties.component';
 import { PropertyInputComponent } from './components/property-input/property-input.component';
+import { AlgorithmRelatedAlgosListComponent } from './components/algorithms/algorithm-related-algos-list/algorithm-related-algos-list.component';
+import { AlgorithmPublicationsListComponent } from './components/algorithms/algorithm-publications-list/algorithm-publications-list.component';
+import { AlgorithmImplementationsListComponent } from './components/algorithms/algorithm-implementations-list/algorithm-implementations-list.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import { PropertyInputComponent } from './components/property-input/property-inp
     PublicationViewComponent,
     AlgorithmPropertiesComponent,
     PropertyInputComponent,
+    AlgorithmRelatedAlgosListComponent,
+    AlgorithmPublicationsListComponent,
+    AlgorithmImplementationsListComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,16 +11,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApiModule } from 'api/api.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +37,10 @@ import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/a
 import { SoftwarePlatformViewComponent } from './components/software-platforms/software-platform-view/software-platform-view.component';
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
+import { DataListComponent } from './components/generics/data-list/data-list.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
+import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
 import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
 import { PropertyInputComponent } from './components/generics/property-input/property-input.component';
 
@@ -50,10 +58,15 @@ import { PropertyInputComponent } from './components/generics/property-input/pro
     SoftwarePlatformViewComponent,
     CloudServiceViewComponent,
     PublicationViewComponent,
+    DataListComponent,
+    NavigationComponent,
+    PublicationListComponent,
+    AlgorithmListComponent,
     ChipCollectionComponent,
     PropertyInputComponent,
   ],
   imports: [
+    MDBBootstrapModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -66,13 +79,16 @@ import { PropertyInputComponent } from './components/generics/property-input/pro
     MatSidenavModule,
     MatTabsModule,
     MatCardModule,
+    MatChipsModule,
     MatTableModule,
     MatIconModule,
     MatExpansionModule,
+    MatGridListModule,
     MatListModule,
     MatInputModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatSortModule,
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,

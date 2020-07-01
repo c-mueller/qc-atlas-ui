@@ -1,0 +1,35 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.logo-img {
+  height: 50px;
+  margin: 5px;
+}
+.settings-button{
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.mat-nav-list a.routerLinkActive {
+  background: rgba(0, 0, 0, 0.08);
+}
+.mat-nav-list:hover a.routerLinkActive {
+  background: rgba(0, 0, 0, 0.08);
+}
+.mat-nav-list a.routerLinkActive:focus {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.mat-drawer-side {
+  border: none;
+}

@@ -22,6 +22,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { ApiModule } from 'api/api.module';
+import { MatTreeModule } from '@angular/material/tree';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -89,6 +90,7 @@ import { ChipCollectionComponent } from './components/generics/chip-collection/c
     MatCheckboxModule,
     MatButtonModule,
     MatChipsModule,
+    MatTreeModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component

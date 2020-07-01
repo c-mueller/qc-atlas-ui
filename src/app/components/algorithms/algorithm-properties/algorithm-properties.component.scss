@@ -10,6 +10,18 @@
   width: 400px;
 }
 
+.tree-wrapper{
+  margin: 16px;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  width: 400px;
+}
+
+.tree-wrapper-invisible{
+  display: none;
+}
+
 .input-label {
   color: rgba(0, 0, 0, 0.54);
 }

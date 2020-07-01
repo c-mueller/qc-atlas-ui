@@ -13,14 +13,14 @@
                       [value]="algorithm.problem"
                       [maxRows]="5"></app-property-input>
 
-  <!-- Problem types -->
-  <br>
+  <!-- TODO: Add problem types -->
+
   <app-chip-collection [title]="'Application areas'"
                        [elements]="algorithm.applicationAreas"
                        (onAddElement)="addApplicationAreaEvent($event)"
                        (onRemoveElement)="removeApplicationAreaEvent($event)"></app-chip-collection>
-  <br>
-  <!-- Related pattern -->
+
+  <!-- TODO: Add related patterns -->
 
   <app-property-input [name]="'Input format'"
                       [value]="algorithm.inputFormat"
@@ -34,8 +34,6 @@
                       [value]="algorithm.outputFormat"
                       [maxRows]="5"></app-property-input>
 
-  <!-- Required compute resource properties -->
-  <br>
   <div class="m-4">
     <mat-label class="property-label">Requires compute resources</mat-label>
     <mat-list>
@@ -44,8 +42,6 @@
       </mat-list-item>
     </mat-list>
   </div>
-  <br>
-
 
   <app-property-input [name]="'Solution'"
                       [value]="algorithm.solution"
@@ -54,7 +50,7 @@
   <app-property-input [name]="'assumptions'"
                       [value]="algorithm.assumptions"
                       [maxRows]="5"></app-property-input>
-  <!-- Sketch -->
+  <!-- TODO: finish Sketch -->
   <br>
   <mat-form-field class="m-4" appearance="fill">
     <mat-label>Sketch type</mat-label>

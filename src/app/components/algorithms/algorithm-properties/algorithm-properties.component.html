@@ -35,7 +35,7 @@
                       [maxRows]="5"></app-property-input>
 
   <div class="m-4">
-    <mat-label class="property-label">Requires compute resources</mat-label>
+    <mat-label class="property-label">Required compute resources</mat-label>
     <mat-list>
       <mat-list-item *ngFor="let property of computeResourceProperties">
         {{property.type.name}}: {{property.type.datatype.toLowerCase()}} = {{property.value}}

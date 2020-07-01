@@ -8,7 +8,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MdbTableDirective } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-table',
@@ -33,7 +32,6 @@ export class TableComponent implements OnInit {
   @Output() dataSorted = new EventEmitter<any>();
   selection = new SelectionModel<any>(true, []);
   searchText = '';
-  previous: string;
 
   constructor() {}
 

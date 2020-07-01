@@ -37,7 +37,7 @@ import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/a
 import { SoftwarePlatformViewComponent } from './components/software-platforms/software-platform-view/software-platform-view.component';
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
-import { TableComponent } from './components/table/table.component';
+import { DataListComponent } from './components/generics/data-list/data-list.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
@@ -56,7 +56,7 @@ import { AlgorithmListComponent } from './components/algorithms/algorithm-list/a
     SoftwarePlatformViewComponent,
     CloudServiceViewComponent,
     PublicationViewComponent,
-    TableComponent,
+    DataListComponent,
     NavigationComponent,
     PublicationListComponent,
     AlgorithmListComponent,

@@ -12,7 +12,9 @@
   </mat-chip-list>
   <mat-tab-group>
     <mat-tab label="{{tabOptions[0]}}">
-      <app-algorithm-properties [algorithm]="algorithm"></app-algorithm-properties>
+      <app-algorithm-properties [algorithm]="algorithm"
+                                (addApplicationArea)="addApplicationArea($event)"
+                                (removeApplicationArea)="removeApplicationArea($event)"></app-algorithm-properties>
     </mat-tab>
     <mat-tab label="{{tabOptions[1]}}">
       <app-algorithm-implementations-list></app-algorithm-implementations-list>

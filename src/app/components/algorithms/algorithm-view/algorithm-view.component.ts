@@ -58,6 +58,20 @@ export class AlgorithmViewComponent implements OnInit {
     }
   }
 
+  addApplicationArea(applicationArea: string): void {
+    if (this.algorithm.applicationAreas == null) {
+      this.algorithm.applicationAreas = [];
+    }
+    this.algorithm.applicationAreas.push(applicationArea);
+  }
+
+  removeApplicationArea(applicationArea: string): void {
+    const index = this.algorithm.applicationAreas.indexOf(applicationArea);
+    if (index !== -1) {
+      this.algorithm.applicationAreas.splice(index, 1);
+    }
+  }
+
   createEmptyAlgorithm(): void {
     this.algorithm = {
       name: 'test algorithm',

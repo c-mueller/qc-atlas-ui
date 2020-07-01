@@ -14,12 +14,11 @@
                       [maxRows]="5"></app-property-input>
 
   <!-- Problem types -->
-  <!-- Application areas -->
   <br>
   <app-chip-collection [title]="'Application areas'"
-                       [elements]="sketchOptions"
-                       (onAddElement)="addApplicationArea($event)"
-                       (onRemoveElement)="removeApplicationArea($event)"></app-chip-collection>
+                       [elements]="algorithm.applicationAreas"
+                       (onAddElement)="addApplicationAreaEvent($event)"
+                       (onRemoveElement)="removeApplicationAreaEvent($event)"></app-chip-collection>
   <br>
   <!-- Related pattern -->
 

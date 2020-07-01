@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
 
@@ -8,6 +8,12 @@ import { AlgorithmService } from 'api/services/algorithm.service';
   styleUrls: ['./algorithm-properties.component.scss'],
 })
 export class AlgorithmPropertiesComponent implements OnInit {
+  @Output() addApplicationArea: EventEmitter<string> = new EventEmitter<
+    string
+  >();
+  @Output() removeApplicationArea: EventEmitter<string> = new EventEmitter<
+    string
+  >();
   @Input() algorithm: EntityModelAlgorithmDto;
 
   sketchOptions: string[] = ['PSEUDOCODE', 'CIRCUIT', 'ISING_MODEL'];
@@ -20,11 +26,11 @@ export class AlgorithmPropertiesComponent implements OnInit {
     console.log(value);
   }
 
-  addApplicationArea(applicationArea: string): void {
-    console.log('add ' + applicationArea);
+  addApplicationAreaEvent(applicationArea: string): void {
+    this.addApplicationArea.emit(applicationArea);
   }
 
-  removeApplicationArea(applicationArea: string): void {
-    console.log('remove ' + applicationArea);
+  removeApplicationAreaEvent(applicationArea: string): void {
+    this.removeApplicationArea.emit(applicationArea);
   }
 }

@@ -1,1 +1,16 @@
-<app-table [data]="algorithms" [dataColumns]="tableColumns" [variableNames]="variableNames" [pagination]=pagingInfo [paginatorConfig]=paginatorConfig [routingVariable]="routingVariable" [allowSelection]=true  [allowSearch]=true (deleteElements)="deleteElements()" (addElement)="addElement()"  (selectionChange)="selectionChanged($event)" (searchElement)="searchElement($event)"  (pageChange)="pageChanged($event)" (paginationConfigChange)="paginatorConfigChanged($event)" (dataSorted)="dataSorted($event)"></app-table>
+<app-table [data]="algorithms"
+           [dataColumns]="tableColumns"
+           [variableNames]="variableNames"
+           [pagination]=pagingInfo
+           [paginatorConfig]=paginatorConfig
+           [routingVariable]="routingVariable"
+           [allowSelection]=true
+           [allowSearch]=true
+           (deleteElements)="deleteElements()"
+           (addElement)="addElement()"
+           (selectionChange)="selectionChanged($event)"
+           (searchElement)="searchElement($event)"
+           (pageChange)="pageChanged($event)"
+           (paginationConfigChange)="paginatorConfigChanged($event)"
+           (dataSorted)="dataSorted($event)">
+</app-table>

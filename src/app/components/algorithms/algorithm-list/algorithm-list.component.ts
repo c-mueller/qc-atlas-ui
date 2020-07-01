@@ -11,7 +11,7 @@ export class AlgorithmListComponent implements OnInit {
   selectedAlgorithms: any[] = [];
   tableColumns = ['Name', 'Description', 'Authors', 'Format'];
   variableNames = ['name', 'description', 'authors', 'format'];
-  routingVariable = ['id'];
+  routingVariable = 'id';
   sortData: any = {
     active: '',
     direction: '',

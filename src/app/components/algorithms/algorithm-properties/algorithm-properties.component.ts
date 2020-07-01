@@ -10,11 +10,21 @@ import { AlgorithmService } from 'api/services/algorithm.service';
 export class AlgorithmPropertiesComponent implements OnInit {
   @Input() algorithm: EntityModelAlgorithmDto;
 
+  sketchOptions: string[] = ['PSEUDOCODE', 'CIRCUIT', 'ISING_MODEL'];
+
   constructor(private algorithmService: AlgorithmService) {}
 
   ngOnInit(): void {}
 
   onChangesSaved(value): void {
     console.log(value);
+  }
+
+  addApplicationArea(applicationArea: string): void {
+    console.log('add ' + applicationArea);
+  }
+
+  removeApplicationArea(applicationArea: string): void {
+    console.log('remove ' + applicationArea);
   }
 }

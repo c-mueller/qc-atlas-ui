@@ -35,10 +35,11 @@ import { SoftwarePlatformViewComponent } from './components/software-platforms/s
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { AlgorithmPropertiesComponent } from './components/algorithms/algorithm-properties/algorithm-properties.component';
-import { PropertyInputComponent } from './components/property-input/property-input.component';
+import { PropertyInputComponent } from './components/generics/property-input/property-input.component';
 import { AlgorithmRelatedAlgosListComponent } from './components/algorithms/algorithm-related-algos-list/algorithm-related-algos-list.component';
 import { AlgorithmPublicationsListComponent } from './components/algorithms/algorithm-publications-list/algorithm-publications-list.component';
 import { AlgorithmImplementationsListComponent } from './components/algorithms/algorithm-implementations-list/algorithm-implementations-list.component';
+import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AlgorithmImplementationsListComponent } from './components/algorithms/a
     AlgorithmRelatedAlgosListComponent,
     AlgorithmPublicationsListComponent,
     AlgorithmImplementationsListComponent,
+    ChipCollectionComponent,
   ],
   imports: [
     BrowserModule,

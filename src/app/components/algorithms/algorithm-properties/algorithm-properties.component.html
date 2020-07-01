@@ -15,6 +15,12 @@
 
   <!-- Problem types -->
   <!-- Application areas -->
+  <br>
+  <app-chip-collection [title]="'Application areas'"
+                       [elements]="sketchOptions"
+                       (onAddElement)="addApplicationArea($event)"
+                       (onRemoveElement)="removeApplicationArea($event)"></app-chip-collection>
+  <br>
   <!-- Related pattern -->
 
   <app-property-input [name]="'Input format'"
@@ -39,4 +45,11 @@
                       [value]="'test assumptions'"
                       [maxRows]="5"></app-property-input>
   <!-- Sketch -->
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Sketch type</mat-label>
+    <mat-select [(ngModel)]="algorithm.sketch">
+      <mat-option *ngFor="let option of sketchOptions" [value]="option">{{option}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>

@@ -23,7 +23,6 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApiModule } from 'api/api.module';
-import { NgbModule, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -90,7 +89,6 @@ import { AlgorithmListComponent } from './components/algorithms/algorithm-list/a
     MatSelectModule,
     MatCheckboxModule,
     MatButtonModule,
-    NgbModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component

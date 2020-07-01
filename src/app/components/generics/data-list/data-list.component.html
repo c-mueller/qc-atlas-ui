@@ -57,10 +57,13 @@
         <tr>
           <td colspan="1000">
             <nav aria-label="Page navigation example">
-              <div ngbDropdown *ngIf="paginatorConfig" class="d-inline-block float-left page-control">
-                <button class="btn" id="dropdownBasic1" ngbDropdownToggle> Items per page: {{ paginatorConfig.selectedAmount }} </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button *ngFor="let amount of paginatorConfig.amountChoices" ngbDropdownItem class="text-center" (click)="onChangePagingatorConfig(amount)"> {{ amount }} </button>
+              <div *ngIf="paginatorConfig" class="dropdown float-left" mdbDropdown>
+                <button mdbDropdownToggle mdbBtn class="dropdown-toggle waves-light" type="button"
+                        mdbWavesEffect>
+                  Items per page: {{ paginatorConfig.selectedAmount }}
+                </button>
+                <div class="dropdown-menu dropdown-primary">
+                  <a *ngFor="let amount of paginatorConfig.amountChoices" class="dropdown-item text-center" (click)="onChangePagingatorConfig(amount)">{{ amount }}</a>
                 </div>
               </div>
               <ul class="pagination pg-blue float-right">

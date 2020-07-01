@@ -1,15 +1,24 @@
 <div class="main-container">
-  <h1 *ngIf="algorithm.name">{{algorithm.name}}</h1>
-  <h2 *ngIf="algorithm.computationModel">{{algorithm.computationModel}}</h2>
-  <mat-chip-list>
-    <mat-chip *ngFor="let tag of testTags" [removable]="true" (removed)="removeTag(tag)">
-      {{tag}}
-      <mat-icon matChipRemove>cancel</mat-icon>
-    </mat-chip>
-    <mat-chip class="clickable-chip" (click)="onAddTag()">
-      <mat-icon>add</mat-icon>
-    </mat-chip>
-  </mat-chip-list>
+  <div class="header-container p-2">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-transparent">
+        <li class="breadcrumb-item blue-text">{{algorithm.name}}</li>
+      </ol>
+    </nav>
+    <div class="badge-list">
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of testTags" [removable]="true" (removed)="removeTag(tag)">
+          {{tag}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <mat-chip class="clickable-chip" (click)="onAddTag()">
+          <mat-icon>add</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+  <label *ngIf="algorithm.computationModel">{{algorithm.computationModel}}</label>
+
   <mat-tab-group>
     <mat-tab label="{{tabOptions[0]}}">
       <app-algorithm-properties [algorithm]="algorithm"

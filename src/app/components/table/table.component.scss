@@ -40,6 +40,16 @@ mat-grid-list {
   background-color: mat-color($qc-atlas-ui-primary);
 }
 
+.control-disabled {
+  background-color: grey !important;
+  cursor: default;
+}
+
+.current-page {
+  background-color: mat-color($qc-atlas-ui-primary) !important;
+  cursor: default !important;
+}
+
 .data-element:hover {
   background-color: #a3dbff;
   transform: scale(1.05, 1.05);

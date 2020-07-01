@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProblemTypeDto } from 'api/models/problem-type-dto';
 import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 
 @Component({
@@ -33,7 +32,6 @@ export class AlgorithmViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.createEmptyAlgorithm();
-    this.defineMissingAlgorithmFields();
     this.getAlgorithmFromUrl();
   }
 
@@ -42,11 +40,22 @@ export class AlgorithmViewComponent implements OnInit {
     this.algorithmService.getAlgorithm({ algoId: id }).subscribe(
       (res: EntityModelAlgorithmDto) => {
         console.log(res);
+        this.algorithm = res;
+        this.defineMissingAlgorithmFields();
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  createEmptyAlgorithm(): void {
+    this.algorithm = {
+      name: 'test algorithm',
+      computationModel: 'QUANTUM',
+      acronym: 'test acronym',
+    };
+    this.defineMissingAlgorithmFields();
   }
 
   defineMissingAlgorithmFields(): void {
@@ -77,11 +86,13 @@ export class AlgorithmViewComponent implements OnInit {
     if (this.algorithm.applicationAreas == null) {
       this.algorithm.applicationAreas = [];
     }
+    if (this.algorithm.problemTypes == null) {
+      this.algorithm.problemTypes = [];
+    }
 
     // computationModel?: 'CLASSIC' | 'QUANTUM' | 'HYBRID';
     // id?: string;
     // name?: string;
-    // problemTypes?: Array<ProblemTypeDto>;
     // sketch?: 'PSEUDOCODE' | 'CIRCUIT' | 'ISING_MODEL';
   }
 
@@ -105,14 +116,6 @@ export class AlgorithmViewComponent implements OnInit {
     if (index !== -1) {
       this.algorithm.applicationAreas.splice(index, 1);
     }
-  }
-
-  createEmptyAlgorithm(): void {
-    this.algorithm = {
-      name: 'test algorithm',
-      computationModel: 'QUANTUM',
-      acronym: 'test acronym',
-    };
   }
 
   testDialog() {

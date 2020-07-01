@@ -1,4 +1,4 @@
-<div class="algorithm-properties-container">
+<div class="m-4">
 
   <app-property-input [name]="'Acronym'"
                       [value]="algorithm.acronym"
@@ -35,6 +35,17 @@
                       [maxRows]="5"></app-property-input>
 
   <!-- Required compute resource properties -->
+  <br>
+  <div class="m-4">
+    <mat-label class="property-label">Requires compute resources</mat-label>
+    <mat-list>
+      <mat-list-item *ngFor="let property of computeResourceProperties">
+        {{property.type.name}}: {{property.type.datatype.toLowerCase()}} = {{property.value}}
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <br>
+
 
   <app-property-input [name]="'Solution'"
                       [value]="algorithm.solution"
@@ -45,7 +56,7 @@
                       [maxRows]="5"></app-property-input>
   <!-- Sketch -->
   <br>
-  <mat-form-field appearance="fill">
+  <mat-form-field class="m-4" appearance="fill">
     <mat-label>Sketch type</mat-label>
     <mat-select [(ngModel)]="algorithm.sketch">
       <mat-option *ngFor="let option of sketchOptions" [value]="option">{{option}}</mat-option>

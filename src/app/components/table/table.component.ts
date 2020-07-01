@@ -31,6 +31,7 @@ export class TableComponent implements OnInit {
   @Output() addElement = new EventEmitter<void>();
   @Output() paginationConfigChange = new EventEmitter<any>();
   @Output() searchElement = new EventEmitter<string>();
+  @Output() dataSorted = new EventEmitter<any>();
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   selection = new SelectionModel<any>(true, []);
   searchText = '';
@@ -104,6 +105,10 @@ export class TableComponent implements OnInit {
 
   onAdd() {
     this.addElement.emit();
+  }
+
+  sortData(event: any) {
+    this.dataSorted.emit(event);
   }
 
   onChangePagingatorConfig(selectedAmount: any) {

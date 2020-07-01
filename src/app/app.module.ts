@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApiModule } from 'api/api.module';
 import { NgbModule, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
@@ -78,6 +79,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     MatInputModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatSortModule,
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,

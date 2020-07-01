@@ -40,6 +40,10 @@ mat-grid-list {
   background-color: mat-color($qc-atlas-ui-primary);
 }
 
+::ng-deep .hide-arrow .mat-sort-header-arrow {
+  color: white;
+}
+
 .control-disabled {
   background-color: grey !important;
   cursor: default;

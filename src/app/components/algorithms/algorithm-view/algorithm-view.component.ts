@@ -10,6 +10,10 @@ export class AlgorithmViewComponent implements OnInit {
   selectedAlgorithms: any[] = [];
   tableColumns = ['Name', 'Description', 'Authors', 'Format'];
   variableNames = ['name', 'description', 'authors', 'format'];
+  sortData: any = {
+    active: '',
+    direction: '',
+  };
   pagingInfo = {
     _links: {
       prev: {
@@ -90,6 +94,11 @@ export class AlgorithmViewComponent implements OnInit {
   pageChanged(event) {
     const newPageUrl = event;
     console.log(newPageUrl);
+  }
+
+  dataSorted(event) {
+    this.sortData = event;
+    console.log(this.sortData);
   }
 
   paginatorConfigChanged(event) {

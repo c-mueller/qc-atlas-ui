@@ -53,14 +53,12 @@
         <tr>
           <td colspan="1000">
             <nav aria-label="Page navigation example">
-              <div *ngIf="paginatorConfig" class="dropdown float-left" mdbDropdown>
-                <button mdbDropdownToggle mdbBtn class="dropdown-toggle waves-light config-button control-button" mdbWavesEffect>
-                  Items per page: {{ paginatorConfig.selectedAmount }}
-                </button>
-                <div class="dropdown-menu dropdown-primary">
-                  <a *ngFor="let amount of paginatorConfig.amountChoices" class="dropdown-item text-center" (click)="onChangePagingatorConfig(amount)">{{ amount }}</a>
-                </div>
-              </div>
+              <mat-form-field class="float-left">
+                <mat-label>Items per page:</mat-label>
+                <mat-select [(ngModel)]="paginatorConfig.selectedAmount" (selectionChange)="onChangePagingatorConfig()">
+                  <mat-option *ngFor="let choice of paginatorConfig.amountChoices" [value]="choice">{{ choice }}</mat-option>
+                </mat-select>
+              </mat-form-field>
               <ul class="pagination pg-blue float-right">
                 <div class="page-control" color="green" outline="true">
                   <li class="page-item"><a class="page-link no-events"><mat-icon class="page-button no-select" [ngClass]="[pagination._links.first ? 'enabled' : 'disabled']" (click)="changePage(pagination._links.first.href)">first_page</mat-icon></a></li>

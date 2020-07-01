@@ -86,8 +86,7 @@ export class DataListComponent implements OnInit {
     this.dataSorted.emit(event);
   }
 
-  onChangePagingatorConfig(selectedAmount: any) {
-    this.paginatorConfig.selectedAmount = selectedAmount;
+  onChangePagingatorConfig() {
     this.paginationConfigChange.emit(this.paginatorConfig);
   }
 

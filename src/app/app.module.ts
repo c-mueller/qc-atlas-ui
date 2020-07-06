@@ -29,7 +29,6 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AddImplementationDialogComponent } from './components/implementations/dialogs/add-implementation-dialog.component';
 import { AddAlgorithmDialogComponent } from './components/algorithms/dialogs/add-algorithm-dialog.component';
 import { JsonImportDialogComponent } from './components/dialogs/json-import-dialog.component';
 import { MissingEntityDialogComponent } from './components/dialogs/missing-entity-dialog.component';
@@ -44,6 +43,8 @@ import { AlgorithmListComponent } from './components/algorithms/algorithm-list/a
 import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
 import { GenericDataService } from './util/generic-data.service';
 import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
+import { ImplementationViewModule } from './components/algorithms/implementation-view/implementation-view.module';
+import { GenericsModule } from './components/generics/generics.module';
 
 @NgModule({
   declarations: [
@@ -52,14 +53,12 @@ import { NavigationBreadcrumbModule } from './components/generics/navigation-bre
     PageNotFoundComponent,
     // dialogs
     AddAlgorithmDialogComponent,
-    AddImplementationDialogComponent,
     JsonImportDialogComponent,
     MissingEntityDialogComponent,
     AlgorithmViewComponent,
     SoftwarePlatformViewComponent,
     CloudServiceViewComponent,
     PublicationViewComponent,
-    DataListComponent,
     NavigationComponent,
     PublicationListComponent,
     AlgorithmListComponent,
@@ -97,15 +96,15 @@ import { NavigationBreadcrumbModule } from './components/generics/navigation-bre
     MatButtonModule,
     // app modules
     NavigationBreadcrumbModule,
+    ImplementationViewModule,
+    GenericsModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component
     AddAlgorithmDialogComponent,
-    AddImplementationDialogComponent,
     JsonImportDialogComponent,
     MissingEntityDialogComponent,
   ],
-  providers: [GenericDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

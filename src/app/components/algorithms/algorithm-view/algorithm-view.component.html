@@ -17,6 +17,7 @@
   <mat-tab-group>
     <mat-tab label="{{tabOptions[0]}}">
       <app-algorithm-properties [algorithm]="algorithm"
+                                [applicationAreas]="applicationAreas"
                                 (addApplicationArea)="addApplicationArea($event)"
                                 (removeApplicationArea)="removeApplicationArea($event)"></app-algorithm-properties>
     </mat-tab>

@@ -27,7 +27,8 @@
 
       <app-chip-collection class="w-100 p-2"
                            [title]="'Application areas'"
-                           [elements]="sketchOptions"
+                           [elements]="applicationAreas"
+                           [displayVariable]="'name'"
                            (onAddElement)="addApplicationAreaEvent($event)"
                            (onRemoveElement)="removeApplicationAreaEvent($event)"></app-chip-collection>
     </div>
@@ -86,7 +87,7 @@
     </div>
 
     <app-text-input class="w-100 p-2" *ngIf="algorithm.computationModel === 'QUANTUM'" [name]="'Speedup'"
-                    [value]="algorithm.acronym"></app-text-input>
+                    [value]="algorithm.speedUp"></app-text-input>
     <!-- TODO: Display QuantumComputationModel & NISQReady-->
     <!-- TODO: finish Sketch -->
     <br>

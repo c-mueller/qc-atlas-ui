@@ -4,6 +4,8 @@ import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { EntityModelApplicationAreaDto } from 'api/models/entity-model-application-area-dto';
+import { ApplicationAreasService } from 'api/services/application-areas.service';
 import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 
@@ -24,6 +26,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   testTags: string[] = ['test tag', 'quantum', 'algorithm'];
 
   algorithm: EntityModelAlgorithmDto;
+  applicationAreas: EntityModelApplicationAreaDto[];
 
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
@@ -31,6 +34,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private algorithmService: AlgorithmService,
+    private applicationAreasService: ApplicationAreasService,
     private route: ActivatedRoute,
     private dialog: MatDialog
   ) {}
@@ -38,14 +42,15 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(({ algoId }) => {
       this.algorithmService.getAlgorithm({ algoId }).subscribe(
-        (res: EntityModelAlgorithmDto) => {
-          console.log(res);
-          this.algorithm = res;
-          this.defineMissingAlgorithmFields();
+        (algo: EntityModelAlgorithmDto) => {
+          this.algorithm = algo;
+          // this.defineMissingAlgorithmFields();
           this.links[0] = {
             heading: this.algorithm.name,
             subHeading: this.algorithm.computationModel + ' Algorithm',
           };
+          this.getApplicationAreasForAlgorithm(algoId);
+          // problem type
         },
         (error) => {
           console.log(error);
@@ -59,6 +64,22 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
   }
 
+  getApplicationAreasForAlgorithm(algoId: string): void {
+    this.algorithmService.getApplicationAreas({ algoId }).subscribe(
+      (areas) => {
+        if (areas._embedded) {
+          this.applicationAreas = areas._embedded.applicationAreas;
+        } else {
+          this.applicationAreas = [];
+        }
+      },
+      (error) => {
+        console.log(error);
+        this.applicationAreas = [];
+      }
+    );
+  }
+
   createEmptyAlgorithm(): void {
     this.algorithm = {
       name: 'test algorithm',
@@ -66,7 +87,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
       quantumComputationModel: 'GATE_BASED',
       acronym: 'test acronym',
     };
-    this.defineMissingAlgorithmFields();
+    // this.defineMissingAlgorithmFields();
     this.links[0] = {
       heading: this.algorithm.name,
       subHeading: this.algorithm.computationModel + ' Algorithm',
@@ -106,6 +127,9 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
     // }
     if (this.algorithm.computationModel === 'QUANTUM') {
       // TODO: Quantum specific variables
+      if (this.algorithm.speedUp == null) {
+        this.algorithm.speedUp = '';
+      }
     }
 
     // sketch 'PSEUDOCODE' | 'CIRCUIT' | 'ISING_MODEL'
@@ -124,14 +148,47 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   }
 
   addApplicationArea(applicationArea: string): void {
-    // this.algorithm.applicationAreas.push(applicationArea);
+    this.applicationAreasService
+      .createApplicationArea({ body: { name: applicationArea } })
+      .subscribe((area) => {
+        this.algorithmService
+          .addApplicationArea({
+            algoId: this.algorithm.id,
+            body: {
+              id: area.id,
+              name: area.name,
+            },
+          })
+          .subscribe((areas) => {
+            if (areas._embedded) {
+              this.applicationAreas = areas._embedded.applicationAreas;
+            }
+          });
+      });
   }
 
-  removeApplicationArea(applicationArea: string): void {
-    // const index = this.algorithm.applicationAreas.indexOf(applicationArea);
-    // if (index !== -1) {
-    //   this.algorithm.applicationAreas.splice(index, 1);
-    // }
+  removeApplicationArea(applicationArea: EntityModelApplicationAreaDto): void {
+    this.algorithmService
+      .deleteReferenceToApplicationArea({
+        algoId: this.algorithm.id,
+        applicationAreaId: applicationArea.id,
+      })
+      .subscribe(
+        (res) => {
+          this.applicationAreasService
+            .deleteApplicationArea({ id: applicationArea.id })
+            .subscribe(
+              (area) => {},
+              (error) => {
+                console.log(error);
+              }
+            );
+          this.getApplicationAreasForAlgorithm(this.algorithm.id);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   testDialog() {

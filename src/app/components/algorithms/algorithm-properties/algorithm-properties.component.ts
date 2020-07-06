@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
-import { EntityModelComputingResourcePropertyDto } from 'api/models';
+import {
+  EntityModelApplicationAreaDto,
+  EntityModelComputingResourcePropertyDto,
+} from 'api/models';
 import { FileNode } from '../../generics/tree-output/tree-output.component';
 
 @Component({
@@ -13,10 +16,11 @@ export class AlgorithmPropertiesComponent implements OnInit {
   @Output() addApplicationArea: EventEmitter<string> = new EventEmitter<
     string
   >();
-  @Output() removeApplicationArea: EventEmitter<string> = new EventEmitter<
-    string
-  >();
+  @Output() removeApplicationArea: EventEmitter<
+    EntityModelApplicationAreaDto
+  > = new EventEmitter<EntityModelApplicationAreaDto>();
   @Input() algorithm: EntityModelAlgorithmDto;
+  @Input() applicationAreas: EntityModelApplicationAreaDto[];
 
   sketchOptions: string[] = ['PSEUDOCODE', 'CIRCUIT', 'ISING_MODEL'];
   computeResourceProperties: EntityModelComputingResourcePropertyDto[] = [];
@@ -56,35 +60,6 @@ export class AlgorithmPropertiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.createDummyCompureResourceProperties();
-    this.problemTypeTreeData = [
-      {
-        filename: 'problem-type 1',
-        children: [
-          {
-            filename: 'parent problem-type 1',
-            children: [
-              {
-                filename: 'parent problem-type 2',
-                children: [],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        filename: 'problem-type 2',
-        children: [
-          {
-            filename: 'parent problem-type 1',
-            children: [],
-          },
-          {
-            filename: 'parent problem-type 3',
-            children: [],
-          },
-        ],
-      },
-    ];
   }
 
   onChangesSaved(value): void {
@@ -95,7 +70,7 @@ export class AlgorithmPropertiesComponent implements OnInit {
     this.addApplicationArea.emit(applicationArea);
   }
 
-  removeApplicationAreaEvent(applicationArea: string): void {
+  removeApplicationAreaEvent(applicationArea: any): void {
     this.removeApplicationArea.emit(applicationArea);
   }
 

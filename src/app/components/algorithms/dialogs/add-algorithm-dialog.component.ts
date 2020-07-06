@@ -13,8 +13,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AddAlgorithmDialogComponent implements OnInit {
   algorithmForm: FormGroup;
 
-  computationModelOption: string[] = ['Quantum', 'Classic', 'Hybrid'];
-
   constructor(
     public dialogRef: MatDialogRef<AddAlgorithmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -43,11 +41,17 @@ export class AddAlgorithmDialogComponent implements OnInit {
         // eslint-disable-next-line @typescript-eslint/unbound-method
         Validators.required,
       ]),
+      quantumComputationModel: new FormControl(
+        this.data.quantumComputationModel,
+        [
+          // eslint-disable-next-line @typescript-eslint/unbound-method
+          Validators.required,
+        ]
+      ),
     });
 
     this.dialogRef.beforeClosed().subscribe(() => {
       this.data.name = this.name.value;
-      this.data.computationModel = this.computationModel.value;
     });
   }
 
@@ -60,4 +64,5 @@ export interface DialogData {
   title: string;
   name: string;
   computationModel: string;
+  quantumComputationModel: string;
 }

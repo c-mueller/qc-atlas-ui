@@ -42,12 +42,13 @@ import { AlgorithmPropertiesComponent } from './components/algorithms/algorithm-
 import { AlgorithmRelatedAlgosListComponent } from './components/algorithms/algorithm-related-algos-list/algorithm-related-algos-list.component';
 import { AlgorithmPublicationsListComponent } from './components/algorithms/algorithm-publications-list/algorithm-publications-list.component';
 import { AlgorithmImplementationsListComponent } from './components/algorithms/algorithm-implementations-list/algorithm-implementations-list.component';
-import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
 import { DataListComponent } from './components/generics/data-list/data-list.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
 import { TreeOutputComponent } from './components/generics/tree-output/tree-output.component';
+import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
+import { GenericDataService } from './util/generic-data.service';
 import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
 import { GenericsModule } from './components/generics/generics.module';
 
@@ -120,7 +121,7 @@ import { GenericsModule } from './components/generics/generics.module';
     JsonImportDialogComponent,
     MissingEntityDialogComponent,
   ],
-  providers: [],
+  providers: [GenericDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,17 +1,19 @@
 <div class="m-4">
 
-  <app-property-input [name]="'Acronym'"
-                      [value]="algorithm.acronym"
-                      (onSaveChanges)="onChangesSaved($event)"></app-property-input>
+  <app-text-input [name]="'Acronym'"
+                  [value]="algorithm.acronym"
+                  (onSaveChanges)="onChangesSaved($event)"></app-text-input>
 
-  <app-property-input [name]="'Intent'"
-                      [value]="algorithm.intent"
-                      [maxRows]="5"
-                      (onSaveChanges)="onChangesSaved($event)"></app-property-input>
+  <app-text-input [name]="'Intent'"
+                  [value]="algorithm.intent"
+                  [multiline]="true"
+                  [maxLines]="5"
+                  (onSaveChanges)="onChangesSaved($event)"></app-text-input>
 
-  <app-property-input [name]="'Problem'"
-                      [value]="algorithm.problem"
-                      [maxRows]="5"></app-property-input>
+  <app-text-input [name]="'Problem'"
+                  [value]="algorithm.problem"
+                  [multiline]="true"
+                  [maxLines]="5"></app-text-input>
 
   <!-- Problem types -->
   <app-tree-output [name]="'Problem-Types'"
@@ -19,23 +21,26 @@
 
   <br>
   <app-chip-collection [title]="'Application areas'"
-                       [elements]="algorithm.applicationAreas"
+                       [elements]="sketchOptions"
                        (onAddElement)="addApplicationAreaEvent($event)"
                        (onRemoveElement)="removeApplicationAreaEvent($event)"></app-chip-collection>
 
   <!-- TODO: Add related patterns -->
 
-  <app-property-input [name]="'Input format'"
-                      [value]="algorithm.inputFormat"
-                      [maxRows]="5"></app-property-input>
+  <app-text-input [name]="'Input format'"
+                  [value]="algorithm.inputFormat"
+                  [multiline]="true"
+                  [maxLines]="5"></app-text-input>
 
-  <app-property-input [name]="'Parameters'"
-                      [value]="algorithm.algoParameter"
-                      [maxRows]="5"></app-property-input>
+  <app-text-input [name]="'Parameters'"
+                  [value]="algorithm.algoParameter"
+                  [multiline]="true"
+                  [maxLines]="5"></app-text-input>
 
-  <app-property-input [name]="'Output format'"
-                      [value]="algorithm.outputFormat"
-                      [maxRows]="5"></app-property-input>
+  <app-text-input [name]="'Output format'"
+                  [value]="algorithm.outputFormat"
+                  [multiline]="true"
+                  [maxLines]="5"></app-text-input>
 
   <div class="m-4">
     <mat-label class="property-label">Required compute resources</mat-label>
@@ -46,17 +51,20 @@
     </mat-list>
   </div>
 
-  <app-property-input [name]="'Solution'"
-                      [value]="algorithm.solution"
-                      [maxRows]="5"></app-property-input>
+  <app-text-input [name]="'Solution'"
+                  [value]="algorithm.solution"
+                  [multiline]="true"
+                  [maxLines]="5"></app-text-input>
 
-  <app-property-input [name]="'Assumptions'"
-                      [value]="algorithm.assumptions"
-                      [maxRows]="5"></app-property-input>
+  <app-text-input [name]="'Assumptions'"
+                  [value]="algorithm.assumptions"
+                  [multiline]="true"
+                  [maxLines]="5"></app-text-input>
 
-  <app-property-input *ngIf="algorithm.computationModel === 'QUANTUM'" [name]="'Speedup'"
-                      [value]="algorithm.acronym"
-                      [maxRows]="1"></app-property-input>
+  <app-text-input *ngIf="algorithm.computationModel === 'QUANTUM'" [name]="'Speedup'"
+                  [value]="algorithm.acronym"
+                  [multiline]="true"
+                  [maxLines]="1"></app-text-input>
   <!-- TODO: Display QuantumComputationModel & NISQReady-->
   <!-- TODO: finish Sketch -->
   <br>

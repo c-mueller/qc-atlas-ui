@@ -11,6 +11,8 @@
     *ngIf="multiline"
     [disabled]="!isBeingEdited"
     [(ngModel)]="value"
+    [matAutosizeMaxRows]="maxLines"
+    [matTextareaAutosize]="true"
     matInput
   ></textarea>
   <button

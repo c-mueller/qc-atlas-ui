@@ -49,6 +49,7 @@ import { PublicationListComponent } from './components/publications/publication-
 import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
 import { TreeOutputComponent } from './components/generics/tree-output/tree-output.component';
 import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
+import { GenericsModule } from './components/generics/generics.module';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { NavigationBreadcrumbModule } from './components/generics/navigation-bre
     MatTreeModule,
     // app modules
     NavigationBreadcrumbModule,
+    GenericsModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component

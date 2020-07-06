@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
-import { ComputingResourceDto } from 'api/models/computing-resource-dto';
-import {
-  EntityModelComputingResourceDto,
-  EntityModelComputingResourceTypeDto,
-} from 'api/models';
+import { EntityModelComputingResourcePropertyDto } from 'api/models';
 import { FileNode } from '../../generics/tree-output/tree-output.component';
 
 @Component({
@@ -23,7 +19,7 @@ export class AlgorithmPropertiesComponent implements OnInit {
   @Input() algorithm: EntityModelAlgorithmDto;
 
   sketchOptions: string[] = ['PSEUDOCODE', 'CIRCUIT', 'ISING_MODEL'];
-  computeResourceProperties: EntityModelComputingResourceDto[] = [];
+  computeResourceProperties: EntityModelComputingResourcePropertyDto[] = [];
 
   // parent problem types data for testing purposes of output tree
   problemTypeTreeData: FileNode[] = [
@@ -76,7 +72,7 @@ export class AlgorithmPropertiesComponent implements OnInit {
 
   createDummyCompureResourceProperties(): void {
     for (let i = 0; i < 10; i++) {
-      const element: EntityModelComputingResourceDto = {
+      const element: EntityModelComputingResourcePropertyDto = {
         id: i.toString(),
         type: {
           name: 'variable' + i,

@@ -53,6 +53,7 @@ export class AlgorithmViewComponent implements OnInit {
     this.algorithm = {
       name: 'test algorithm',
       computationModel: 'QUANTUM',
+      quantumComputationModel: 'GATE_BASED',
       acronym: 'test acronym',
     };
     this.defineMissingAlgorithmFields();
@@ -83,12 +84,12 @@ export class AlgorithmViewComponent implements OnInit {
     if (this.algorithm.assumptions == null) {
       this.algorithm.assumptions = '';
     }
-    if (this.algorithm.applicationAreas == null) {
-      this.algorithm.applicationAreas = [];
-    }
-    if (this.algorithm.problemTypes == null) {
-      this.algorithm.problemTypes = [];
-    }
+    // if (this.algorithm.applicationAreas == null) {
+    //   this.algorithm.applicationAreas = [];
+    // }
+    // if (this.algorithm.problemTypes == null) {
+    //   this.algorithm.problemTypes = [];
+    // }
     if (this.algorithm.computationModel === 'QUANTUM') {
       // TODO: Quantum specific variables
     }
@@ -109,14 +110,14 @@ export class AlgorithmViewComponent implements OnInit {
   }
 
   addApplicationArea(applicationArea: string): void {
-    this.algorithm.applicationAreas.push(applicationArea);
+    // this.algorithm.applicationAreas.push(applicationArea);
   }
 
   removeApplicationArea(applicationArea: string): void {
-    const index = this.algorithm.applicationAreas.indexOf(applicationArea);
-    if (index !== -1) {
-      this.algorithm.applicationAreas.splice(index, 1);
-    }
+    // const index = this.algorithm.applicationAreas.indexOf(applicationArea);
+    // if (index !== -1) {
+    //   this.algorithm.applicationAreas.splice(index, 1);
+    // }
   }
 
   testDialog() {

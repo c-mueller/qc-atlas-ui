@@ -11,6 +11,7 @@ export class TextInputComponent {
   @Input() name = '';
   @Input() value = '';
   @Input() multiline = false;
+  @Input() maxLines = 1;
 
   isBeingEdited = false;
 

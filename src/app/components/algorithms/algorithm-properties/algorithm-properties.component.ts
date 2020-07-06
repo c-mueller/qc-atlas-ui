@@ -56,6 +56,35 @@ export class AlgorithmPropertiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.createDummyCompureResourceProperties();
+    this.problemTypeTreeData = [
+      {
+        filename: 'problem-type 1',
+        children: [
+          {
+            filename: 'parent problem-type 1',
+            children: [
+              {
+                filename: 'parent problem-type 2',
+                children: [],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        filename: 'problem-type 2',
+        children: [
+          {
+            filename: 'parent problem-type 1',
+            children: [],
+          },
+          {
+            filename: 'parent problem-type 3',
+            children: [],
+          },
+        ],
+      },
+    ];
   }
 
   onChangesSaved(value): void {

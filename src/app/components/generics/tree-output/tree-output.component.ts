@@ -16,60 +16,61 @@ export class FileNode {
 })
 export class TreeOutputComponent implements OnInit {
   @Input() name = '';
-  @Input() treeData: FileNode[] = [
-    {
-      filename: 'default node',
-      children: [],
-    },
-  ];
+  @Input() treeData: FileNode[];
 
   nestedTreeControl: NestedTreeControl<FileNode>;
   nestedDataSource: MatTreeNestedDataSource<FileNode>;
   dataChange: BehaviorSubject<FileNode[]> = new BehaviorSubject<FileNode[]>([]);
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
     this.nestedTreeControl = new NestedTreeControl<FileNode>(this.getChildren);
     this.nestedDataSource = new MatTreeNestedDataSource();
 
     this.dataChange.subscribe((data) => (this.nestedDataSource.data = data));
-
-    // this data structure is identical to the test data in algorithm-properties.component.ts
-    // uncomment the following lines to set the test data
-
-    // this.treeData = [
-    //   {
-    //     filename: 'problem-type 1',
-    //     children: [
-    //       {
-    //         filename: 'parent problem-type 1',
-    //         children: [
-    //           {
-    //             filename: 'parent problem-type 2',
-    //             children: [],
-    //           },
-    //         ],
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     filename: 'problem-type 2',
-    //     children: [
-    //       {
-    //         filename: 'parent problem-type 1',
-    //         children: [],
-    //       },
-    //       {
-    //         filename: 'parent problem-type 3',
-    //         children: [],
-    //       },
-    //     ],
-    //   },
-    // ];
+    if (this.treeData == null) {
+      this.treeData = [
+        {
+          filename: 'default node',
+          children: [],
+        },
+      ];
+      // this data structure is identical to the test data in algorithm-properties.component.ts
+      // uncomment the following lines to set the test data
+      // this.treeData = [
+      //   {
+      //     filename: 'problem-type 1',
+      //     children: [
+      //       {
+      //         filename: 'parent problem-type 1',
+      //         children: [
+      //           {
+      //             filename: 'parent problem-type 2',
+      //             children: [],
+      //           },
+      //         ],
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     filename: 'problem-type 2',
+      //     children: [
+      //       {
+      //         filename: 'parent problem-type 1',
+      //         children: [],
+      //       },
+      //       {
+      //         filename: 'parent problem-type 3',
+      //         children: [],
+      //       },
+      //     ],
+      //   },
+      // ];
+    }
 
     this.dataChange.next(this.treeData);
   }
-
-  ngOnInit(): void {}
 
   getChildren = (node: FileNode) => observableOf(node.children);
 

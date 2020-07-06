@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 
@@ -11,7 +12,7 @@ import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-
   templateUrl: './algorithm-view.component.html',
   styleUrls: ['./algorithm-view.component.scss'],
 })
-export class AlgorithmViewComponent implements OnInit {
+export class AlgorithmViewComponent implements OnInit, OnDestroy {
   tabOptions: string[] = [
     'General',
     'Implementations',
@@ -26,34 +27,36 @@ export class AlgorithmViewComponent implements OnInit {
 
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
+  private routeSub: Subscription;
+
   constructor(
     private algorithmService: AlgorithmService,
-    private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.createEmptyAlgorithm();
-    this.getAlgorithmFromUrl();
+    this.routeSub = this.route.params.subscribe(({ algoId }) => {
+      this.algorithmService.getAlgorithm({ algoId }).subscribe(
+        (res: EntityModelAlgorithmDto) => {
+          console.log(res);
+          this.algorithm = res;
+          this.defineMissingAlgorithmFields();
+          this.links[0] = {
+            heading: this.algorithm.name,
+            subHeading: this.algorithm.computationModel + ' Algorithm',
+          };
+        },
+        (error) => {
+          console.log(error);
+          this.createEmptyAlgorithm();
+        }
+      );
+    });
   }
 
-  getAlgorithmFromUrl(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.algorithmService.getAlgorithm({ algoId: id }).subscribe(
-      (res: EntityModelAlgorithmDto) => {
-        console.log(res);
-        this.algorithm = res;
-        this.defineMissingAlgorithmFields();
-        this.links[0] = {
-          heading: this.algorithm.name,
-          subHeading: this.algorithm.computationModel + ' Algorithm',
-        };
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  ngOnDestroy(): void {
+    this.routeSub.unsubscribe();
   }
 
   createEmptyAlgorithm(): void {

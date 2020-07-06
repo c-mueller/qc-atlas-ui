@@ -9,7 +9,7 @@ import { PublicationListComponent } from './components/publications/publication-
 
 const routes: Routes = [
   { path: 'algorithms', component: AlgorithmListComponent },
-  { path: 'algorithms/:id', component: AlgorithmViewComponent },
+  { path: 'algorithms/:algoId', component: AlgorithmViewComponent },
   { path: 'software-platforms', component: SoftwarePlatformViewComponent },
   { path: 'cloud-services', component: CloudServiceViewComponent },
   { path: 'publications', component: PublicationListComponent },

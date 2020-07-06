@@ -23,13 +23,13 @@
                                 (removeApplicationArea)="removeApplicationArea($event)"></app-algorithm-properties>
     </mat-tab>
     <mat-tab label="{{tabOptions[1]}}">
-      <app-algorithm-implementations-list></app-algorithm-implementations-list>
+      <app-algorithm-implementations-list [algorithm]="algorithm"></app-algorithm-implementations-list>
     </mat-tab>
     <mat-tab label="{{tabOptions[2]}}">
-      <app-algorithm-related-algos-list></app-algorithm-related-algos-list>
+      <app-algorithm-related-algos-list [algorithm]="algorithm"></app-algorithm-related-algos-list>
     </mat-tab>
     <mat-tab label="{{tabOptions[3]}}">
-      <app-algorithm-publications-list></app-algorithm-publications-list>
+      <app-algorithm-publications-list [algorithm]="algorithm"></app-algorithm-publications-list>
     </mat-tab>
     <mat-tab label="{{tabOptions[4]}}">
       <h1>Discussion WIP</h1>

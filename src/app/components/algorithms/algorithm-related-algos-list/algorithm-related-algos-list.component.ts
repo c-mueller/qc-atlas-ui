@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
+import { AlgorithmService } from 'api/services/algorithm.service';
+import { EntityModelAlgorithmRelationDto } from 'api/models/entity-model-algorithm-relation-dto';
 
 @Component({
   selector: 'app-algorithm-related-algos-list',
@@ -6,7 +9,45 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./algorithm-related-algos-list.component.scss'],
 })
 export class AlgorithmRelatedAlgosListComponent implements OnInit {
-  constructor() {}
+  @Input() algorithm: EntityModelAlgorithmDto;
 
-  ngOnInit(): void {}
+  algorithmRelations: EntityModelAlgorithmRelationDto[];
+  variableNames: string[] = ['Name', 'Type', 'Relation'];
+  tableColumns: string[] = [
+    'targetAlgorithm',
+    'targetAlgorithm',
+    'targetAlgorithm',
+  ];
+  pagingInfo: any = {};
+  paginatorConfig: any = {
+    amountChoices: [10, 25, 50],
+    selectedAmount: 10,
+  };
+
+  constructor(private algorithmService: AlgorithmService) {}
+
+  ngOnInit(): void {
+    this.algorithmService
+      .getAlgorithmRelations({ algoId: this.algorithm.id })
+      .subscribe(
+        (relations) => {
+          if (relations._embedded) {
+            this.algorithmRelations = relations._embedded.algorithmRelations;
+          } else {
+            this.algorithmRelations = [];
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  onAddElement(): void {}
+
+  onDeleteElements($event): void {}
+
+  onDatalistConfigChanged($event): void {}
+
+  onPageChanged($event): void {}
 }

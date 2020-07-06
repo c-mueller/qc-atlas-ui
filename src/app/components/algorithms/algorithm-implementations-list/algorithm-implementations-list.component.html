@@ -1,1 +1,15 @@
-<p>algorithm-implementations-list works!</p>
+<app-table [data]=implementations
+           [variableNames]=variableNames
+           [dataColumns]=tableColumns
+           [allowAdd]=true
+           [allowDelete]=true
+           [allowSearch]=true
+           [allowSort]=true
+           [pagination]=pagingInfo
+           [paginatorConfig]=paginatorConfig
+           [routingVariable]="'id'"
+           (addElement)="onAddElement()"
+           (deleteElements)="onDeleteElements($event)"
+           (datalistConfigChanged)="onDatalistConfigChanged($event)"
+           (pageChange)="onPageChanged($event)">
+</app-table>

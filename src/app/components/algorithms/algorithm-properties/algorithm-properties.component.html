@@ -50,9 +50,14 @@
                       [value]="algorithm.solution"
                       [maxRows]="5"></app-property-input>
 
-  <app-property-input [name]="'assumptions'"
+  <app-property-input [name]="'Assumptions'"
                       [value]="algorithm.assumptions"
                       [maxRows]="5"></app-property-input>
+
+  <app-property-input *ngIf="algorithm.computationModel === 'QUANTUM'" [name]="'Speedup'"
+                      [value]="algorithm.acronym"
+                      [maxRows]="1"></app-property-input>
+  <!-- TODO: Display QuantumComputationModel & NISQReady-->
   <!-- TODO: finish Sketch -->
   <br>
   <mat-form-field class="m-4" appearance="fill">

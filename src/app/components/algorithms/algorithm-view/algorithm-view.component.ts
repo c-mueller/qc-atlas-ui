@@ -89,15 +89,16 @@ export class AlgorithmViewComponent implements OnInit {
     if (this.algorithm.problemTypes == null) {
       this.algorithm.problemTypes = [];
     }
+    if (this.algorithm.computationModel === 'QUANTUM') {
+      // TODO: Quantum specific variables
+    }
 
-    // computationModel?: 'CLASSIC' | 'QUANTUM' | 'HYBRID';
-    // id?: string;
-    // name?: string;
-    // sketch?: 'PSEUDOCODE' | 'CIRCUIT' | 'ISING_MODEL';
+    // sketch 'PSEUDOCODE' | 'CIRCUIT' | 'ISING_MODEL'
   }
 
   addTag(): void {
     console.log('add tag');
+    // TODO: create tag dialog
   }
 
   removeTag(tag: string): void {

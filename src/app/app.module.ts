@@ -25,6 +25,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApiModule } from 'api/api.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MatTreeModule } from '@angular/material/tree';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ import { DataListComponent } from './components/generics/data-list/data-list.com
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
+import { TreeOutputComponent } from './components/generics/tree-output/tree-output.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { AlgorithmListComponent } from './components/algorithms/algorithm-list/a
     AlgorithmListComponent,
     ChipCollectionComponent,
     PropertyInputComponent,
+    TreeOutputComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),
@@ -106,6 +109,7 @@ import { AlgorithmListComponent } from './components/algorithms/algorithm-list/a
     MatCheckboxModule,
     MatButtonModule,
     MatChipsModule,
+    MatTreeModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component

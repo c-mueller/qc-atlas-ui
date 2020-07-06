@@ -13,8 +13,11 @@
                       [value]="algorithm.problem"
                       [maxRows]="5"></app-property-input>
 
-  <!-- TODO: Add problem types -->
+  <!-- Problem types -->
+  <app-tree-output [name]="'Problem-Types'"
+                   [data]=this.problemTypeTreeData></app-tree-output>
 
+  <br>
   <app-chip-collection [title]="'Application areas'"
                        [elements]="algorithm.applicationAreas"
                        (onAddElement)="addApplicationAreaEvent($event)"

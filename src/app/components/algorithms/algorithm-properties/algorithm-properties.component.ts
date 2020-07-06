@@ -6,6 +6,7 @@ import {
   EntityModelComputingResourceDto,
   EntityModelComputingResourceTypeDto,
 } from 'api/models';
+import { FileNode } from '../../generics/tree-output/tree-output.component';
 
 @Component({
   selector: 'app-algorithm-properties',
@@ -23,6 +24,23 @@ export class AlgorithmPropertiesComponent implements OnInit {
 
   sketchOptions: string[] = ['PSEUDOCODE', 'CIRCUIT', 'ISING_MODEL'];
   computeResourceProperties: EntityModelComputingResourceDto[] = [];
+
+  problemTypeTreeData: FileNode[] = [
+    {
+      filename: 'problem-type',
+      children: [
+        {
+          filename: 'parent problem-type 1',
+          children: [
+            {
+              filename: 'parent problem-type 2',
+              children: [],
+            },
+          ],
+        },
+      ],
+    },
+  ];
 
   constructor(private algorithmService: AlgorithmService) {}
 

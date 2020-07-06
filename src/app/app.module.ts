@@ -42,6 +42,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
 import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
+import { GenericDataService } from './util/generic-data.service';
 import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
 
 @NgModule({
@@ -104,7 +105,7 @@ import { NavigationBreadcrumbModule } from './components/generics/navigation-bre
     JsonImportDialogComponent,
     MissingEntityDialogComponent,
   ],
-  providers: [],
+  providers: [GenericDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -16,7 +16,7 @@ export class FileNode {
 })
 export class TreeOutputComponent implements OnInit {
   @Input() name = '';
-  @Input() data: FileNode[] = [
+  @Input() treeData: FileNode[] = [
     {
       filename: 'default node',
       children: [],
@@ -33,7 +33,40 @@ export class TreeOutputComponent implements OnInit {
 
     this.dataChange.subscribe((data) => (this.nestedDataSource.data = data));
 
-    this.dataChange.next(this.data);
+    // this data structure is identical to the test data in algorithm-properties.component.ts
+    // uncomment the following lines to set the test data
+
+    // this.treeData = [
+    //   {
+    //     filename: 'problem-type 1',
+    //     children: [
+    //       {
+    //         filename: 'parent problem-type 1',
+    //         children: [
+    //           {
+    //             filename: 'parent problem-type 2',
+    //             children: [],
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     filename: 'problem-type 2',
+    //     children: [
+    //       {
+    //         filename: 'parent problem-type 1',
+    //         children: [],
+    //       },
+    //       {
+    //         filename: 'parent problem-type 3',
+    //         children: [],
+    //       },
+    //     ],
+    //   },
+    // ];
+
+    this.dataChange.next(this.treeData);
   }
 
   ngOnInit(): void {}

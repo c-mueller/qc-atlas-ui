@@ -25,9 +25,10 @@ export class AlgorithmPropertiesComponent implements OnInit {
   sketchOptions: string[] = ['PSEUDOCODE', 'CIRCUIT', 'ISING_MODEL'];
   computeResourceProperties: EntityModelComputingResourceDto[] = [];
 
+  // parent problem types data for testing purposes of output tree
   problemTypeTreeData: FileNode[] = [
     {
-      filename: 'problem-type',
+      filename: 'problem-type 1',
       children: [
         {
           filename: 'parent problem-type 1',
@@ -37,6 +38,19 @@ export class AlgorithmPropertiesComponent implements OnInit {
               children: [],
             },
           ],
+        },
+      ],
+    },
+    {
+      filename: 'problem-type 2',
+      children: [
+        {
+          filename: 'parent problem-type 1',
+          children: [],
+        },
+        {
+          filename: 'parent problem-type 3',
+          children: [],
         },
       ],
     },

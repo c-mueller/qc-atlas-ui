@@ -4,6 +4,7 @@ import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
+import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 
 @Component({
   selector: 'app-algorithm-view',
@@ -22,6 +23,8 @@ export class AlgorithmViewComponent implements OnInit {
   testTags: string[] = ['test tag', 'quantum', 'algorithm'];
 
   algorithm: EntityModelAlgorithmDto;
+
+  links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
   constructor(
     private algorithmService: AlgorithmService,
@@ -42,6 +45,10 @@ export class AlgorithmViewComponent implements OnInit {
         console.log(res);
         this.algorithm = res;
         this.defineMissingAlgorithmFields();
+        this.links[0] = {
+          heading: this.algorithm.name,
+          subHeading: this.algorithm.computationModel + ' Algorithm',
+        };
       },
       (error) => {
         console.log(error);
@@ -57,6 +64,10 @@ export class AlgorithmViewComponent implements OnInit {
       acronym: 'test acronym',
     };
     this.defineMissingAlgorithmFields();
+    this.links[0] = {
+      heading: this.algorithm.name,
+      subHeading: this.algorithm.computationModel + ' Algorithm',
+    };
   }
 
   defineMissingAlgorithmFields(): void {

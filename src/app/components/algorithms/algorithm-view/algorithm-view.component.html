@@ -1,11 +1,7 @@
 <div class="main-container">
   <div class="header-container p-2">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb bg-transparent">
-        <li class="breadcrumb-item blue-text">{{algorithm.name}}</li>
-      </ol>
-    </nav>
-    <div class="badge-list">
+    <navigation-breadcrumb [links]="links"></navigation-breadcrumb>
+    <div>
       <mat-chip-list>
         <mat-chip *ngFor="let tag of testTags" [removable]="true" (removed)="removeTag(tag)">
           {{tag}}
@@ -17,7 +13,6 @@
       </mat-chip-list>
     </div>
   </div>
-  <label *ngIf="algorithm.computationModel">{{algorithm.computationModel}}</label>
 
   <mat-tab-group>
     <mat-tab label="{{tabOptions[0]}}">

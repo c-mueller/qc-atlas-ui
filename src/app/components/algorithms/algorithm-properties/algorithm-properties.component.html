@@ -1,46 +1,59 @@
-<div class="m-4">
+<div class="p-4">
+  <div class="d-flex">
+    <app-text-input class="w-100 p-2"
+                    [name]="'Acronym'"
+                    [value]="algorithm.acronym"
+                    (onSaveChanges)="onChangesSaved($event)"></app-text-input>
+    <app-text-input class="w-100 p-2"
+                    [name]="'Intent'"
+                    [value]="algorithm.intent"
+                    [multiline]="true"
+                    [maxLines]="5"
+                    (onSaveChanges)="onChangesSaved($event)"></app-text-input>
 
-  <app-text-input [name]="'Acronym'"
-                  [value]="algorithm.acronym"
-                  (onSaveChanges)="onChangesSaved($event)"></app-text-input>
-
-  <app-text-input [name]="'Intent'"
-                  [value]="algorithm.intent"
-                  [multiline]="true"
-                  [maxLines]="5"
-                  (onSaveChanges)="onChangesSaved($event)"></app-text-input>
-
-  <app-text-input [name]="'Problem'"
-                  [value]="algorithm.problem"
-                  [multiline]="true"
-                  [maxLines]="5"></app-text-input>
+    <app-text-input class="w-100 p-2" [name]="'Problem'"
+                    [value]="algorithm.problem"
+                    [multiline]="true"
+                    [maxLines]="5"></app-text-input>
+  </div>
 
   <!-- Problem types -->
-  <app-tree-output [name]="'Problem-Types'"
-                   [treeData]="this.problemTypeTreeData"></app-tree-output>
-
   <br>
-  <app-chip-collection [title]="'Application areas'"
-                       [elements]="sketchOptions"
-                       (onAddElement)="addApplicationAreaEvent($event)"
-                       (onRemoveElement)="removeApplicationAreaEvent($event)"></app-chip-collection>
+  <div class="d-flex">
+    <app-tree-output class="w-100 p-2"
+                     [name]="'Problem-Types'"
+                     [treeData]="this.problemTypeTreeData"></app-tree-output>
+
+    <app-chip-collection class="w-100 p-2"
+                         [title]="'Application areas'"
+                         [elements]="sketchOptions"
+                         (onAddElement)="addApplicationAreaEvent($event)"
+                         (onRemoveElement)="removeApplicationAreaEvent($event)"></app-chip-collection>
+  </div>
+
 
   <!-- TODO: Add related patterns -->
 
-  <app-text-input [name]="'Input format'"
-                  [value]="algorithm.inputFormat"
-                  [multiline]="true"
-                  [maxLines]="5"></app-text-input>
+  <div class="d-flex">
+    <app-text-input class="w-100 p-2"
+                    [name]="'Input format'"
+                    [value]="algorithm.inputFormat"
+                    [multiline]="true"
+                    [maxLines]="5"></app-text-input>
 
-  <app-text-input [name]="'Parameters'"
-                  [value]="algorithm.algoParameter"
-                  [multiline]="true"
-                  [maxLines]="5"></app-text-input>
+    <app-text-input class="w-100 p-2"
+                    [name]="'Parameters'"
+                    [value]="algorithm.algoParameter"
+                    [multiline]="true"
+                    [maxLines]="5"></app-text-input>
 
-  <app-text-input [name]="'Output format'"
-                  [value]="algorithm.outputFormat"
-                  [multiline]="true"
-                  [maxLines]="5"></app-text-input>
+    <app-text-input class="w-100 p-2"
+                    [name]="'Output format'"
+                    [value]="algorithm.outputFormat"
+                    [multiline]="true"
+                    [maxLines]="5"></app-text-input>
+  </div>
+
 
   <div class="m-4">
     <mat-label class="property-label">Required compute resources</mat-label>
@@ -51,20 +64,22 @@
     </mat-list>
   </div>
 
-  <app-text-input [name]="'Solution'"
-                  [value]="algorithm.solution"
-                  [multiline]="true"
-                  [maxLines]="5"></app-text-input>
+  <div class="d-flex">
+    <app-text-input class="w-100 p-2"
+                    [name]="'Solution'"
+                    [value]="algorithm.solution"
+                    [multiline]="true"
+                    [maxLines]="5"></app-text-input>
 
-  <app-text-input [name]="'Assumptions'"
-                  [value]="algorithm.assumptions"
-                  [multiline]="true"
-                  [maxLines]="5"></app-text-input>
+    <app-text-input class="w-100 p-2"
+                    [name]="'Assumptions'"
+                    [value]="algorithm.assumptions"
+                    [multiline]="true"
+                    [maxLines]="5"></app-text-input>
+  </div>
 
-  <app-text-input *ngIf="algorithm.computationModel === 'QUANTUM'" [name]="'Speedup'"
-                  [value]="algorithm.acronym"
-                  [multiline]="true"
-                  [maxLines]="1"></app-text-input>
+  <app-text-input class="w-100 p-2" *ngIf="algorithm.computationModel === 'QUANTUM'" [name]="'Speedup'"
+                  [value]="algorithm.acronym"></app-text-input>
   <!-- TODO: Display QuantumComputationModel & NISQReady-->
   <!-- TODO: finish Sketch -->
   <br>

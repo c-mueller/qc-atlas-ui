@@ -41,6 +41,7 @@ import { AlgorithmRelatedAlgosListComponent } from './components/algorithms/algo
 import { AlgorithmPublicationsListComponent } from './components/algorithms/algorithm-publications-list/algorithm-publications-list.component';
 import { AlgorithmImplementationsListComponent } from './components/algorithms/algorithm-implementations-list/algorithm-implementations-list.component';
 import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
+import { TreeOutputComponent } from './components/generics/tree-output/tree-output.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ChipCollectionComponent } from './components/generics/chip-collection/c
     AlgorithmPublicationsListComponent,
     AlgorithmImplementationsListComponent,
     ChipCollectionComponent,
+    TreeOutputComponent,
   ],
   imports: [
     BrowserModule,

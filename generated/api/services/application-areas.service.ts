@@ -10,7 +10,8 @@ import { map, filter } from 'rxjs/operators';
 
 import { ApplicationAreaDto } from '../models/application-area-dto';
 import { EntityModelApplicationAreaDto } from '../models/entity-model-application-area-dto';
-import { PagedModelEntityModelApplicationAreaDto } from '../models/paged-model-entity-model-application-area-dto';
+import { Link } from '../models/link';
+import { PageMetadata } from '../models/page-metadata';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class ApplicationAreasService extends BaseService {
   /**
    * Path part for operation getApplicationAreas1
    */
-  static readonly GetApplicationAreas1Path = '/application-areas/';
+  static readonly GetApplicationAreas1Path = '/v1/application-areas';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -38,7 +39,7 @@ export class ApplicationAreasService extends BaseService {
     page?: number;
     size?: number;
 
-  }): Observable<StrictHttpResponse<PagedModelEntityModelApplicationAreaDto>> {
+  }): Observable<StrictHttpResponse<{ '_embedded'?: { 'applicationAreas'?: Array<EntityModelApplicationAreaDto> }, 'page'?: PageMetadata }>> {
 
     const rb = new RequestBuilder(this.rootUrl, ApplicationAreasService.GetApplicationAreas1Path, 'get');
     if (params) {
@@ -48,12 +49,12 @@ export class ApplicationAreasService extends BaseService {
 
     }
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*'
+      responseType: 'json',
+      accept: 'application/hal+json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PagedModelEntityModelApplicationAreaDto>;
+        return r as StrictHttpResponse<{ '_embedded'?: { 'applicationAreas'?: Array<EntityModelApplicationAreaDto> }, 'page'?: PageMetadata }>;
       })
     );
   }
@@ -68,19 +69,21 @@ export class ApplicationAreasService extends BaseService {
     page?: number;
     size?: number;
 
-  }): Observable<PagedModelEntityModelApplicationAreaDto> {
+  }): Observable<{ '_embedded'?: { 'applicationAreas'?: Array<EntityModelApplicationAreaDto> }, 'page'?: PageMetadata }> {
 
     return this.getApplicationAreas1$Response(params).pipe(
-      map((r: StrictHttpResponse<PagedModelEntityModelApplicationAreaDto>) => r.body as PagedModelEntityModelApplicationAreaDto)
+      map((r: StrictHttpResponse<{ '_embedded'?: { 'applicationAreas'?: Array<EntityModelApplicationAreaDto> }, 'page'?: PageMetadata }>) => r.body as { '_embedded'?: { 'applicationAreas'?: Array<EntityModelApplicationAreaDto> }, 'page'?: PageMetadata })
     );
   }
 
   /**
    * Path part for operation createApplicationArea
    */
-  static readonly CreateApplicationAreaPath = '/application-areas/';
+  static readonly CreateApplicationAreaPath = '/v1/application-areas';
 
   /**
+   * Custom ID will be ignored.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createApplicationArea()` instead.
    *
@@ -88,7 +91,7 @@ export class ApplicationAreasService extends BaseService {
    */
   createApplicationArea$Response(params: {
       body: ApplicationAreaDto
-  }): Observable<StrictHttpResponse<EntityModelApplicationAreaDto>> {
+  }): Observable<StrictHttpResponse<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }>> {
 
     const rb = new RequestBuilder(this.rootUrl, ApplicationAreasService.CreateApplicationAreaPath, 'post');
     if (params) {
@@ -97,17 +100,19 @@ export class ApplicationAreasService extends BaseService {
       rb.body(params.body, 'application/json');
     }
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*'
+      responseType: 'json',
+      accept: 'application/hal+json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<EntityModelApplicationAreaDto>;
+        return r as StrictHttpResponse<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }>;
       })
     );
   }
 
   /**
+   * Custom ID will be ignored.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createApplicationArea$Response()` instead.
    *
@@ -115,17 +120,17 @@ export class ApplicationAreasService extends BaseService {
    */
   createApplicationArea(params: {
       body: ApplicationAreaDto
-  }): Observable<EntityModelApplicationAreaDto> {
+  }): Observable<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }> {
 
     return this.createApplicationArea$Response(params).pipe(
-      map((r: StrictHttpResponse<EntityModelApplicationAreaDto>) => r.body as EntityModelApplicationAreaDto)
+      map((r: StrictHttpResponse<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }>) => r.body as { 'id'?: string, 'name': string, '_links'?: Array<Link> })
     );
   }
 
   /**
    * Path part for operation getApplicationAreaById
    */
-  static readonly GetApplicationAreaByIdPath = '/application-areas/{id}';
+  static readonly GetApplicationAreaByIdPath = '/v1/application-areas/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -136,7 +141,7 @@ export class ApplicationAreasService extends BaseService {
   getApplicationAreaById$Response(params: {
     id: string;
 
-  }): Observable<StrictHttpResponse<EntityModelApplicationAreaDto>> {
+  }): Observable<StrictHttpResponse<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }>> {
 
     const rb = new RequestBuilder(this.rootUrl, ApplicationAreasService.GetApplicationAreaByIdPath, 'get');
     if (params) {
@@ -145,12 +150,12 @@ export class ApplicationAreasService extends BaseService {
 
     }
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*'
+      responseType: 'json',
+      accept: 'application/hal+json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<EntityModelApplicationAreaDto>;
+        return r as StrictHttpResponse<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }>;
       })
     );
   }
@@ -164,19 +169,21 @@ export class ApplicationAreasService extends BaseService {
   getApplicationAreaById(params: {
     id: string;
 
-  }): Observable<EntityModelApplicationAreaDto> {
+  }): Observable<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }> {
 
     return this.getApplicationAreaById$Response(params).pipe(
-      map((r: StrictHttpResponse<EntityModelApplicationAreaDto>) => r.body as EntityModelApplicationAreaDto)
+      map((r: StrictHttpResponse<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }>) => r.body as { 'id'?: string, 'name': string, '_links'?: Array<Link> })
     );
   }
 
   /**
    * Path part for operation updateApplicationArea
    */
-  static readonly UpdateApplicationAreaPath = '/application-areas/{id}';
+  static readonly UpdateApplicationAreaPath = '/v1/application-areas/{id}';
 
   /**
+   * Custom ID will be ignored.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `updateApplicationArea()` instead.
    *
@@ -185,7 +192,7 @@ export class ApplicationAreasService extends BaseService {
   updateApplicationArea$Response(params: {
     id: string;
       body: ApplicationAreaDto
-  }): Observable<StrictHttpResponse<EntityModelApplicationAreaDto>> {
+  }): Observable<StrictHttpResponse<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }>> {
 
     const rb = new RequestBuilder(this.rootUrl, ApplicationAreasService.UpdateApplicationAreaPath, 'put');
     if (params) {
@@ -195,17 +202,19 @@ export class ApplicationAreasService extends BaseService {
       rb.body(params.body, 'application/json');
     }
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*'
+      responseType: 'json',
+      accept: 'application/hal+json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<EntityModelApplicationAreaDto>;
+        return r as StrictHttpResponse<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }>;
       })
     );
   }
 
   /**
+   * Custom ID will be ignored.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `updateApplicationArea$Response()` instead.
    *
@@ -214,17 +223,17 @@ export class ApplicationAreasService extends BaseService {
   updateApplicationArea(params: {
     id: string;
       body: ApplicationAreaDto
-  }): Observable<EntityModelApplicationAreaDto> {
+  }): Observable<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }> {
 
     return this.updateApplicationArea$Response(params).pipe(
-      map((r: StrictHttpResponse<EntityModelApplicationAreaDto>) => r.body as EntityModelApplicationAreaDto)
+      map((r: StrictHttpResponse<{ 'id'?: string, 'name': string, '_links'?: Array<Link> }>) => r.body as { 'id'?: string, 'name': string, '_links'?: Array<Link> })
     );
   }
 
   /**
    * Path part for operation deleteApplicationArea
    */
-  static readonly DeleteApplicationAreaPath = '/application-areas/{id}';
+  static readonly DeleteApplicationAreaPath = '/v1/application-areas/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -244,8 +253,8 @@ export class ApplicationAreasService extends BaseService {
 
     }
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*'
+      responseType: 'json',
+      accept: 'application/hal+json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {

@@ -39,7 +39,6 @@ import { SoftwarePlatformViewComponent } from './components/software-platforms/s
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { AlgorithmPropertiesComponent } from './components/algorithms/algorithm-properties/algorithm-properties.component';
-import { PropertyInputComponent } from './components/generics/property-input/property-input.component';
 import { AlgorithmRelatedAlgosListComponent } from './components/algorithms/algorithm-related-algos-list/algorithm-related-algos-list.component';
 import { AlgorithmPublicationsListComponent } from './components/algorithms/algorithm-publications-list/algorithm-publications-list.component';
 import { AlgorithmImplementationsListComponent } from './components/algorithms/algorithm-implementations-list/algorithm-implementations-list.component';
@@ -49,6 +48,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
 import { TreeOutputComponent } from './components/generics/tree-output/tree-output.component';
+import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,6 @@ import { TreeOutputComponent } from './components/generics/tree-output/tree-outp
     CloudServiceViewComponent,
     PublicationViewComponent,
     AlgorithmPropertiesComponent,
-    PropertyInputComponent,
     AlgorithmRelatedAlgosListComponent,
     AlgorithmPublicationsListComponent,
     AlgorithmImplementationsListComponent,
@@ -75,7 +74,6 @@ import { TreeOutputComponent } from './components/generics/tree-output/tree-outp
     PublicationListComponent,
     AlgorithmListComponent,
     ChipCollectionComponent,
-    PropertyInputComponent,
     TreeOutputComponent,
   ],
   imports: [
@@ -110,6 +108,8 @@ import { TreeOutputComponent } from './components/generics/tree-output/tree-outp
     MatButtonModule,
     MatChipsModule,
     MatTreeModule,
+    // app modules
+    NavigationBreadcrumbModule,
   ],
   entryComponents: [
     // dialogs need to be provided as entry component

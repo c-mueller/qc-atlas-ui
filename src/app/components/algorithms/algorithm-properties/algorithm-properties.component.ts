@@ -19,6 +19,10 @@ export class AlgorithmPropertiesComponent implements OnInit {
   @Output() removeApplicationArea: EventEmitter<
     EntityModelApplicationAreaDto
   > = new EventEmitter<EntityModelApplicationAreaDto>();
+  @Output() updateAlgorithmField: EventEmitter<{
+    field;
+    value;
+  }> = new EventEmitter<{ field; value }>();
   @Input() algorithm: EntityModelAlgorithmDto;
   @Input() applicationAreas: EntityModelApplicationAreaDto[];
 
@@ -62,8 +66,8 @@ export class AlgorithmPropertiesComponent implements OnInit {
     this.createDummyCompureResourceProperties();
   }
 
-  onChangesSaved(value): void {
-    console.log(value);
+  onChangesSaved(value: string, field: string): void {
+    this.updateAlgorithmField.emit({ field, value });
   }
 
   addApplicationAreaEvent(applicationArea: string): void {

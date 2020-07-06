@@ -147,6 +147,20 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
     }
   }
 
+  updateAlgorithmField(event: { field; value }): void {
+    this.algorithm[event.field] = event.value;
+    this.algorithmService
+      .updateAlgorithm({ algoId: this.algorithm.id, body: this.algorithm })
+      .subscribe(
+        (algo) => {
+          this.algorithm = algo;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
   addApplicationArea(applicationArea: string): void {
     this.applicationAreasService
       .createApplicationArea({ body: { name: applicationArea } })

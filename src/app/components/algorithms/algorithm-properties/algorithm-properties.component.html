@@ -4,18 +4,19 @@
       <app-text-input class="w-100 p-2"
                       [name]="'Acronym'"
                       [value]="algorithm.acronym"
-                      (onSaveChanges)="onChangesSaved($event)"></app-text-input>
+                      (onSaveChanges)="onChangesSaved($event, 'acronym')"></app-text-input>
       <app-text-input class="w-100 p-2"
                       [name]="'Intent'"
                       [value]="algorithm.intent"
                       [multiline]="true"
                       [maxLines]="5"
-                      (onSaveChanges)="onChangesSaved($event)"></app-text-input>
+                      (onSaveChanges)="onChangesSaved($event, 'intent')"></app-text-input>
 
       <app-text-input class="w-100 p-2" [name]="'Problem'"
                       [value]="algorithm.problem"
                       [multiline]="true"
-                      [maxLines]="5"></app-text-input>
+                      [maxLines]="5"
+                      (onSaveChanges)="onChangesSaved($event, 'problem')"></app-text-input>
     </div>
 
     <!-- Problem types -->
@@ -41,19 +42,22 @@
                       [name]="'Input format'"
                       [value]="algorithm.inputFormat"
                       [multiline]="true"
-                      [maxLines]="5"></app-text-input>
+                      [maxLines]="5"
+                      (onSaveChanges)="onChangesSaved($event, 'inputFormat')"></app-text-input>
 
       <app-text-input class="w-100 p-2"
                       [name]="'Parameters'"
                       [value]="algorithm.algoParameter"
                       [multiline]="true"
-                      [maxLines]="5"></app-text-input>
+                      [maxLines]="5"
+                      (onSaveChanges)="onChangesSaved($event, 'algoParameter')"></app-text-input>
 
       <app-text-input class="w-100 p-2"
                       [name]="'Output format'"
                       [value]="algorithm.outputFormat"
                       [multiline]="true"
-                      [maxLines]="5"></app-text-input>
+                      [maxLines]="5"
+                      (onSaveChanges)="onChangesSaved($event, 'outputFormat')"></app-text-input>
     </div>
 
 
@@ -77,21 +81,24 @@
                       [name]="'Solution'"
                       [value]="algorithm.solution"
                       [multiline]="true"
-                      [maxLines]="5"></app-text-input>
+                      [maxLines]="5"
+                      (onSaveChanges)="onChangesSaved($event, 'solution')"></app-text-input>
 
       <app-text-input class="w-100 p-2"
                       [name]="'Assumptions'"
                       [value]="algorithm.assumptions"
                       [multiline]="true"
-                      [maxLines]="5"></app-text-input>
+                      [maxLines]="5"
+                      (onSaveChanges)="onChangesSaved($event, 'assumptions')"></app-text-input>
     </div>
 
     <app-text-input class="w-100 p-2" *ngIf="algorithm.computationModel === 'QUANTUM'" [name]="'Speedup'"
-                    [value]="algorithm.speedUp"></app-text-input>
+                    [value]="algorithm.speedUp"
+                    (onSaveChanges)="onChangesSaved($event, 'speedUp')"></app-text-input>
     <!-- TODO: Display QuantumComputationModel & NISQReady-->
     <!-- TODO: finish Sketch -->
     <br>
-    <mat-form-field class="m-4" appearance="fill">
+    <mat-form-field class="m-4">
       <mat-label>Sketch type</mat-label>
       <mat-select [(ngModel)]="algorithm.sketch">
         <mat-option *ngFor="let option of sketchOptions" [value]="option">{{option}}</mat-option>

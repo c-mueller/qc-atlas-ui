@@ -39,9 +39,9 @@ export class AlgorithmImplementationsListComponent implements OnInit {
       );
   }
 
-  onAddElement(): void {}
+  onReferenceImplementation(): void {}
 
-  onDeleteElements($event): void {}
+  onDeleteReferencedImplementation($event): void {}
 
   onDatalistConfigChanged($event): void {}
 

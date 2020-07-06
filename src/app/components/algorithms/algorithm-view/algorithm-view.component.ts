@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EntityModelApplicationAreaDto } from 'api/models/entity-model-application-area-dto';
 import { ApplicationAreasService } from 'api/services/application-areas.service';
+import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
 import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 
@@ -27,6 +28,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
 
   algorithm: EntityModelAlgorithmDto;
   applicationAreas: EntityModelApplicationAreaDto[];
+  problemTypes: EntityModelProblemTypeDto[];
 
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
@@ -44,17 +46,15 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
       this.algorithmService.getAlgorithm({ algoId }).subscribe(
         (algo: EntityModelAlgorithmDto) => {
           this.algorithm = algo;
-          // this.defineMissingAlgorithmFields();
           this.links[0] = {
             heading: this.algorithm.name,
             subHeading: this.algorithm.computationModel + ' Algorithm',
           };
           this.getApplicationAreasForAlgorithm(algoId);
-          // problem type
+          this.getProblemTypesForAlgorithm(algoId);
         },
         (error) => {
           console.log(error);
-          this.createEmptyAlgorithm();
         }
       );
     });
@@ -80,59 +80,19 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
     );
   }
 
-  createEmptyAlgorithm(): void {
-    this.algorithm = {
-      name: 'test algorithm',
-      computationModel: 'QUANTUM',
-      quantumComputationModel: 'GATE_BASED',
-      acronym: 'test acronym',
-    };
-    // this.defineMissingAlgorithmFields();
-    this.links[0] = {
-      heading: this.algorithm.name,
-      subHeading: this.algorithm.computationModel + ' Algorithm',
-    };
-  }
-
-  defineMissingAlgorithmFields(): void {
-    if (this.algorithm.acronym == null) {
-      this.algorithm.acronym = '';
-    }
-    if (this.algorithm.intent == null) {
-      this.algorithm.intent = '';
-    }
-    if (this.algorithm.problem == null) {
-      this.algorithm.problem = '';
-    }
-    if (this.algorithm.inputFormat == null) {
-      this.algorithm.inputFormat = '';
-    }
-    if (this.algorithm.algoParameter == null) {
-      this.algorithm.algoParameter = '';
-    }
-    if (this.algorithm.outputFormat == null) {
-      this.algorithm.outputFormat = '';
-    }
-    if (this.algorithm.solution == null) {
-      this.algorithm.solution = '';
-    }
-    if (this.algorithm.assumptions == null) {
-      this.algorithm.assumptions = '';
-    }
-    // if (this.algorithm.applicationAreas == null) {
-    //   this.algorithm.applicationAreas = [];
-    // }
-    // if (this.algorithm.problemTypes == null) {
-    //   this.algorithm.problemTypes = [];
-    // }
-    if (this.algorithm.computationModel === 'QUANTUM') {
-      // TODO: Quantum specific variables
-      if (this.algorithm.speedUp == null) {
-        this.algorithm.speedUp = '';
+  getProblemTypesForAlgorithm(algoId: string): void {
+    this.algorithmService.getProblemTypes({ algoId }).subscribe(
+      (problems) => {
+        if (problems._embedded) {
+          this.problemTypes = problems._embedded.problemTypes;
+        } else {
+          this.problemTypes = [];
+        }
+      },
+      (error) => {
+        console.log(error);
       }
-    }
-
-    // sketch 'PSEUDOCODE' | 'CIRCUIT' | 'ISING_MODEL'
+    );
   }
 
   addTag(): void {
@@ -203,16 +163,5 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
           console.log(error);
         }
       );
-  }
-
-  testDialog() {
-    const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {
-      width: '400px',
-      data: { title: 'Add new algorithm' },
-    });
-
-    dialogRef.afterClosed().subscribe((dialogResult) => {
-      console.log(dialogResult);
-    });
   }
 }

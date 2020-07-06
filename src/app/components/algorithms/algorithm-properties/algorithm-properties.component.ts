@@ -4,6 +4,7 @@ import { AlgorithmService } from 'api/services/algorithm.service';
 import {
   EntityModelApplicationAreaDto,
   EntityModelComputingResourcePropertyDto,
+  EntityModelProblemTypeDto,
 } from 'api/models';
 import { FileNode } from '../../generics/tree-output/tree-output.component';
 import { Option } from '../../generics/property-input/select-input.component';
@@ -26,6 +27,7 @@ export class AlgorithmPropertiesComponent implements OnInit {
   }> = new EventEmitter<{ field; value }>();
   @Input() algorithm: EntityModelAlgorithmDto;
   @Input() applicationAreas: EntityModelApplicationAreaDto[];
+  @Input() problemTypes: EntityModelProblemTypeDto[];
 
   sketchOptions: Option[] = [
     { value: 'PSEUDOCODE', label: 'Pseudocode' },
@@ -70,7 +72,7 @@ export class AlgorithmPropertiesComponent implements OnInit {
     },
   ];
 
-  constructor(private algorithmService: AlgorithmService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.createDummyCompureResourceProperties();
@@ -93,7 +95,7 @@ export class AlgorithmPropertiesComponent implements OnInit {
   }
 
   createDummyCompureResourceProperties(): void {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       const element: EntityModelComputingResourcePropertyDto = {
         id: i.toString(),
         type: {

@@ -91,17 +91,19 @@
                     (onSaveChanges)="onChangesSaved($event, 'assumptions')"></app-text-input>
   </div>
 
-  <app-text-input class="w-100 p-2" *ngIf="algorithm.computationModel === 'QUANTUM'"
-                  [name]="'Speedup'"
-                  [value]="algorithm.speedUp"
-                  (onSaveChanges)="onChangesSaved($event, 'speedUp')"></app-text-input>
+  <div class="d-flex">
+    <app-select-input class="p-2" *ngIf="algorithm.computationModel === 'QUANTUM'"
+                      [name]="'Quantum computation model'"
+                      [value]="algorithm.quantumComputationModel"
+                      [choices]="quantumComputationModelOptions"></app-select-input>
 
-  <app-select-input class="p-2" *ngIf="algorithm.computationModel === 'QUANTUM'"
-                    [name]="'Quantum computation model'"
-                    [value]="algorithm.quantumComputationModel"
-                    [choices]="quantumComputationModelOptions"></app-select-input>
-
+    <app-text-input class="w-100 p-2" *ngIf="algorithm.computationModel === 'QUANTUM'"
+                    [name]="'Speedup'"
+                    [value]="algorithm.speedUp"
+                    (onSaveChanges)="onChangesSaved($event, 'speedUp')"></app-text-input>
+  </div>
   <!-- TODO: NISQReady -->
+
   <!-- TODO: finish Sketch -->
   <br>
   <app-select-input class="p-2"

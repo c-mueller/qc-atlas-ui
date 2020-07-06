@@ -99,6 +99,10 @@ export class AlgorithmPropertiesComponent implements OnInit {
     this.removeApplicationArea.emit(applicationArea);
   }
 
+  addComputeResourceProperty(): void {
+    console.log('add compute resource property');
+  }
+
   createDummyCompureResourceProperties(): void {
     for (let i = 0; i < 10; i++) {
       const element: EntityModelComputingResourcePropertyDto = {

@@ -1,92 +1,100 @@
 <div class="p-4">
-  <div class="d-flex">
-    <app-text-input class="w-100 p-2"
-                    [name]="'Acronym'"
-                    [value]="algorithm.acronym"
-                    (onSaveChanges)="onChangesSaved($event)"></app-text-input>
-    <app-text-input class="w-100 p-2"
-                    [name]="'Intent'"
-                    [value]="algorithm.intent"
-                    [multiline]="true"
-                    [maxLines]="5"
-                    (onSaveChanges)="onChangesSaved($event)"></app-text-input>
+  <mat-card>
+    <div class="d-flex">
+      <app-text-input class="w-100 p-2"
+                      [name]="'Acronym'"
+                      [value]="algorithm.acronym"
+                      (onSaveChanges)="onChangesSaved($event)"></app-text-input>
+      <app-text-input class="w-100 p-2"
+                      [name]="'Intent'"
+                      [value]="algorithm.intent"
+                      [multiline]="true"
+                      [maxLines]="5"
+                      (onSaveChanges)="onChangesSaved($event)"></app-text-input>
 
-    <app-text-input class="w-100 p-2" [name]="'Problem'"
-                    [value]="algorithm.problem"
-                    [multiline]="true"
-                    [maxLines]="5"></app-text-input>
-  </div>
+      <app-text-input class="w-100 p-2" [name]="'Problem'"
+                      [value]="algorithm.problem"
+                      [multiline]="true"
+                      [maxLines]="5"></app-text-input>
+    </div>
 
-  <!-- Problem types -->
-  <br>
-  <div class="d-flex">
-    <app-tree-output class="w-100 p-2"
-                     [name]="'Problem-Types'"
-                     [treeData]="problemTypeTreeData"></app-tree-output>
+    <!-- Problem types -->
+    <br>
+    <div class="d-flex">
+      <app-tree-output class="w-100 p-2"
+                       [name]="'Problem-Types'"
+                       [treeData]="problemTypeTreeData"></app-tree-output>
 
-    <app-chip-collection class="w-100 p-2"
-                         [title]="'Application areas'"
-                         [elements]="sketchOptions"
-                         (onAddElement)="addApplicationAreaEvent($event)"
-                         (onRemoveElement)="removeApplicationAreaEvent($event)"></app-chip-collection>
-  </div>
-
-
-  <!-- TODO: Add related patterns -->
-
-  <div class="d-flex">
-    <app-text-input class="w-100 p-2"
-                    [name]="'Input format'"
-                    [value]="algorithm.inputFormat"
-                    [multiline]="true"
-                    [maxLines]="5"></app-text-input>
-
-    <app-text-input class="w-100 p-2"
-                    [name]="'Parameters'"
-                    [value]="algorithm.algoParameter"
-                    [multiline]="true"
-                    [maxLines]="5"></app-text-input>
-
-    <app-text-input class="w-100 p-2"
-                    [name]="'Output format'"
-                    [value]="algorithm.outputFormat"
-                    [multiline]="true"
-                    [maxLines]="5"></app-text-input>
-  </div>
+      <app-chip-collection class="w-100 p-2"
+                           [title]="'Application areas'"
+                           [elements]="sketchOptions"
+                           (onAddElement)="addApplicationAreaEvent($event)"
+                           (onRemoveElement)="removeApplicationAreaEvent($event)"></app-chip-collection>
+    </div>
 
 
-  <div class="m-4">
-    <mat-label class="property-label">Required compute resources</mat-label>
-    <mat-list>
-      <mat-list-item *ngFor="let property of computeResourceProperties">
-        {{property.type.name}}: {{property.type.datatype.toLowerCase()}} = {{property.value}}
-      </mat-list-item>
-    </mat-list>
-  </div>
+    <!-- TODO: Add related patterns -->
 
-  <div class="d-flex">
-    <app-text-input class="w-100 p-2"
-                    [name]="'Solution'"
-                    [value]="algorithm.solution"
-                    [multiline]="true"
-                    [maxLines]="5"></app-text-input>
+    <div class="d-flex">
+      <app-text-input class="w-100 p-2"
+                      [name]="'Input format'"
+                      [value]="algorithm.inputFormat"
+                      [multiline]="true"
+                      [maxLines]="5"></app-text-input>
 
-    <app-text-input class="w-100 p-2"
-                    [name]="'Assumptions'"
-                    [value]="algorithm.assumptions"
-                    [multiline]="true"
-                    [maxLines]="5"></app-text-input>
-  </div>
+      <app-text-input class="w-100 p-2"
+                      [name]="'Parameters'"
+                      [value]="algorithm.algoParameter"
+                      [multiline]="true"
+                      [maxLines]="5"></app-text-input>
 
-  <app-text-input class="w-100 p-2" *ngIf="algorithm.computationModel === 'QUANTUM'" [name]="'Speedup'"
-                  [value]="algorithm.acronym"></app-text-input>
-  <!-- TODO: Display QuantumComputationModel & NISQReady-->
-  <!-- TODO: finish Sketch -->
-  <br>
-  <mat-form-field class="m-4" appearance="fill">
-    <mat-label>Sketch type</mat-label>
-    <mat-select [(ngModel)]="algorithm.sketch">
-      <mat-option *ngFor="let option of sketchOptions" [value]="option">{{option}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+      <app-text-input class="w-100 p-2"
+                      [name]="'Output format'"
+                      [value]="algorithm.outputFormat"
+                      [multiline]="true"
+                      [maxLines]="5"></app-text-input>
+    </div>
+
+
+    <div class="m-4">
+      <mat-label class="property-label">Required compute resource properties</mat-label>
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="addComputeResourceProperty()"><mat-icon>add</mat-icon></button>
+      <mat-list>
+        <mat-list-item *ngFor="let property of computeResourceProperties">
+          {{property.type.name}}: {{property.type.datatype.toLowerCase()}} = {{property.value}}
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+    <div class="d-flex">
+      <app-text-input class="w-100 p-2"
+                      [name]="'Solution'"
+                      [value]="algorithm.solution"
+                      [multiline]="true"
+                      [maxLines]="5"></app-text-input>
+
+      <app-text-input class="w-100 p-2"
+                      [name]="'Assumptions'"
+                      [value]="algorithm.assumptions"
+                      [multiline]="true"
+                      [maxLines]="5"></app-text-input>
+    </div>
+
+    <app-text-input class="w-100 p-2" *ngIf="algorithm.computationModel === 'QUANTUM'" [name]="'Speedup'"
+                    [value]="algorithm.acronym"></app-text-input>
+    <!-- TODO: Display QuantumComputationModel & NISQReady-->
+    <!-- TODO: finish Sketch -->
+    <br>
+    <mat-form-field class="m-4" appearance="fill">
+      <mat-label>Sketch type</mat-label>
+      <mat-select [(ngModel)]="algorithm.sketch">
+        <mat-option *ngFor="let option of sketchOptions" [value]="option">{{option}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
 </div>

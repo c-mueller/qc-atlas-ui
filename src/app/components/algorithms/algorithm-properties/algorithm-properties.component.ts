@@ -6,6 +6,7 @@ import {
   EntityModelComputingResourcePropertyDto,
 } from 'api/models';
 import { FileNode } from '../../generics/tree-output/tree-output.component';
+import { Option } from '../../generics/property-input/select-input.component';
 
 @Component({
   selector: 'app-algorithm-properties',
@@ -26,7 +27,16 @@ export class AlgorithmPropertiesComponent implements OnInit {
   @Input() algorithm: EntityModelAlgorithmDto;
   @Input() applicationAreas: EntityModelApplicationAreaDto[];
 
-  sketchOptions: string[] = ['PSEUDOCODE', 'CIRCUIT', 'ISING_MODEL'];
+  sketchOptions: Option[] = [
+    { value: 'PSEUDOCODE', label: 'Pseudocode' },
+    { value: 'CIRCUIT', label: 'Circuit' },
+    { value: 'ISING_MODEL', label: 'Ising model' },
+  ];
+  quantumComputationModelOptions: Option[] = [
+    { value: 'GATE_BASED', label: 'Gate based' },
+    { value: 'MEASUREMENT_BASED', label: 'Measurement based' },
+    { value: 'QUANTUM_ANNEALING', label: 'Quantum Annealing' },
+  ];
   computeResourceProperties: EntityModelComputingResourcePropertyDto[] = [];
 
   // parent problem types data for testing purposes of output tree

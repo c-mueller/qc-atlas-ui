@@ -7,9 +7,9 @@
            [allowSort]=true
            [pagination]=pagingInfo
            [paginatorConfig]=paginatorConfig
-           [routingVariable]="'id'"
            (addElement)="onAddElement()"
            (deleteElements)="onDeleteElements($event)"
            (datalistConfigChanged)="onDatalistConfigChanged($event)"
-           (pageChange)="onPageChanged($event)">
+           (pageChange)="onPageChanged($event)"
+           (elementClicked)="onElementClicked($event)">
 </app-table>

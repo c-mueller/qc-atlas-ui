@@ -74,9 +74,18 @@ export class AlgorithmImplementationsListComponent implements OnInit {
     });
   }
 
-  onDeleteImplementation($event): void {}
+  onDeleteImplementation(event): void {}
 
-  onDatalistConfigChanged($event): void {}
+  onDatalistConfigChanged(event): void {}
 
-  onPageChanged($event): void {}
+  onPageChanged(event): void {}
+
+  onImplementationClicked(implementation: EntityModelImplementationDto): void {
+    this.router.navigate([
+      'algorithms',
+      this.algorithm.id,
+      'implementations',
+      implementation.id,
+    ]);
+  }
 }

@@ -41,9 +41,11 @@ export class AlgorithmRelatedAlgosListComponent implements OnInit {
 
   onAddElement(): void {}
 
-  onDeleteElements($event): void {}
+  onDeleteElements(event): void {}
 
-  onDatalistConfigChanged($event): void {}
+  onDatalistConfigChanged(event): void {}
 
-  onPageChanged($event): void {}
+  onPageChanged(event): void {}
+
+  onElementClicked(event): void {}
 }

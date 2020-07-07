@@ -47,4 +47,6 @@ export class AlgorithmPublicationsListComponent implements OnInit {
   onDatalistConfigChanged($event): void {}
 
   onPageChanged($event): void {}
+
+  onElementClicked(event): void {}
 }

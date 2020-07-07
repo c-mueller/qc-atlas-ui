@@ -13,8 +13,8 @@ export class AlgorithmPublicationsListComponent implements OnInit {
   @Input() algorithm: EntityModelAlgorithmDto;
 
   publications: EntityModelPublicationDto[];
-  variableNames: string[] = ['Title', 'Authors', 'DOI'];
-  tableColumns: string[] = ['title', 'authors', 'doi'];
+  variableNames: string[] = ['title', 'authors', 'doi'];
+  tableColumns: string[] = ['Title', 'Authors', 'DOI'];
   pagingInfo: any = {};
   paginatorConfig: any = {
     amountChoices: [10, 25, 50],

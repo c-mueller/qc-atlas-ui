@@ -30,7 +30,6 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AddAlgorithmDialogComponent } from './components/algorithms/dialogs/add-algorithm-dialog.component';
 import { JsonImportDialogComponent } from './components/dialogs/json-import-dialog.component';
 import { MissingEntityDialogComponent } from './components/dialogs/missing-entity-dialog.component';
 import { SoftwarePlatformViewComponent } from './components/software-platforms/software-platform-view/software-platform-view.component';
@@ -94,12 +93,6 @@ import { GenericsModule } from './components/generics/generics.module';
     AlgorithmModule,
     ImplementationViewModule,
     GenericsModule,
-  ],
-  entryComponents: [
-    // dialogs need to be provided as entry component
-    AddAlgorithmDialogComponent,
-    JsonImportDialogComponent,
-    MissingEntityDialogComponent,
   ],
   bootstrap: [AppComponent],
   exports: [],

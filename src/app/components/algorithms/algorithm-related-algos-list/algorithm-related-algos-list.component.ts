@@ -12,12 +12,8 @@ export class AlgorithmRelatedAlgosListComponent implements OnInit {
   @Input() algorithm: EntityModelAlgorithmDto;
 
   algorithmRelations: EntityModelAlgorithmRelationDto[];
-  variableNames: string[] = ['Name', 'Type', 'Relation'];
-  tableColumns: string[] = [
-    'targetAlgorithm',
-    'targetAlgorithm',
-    'targetAlgorithm',
-  ];
+  variableNames: string[] = [];
+  tableColumns: string[] = []; // 'Name', 'Type', 'Relation'
   pagingInfo: any = {};
   paginatorConfig: any = {
     amountChoices: [10, 25, 50],

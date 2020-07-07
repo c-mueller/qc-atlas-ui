@@ -2,6 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AlgorithmService } from 'api/services/algorithm.service';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { EntityModelImplementationDto } from 'api/models/entity-model-implementation-dto';
+import { MatDialog } from '@angular/material/dialog';
+import { ImplementationDto } from 'api/models/implementation-dto';
+import { Router } from '@angular/router';
+import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 
 @Component({
   selector: 'app-algorithm-implementations-list',
@@ -12,15 +16,19 @@ export class AlgorithmImplementationsListComponent implements OnInit {
   @Input() algorithm: EntityModelAlgorithmDto;
 
   implementations: EntityModelImplementationDto[];
-  variableNames: string[] = ['Name', 'Description', 'Dependencies'];
-  tableColumns: string[] = ['name', 'description', 'dependencies'];
+  variableNames: string[] = ['name', 'description', 'dependencies'];
+  tableColumns: string[] = ['Name', 'Description', 'Dependencies'];
   pagingInfo: any = {};
   paginatorConfig: any = {
     amountChoices: [10, 25, 50],
     selectedAmount: 10,
   };
 
-  constructor(private algorithmService: AlgorithmService) {}
+  constructor(
+    private algorithmService: AlgorithmService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.algorithmService
@@ -39,9 +47,34 @@ export class AlgorithmImplementationsListComponent implements OnInit {
       );
   }
 
-  onReferenceImplementation(): void {}
+  onAddImplementation(): void {
+    const params: any = {};
+    const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {
+      width: '400px',
+      data: { title: 'Add new implementation for this algorithm' },
+    });
 
-  onDeleteReferencedImplementation($event): void {}
+    dialogRef.afterClosed().subscribe((dialogResult) => {
+      if (dialogResult) {
+        const implementationDto: any = {
+          name: dialogResult.name,
+        };
+
+        params.body = implementationDto as ImplementationDto;
+        params.algoId = this.algorithm.id;
+        this.algorithmService.createImplementation(params).subscribe((data) => {
+          this.router.navigate([
+            'algorithms',
+            this.algorithm.id,
+            'implementations',
+            data.id,
+          ]);
+        });
+      }
+    });
+  }
+
+  onDeleteImplementation($event): void {}
 
   onDatalistConfigChanged($event): void {}
 

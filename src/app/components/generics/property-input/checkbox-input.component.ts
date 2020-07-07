@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractValueAccessor } from './abstract-value-accessor';
+import { AbstractValueAccessor, DoProvider } from './abstract-value-accessor';
 
 @Component({
   selector: 'app-checkbox-input',
   templateUrl: './checkbox-input.component.html',
   styleUrls: ['./checkbox-input.component.scss'],
+  providers: [DoProvider(CheckboxInputComponent)],
 })
 export class CheckboxInputComponent extends AbstractValueAccessor
   implements OnInit {

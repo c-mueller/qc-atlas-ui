@@ -8,12 +8,29 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { MatTreeModule } from '@angular/material/tree';
+import { MatSortModule } from '@angular/material/sort';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from '../../app-routing.module';
 import { TextInputComponent } from './property-input/text-input.component';
 import { SelectInputComponent } from './property-input/select-input.component';
+import { CheckboxInputComponent } from './property-input/checkbox-input.component';
+import { DataListComponent } from './data-list/data-list.component';
+import { ChipCollectionComponent } from './chip-collection/chip-collection.component';
+import { TreeOutputComponent } from './tree-output/tree-output.component';
 
 @NgModule({
-  declarations: [TextInputComponent, SelectInputComponent],
+  declarations: [
+    TextInputComponent,
+    SelectInputComponent,
+    CheckboxInputComponent,
+    DataListComponent,
+    ChipCollectionComponent,
+    TreeOutputComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,7 +41,20 @@ import { SelectInputComponent } from './property-input/select-input.component';
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
+    MatCheckboxModule,
+    MatTreeModule,
+    MatSortModule,
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
   ],
-  exports: [TextInputComponent, SelectInputComponent],
+  exports: [
+    TextInputComponent,
+    SelectInputComponent,
+    CheckboxInputComponent,
+    DataListComponent,
+    ChipCollectionComponent,
+    TreeOutputComponent,
+  ],
 })
 export class GenericsModule {}

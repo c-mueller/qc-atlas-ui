@@ -19,10 +19,10 @@ export class AddAlgorithmDialogComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  get name() {
+  get name(): any {
     return this.algorithmForm.get('name');
   }
-  get computationModel() {
+  get computationModel(): any {
     return this.algorithmForm.get('computationModel');
   }
 

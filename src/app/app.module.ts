@@ -31,27 +31,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AddImplementationDialogComponent } from './components/implementations/dialogs/add-implementation-dialog.component';
-import { AddAlgorithmDialogComponent } from './components/algorithms/dialogs/add-algorithm-dialog.component';
 import { JsonImportDialogComponent } from './components/dialogs/json-import-dialog.component';
 import { MissingEntityDialogComponent } from './components/dialogs/missing-entity-dialog.component';
-import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/algorithm-view.component';
 import { SoftwarePlatformViewComponent } from './components/software-platforms/software-platform-view/software-platform-view.component';
 import { CloudServiceViewComponent } from './components/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
-import { AlgorithmPropertiesComponent } from './components/algorithms/algorithm-properties/algorithm-properties.component';
-import { AlgorithmRelatedAlgosListComponent } from './components/algorithms/algorithm-related-algos-list/algorithm-related-algos-list.component';
-import { AlgorithmPublicationsListComponent } from './components/algorithms/algorithm-publications-list/algorithm-publications-list.component';
-import { AlgorithmImplementationsListComponent } from './components/algorithms/algorithm-implementations-list/algorithm-implementations-list.component';
-import { DataListComponent } from './components/generics/data-list/data-list.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
-import { AlgorithmListComponent } from './components/algorithms/algorithm-list/algorithm-list.component';
-import { TreeOutputComponent } from './components/generics/tree-output/tree-output.component';
-import { ChipCollectionComponent } from './components/generics/chip-collection/chip-collection.component';
 import { GenericDataService } from './util/generic-data.service';
 import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
 import { GenericsModule } from './components/generics/generics.module';
-import { CheckboxInputComponent } from './components/generics/property-input/checkbox-input.component';
+import { AlgorithmModule } from './components/algorithms/algorithm.module';
 
 @NgModule({
   declarations: [
@@ -59,26 +49,14 @@ import { CheckboxInputComponent } from './components/generics/property-input/che
     AppComponent,
     PageNotFoundComponent,
     // dialogs
-    AddAlgorithmDialogComponent,
     AddImplementationDialogComponent,
     JsonImportDialogComponent,
     MissingEntityDialogComponent,
-    AlgorithmViewComponent,
     SoftwarePlatformViewComponent,
     CloudServiceViewComponent,
     PublicationViewComponent,
-    AlgorithmPropertiesComponent,
-    AlgorithmRelatedAlgosListComponent,
-    AlgorithmPublicationsListComponent,
-    AlgorithmImplementationsListComponent,
-    ChipCollectionComponent,
-    DataListComponent,
     NavigationComponent,
     PublicationListComponent,
-    AlgorithmListComponent,
-    ChipCollectionComponent,
-    TreeOutputComponent,
-    CheckboxInputComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),
@@ -115,15 +93,10 @@ import { CheckboxInputComponent } from './components/generics/property-input/che
     // app modules
     NavigationBreadcrumbModule,
     GenericsModule,
-  ],
-  entryComponents: [
-    // dialogs need to be provided as entry component
-    AddAlgorithmDialogComponent,
-    AddImplementationDialogComponent,
-    JsonImportDialogComponent,
-    MissingEntityDialogComponent,
+    AlgorithmModule,
   ],
   providers: [GenericDataService],
   bootstrap: [AppComponent],
+  exports: [],
 })
 export class AppModule {}

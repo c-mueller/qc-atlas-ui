@@ -61,21 +61,23 @@ export class AlgorithmListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((dialogResult) => {
-      const algorithmDto: any = {
-        name: dialogResult.name,
-        computationModel: dialogResult.computationModel,
-      };
+      if (dialogResult) {
+        const algorithmDto: any = {
+          name: dialogResult.name,
+          computationModel: dialogResult.computationModel,
+        };
 
-      if (algorithmDto.computationModel === 'QUANTUM') {
-        algorithmDto.quantumComputationModel =
-          dialogResult.quantumComputationModel;
+        if (algorithmDto.computationModel === 'QUANTUM') {
+          algorithmDto.quantumComputationModel =
+            dialogResult.quantumComputationModel;
+        }
+
+        params.body = algorithmDto as AlgorithmDto;
+
+        this.algorithmService.createAlgorithm(params).subscribe((data) => {
+          this.router.navigate(['algorithms', data.id]);
+        });
       }
-
-      params.body = algorithmDto as AlgorithmDto;
-
-      this.algorithmService.createAlgorithm(params).subscribe((data) => {
-        this.router.navigate(['algorithms', data.id]);
-      });
     });
   }
 

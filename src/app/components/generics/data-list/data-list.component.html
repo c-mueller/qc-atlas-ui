@@ -49,7 +49,7 @@
             <!-- One column for each needed data variable -->
             <ng-container *ngFor="let column of dataColumns; let i = index">
               <th class="th-lg hide-arrow" mat-sort-header="{{ variableNames[i] }}"
-                  [disabled]="allowSort ? false : true " aria-controls="tableSortExample"
+                  [disabled]="!allowSort " aria-controls="tableSortExample"
                   scope="col">
                 <a>{{ column }}</a>
               </th>

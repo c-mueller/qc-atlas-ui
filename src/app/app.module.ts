@@ -30,7 +30,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AddImplementationDialogComponent } from './components/implementations/dialogs/add-implementation-dialog.component';
+import { AddAlgorithmDialogComponent } from './components/algorithms/dialogs/add-algorithm-dialog.component';
 import { JsonImportDialogComponent } from './components/dialogs/json-import-dialog.component';
 import { MissingEntityDialogComponent } from './components/dialogs/missing-entity-dialog.component';
 import { SoftwarePlatformViewComponent } from './components/software-platforms/software-platform-view/software-platform-view.component';
@@ -38,10 +38,10 @@ import { CloudServiceViewComponent } from './components/cloud-services/cloud-ser
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
-import { GenericDataService } from './util/generic-data.service';
 import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
-import { GenericsModule } from './components/generics/generics.module';
 import { AlgorithmModule } from './components/algorithms/algorithm.module';
+import { ImplementationViewModule } from './components/algorithms/implementation-view/implementation-view.module';
+import { GenericsModule } from './components/generics/generics.module';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,6 @@ import { AlgorithmModule } from './components/algorithms/algorithm.module';
     AppComponent,
     PageNotFoundComponent,
     // dialogs
-    AddImplementationDialogComponent,
     JsonImportDialogComponent,
     MissingEntityDialogComponent,
     SoftwarePlatformViewComponent,
@@ -92,10 +91,16 @@ import { AlgorithmModule } from './components/algorithms/algorithm.module';
     MatTreeModule,
     // app modules
     NavigationBreadcrumbModule,
-    GenericsModule,
     AlgorithmModule,
+    ImplementationViewModule,
+    GenericsModule,
   ],
-  providers: [GenericDataService],
+  entryComponents: [
+    // dialogs need to be provided as entry component
+    AddAlgorithmDialogComponent,
+    JsonImportDialogComponent,
+    MissingEntityDialogComponent,
+  ],
   bootstrap: [AppComponent],
   exports: [],
 })

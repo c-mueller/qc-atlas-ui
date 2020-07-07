@@ -3,17 +3,17 @@
     <div class="d-flex">
       <app-text-input class="w-100 p-2"
                       [name]="'Acronym'"
-                      [value]="algorithm.acronym"
+                      [(ngModel)]="algorithm.acronym"
                       (onSaveChanges)="onChangesSaved($event, 'acronym')"></app-text-input>
       <app-text-input class="w-100 p-2"
                       [name]="'Intent'"
-                      [value]="algorithm.intent"
+                      [(ngModel)]="algorithm.intent"
                       [multiline]="true"
                       [maxLines]="5"
                       (onSaveChanges)="onChangesSaved($event, 'intent')"></app-text-input>
 
       <app-text-input class="w-100 p-2" [name]="'Problem'"
-                      [value]="algorithm.problem"
+                      [(ngModel)]="algorithm.problem"
                       [multiline]="true"
                       [maxLines]="5"
                       (onSaveChanges)="onChangesSaved($event, 'problem')"></app-text-input>
@@ -42,21 +42,21 @@
     <div class="d-flex">
       <app-text-input class="w-100 p-2"
                       [name]="'Input format'"
-                      [value]="algorithm.inputFormat"
+                      [(ngModel)]="algorithm.inputFormat"
                       [multiline]="true"
                       [maxLines]="5"
                       (onSaveChanges)="onChangesSaved($event, 'inputFormat')"></app-text-input>
 
       <app-text-input class="w-100 p-2"
                       [name]="'Parameters'"
-                      [value]="algorithm.algoParameter"
+                      [(ngModel)]="algorithm.algoParameter"
                       [multiline]="true"
                       [maxLines]="5"
                       (onSaveChanges)="onChangesSaved($event, 'algoParameter')"></app-text-input>
 
       <app-text-input class="w-100 p-2"
                       [name]="'Output format'"
-                      [value]="algorithm.outputFormat"
+                      [(ngModel)]="algorithm.outputFormat"
                       [multiline]="true"
                       [maxLines]="5"
                       (onSaveChanges)="onChangesSaved($event, 'outputFormat')"></app-text-input>
@@ -86,14 +86,14 @@
     <div class="d-flex">
       <app-text-input class="w-100 p-2"
                       [name]="'Solution'"
-                      [value]="algorithm.solution"
+                      [(ngModel)]="algorithm.solution"
                       [multiline]="true"
                       [maxLines]="5"
                       (onSaveChanges)="onChangesSaved($event, 'solution')"></app-text-input>
 
       <app-text-input class="w-100 p-2"
                       [name]="'Assumptions'"
-                      [value]="algorithm.assumptions"
+                      [(ngModel)]="algorithm.assumptions"
                       [multiline]="true"
                       [maxLines]="5"
                       (onSaveChanges)="onChangesSaved($event, 'assumptions')"></app-text-input>
@@ -104,16 +104,16 @@
     <div class="d-flex">
       <app-select-input class="p-2"
                         [name]="'Quantum computation model'"
-                        [value]="algorithm.quantumComputationModel"
+                        [(ngModel)]="algorithm.quantumComputationModel"
                         [choices]="quantumComputationModelOptions"></app-select-input>
 
       <app-text-input class="w-100 p-2"
                       [name]="'Speedup'"
-                      [value]="algorithm.speedUp"
+                      [(ngModel)]="algorithm.speedUp"
                       (onSaveChanges)="onChangesSaved($event, 'speedUp')"></app-text-input>
     </div>
     <app-checkbox-input class="p-2" [name]="'NISQ ready'"
-                        [value]="algorithm.nisqReady" (onSaveChanges)="onChangesSaved($event, 'nisqReady')">
+                        [(ngModel)]="algorithm.nisqReady" (onSaveChanges)="onChangesSaved($event, 'nisqReady')">
     </app-checkbox-input>
   </mat-card>
 
@@ -121,7 +121,7 @@
   <mat-card class="m-4">
     <app-select-input class="p-2"
                       [name]="'Sketch type'"
-                      [value]="algorithm.sketch"
+                      [(ngModel)]="algorithm.sketch"
                       [choices]="sketchOptions"></app-select-input>
   </mat-card>
 

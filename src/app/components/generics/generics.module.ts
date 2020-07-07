@@ -9,12 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
 import { MatTreeModule } from '@angular/material/tree';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../../app-routing.module';
+import { GenericDataService } from '../../util/generic-data.service';
 import { TextInputComponent } from './property-input/text-input.component';
 import { SelectInputComponent } from './property-input/select-input.component';
 import { CheckboxInputComponent } from './property-input/checkbox-input.component';
@@ -55,6 +56,9 @@ import { TreeOutputComponent } from './tree-output/tree-output.component';
     DataListComponent,
     ChipCollectionComponent,
     TreeOutputComponent,
+    RouterModule,
+    MatSortModule,
   ],
+  providers: [GenericDataService],
 })
 export class GenericsModule {}

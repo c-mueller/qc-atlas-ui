@@ -51,7 +51,7 @@ import { ChipCollectionComponent } from './components/generics/chip-collection/c
 import { GenericDataService } from './util/generic-data.service';
 import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
 import { GenericsModule } from './components/generics/generics.module';
-import { ToggleInputComponent } from './components/generics/property-input/toggle-input.component';
+import { CheckboxInputComponent } from './components/generics/property-input/checkbox-input.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,7 @@ import { ToggleInputComponent } from './components/generics/property-input/toggl
     AlgorithmListComponent,
     ChipCollectionComponent,
     TreeOutputComponent,
-    ToggleInputComponent,
+    CheckboxInputComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),

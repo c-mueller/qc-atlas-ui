@@ -112,9 +112,9 @@
                       [value]="algorithm.speedUp"
                       (onSaveChanges)="onChangesSaved($event, 'speedUp')"></app-text-input>
     </div>
-    <app-toggle-input class="p-2" [name]="'NISQ ready'"
-                      [value]="algorithm.nisqReady" (onSaveChanges)="onChangesSaved($event, 'nisqReady')">
-    </app-toggle-input>
+    <app-checkbox-input class="p-2" [name]="'NISQ ready'"
+                        [value]="algorithm.nisqReady" (onSaveChanges)="onChangesSaved($event, 'nisqReady')">
+    </app-checkbox-input>
   </mat-card>
 
   <!-- TODO: finish Sketch -->

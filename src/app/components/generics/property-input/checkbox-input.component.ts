@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-toggle-input',
-  templateUrl: './toggle-input.component.html',
-  styleUrls: ['./toggle-input.component.scss'],
+  selector: 'app-checkbox-input',
+  templateUrl: './checkbox-input.component.html',
+  styleUrls: ['./checkbox-input.component.scss'],
 })
-export class ToggleInputComponent implements OnInit {
+export class CheckboxInputComponent implements OnInit {
   @Output() onSaveChanges: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @Input() name = '';

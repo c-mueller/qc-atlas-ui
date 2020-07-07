@@ -17,8 +17,8 @@ export class AlgorithmListComponent implements OnInit {
   variableNames = ['name', 'acronym', 'computationModel', 'problem'];
   pagingInfo: any = {};
   paginatorConfig: any = {
-    amountChoices: [1, 2, 3],
-    selectedAmount: 1,
+    amountChoices: [10, 25, 50],
+    selectedAmount: 10,
   };
 
   constructor(
@@ -51,6 +51,10 @@ export class AlgorithmListComponent implements OnInit {
     }
     this.pagingInfo.page = data.page;
     this.pagingInfo._links = data._links;
+  }
+
+  onElementClicked(algorithm: any): void {
+    this.router.navigate(['algorithms', algorithm.id]);
   }
 
   onAddElement(): void {

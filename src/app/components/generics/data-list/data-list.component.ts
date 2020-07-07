@@ -16,7 +16,7 @@ export class DataListComponent implements OnInit {
   @Input() allowSort: boolean;
   @Input() pagination: any;
   @Input() paginatorConfig: any;
-  @Input() routingVariable: string;
+  @Output() elementClicked = new EventEmitter<any>();
   @Output() addElement = new EventEmitter<void>();
   @Output() deleteElements = new EventEmitter<DeleteParams>();
   @Output() pageChange = new EventEmitter<string>();
@@ -57,8 +57,21 @@ export class DataListComponent implements OnInit {
     this.selection.clear();
   }
 
+  onElementClicked(element): void {
+    this.elementClicked.emit(element);
+    this.selection.clear();
+  }
+
   onDelete(): void {
     this.deleteElements.emit(this.generateDeleteParameter());
+    this.selection.clear();
+  }
+
+  onSingleDelete(element): void {
+    const deleteElement: any[] = [element];
+    const deleteParams = this.generateDeleteParameter();
+    deleteParams.elements = deleteElement;
+    this.deleteElements.emit(deleteParams);
     this.selection.clear();
   }
 

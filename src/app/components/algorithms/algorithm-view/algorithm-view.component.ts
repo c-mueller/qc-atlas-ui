@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { EntityModelApplicationAreaDto } from 'api/models/entity-model-application-area-dto';
 import { ApplicationAreasService } from 'api/services/application-areas.service';
 import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
+import { ProblemTypeService } from 'api/services/problem-type.service';
 import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 
@@ -29,6 +30,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   algorithm: EntityModelAlgorithmDto;
   applicationAreas: EntityModelApplicationAreaDto[];
   problemTypes: EntityModelProblemTypeDto[];
+  problemTypesTrees: EntityModelProblemTypeDto[][];
 
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
@@ -37,6 +39,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   constructor(
     private algorithmService: AlgorithmService,
     private applicationAreasService: ApplicationAreasService,
+    private problemTypeService: ProblemTypeService,
     private route: ActivatedRoute,
     private dialog: MatDialog
   ) {}
@@ -50,6 +53,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
             heading: this.algorithm.name,
             subHeading: this.algorithm.computationModel + ' Algorithm',
           };
+          console.log('Algorithm-view algo: ' + algo);
           this.getApplicationAreasForAlgorithm(algoId);
           this.getProblemTypesForAlgorithm(algoId);
         },
@@ -85,8 +89,27 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
       (problems) => {
         if (problems._embedded) {
           this.problemTypes = problems._embedded.problemTypes;
+          this.problemTypes.forEach((problemType) =>
+            this.addProblemTypeParentTree(problemType.id)
+          );
         } else {
           this.problemTypes = [];
+          this.problemTypesTrees = [];
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  addProblemTypeParentTree(id: string): void {
+    this.problemTypeService.getProblemTypeParentTree({ id }).subscribe(
+      (tree) => {
+        if (tree._embedded) {
+          this.problemTypesTrees.push(tree._embedded.problemTypes);
+        } else {
+          this.problemTypesTrees.push([]);
         }
       },
       (error) => {

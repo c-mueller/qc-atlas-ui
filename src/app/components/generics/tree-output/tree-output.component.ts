@@ -3,10 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { BehaviorSubject, of as observableOf } from 'rxjs';
+import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
 
 export class FileNode {
-  children: FileNode[];
-  filename: string;
+  parents: FileNode[];
+  problemType: EntityModelProblemTypeDto;
 }
 
 @Component({
@@ -32,48 +33,17 @@ export class TreeOutputComponent implements OnInit {
     if (this.treeData == null) {
       this.treeData = [
         {
-          filename: 'default node',
-          children: [],
+          parents: [],
+          problemType: { name: 'default problem type' },
         },
       ];
-      // this data structure is identical to the test data in algorithm-properties.component.ts
-      // uncomment the following lines to set the test data
-      // this.treeData = [
-      //   {
-      //     filename: 'problem-type 1',
-      //     children: [
-      //       {
-      //         filename: 'parent problem-type 1',
-      //         children: [
-      //           {
-      //             filename: 'parent problem-type 2',
-      //             children: [],
-      //           },
-      //         ],
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     filename: 'problem-type 2',
-      //     children: [
-      //       {
-      //         filename: 'parent problem-type 1',
-      //         children: [],
-      //       },
-      //       {
-      //         filename: 'parent problem-type 3',
-      //         children: [],
-      //       },
-      //     ],
-      //   },
-      // ];
     }
 
     this.dataChange.next(this.treeData);
   }
 
-  getChildren = (node: FileNode) => observableOf(node.children);
+  getChildren = (node: FileNode) => observableOf(node.parents);
 
   hasNestedChild = (_: number, nodeData: FileNode) =>
-    nodeData.children.length > 0;
+    nodeData.parents.length > 0;
 }

@@ -77,7 +77,7 @@ export class AlgorithmPropertiesComponent implements OnInit {
     this.createDummyCompureResourceProperties();
   }
 
-  onChangesSaved(value: string, field: string): void {
+  onChangesSaved(value: any, field: string): void {
     this.updateAlgorithmField.emit({ field, value });
   }
 

@@ -100,21 +100,22 @@
     </div>
   </mat-card>
 
-  <mat-card class="m-4">
+  <mat-card class="m-4" *ngIf="algorithm.computationModel === 'QUANTUM'">
     <div class="d-flex">
-      <app-select-input class="p-2" *ngIf="algorithm.computationModel === 'QUANTUM'"
+      <app-select-input class="p-2"
                         [name]="'Quantum computation model'"
                         [value]="algorithm.quantumComputationModel"
                         [choices]="quantumComputationModelOptions"></app-select-input>
 
-      <app-text-input class="w-100 p-2" *ngIf="algorithm.computationModel === 'QUANTUM'"
+      <app-text-input class="w-100 p-2"
                       [name]="'Speedup'"
                       [value]="algorithm.speedUp"
                       (onSaveChanges)="onChangesSaved($event, 'speedUp')"></app-text-input>
     </div>
+    <app-toggle-input class="p-2" [name]="'NISQ ready'"
+                      [value]="algorithm.nisqReady" (onSaveChanges)="onChangesSaved($event, 'nisqReady')">
+    </app-toggle-input>
   </mat-card>
-
-  <!-- TODO: NISQReady -->
 
   <!-- TODO: finish Sketch -->
   <mat-card class="m-4">

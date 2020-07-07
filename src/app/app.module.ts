@@ -51,6 +51,7 @@ import { ChipCollectionComponent } from './components/generics/chip-collection/c
 import { GenericDataService } from './util/generic-data.service';
 import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
 import { GenericsModule } from './components/generics/generics.module';
+import { ToggleInputComponent } from './components/generics/property-input/toggle-input.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { GenericsModule } from './components/generics/generics.module';
     AlgorithmListComponent,
     ChipCollectionComponent,
     TreeOutputComponent,
+    ToggleInputComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),

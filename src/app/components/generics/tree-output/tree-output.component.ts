@@ -1,5 +1,5 @@
 // eslint-disable-next-line max-classes-per-file
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { BehaviorSubject, of as observableOf } from 'rxjs';
@@ -16,6 +16,10 @@ export class FileNode {
   styleUrls: ['./tree-output.component.scss'],
 })
 export class TreeOutputComponent implements OnInit {
+  @Output() onAddElement: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onExpandParents: EventEmitter<
+    EntityModelProblemTypeDto
+  > = new EventEmitter<EntityModelProblemTypeDto>();
   @Input() name = '';
   @Input() treeData: FileNode[];
 
@@ -26,21 +30,26 @@ export class TreeOutputComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.nestedTreeControl = new NestedTreeControl<FileNode>(this.getChildren);
+    this.nestedTreeControl = new NestedTreeControl<FileNode>(
+      (node) => node.parents
+    );
     this.nestedDataSource = new MatTreeNestedDataSource();
 
     this.dataChange.subscribe((data) => (this.nestedDataSource.data = data));
-    if (this.treeData == null) {
-      this.treeData = [
-        {
-          parents: [],
-          problemType: { name: 'default problem type' },
-        },
-      ];
-    }
 
     this.dataChange.next(this.treeData);
   }
+
+  isTreeDataInvalid(): boolean {
+    return this.treeData == null || this.treeData.length <= 0;
+  }
+
+  addElement(): void {
+    this.onAddElement.emit();
+    console.log(this.treeData);
+  }
+
+  expandParents(node): void {}
 
   getChildren = (node: FileNode) => observableOf(node.parents);
 

@@ -1,25 +1,40 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import {
   EntityModelApplicationAreaDto,
   EntityModelComputingResourcePropertyDto,
   EntityModelProblemTypeDto,
+  ProblemTypeDto,
 } from 'api/models';
+import { MatDialog } from '@angular/material/dialog';
+import { ProblemTypeService } from 'api/services/problem-type.service';
 import { FileNode } from '../../generics/tree-output/tree-output.component';
 import { Option } from '../../generics/property-input/select-input.component';
+import { AddProblemTypeDialogComponent } from '../dialogs/add-problem-type-dialog.component';
 
 @Component({
   selector: 'app-algorithm-properties',
   templateUrl: './algorithm-properties.component.html',
   styleUrls: ['./algorithm-properties.component.scss'],
 })
-export class AlgorithmPropertiesComponent implements OnInit {
+export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
   @Output() addApplicationArea: EventEmitter<string> = new EventEmitter<
     string
   >();
   @Output() removeApplicationArea: EventEmitter<
     EntityModelApplicationAreaDto
   > = new EventEmitter<EntityModelApplicationAreaDto>();
+  @Output() addProblemType: EventEmitter<
+    EntityModelProblemTypeDto
+  > = new EventEmitter<EntityModelProblemTypeDto>();
   @Output() updateAlgorithmField: EventEmitter<{
     field;
     value;
@@ -27,7 +42,6 @@ export class AlgorithmPropertiesComponent implements OnInit {
   @Input() algorithm: EntityModelAlgorithmDto;
   @Input() applicationAreas: EntityModelApplicationAreaDto[];
   @Input() problemTypes: EntityModelProblemTypeDto[];
-  @Input() problemTypeTrees: EntityModelProblemTypeDto[][];
 
   sketchOptions: Option[] = [
     { value: 'PSEUDOCODE', label: 'Pseudocode' },
@@ -42,14 +56,19 @@ export class AlgorithmPropertiesComponent implements OnInit {
   computeResourceProperties: EntityModelComputingResourcePropertyDto[] = [];
 
   // parent problem types data for testing purposes of output tree
-  problemTypeTreeData: FileNode[];
+  problemTypeTreeData: FileNode[] = [];
+  problemTypeParentMap: Map<
+    EntityModelProblemTypeDto,
+    EntityModelProblemTypeDto[]
+  > = new Map<EntityModelProblemTypeDto, EntityModelProblemTypeDto[]>();
 
-  constructor() {}
+  constructor(
+    private problemTypeService: ProblemTypeService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.createDummyCompureResourceProperties();
-
-    this.problemTypeTreeData = [];
 
     // const problem1: EntityModelProblemTypeDto = {
     //   name: 'ProblemTestType1',
@@ -76,16 +95,59 @@ export class AlgorithmPropertiesComponent implements OnInit {
     //   [problem1, problem3, problem4, problem7],
     //   [problem2, problem5, problem6],
     // ];
+  }
 
-    this.problemTypeTrees.forEach((problemTypeTree) => {
-      let parent: FileNode[] = [
-        { problemType: problemTypeTree.pop(), parents: [] },
-      ];
-      problemTypeTree.reverse().forEach((problemType) => {
-        parent = [{ problemType, parents: parent }];
-      });
-      this.problemTypeTreeData = this.problemTypeTreeData.concat(parent);
+  buildParentTree(parents: EntityModelProblemTypeDto[]): FileNode[] {
+    parents.shift();
+    let parent: FileNode[] = [{ problemType: parents.pop(), parents: [] }];
+
+    parents.reverse().forEach((problemType) => {
+      parent = [{ problemType, parents: parent }];
     });
+
+    return parent;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('problemTypes') && this.problemTypes != null) {
+      this.problemTypes.forEach((problemType) =>
+        this.addProblemTypeParentTree(problemType)
+      );
+
+      // this.problemTypeParentMap.forEach((parentList, type) => {
+      //   const node: FileNode = {
+      //     problemType: type,
+      //     parents: this.buildParentTree(parentList),
+      //   };
+      //   this.problemTypeTreeData.push(node);
+      // });
+      console.log(this.problemTypeParentMap);
+      console.log(this.problemTypeTreeData);
+    }
+  }
+
+  addProblemTypeParentTree(problemType: EntityModelProblemTypeDto): void {
+    this.problemTypeService
+      .getProblemTypeParentList({ id: problemType.id })
+      .subscribe(
+        (tree) => {
+          if (tree._embedded) {
+            this.problemTypeParentMap.set(
+              problemType,
+              tree._embedded.problemTypes
+            );
+            const node: FileNode = {
+              problemType,
+              parents: this.buildParentTree(tree._embedded.problemTypes),
+            };
+            this.problemTypeTreeData.push(JSON.parse(JSON.stringify(node)));
+            console.log(this.problemTypeParentMap);
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   onChangesSaved(value: any, field: string): void {
@@ -102,6 +164,29 @@ export class AlgorithmPropertiesComponent implements OnInit {
 
   addComputeResourceProperty(): void {
     console.log('add compute resource property');
+  }
+
+  addProblemTypeEvent(): void {
+    const dialogRef = this.dialog.open(AddProblemTypeDialogComponent, {
+      width: '400px',
+      data: { title: 'Add new problem type' },
+    });
+
+    dialogRef.afterClosed().subscribe((dialogResult) => {
+      if (dialogResult) {
+        const problemTypeDto: EntityModelProblemTypeDto = {
+          name: dialogResult.name,
+        };
+        if (
+          dialogResult.parentProblemType &&
+          dialogResult.parentProblemType.id
+        ) {
+          problemTypeDto.parentProblemType = dialogResult.parentProblemType.id;
+        }
+
+        this.addProblemType.emit(problemTypeDto);
+      }
+    });
   }
 
   createDummyCompureResourceProperties(): void {

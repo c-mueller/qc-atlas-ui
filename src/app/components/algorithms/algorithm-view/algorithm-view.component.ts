@@ -8,6 +8,8 @@ import { EntityModelApplicationAreaDto } from 'api/models/entity-model-applicati
 import { ApplicationAreasService } from 'api/services/application-areas.service';
 import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
 import { ProblemTypeService } from 'api/services/problem-type.service';
+import { ProblemTypeDto } from 'api/models/problem-type-dto';
+import { ComputingResourcePropertyDto } from 'api/models/computing-resource-property-dto';
 import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 
@@ -30,7 +32,6 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   algorithm: EntityModelAlgorithmDto;
   applicationAreas: EntityModelApplicationAreaDto[];
   problemTypes: EntityModelProblemTypeDto[];
-  problemTypesTrees: EntityModelProblemTypeDto[][];
 
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
@@ -88,33 +89,24 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
       (problems) => {
         if (problems._embedded) {
           this.problemTypes = problems._embedded.problemTypes;
-          this.problemTypes.forEach((problemType) =>
-            this.addProblemTypeParentTree(problemType.id)
-          );
         } else {
           this.problemTypes = [];
-          this.problemTypesTrees = [];
         }
       },
       (error) => {
         console.log(error);
       }
     );
-  }
-
-  addProblemTypeParentTree(id: string): void {
-    this.problemTypeService.getProblemTypeParentList({ id }).subscribe(
-      (tree) => {
-        this.problemTypesTrees = [];
-        if (tree._embedded) {
-          this.problemTypesTrees.push(tree._embedded.problemTypes);
-          console.log(this.problemTypesTrees);
-        }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    // const test: ComputingResourcePropertyDto = {
+    //   value: '',
+    //   type: { name: '', datatype: 'INTEGER' },
+    // };
+    //
+    // this.algorithmService
+    //   .addComputingResource({ algoId, body: test })
+    //   .subscribe((res) => {
+    //     console.log(res);
+    //   });
   }
 
   addTag(): void {
@@ -185,5 +177,28 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
           console.log(error);
         }
       );
+  }
+
+  addProblemType(problemType: ProblemTypeDto): void {
+    this.problemTypeService.createProblemType({ body: problemType }).subscribe(
+      (type) => {
+        this.algorithmService
+          .addProblemType({ algoId: this.algorithm.id, body: type })
+          .subscribe(
+            (types) => {
+              if (types._embedded) {
+                this.problemTypes = types._embedded.problemTypes;
+              }
+              console.log(types);
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

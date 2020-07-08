@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="ProblemTypeForm">
+    <mat-form-field class="input-field">
+      <mat-label>Name</mat-label>
+      <input id="name" formControlName="name" matInput required>
+    </mat-form-field>
+  </form>
+  <mat-form-field class="input-field" *ngIf="existingProblemTypes">
+    <mat-label>Parent problem type</mat-label>
+    <input
+      [(ngModel)]="data.parentProblemType.name"
+      [matAutocomplete]="auto"
+      matInput>
+    <mat-autocomplete #auto="matAutocomplete" >
+      <mat-option
+        *ngFor="let type of existingProblemTypes"
+        [value]="type.name"
+        (click)="onTypeSelect(type)">
+        {{ type.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [disabled]="isRequiredDataMissing()" [mat-dialog-close]="data">Ok
+  </button>
+</div>

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NavigationBreadcrumbModule } from '../generics/navigation-breadcrumb/navigation-breadcrumb.module';
 import { GenericsModule } from '../generics/generics.module';
 import { AlgorithmListComponent } from './algorithm-list/algorithm-list.component';
@@ -20,6 +21,7 @@ import { AlgorithmRelatedAlgosListComponent } from './algorithm-related-algos-li
 import { AlgorithmPropertiesComponent } from './algorithm-properties/algorithm-properties.component';
 import { AlgorithmPublicationsListComponent } from './algorithm-publications-list/algorithm-publications-list.component';
 import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.component';
+import { AddProblemTypeDialogComponent } from './dialogs/add-problem-type-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.comp
     AlgorithmRelatedAlgosListComponent,
     AlgorithmPublicationsListComponent,
     AddAlgorithmDialogComponent,
+    AddProblemTypeDialogComponent,
   ],
   imports: [
     MatTabsModule,
@@ -47,6 +50,7 @@ import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.comp
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
+    MatAutocompleteModule,
   ],
   exports: [
     AlgorithmListComponent,
@@ -56,6 +60,7 @@ import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.comp
     AlgorithmRelatedAlgosListComponent,
     AlgorithmPublicationsListComponent,
     AddAlgorithmDialogComponent,
+    AddProblemTypeDialogComponent,
   ],
 })
 export class AlgorithmModule {}

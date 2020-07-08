@@ -1,15 +1,27 @@
 <div class="tree-wrapper">
-  <label>{{name}}</label>
-  <br>
-  <mat-tree [dataSource]="nestedDataSource" [treeControl]="nestedTreeControl" class="tree-wrapper">
-    <mat-tree-node *matTreeNodeDef="let node">
+  <div class="header">
+    <label class="mr-4">{{name}}</label>
+    <button (click)="addElement()"
+            mat-button
+            matSuffix
+            mat-icon-button
+            aria-label="Clear">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-tree class="tree-wrapper"
+            *ngIf="!isTreeDataInvalid()"
+            [dataSource]="nestedDataSource"
+            [treeControl]="nestedTreeControl">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
       <button mat-icon-button disabled></button>
       {{node.problemType.name}}
     </mat-tree-node>
 
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasNestedChild">
       <div class="mat-tree-node">
-        <button mat-icon-button matTreeNodeToggle>
+        <button (click)="expandParents(node)" mat-icon-button matTreeNodeToggle>
           <mat-icon class="mat-icon-rtl-mirror">
             {{nestedTreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
           </mat-icon>

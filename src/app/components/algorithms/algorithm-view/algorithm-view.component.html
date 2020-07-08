@@ -19,11 +19,10 @@
       <app-algorithm-properties [algorithm]="algorithm"
                                 [applicationAreas]="applicationAreas"
                                 [problemTypes]="problemTypes"
-                                [problemTypeTrees]="problemTypesTrees"
-                                *ngIf="problemTypesTrees"
                                 (updateAlgorithmField)="updateAlgorithmField($event)"
                                 (addApplicationArea)="addApplicationArea($event)"
-                                (removeApplicationArea)="removeApplicationArea($event)"></app-algorithm-properties>
+                                (removeApplicationArea)="removeApplicationArea($event)"
+                                (addProblemType)="addProblemType($event)"></app-algorithm-properties>
     </mat-tab>
     <mat-tab label="{{tabOptions[1]}}">
       <app-algorithm-implementations-list [algorithm]="algorithm"></app-algorithm-implementations-list>

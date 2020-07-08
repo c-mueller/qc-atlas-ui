@@ -51,43 +51,41 @@ export class AlgorithmPropertiesComponent implements OnInit {
 
     this.problemTypeTreeData = [];
 
-    const problem1: EntityModelProblemTypeDto = {
-      name: 'ProblemTestType1',
-    };
-    const problem2: EntityModelProblemTypeDto = {
-      name: 'ProblemTestType2',
-    };
-    const problem3: EntityModelProblemTypeDto = {
-      name: 'ProblemParentTestType1',
-    };
-    const problem4: EntityModelProblemTypeDto = {
-      name: 'ProblemParentTestType2',
-    };
-    const problem5: EntityModelProblemTypeDto = {
-      name: 'ProblemParentTestType3',
-    };
-    const problem6: EntityModelProblemTypeDto = {
-      name: 'ProblemParentTestType4',
-    };
-    const problem7: EntityModelProblemTypeDto = {
-      name: 'ProblemParentTestType5',
-    };
-    this.problemTypeTrees = [
-      [problem1, problem3, problem4, problem7],
-      [problem2, problem5, problem6],
-    ];
+    // const problem1: EntityModelProblemTypeDto = {
+    //   name: 'ProblemTestType1',
+    // };
+    // const problem2: EntityModelProblemTypeDto = {
+    //   name: 'ProblemTestType2',
+    // };
+    // const problem3: EntityModelProblemTypeDto = {
+    //   name: 'ProblemParentTestType1',
+    // };
+    // const problem4: EntityModelProblemTypeDto = {
+    //   name: 'ProblemParentTestType2',
+    // };
+    // const problem5: EntityModelProblemTypeDto = {
+    //   name: 'ProblemParentTestType3',
+    // };
+    // const problem6: EntityModelProblemTypeDto = {
+    //   name: 'ProblemParentTestType4',
+    // };
+    // const problem7: EntityModelProblemTypeDto = {
+    //   name: 'ProblemParentTestType5',
+    // };
+    // this.problemTypeTrees = [
+    //   [problem1, problem3, problem4, problem7],
+    //   [problem2, problem5, problem6],
+    // ];
 
-    if (this.problemTypeTrees) {
-      this.problemTypeTrees.forEach((problemTypeTree) => {
-        let parent: FileNode[] = [
-          { problemType: problemTypeTree.pop(), parents: [] },
-        ];
-        problemTypeTree.reverse().forEach((problemType) => {
-          parent = [{ problemType, parents: parent }];
-        });
-        this.problemTypeTreeData = this.problemTypeTreeData.concat(parent);
+    this.problemTypeTrees.forEach((problemTypeTree) => {
+      let parent: FileNode[] = [
+        { problemType: problemTypeTree.pop(), parents: [] },
+      ];
+      problemTypeTree.reverse().forEach((problemType) => {
+        parent = [{ problemType, parents: parent }];
       });
-    }
+      this.problemTypeTreeData = this.problemTypeTreeData.concat(parent);
+    });
   }
 
   onChangesSaved(value: any, field: string): void {

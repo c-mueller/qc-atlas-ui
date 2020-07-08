@@ -53,7 +53,6 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
             heading: this.algorithm.name,
             subHeading: this.algorithm.computationModel + ' Algorithm',
           };
-          console.log('Algorithm-view algo: ' + algo);
           this.getApplicationAreasForAlgorithm(algoId);
           this.getProblemTypesForAlgorithm(algoId);
         },
@@ -104,12 +103,12 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   }
 
   addProblemTypeParentTree(id: string): void {
-    this.problemTypeService.getProblemTypeParentTree({ id }).subscribe(
+    this.problemTypeService.getProblemTypeParentList({ id }).subscribe(
       (tree) => {
+        this.problemTypesTrees = [];
         if (tree._embedded) {
           this.problemTypesTrees.push(tree._embedded.problemTypes);
-        } else {
-          this.problemTypesTrees.push([]);
+          console.log(this.problemTypesTrees);
         }
       },
       (error) => {

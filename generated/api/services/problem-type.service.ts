@@ -410,18 +410,18 @@ export class ProblemTypeService extends BaseService {
   }
 
   /**
-   * Path part for operation getProblemTypeParentTree
+   * Path part for operation getProblemTypeParentList
    */
-  static readonly GetProblemTypeParentTreePath =
+  static readonly GetProblemTypeParentListPath =
     '/v1/problem-types/{id}/problem-type-parent-tree';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getProblemTypeParentTree()` instead.
+   * To access only the response body, use `getProblemTypeParentList()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getProblemTypeParentTree$Response(params: {
+  getProblemTypeParentList$Response(params: {
     id: string;
   }): Observable<
     StrictHttpResponse<{
@@ -430,7 +430,7 @@ export class ProblemTypeService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ProblemTypeService.GetProblemTypeParentTreePath,
+      ProblemTypeService.GetProblemTypeParentListPath,
       'get'
     );
     if (params) {
@@ -455,16 +455,16 @@ export class ProblemTypeService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getProblemTypeParentTree$Response()` instead.
+   * To access the full response (for headers, for example), `getProblemTypeParentList$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getProblemTypeParentTree(params: {
+  getProblemTypeParentList(params: {
     id: string;
   }): Observable<{
     _embedded?: { problemTypes?: Array<EntityModelProblemTypeDto> };
   }> {
-    return this.getProblemTypeParentTree$Response(params).pipe(
+    return this.getProblemTypeParentList$Response(params).pipe(
       map(
         (
           r: StrictHttpResponse<{

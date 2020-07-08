@@ -20,6 +20,7 @@
                                 [applicationAreas]="applicationAreas"
                                 [problemTypes]="problemTypes"
                                 [problemTypeTrees]="problemTypesTrees"
+                                *ngIf="problemTypesTrees"
                                 (updateAlgorithmField)="updateAlgorithmField($event)"
                                 (addApplicationArea)="addApplicationArea($event)"
                                 (removeApplicationArea)="removeApplicationArea($event)"></app-algorithm-properties>

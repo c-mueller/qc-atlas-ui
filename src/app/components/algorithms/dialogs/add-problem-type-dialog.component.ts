@@ -69,7 +69,9 @@ export class AddProblemTypeDialogComponent implements OnInit {
     return this.name.errors?.required;
   }
 
-  onTypeSelect(type): void {}
+  onTypeSelect(type: EntityModelProblemTypeDto): void {
+    this.data.parentProblemType = type;
+  }
 
   filter(value: string): EntityModelProblemTypeDto[] {
     return this.existingProblemTypes.filter((type) =>

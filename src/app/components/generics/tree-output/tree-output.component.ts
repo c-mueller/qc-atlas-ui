@@ -23,18 +23,17 @@ export class TreeOutputComponent implements OnInit {
   @Input() name = '';
   @Input() treeData: FileNode[];
 
-  nestedTreeControl: NestedTreeControl<FileNode>;
-  nestedDataSource: MatTreeNestedDataSource<FileNode>;
+  nestedTreeControl: NestedTreeControl<FileNode> = new NestedTreeControl<
+    FileNode
+  >((node) => node.parents);
+  nestedDataSource: MatTreeNestedDataSource<
+    FileNode
+  > = new MatTreeNestedDataSource<FileNode>();
   dataChange: BehaviorSubject<FileNode[]> = new BehaviorSubject<FileNode[]>([]);
 
   constructor() {}
 
   ngOnInit(): void {
-    this.nestedTreeControl = new NestedTreeControl<FileNode>(
-      (node) => node.parents
-    );
-    this.nestedDataSource = new MatTreeNestedDataSource();
-
     this.dataChange.subscribe((data) => (this.nestedDataSource.data = data));
 
     this.dataChange.next(this.treeData);

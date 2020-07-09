@@ -120,18 +120,41 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
     return parent;
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('problemTypes') && this.problemTypes != null) {
+      this.problemTypeTreeData.slice(0, this.problemTypeTreeData.length);
+      this.getParentListForProblemTypes();
+    }
+  }
+
+  getParentListForProblemTypes(): void {
+    this.problemTypes.forEach((problemType) =>
+      this.addProblemTypeParentTree(problemType)
+    );
+  }
+
   addProblemTypeParentTree(problemType: EntityModelProblemTypeDto): void {
     this.problemTypeService
       .getProblemTypeParentList({ id: problemType.id })
       .subscribe(
-        (tree) => {
-          if (tree._embedded) {
+        (parents) => {
+          if (parents._embedded) {
+            const parentProblemTypes = parents._embedded.problemTypes;
+            let parentNodes: FileNode[] = [];
+            if (parentProblemTypes.length > 1) {
+              parentNodes = this.buildParentTree(parentProblemTypes);
+            }
             const node: FileNode = {
               problemType,
-              parents: this.buildParentTree(tree._embedded.problemTypes),
+              parents: parentNodes,
             };
             this.problemTypeTreeData.push(JSON.parse(JSON.stringify(node)));
           }
+          console.log(
+            'Tree data after parent tree api call',
+            this.problemTypeTreeData.length,
+            this.problemTypeTreeData
+          );
         },
         (error) => {
           console.log(error);
@@ -167,8 +190,8 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
           name: dialogResult.name,
         };
         if (
-          dialogResult.parentProblemType &&
-          dialogResult.parentProblemType.id
+          dialogResult.parentProblemType != null &&
+          dialogResult.parentProblemType.id != null
         ) {
           problemTypeDto.parentProblemType = dialogResult.parentProblemType.id;
         }

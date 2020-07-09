@@ -57,10 +57,6 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
 
   // parent problem types data for testing purposes of output tree
   problemTypeTreeData: FileNode[] = [];
-  problemTypeParentMap: Map<
-    EntityModelProblemTypeDto,
-    EntityModelProblemTypeDto[]
-  > = new Map<EntityModelProblemTypeDto, EntityModelProblemTypeDto[]>();
 
   constructor(
     private problemTypeService: ProblemTypeService,
@@ -91,10 +87,26 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
     // const problem7: EntityModelProblemTypeDto = {
     //   name: 'ProblemParentTestType5',
     // };
-    // this.problemTypeTrees = [
-    //   [problem1, problem3, problem4, problem7],
-    //   [problem2, problem5, problem6],
-    // ];
+    // this.problemTypes = [problem1, problem2]; //
+    // this.problemTypes.forEach((problemType) => {
+    //   const node: FileNode = {
+    //     problemType,
+    //     parents: this.buildParentTree([problem2, problem3, problem4, problem5]),
+    //   };
+    //   this.problemTypeTreeData.push(JSON.parse(JSON.stringify(node)));
+    // });
+    // console.log(this.problemTypeTreeData);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('problemTypes') && this.problemTypes != null) {
+      this.problemTypeTreeData = [];
+      this.problemTypes.forEach((problemType) =>
+        this.addProblemTypeParentTree(problemType)
+      );
+
+      console.log(this.problemTypeTreeData);
+    }
   }
 
   buildParentTree(parents: EntityModelProblemTypeDto[]): FileNode[] {
@@ -108,40 +120,17 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
     return parent;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('problemTypes') && this.problemTypes != null) {
-      this.problemTypes.forEach((problemType) =>
-        this.addProblemTypeParentTree(problemType)
-      );
-
-      // this.problemTypeParentMap.forEach((parentList, type) => {
-      //   const node: FileNode = {
-      //     problemType: type,
-      //     parents: this.buildParentTree(parentList),
-      //   };
-      //   this.problemTypeTreeData.push(node);
-      // });
-      console.log(this.problemTypeParentMap);
-      console.log(this.problemTypeTreeData);
-    }
-  }
-
   addProblemTypeParentTree(problemType: EntityModelProblemTypeDto): void {
     this.problemTypeService
       .getProblemTypeParentList({ id: problemType.id })
       .subscribe(
         (tree) => {
           if (tree._embedded) {
-            this.problemTypeParentMap.set(
-              problemType,
-              tree._embedded.problemTypes
-            );
             const node: FileNode = {
               problemType,
               parents: this.buildParentTree(tree._embedded.problemTypes),
             };
             this.problemTypeTreeData.push(JSON.parse(JSON.stringify(node)));
-            console.log(this.problemTypeParentMap);
           }
         },
         (error) => {

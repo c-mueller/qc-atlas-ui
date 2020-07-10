@@ -18,7 +18,7 @@ import { ProblemTypeService } from 'api/services/problem-type.service';
 import {
   FileNode,
   ProblemTypeTreeComponent,
-} from '../../generics/tree-output/problem-type-tree.component';
+} from '../problem-type-tree/problem-type-tree.component';
 import { Option } from '../../generics/property-input/select-input.component';
 import { AddProblemTypeDialogComponent } from '../dialogs/add-problem-type-dialog.component';
 import { RemoveProblemTypeDialogComponent } from '../dialogs/remove-problem-type-dialog.component';

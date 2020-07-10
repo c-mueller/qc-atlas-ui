@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTreeModule } from '@angular/material/tree';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +20,6 @@ import { SelectInputComponent } from './property-input/select-input.component';
 import { CheckboxInputComponent } from './property-input/checkbox-input.component';
 import { DataListComponent } from './data-list/data-list.component';
 import { ChipCollectionComponent } from './chip-collection/chip-collection.component';
-import { ProblemTypeTreeComponent } from './tree-output/problem-type-tree.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +28,6 @@ import { ProblemTypeTreeComponent } from './tree-output/problem-type-tree.compon
     CheckboxInputComponent,
     DataListComponent,
     ChipCollectionComponent,
-    ProblemTypeTreeComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +40,6 @@ import { ProblemTypeTreeComponent } from './tree-output/problem-type-tree.compon
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatTreeModule,
     MatSortModule,
     AppRoutingModule,
     BrowserModule,
@@ -55,7 +51,6 @@ import { ProblemTypeTreeComponent } from './tree-output/problem-type-tree.compon
     CheckboxInputComponent,
     DataListComponent,
     ChipCollectionComponent,
-    ProblemTypeTreeComponent,
     RouterModule,
     MatSortModule,
   ],

@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTreeModule } from '@angular/material/tree';
 import { NavigationBreadcrumbModule } from '../generics/navigation-breadcrumb/navigation-breadcrumb.module';
 import { GenericsModule } from '../generics/generics.module';
 import { AlgorithmListComponent } from './algorithm-list/algorithm-list.component';
@@ -24,6 +25,7 @@ import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.comp
 import { AddProblemTypeDialogComponent } from './dialogs/add-problem-type-dialog.component';
 import { RemoveProblemTypeDialogComponent } from './dialogs/remove-problem-type-dialog.component';
 import { CreateImplementationDialogComponent } from './dialogs/create-implementation-dialog.component';
+import { ProblemTypeTreeComponent } from './problem-type-tree/problem-type-tree.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { CreateImplementationDialogComponent } from './dialogs/create-implementa
     AlgorithmImplementationsListComponent,
     AlgorithmRelatedAlgosListComponent,
     AlgorithmPublicationsListComponent,
+    ProblemTypeTreeComponent,
     AddAlgorithmDialogComponent,
     AddProblemTypeDialogComponent,
     RemoveProblemTypeDialogComponent,
@@ -55,6 +58,7 @@ import { CreateImplementationDialogComponent } from './dialogs/create-implementa
     MatInputModule,
     MatDialogModule,
     MatAutocompleteModule,
+    MatTreeModule,
   ],
   exports: [
     AlgorithmListComponent,
@@ -63,6 +67,7 @@ import { CreateImplementationDialogComponent } from './dialogs/create-implementa
     AlgorithmImplementationsListComponent,
     AlgorithmRelatedAlgosListComponent,
     AlgorithmPublicationsListComponent,
+    ProblemTypeTreeComponent,
     AddAlgorithmDialogComponent,
     AddProblemTypeDialogComponent,
     RemoveProblemTypeDialogComponent,

@@ -51,10 +51,6 @@ export class TreeOutputComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.dataChange.next(this.treeData);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.dataChange.next(this.treeData);
     console.log(changes);
   }
 

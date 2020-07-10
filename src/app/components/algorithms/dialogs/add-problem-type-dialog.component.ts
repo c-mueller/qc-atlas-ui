@@ -5,10 +5,8 @@ import {
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
 import { ProblemTypeService } from 'api/services/problem-type.service';
-import { map, startWith } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { EntityModelProblemTypeDto } from 'generated/api/models';
 
 @Component({
   selector: 'app-add-problem-type-dialog',
@@ -20,8 +18,9 @@ export class AddProblemTypeDialogComponent implements OnInit {
   parentProblemTypeControl: FormControl = new FormControl();
   problemTypeControl: FormControl = new FormControl();
   existingProblemTypes: EntityModelProblemTypeDto[];
-  filteredProblemTyped: Observable<EntityModelProblemTypeDto[]>;
-  filteredParentProblemTypes: Observable<EntityModelProblemTypeDto[]>;
+  filteredProblemTyped: EntityModelProblemTypeDto[];
+  filteredParentProblemTypes: EntityModelProblemTypeDto[];
+  parentName: string;
 
   constructor(
     private problemTypeService: ProblemTypeService,
@@ -39,7 +38,13 @@ export class AddProblemTypeDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data.parentProblemType = { name: '' };
+    this.problemTypeControl = new FormControl(this.data.name, [
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      Validators.required,
+      Validators.maxLength(255),
+    ]);
+    this.parentProblemTypeControl = new FormControl(this.parentName);
+    this.problemTypeForm = new FormGroup({ name: this.problemTypeControl });
     this.problemTypeService
       .getProblemTypes1({ page: 0, size: 1000 })
       .subscribe((types) => {
@@ -48,15 +53,13 @@ export class AddProblemTypeDialogComponent implements OnInit {
         } else {
           this.existingProblemTypes = [];
         }
-        this.filter();
       });
 
-    this.problemTypeForm = new FormGroup({
-      name: new FormControl(this.data.name, [
-        // eslint-disable-next-line @typescript-eslint/unbound-method
-        Validators.required,
-        Validators.maxLength(255),
-      ]),
+    this.problemTypeControl.valueChanges.subscribe((value) => {
+      this.filteredProblemTyped = this.filterProblemTypes(value);
+    });
+    this.parentProblemTypeControl.valueChanges.subscribe((value) => {
+      this.filteredParentProblemTypes = this.filterParents(value);
     });
 
     this.dialogRef.beforeClosed().subscribe(() => {
@@ -74,35 +77,35 @@ export class AddProblemTypeDialogComponent implements OnInit {
 
   onProblemTypeSelect(type: EntityModelProblemTypeDto): void {
     this.problemTypeForm.setValue({ name: type.name });
-    this.filter();
-  }
-
-  filter(): void {
-    console.log('filter');
-    this.filteredProblemTyped = this.problemTypeControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this.filterProblemTypes(value))
-    );
-
-    this.filteredParentProblemTypes = this.parentProblemTypeControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this.filterParents(value))
-    );
   }
 
   filterProblemTypes(value: string): EntityModelProblemTypeDto[] {
+    if (value == null) {
+      return this.existingProblemTypes.filter(
+        (type) =>
+          !this.data.usedProblemTypes.some(
+            (usedType) => usedType.id === type.id
+          )
+      );
+    }
     return this.existingProblemTypes.filter(
       (type) =>
-        type.name.toLowerCase().startsWith(value.toLowerCase()) ||
-        this.data.usedProblemTypes.some((usedType) => usedType.name === value)
+        type.name.toLowerCase().includes(value.toLowerCase()) &&
+        !this.data.usedProblemTypes.some((usedType) => usedType.id === type.id)
     );
   }
 
   filterParents(value: string): EntityModelProblemTypeDto[] {
+    if (value == null) {
+      return this.existingProblemTypes;
+    }
     return this.existingProblemTypes.filter(
       (type) =>
-        type.name.toLowerCase().startsWith(value.toLowerCase()) ||
-        value === this.name.value
+        type.name.toLowerCase().includes(value.toLowerCase()) &&
+        !(
+          this.name.value != null &&
+          type.name.toLowerCase() === this.name.value.toLowerCase()
+        )
     );
   }
 }

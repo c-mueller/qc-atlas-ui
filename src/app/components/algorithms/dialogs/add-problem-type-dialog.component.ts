@@ -16,10 +16,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./add-problem-type-dialog.component.scss'],
 })
 export class AddProblemTypeDialogComponent implements OnInit {
-  ProblemTypeForm: FormGroup;
+  problemTypeForm: FormGroup;
   parentProblemTypeControl: FormControl = new FormControl();
+  problemTypeControl: FormControl = new FormControl();
   existingProblemTypes: EntityModelProblemTypeDto[];
-  filteredProblemTypes: Observable<EntityModelProblemTypeDto[]>;
+  filteredProblemTyped: Observable<EntityModelProblemTypeDto[]>;
+  filteredParentProblemTypes: Observable<EntityModelProblemTypeDto[]>;
 
   constructor(
     private problemTypeService: ProblemTypeService,
@@ -29,7 +31,7 @@ export class AddProblemTypeDialogComponent implements OnInit {
   ) {}
 
   get name(): any {
-    return this.ProblemTypeForm.get('name');
+    return this.problemTypeForm.get('name');
   }
 
   onNoClick(): void {
@@ -46,13 +48,10 @@ export class AddProblemTypeDialogComponent implements OnInit {
         } else {
           this.existingProblemTypes = [];
         }
-        this.filteredProblemTypes = this.parentProblemTypeControl.valueChanges.pipe(
-          startWith(''),
-          map((value) => this.filter(value))
-        );
+        this.filter();
       });
 
-    this.ProblemTypeForm = new FormGroup({
+    this.problemTypeForm = new FormGroup({
       name: new FormControl(this.data.name, [
         // eslint-disable-next-line @typescript-eslint/unbound-method
         Validators.required,
@@ -69,13 +68,41 @@ export class AddProblemTypeDialogComponent implements OnInit {
     return this.name.errors?.required;
   }
 
-  onTypeSelect(type: EntityModelProblemTypeDto): void {
+  onParentTypeSelect(type: EntityModelProblemTypeDto): void {
     this.data.parentProblemType = type;
   }
 
-  filter(value: string): EntityModelProblemTypeDto[] {
-    return this.existingProblemTypes.filter((type) =>
-      type.name.toLowerCase().startsWith(value.toLowerCase())
+  onProblemTypeSelect(type: EntityModelProblemTypeDto): void {
+    this.problemTypeForm.setValue({ name: type.name });
+    this.filter();
+  }
+
+  filter(): void {
+    console.log('filter');
+    this.filteredProblemTyped = this.problemTypeControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this.filterProblemTypes(value))
+    );
+
+    this.filteredParentProblemTypes = this.parentProblemTypeControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this.filterParents(value))
+    );
+  }
+
+  filterProblemTypes(value: string): EntityModelProblemTypeDto[] {
+    return this.existingProblemTypes.filter(
+      (type) =>
+        type.name.toLowerCase().startsWith(value.toLowerCase()) ||
+        this.data.usedProblemTypes.some((usedType) => usedType.name === value)
+    );
+  }
+
+  filterParents(value: string): EntityModelProblemTypeDto[] {
+    return this.existingProblemTypes.filter(
+      (type) =>
+        type.name.toLowerCase().startsWith(value.toLowerCase()) ||
+        value === this.name.value
     );
   }
 }
@@ -83,5 +110,6 @@ export class AddProblemTypeDialogComponent implements OnInit {
 export interface DialogData {
   title: string;
   name: string;
+  usedProblemTypes: EntityModelProblemTypeDto[];
   parentProblemType: EntityModelProblemTypeDto;
 }

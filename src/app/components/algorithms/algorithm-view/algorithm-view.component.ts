@@ -97,16 +97,6 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
         console.log(error);
       }
     );
-    // const test: ComputingResourcePropertyDto = {
-    //   value: '',
-    //   type: { name: '', datatype: 'INTEGER' },
-    // };
-    //
-    // this.algorithmService
-    //   .addComputingResource({ algoId, body: test })
-    //   .subscribe((res) => {
-    //     console.log(res);
-    //   });
   }
 
   addTag(): void {

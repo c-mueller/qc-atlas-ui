@@ -1,22 +1,35 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
-  <form [formGroup]="ProblemTypeForm">
+  <form [formGroup]="problemTypeForm">
     <mat-form-field class="input-field">
       <mat-label>Name</mat-label>
-      <input id="name" formControlName="name" matInput required>
+      <input
+        [formControlName]="name"
+        [matAutocomplete]="autoProblemType"
+        (input)="filter()"
+        matInput
+        required>
+      <mat-autocomplete #autoProblemType="matAutocomplete" >
+        <mat-option
+          *ngFor="let type of filteredProblemTyped | async"
+          [value]="type.name"
+          (click)="onProblemTypeSelect(type)">
+          {{ type.name }}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
   </form>
   <mat-form-field class="input-field" *ngIf="existingProblemTypes">
     <mat-label>Parent problem type</mat-label>
     <input
       [(ngModel)]="data.parentProblemType.name"
-      [matAutocomplete]="auto"
+      [matAutocomplete]="autoParent"
       matInput>
-    <mat-autocomplete #auto="matAutocomplete" >
+    <mat-autocomplete #autoParent="matAutocomplete" >
       <mat-option
-        *ngFor="let type of existingProblemTypes"
+        *ngFor="let type of filteredParentProblemTypes | async"
         [value]="type.name"
-        (click)="onTypeSelect(type)">
+        (click)="onParentTypeSelect(type)">
         {{ type.name }}
       </mat-option>
     </mat-autocomplete>

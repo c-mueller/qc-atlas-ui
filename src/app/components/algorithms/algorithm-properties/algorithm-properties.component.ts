@@ -110,7 +110,7 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('problemTypes') && this.problemTypes != null) {
-      this.problemTypeTreeData.slice(0, this.problemTypeTreeData.length);
+      this.problemTypeTreeData = [];
       this.getParentListForProblemTypes();
     }
   }
@@ -136,7 +136,8 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
               problemType,
               parents: parentNodes,
             };
-            this.problemTypeTreeData.push(JSON.parse(JSON.stringify(node)));
+            this.problemTypeTreeData.push(node);
+            this.problemTypeTreeData = this.problemTypeTreeData.slice();
           }
           console.log(
             'Tree data after parent tree api call',
@@ -169,7 +170,10 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
   addProblemTypeEvent(): void {
     const dialogRef = this.dialog.open(AddProblemTypeDialogComponent, {
       width: '400px',
-      data: { title: 'Add new problem type' },
+      data: {
+        title: 'Add new problem type',
+        usedProblemTypes: this.problemTypes,
+      },
     });
 
     dialogRef.afterClosed().subscribe((dialogResult) => {

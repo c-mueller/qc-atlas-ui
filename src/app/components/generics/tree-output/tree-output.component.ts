@@ -1,5 +1,13 @@
 // eslint-disable-next-line max-classes-per-file
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { BehaviorSubject, of as observableOf } from 'rxjs';
@@ -15,7 +23,7 @@ export class FileNode {
   templateUrl: './tree-output.component.html',
   styleUrls: ['./tree-output.component.scss'],
 })
-export class TreeOutputComponent implements OnInit {
+export class TreeOutputComponent implements OnInit, OnChanges {
   @Output() onAddElement: EventEmitter<any> = new EventEmitter<any>();
   @Output() onExpandParents: EventEmitter<
     EntityModelProblemTypeDto
@@ -37,6 +45,11 @@ export class TreeOutputComponent implements OnInit {
     this.dataChange.subscribe((data) => (this.nestedDataSource.data = data));
 
     this.dataChange.next(this.treeData);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.dataChange.next(this.treeData);
+    console.log(changes);
   }
 
   isTreeDataInvalid(): boolean {

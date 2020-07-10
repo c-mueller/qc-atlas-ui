@@ -19,6 +19,7 @@ import { ProblemTypeService } from 'api/services/problem-type.service';
 import { FileNode } from '../../generics/tree-output/tree-output.component';
 import { Option } from '../../generics/property-input/select-input.component';
 import { AddProblemTypeDialogComponent } from '../dialogs/add-problem-type-dialog.component';
+import { RemoveProblemTypeDialogComponent } from '../dialogs/remove-problem-type-dialog.component';
 
 @Component({
   selector: 'app-algorithm-properties',
@@ -35,6 +36,9 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
   @Output() addProblemType: EventEmitter<
     EntityModelProblemTypeDto
   > = new EventEmitter<EntityModelProblemTypeDto>();
+  @Output() removeProblemType: EventEmitter<
+    EntityModelProblemTypeDto[]
+  > = new EventEmitter<EntityModelProblemTypeDto[]>();
   @Output() updateAlgorithmField: EventEmitter<{
     field;
     value;
@@ -57,10 +61,6 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
 
   // parent problem types data for testing purposes of output tree
   problemTypeTreeData: FileNode[] = [];
-  problemTypeParentMap: Map<
-    EntityModelProblemTypeDto,
-    EntityModelProblemTypeDto[]
-  > = new Map<EntityModelProblemTypeDto, EntityModelProblemTypeDto[]>();
 
   constructor(
     private problemTypeService: ProblemTypeService,
@@ -91,10 +91,15 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
     // const problem7: EntityModelProblemTypeDto = {
     //   name: 'ProblemParentTestType5',
     // };
-    // this.problemTypeTrees = [
-    //   [problem1, problem3, problem4, problem7],
-    //   [problem2, problem5, problem6],
-    // ];
+    // this.problemTypes = [problem1, problem2]; //
+    // this.problemTypes.forEach((problemType) => {
+    //   const node: FileNode = {
+    //     problemType,
+    //     parents: this.buildParentTree([problem2, problem3, problem4, problem5]),
+    //   };
+    //   this.problemTypeTreeData.push(JSON.parse(JSON.stringify(node)));
+    // });
+    // console.log(this.problemTypeTreeData);
   }
 
   buildParentTree(parents: EntityModelProblemTypeDto[]): FileNode[] {
@@ -189,6 +194,23 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
         }
 
         this.addProblemType.emit(problemTypeDto);
+      }
+    });
+  }
+
+  removeProblemTypeEvent(): void {
+    const dialogRef = this.dialog.open(RemoveProblemTypeDialogComponent, {
+      width: '400px',
+      data: {
+        title: 'Remove  problem type',
+        existingProblemTypes: this.problemTypes,
+        selectedProblemTypes: [],
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((dialogResult) => {
+      if (dialogResult) {
+        this.removeProblemType.emit(dialogResult.selectedProblemTypes);
       }
     });
   }

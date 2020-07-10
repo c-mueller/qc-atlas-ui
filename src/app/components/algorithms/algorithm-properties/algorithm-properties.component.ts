@@ -19,6 +19,7 @@ import { ProblemTypeService } from 'api/services/problem-type.service';
 import { FileNode } from '../../generics/tree-output/tree-output.component';
 import { Option } from '../../generics/property-input/select-input.component';
 import { AddProblemTypeDialogComponent } from '../dialogs/add-problem-type-dialog.component';
+import { RemoveProblemTypeDialogComponent } from '../dialogs/remove-problem-type-dialog.component';
 
 @Component({
   selector: 'app-algorithm-properties',
@@ -35,6 +36,9 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
   @Output() addProblemType: EventEmitter<
     EntityModelProblemTypeDto
   > = new EventEmitter<EntityModelProblemTypeDto>();
+  @Output() removeProblemType: EventEmitter<
+    EntityModelProblemTypeDto[]
+  > = new EventEmitter<EntityModelProblemTypeDto[]>();
   @Output() updateAlgorithmField: EventEmitter<{
     field;
     value;
@@ -96,17 +100,6 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
     //   this.problemTypeTreeData.push(JSON.parse(JSON.stringify(node)));
     // });
     // console.log(this.problemTypeTreeData);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('problemTypes') && this.problemTypes != null) {
-      this.problemTypeTreeData = [];
-      this.problemTypes.forEach((problemType) =>
-        this.addProblemTypeParentTree(problemType)
-      );
-
-      console.log(this.problemTypeTreeData);
-    }
   }
 
   buildParentTree(parents: EntityModelProblemTypeDto[]): FileNode[] {
@@ -197,6 +190,23 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
         }
 
         this.addProblemType.emit(problemTypeDto);
+      }
+    });
+  }
+
+  removeProblemTypeEvent(): void {
+    const dialogRef = this.dialog.open(RemoveProblemTypeDialogComponent, {
+      width: '400px',
+      data: {
+        title: 'Remove  problem type',
+        existingProblemTypes: this.problemTypes,
+        selectedProblemTypes: [],
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((dialogResult) => {
+      if (dialogResult) {
+        this.removeProblemType.emit(dialogResult.selectedProblemTypes);
       }
     });
   }

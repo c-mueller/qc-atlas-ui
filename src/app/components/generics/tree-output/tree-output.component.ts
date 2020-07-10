@@ -1,13 +1,22 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 // eslint-disable-next-line max-classes-per-file
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { BehaviorSubject, of as observableOf } from 'rxjs';
 import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
 
 export class FileNode {
-  parents: FileNode[];
   problemType: EntityModelProblemTypeDto;
+  parents?: FileNode[];
 }
 
 @Component({
@@ -15,8 +24,9 @@ export class FileNode {
   templateUrl: './tree-output.component.html',
   styleUrls: ['./tree-output.component.scss'],
 })
-export class TreeOutputComponent implements OnInit {
+export class TreeOutputComponent implements OnInit, OnChanges {
   @Output() onAddElement: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onRemoveElement: EventEmitter<any> = new EventEmitter<any>();
   @Output() onExpandParents: EventEmitter<
     EntityModelProblemTypeDto
   > = new EventEmitter<EntityModelProblemTypeDto>();
@@ -31,11 +41,15 @@ export class TreeOutputComponent implements OnInit {
   > = new MatTreeNestedDataSource<FileNode>();
   dataChange: BehaviorSubject<FileNode[]> = new BehaviorSubject<FileNode[]>([]);
 
-  constructor() {}
+  constructor() {
+    this.nestedDataSource = new MatTreeNestedDataSource();
+  }
 
   ngOnInit(): void {
     this.dataChange.subscribe((data) => (this.nestedDataSource.data = data));
+  }
 
+  ngOnChanges(changes: SimpleChanges): void {
     this.dataChange.next(this.treeData);
   }
 
@@ -45,12 +59,15 @@ export class TreeOutputComponent implements OnInit {
 
   addElement(): void {
     this.onAddElement.emit();
+    // console.log(this.treeData);
+  }
+
+  removeElement(): void {
+    this.onRemoveElement.emit();
     console.log(this.treeData);
   }
 
   expandParents(node): void {}
-
-  getChildren = (node: FileNode) => observableOf(node.parents);
 
   hasNestedChild = (_: number, nodeData: FileNode) =>
     nodeData.parents.length > 0;

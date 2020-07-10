@@ -26,7 +26,8 @@
       <app-tree-output class="w-100"
                        name="Problem-Types"
                        [treeData]="problemTypeTreeData"
-                       (onAddElement)="addProblemTypeEvent()"></app-tree-output>
+                       (onAddElement)="addProblemTypeEvent()"
+                       (onRemoveElement)="removeProblemTypeEvent()"></app-tree-output>
     </mat-card>
     <mat-card class="w-100 m-4">
       <app-chip-collection class="w-100"

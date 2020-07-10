@@ -201,4 +201,22 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  removeProblemType(problemTypes: EntityModelProblemTypeDto[]): void {
+    problemTypes.forEach((problemType) => {
+      this.algorithmService
+        .deleteReferenceToProblemTypes({
+          algoId: this.algorithm.id,
+          problemTypeId: problemType.id,
+        })
+        .subscribe(
+          (type) => {
+            this.getProblemTypesForAlgorithm(this.algorithm.id);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    });
+  }
 }

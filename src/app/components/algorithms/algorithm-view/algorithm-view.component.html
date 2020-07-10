@@ -22,7 +22,8 @@
                                 (updateAlgorithmField)="updateAlgorithmField($event)"
                                 (addApplicationArea)="addApplicationArea($event)"
                                 (removeApplicationArea)="removeApplicationArea($event)"
-                                (addProblemType)="addProblemType($event)"></app-algorithm-properties>
+                                (addProblemType)="addProblemType($event)"
+                                (removeProblemType)="removeProblemType($event)"></app-algorithm-properties>
     </mat-tab>
     <mat-tab label="{{tabOptions[1]}}">
       <app-algorithm-implementations-list [algorithm]="algorithm"></app-algorithm-implementations-list>

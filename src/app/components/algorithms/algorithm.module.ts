@@ -22,6 +22,7 @@ import { AlgorithmPropertiesComponent } from './algorithm-properties/algorithm-p
 import { AlgorithmPublicationsListComponent } from './algorithm-publications-list/algorithm-publications-list.component';
 import { AddAlgorithmDialogComponent } from './dialogs/add-algorithm-dialog.component';
 import { AddProblemTypeDialogComponent } from './dialogs/add-problem-type-dialog.component';
+import { RemoveProblemTypeDialogComponent } from './dialogs/remove-problem-type-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AddProblemTypeDialogComponent } from './dialogs/add-problem-type-dialog
     AlgorithmPublicationsListComponent,
     AddAlgorithmDialogComponent,
     AddProblemTypeDialogComponent,
+    RemoveProblemTypeDialogComponent,
   ],
   imports: [
     MatTabsModule,
@@ -61,6 +63,7 @@ import { AddProblemTypeDialogComponent } from './dialogs/add-problem-type-dialog
     AlgorithmPublicationsListComponent,
     AddAlgorithmDialogComponent,
     AddProblemTypeDialogComponent,
+    RemoveProblemTypeDialogComponent,
   ],
 })
 export class AlgorithmModule {}

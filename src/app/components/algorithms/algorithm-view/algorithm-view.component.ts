@@ -1,17 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EntityModelApplicationAreaDto } from 'api/models/entity-model-application-area-dto';
 import { ApplicationAreasService } from 'api/services/application-areas.service';
 import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
 import { ProblemTypeService } from 'api/services/problem-type.service';
 import { ProblemTypeDto } from 'api/models/problem-type-dto';
-import { ComputingResourcePropertyDto } from 'api/models/computing-resource-property-dto';
-import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
+import { UtilService } from '../../../util/util.service';
 
 @Component({
   selector: 'app-algorithm-view',
@@ -24,6 +22,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
     'Implementations',
     'Related algorithms',
     'Publications',
+    'NISQ Analyser',
     'Discussion',
   ];
 
@@ -41,8 +40,8 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
     private algorithmService: AlgorithmService,
     private applicationAreasService: ApplicationAreasService,
     private problemTypeService: ProblemTypeService,
-    private route: ActivatedRoute,
-    private dialog: MatDialog
+    private utilService: UtilService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -162,6 +161,11 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
               }
             );
           this.getApplicationAreasForAlgorithm(this.algorithm.id);
+          this.utilService.callSnackBar(
+            'Successfully removed application area "' +
+              applicationArea.name +
+              '"'
+          );
         },
         (error) => {
           console.log(error);

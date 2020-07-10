@@ -15,7 +15,7 @@
   </div>
 
   <mat-tab-group>
-    <mat-tab label="{{tabOptions[0]}}">
+    <mat-tab [label]=tabOptions[0]>
       <app-algorithm-properties [algorithm]="algorithm"
                                 [applicationAreas]="applicationAreas"
                                 [problemTypes]="problemTypes"
@@ -25,16 +25,19 @@
                                 (addProblemType)="addProblemType($event)"
                                 (removeProblemType)="removeProblemType($event)"></app-algorithm-properties>
     </mat-tab>
-    <mat-tab label="{{tabOptions[1]}}">
+    <mat-tab [label]=tabOptions[1]>
       <app-algorithm-implementations-list [algorithm]="algorithm"></app-algorithm-implementations-list>
     </mat-tab>
-    <mat-tab label="{{tabOptions[2]}}">
+    <mat-tab [label]=tabOptions[2]>
       <app-algorithm-related-algos-list [algorithm]="algorithm"></app-algorithm-related-algos-list>
     </mat-tab>
-    <mat-tab label="{{tabOptions[3]}}">
+    <mat-tab [label]=tabOptions[3]>
       <app-algorithm-publications-list [algorithm]="algorithm"></app-algorithm-publications-list>
     </mat-tab>
-    <mat-tab label="{{tabOptions[4]}}">
+    <mat-tab [label]=tabOptions[4]>
+      <h1>NISQ Analyser WIP</h1>
+    </mat-tab>
+    <mat-tab [label]=tabOptions[5]>
       <h1>Discussion WIP</h1>
     </mat-tab>
   </mat-tab-group>

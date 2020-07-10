@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 // eslint-disable-next-line max-classes-per-file
 import {
   Component,
@@ -11,7 +10,7 @@ import {
 } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { BehaviorSubject, of as observableOf } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
 
 export class FileNode {
@@ -22,16 +21,17 @@ export class FileNode {
 }
 
 @Component({
-  selector: 'app-tree-output',
-  templateUrl: './tree-output.component.html',
-  styleUrls: ['./tree-output.component.scss'],
+  selector: 'app-problem-type-tree',
+  templateUrl: './problem-type-tree.component.html',
+  styleUrls: ['./problem-type-tree.component.scss'],
 })
-export class TreeOutputComponent implements OnInit, OnChanges {
+export class ProblemTypeTreeComponent implements OnInit, OnChanges {
   @Output() onAddElement: EventEmitter<any> = new EventEmitter<any>();
   @Output() onRemoveElement: EventEmitter<any> = new EventEmitter<any>();
   @Output() onExpandParents: EventEmitter<
     EntityModelProblemTypeDto
   > = new EventEmitter<EntityModelProblemTypeDto>();
+
   @Input() name = '';
   @Input() treeData: FileNode[];
 
@@ -76,9 +76,9 @@ export class TreeOutputComponent implements OnInit, OnChanges {
       node.parents.length < 1
     ) {
       this.onExpandParents.emit(node.problemType);
-      console.log('first node expanded');
     }
   }
 
-  hasNestedChild = (_: number, nodeData: FileNode) => nodeData.hasParents;
+  hasNestedChild = (_: number, nodeData: FileNode): boolean =>
+    nodeData.hasParents;
 }

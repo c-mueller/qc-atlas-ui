@@ -21,7 +21,7 @@ import { SelectInputComponent } from './property-input/select-input.component';
 import { CheckboxInputComponent } from './property-input/checkbox-input.component';
 import { DataListComponent } from './data-list/data-list.component';
 import { ChipCollectionComponent } from './chip-collection/chip-collection.component';
-import { TreeOutputComponent } from './tree-output/tree-output.component';
+import { ProblemTypeTreeComponent } from './tree-output/problem-type-tree.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { TreeOutputComponent } from './tree-output/tree-output.component';
     CheckboxInputComponent,
     DataListComponent,
     ChipCollectionComponent,
-    TreeOutputComponent,
+    ProblemTypeTreeComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +55,7 @@ import { TreeOutputComponent } from './tree-output/tree-output.component';
     CheckboxInputComponent,
     DataListComponent,
     ChipCollectionComponent,
-    TreeOutputComponent,
+    ProblemTypeTreeComponent,
     RouterModule,
     MatSortModule,
   ],

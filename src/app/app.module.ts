@@ -41,6 +41,7 @@ import { NavigationBreadcrumbModule } from './components/generics/navigation-bre
 import { AlgorithmModule } from './components/algorithms/algorithm.module';
 import { ImplementationViewModule } from './components/algorithms/implementation-view/implementation-view.module';
 import { GenericsModule } from './components/generics/generics.module';
+import { UtilService } from './util/util.service';
 
 @NgModule({
   declarations: [
@@ -96,5 +97,6 @@ import { GenericsModule } from './components/generics/generics.module';
   ],
   bootstrap: [AppComponent],
   exports: [],
+  providers: [UtilService],
 })
 export class AppModule {}

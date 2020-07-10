@@ -4,7 +4,8 @@
                       [(ngModel)]="data.selectedProblemTypes">
     <mat-label>Problem types</mat-label>
     <mat-list-option *ngFor="let type of data.existingProblemTypes"
-                     [value]="type">
+                     [value]="type"
+                     color="warn">
       {{type.name}}
     </mat-list-option>
   </mat-selection-list>

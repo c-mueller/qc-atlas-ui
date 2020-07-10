@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ImplementationDto } from 'api/models/implementation-dto';
 import { Router } from '@angular/router';
 import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
+import { UtilService } from '../../../util/util.service';
+import { CreateImplementationDialogComponent } from '../dialogs/create-implementation-dialog.component';
 
 @Component({
   selector: 'app-algorithm-implementations-list',
@@ -26,8 +28,8 @@ export class AlgorithmImplementationsListComponent implements OnInit {
 
   constructor(
     private algorithmService: AlgorithmService,
-    private router: Router,
-    private dialog: MatDialog
+    private utilService: UtilService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -48,30 +50,31 @@ export class AlgorithmImplementationsListComponent implements OnInit {
   }
 
   onAddImplementation(): void {
-    const params: any = {};
-    const dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {
-      width: '400px',
-      data: { title: 'Add new implementation for this algorithm' },
-    });
-
-    dialogRef.afterClosed().subscribe((dialogResult) => {
-      if (dialogResult) {
-        const implementationDto: any = {
-          name: dialogResult.name,
-        };
-
-        params.body = implementationDto as ImplementationDto;
-        params.algoId = this.algorithm.id;
-        this.algorithmService.createImplementation(params).subscribe((data) => {
-          this.router.navigate([
-            'algorithms',
-            this.algorithm.id,
-            'implementations',
-            data.id,
-          ]);
-        });
-      }
-    });
+    this.utilService
+      .createDialog(CreateImplementationDialogComponent, {
+        title: 'Add new implementation for this algorithm',
+      })
+      .afterClosed()
+      .subscribe((dialogResult) => {
+        if (dialogResult) {
+          const implementationDto: ImplementationDto = {
+            name: dialogResult.name,
+          };
+          this.algorithmService
+            .createImplementation({
+              algoId: this.algorithm.id,
+              body: implementationDto,
+            })
+            .subscribe((data) => {
+              this.router.navigate([
+                'algorithms',
+                this.algorithm.id,
+                'implementations',
+                data.id,
+              ]);
+            });
+        }
+      });
   }
 
   onDeleteImplementation(event): void {}

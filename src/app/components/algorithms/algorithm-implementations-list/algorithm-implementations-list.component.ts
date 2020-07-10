@@ -2,10 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AlgorithmService } from 'api/services/algorithm.service';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import { EntityModelImplementationDto } from 'api/models/entity-model-implementation-dto';
-import { MatDialog } from '@angular/material/dialog';
 import { ImplementationDto } from 'api/models/implementation-dto';
 import { Router } from '@angular/router';
-import { AddAlgorithmDialogComponent } from '../dialogs/add-algorithm-dialog.component';
 import { UtilService } from '../../../util/util.service';
 import { CreateImplementationDialogComponent } from '../dialogs/create-implementation-dialog.component';
 

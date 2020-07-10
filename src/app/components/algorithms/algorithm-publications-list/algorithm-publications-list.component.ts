@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
-import { EntityModelImplementationDto } from 'api/models/entity-model-implementation-dto';
 import { AlgorithmService } from 'api/services/algorithm.service';
 import { EntityModelPublicationDto } from 'api/models/entity-model-publication-dto';
 
@@ -42,11 +41,11 @@ export class AlgorithmPublicationsListComponent implements OnInit {
 
   onAddElement(): void {}
 
-  onDeleteElements($event): void {}
+  onDeleteElements(event): void {}
 
-  onDatalistConfigChanged($event): void {}
+  onDatalistConfigChanged(event): void {}
 
-  onPageChanged($event): void {}
+  onPageChanged(event): void {}
 
   onElementClicked(event): void {}
 }

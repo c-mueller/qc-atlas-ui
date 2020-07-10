@@ -17,6 +17,8 @@ import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-
 export class FileNode {
   problemType: EntityModelProblemTypeDto;
   parents?: FileNode[];
+  hasParents: boolean;
+  isLowestLevelNode: boolean;
 }
 
 @Component({
@@ -41,26 +43,25 @@ export class TreeOutputComponent implements OnInit, OnChanges {
   > = new MatTreeNestedDataSource<FileNode>();
   dataChange: BehaviorSubject<FileNode[]> = new BehaviorSubject<FileNode[]>([]);
 
-  constructor() {
-    this.nestedDataSource = new MatTreeNestedDataSource();
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.dataChange.subscribe((data) => (this.nestedDataSource.data = data));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.dataChange.next(this.treeData);
-    console.log(changes);
+    if (changes.hasOwnProperty('treeData')) {
+      this.dataChange.next(this.treeData);
+    }
   }
 
   isTreeDataInvalid(): boolean {
-    return this.treeData == null || this.treeData.length <= 0;
+    return this.treeData == null || this.treeData.length < 1;
   }
 
   addElement(): void {
     this.onAddElement.emit();
-    // console.log(this.treeData);
+    console.log(this.treeData);
   }
 
   removeElement(): void {
@@ -68,8 +69,16 @@ export class TreeOutputComponent implements OnInit, OnChanges {
     console.log(this.treeData);
   }
 
-  expandParents(node): void {}
+  expandNode(node: FileNode): void {
+    if (
+      node.isLowestLevelNode &&
+      this.nestedTreeControl.isExpanded(node) &&
+      node.parents.length < 1
+    ) {
+      this.onExpandParents.emit(node.problemType);
+      console.log('first node expanded');
+    }
+  }
 
-  hasNestedChild = (_: number, nodeData: FileNode) =>
-    nodeData.parents.length > 0;
+  hasNestedChild = (_: number, nodeData: FileNode) => nodeData.hasParents;
 }

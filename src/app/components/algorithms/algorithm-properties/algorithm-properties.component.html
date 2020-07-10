@@ -23,11 +23,12 @@
 
   <div class="d-flex">
     <mat-card class="w-100 m-4">
-      <app-tree-output class="w-100"
+      <app-tree-output #problemTypeTree
+                       class="w-100"
                        name="Problem-Types"
                        [treeData]="problemTypeTreeData"
                        (onAddElement)="addProblemTypeEvent()"
-                       (onRemoveElement)="removeProblemTypeEvent()"></app-tree-output>
+                       (onRemoveElement)="removeProblemTypeEvent()" (onExpandParents)="getParentsForNode($event)"></app-tree-output>
     </mat-card>
     <mat-card class="w-100 m-4">
       <app-chip-collection class="w-100"

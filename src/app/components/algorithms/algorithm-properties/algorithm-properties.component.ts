@@ -6,17 +6,20 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
 import {
   EntityModelApplicationAreaDto,
   EntityModelComputingResourcePropertyDto,
   EntityModelProblemTypeDto,
-  ProblemTypeDto,
 } from 'api/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ProblemTypeService } from 'api/services/problem-type.service';
-import { FileNode } from '../../generics/tree-output/tree-output.component';
+import {
+  FileNode,
+  TreeOutputComponent,
+} from '../../generics/tree-output/tree-output.component';
 import { Option } from '../../generics/property-input/select-input.component';
 import { AddProblemTypeDialogComponent } from '../dialogs/add-problem-type-dialog.component';
 import { RemoveProblemTypeDialogComponent } from '../dialogs/remove-problem-type-dialog.component';
@@ -27,6 +30,8 @@ import { RemoveProblemTypeDialogComponent } from '../dialogs/remove-problem-type
   styleUrls: ['./algorithm-properties.component.scss'],
 })
 export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
+  @ViewChild('problemTypeTree') problemTypeTreeComponent: TreeOutputComponent;
+
   @Output() addApplicationArea: EventEmitter<string> = new EventEmitter<
     string
   >();
@@ -104,10 +109,25 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
 
   buildParentTree(parents: EntityModelProblemTypeDto[]): FileNode[] {
     parents.shift();
-    let parent: FileNode[] = [{ problemType: parents.pop(), parents: [] }];
+    const type = parents.pop();
+    let parent: FileNode[] = [
+      {
+        problemType: type,
+        parents: [],
+        hasParents: type.parentProblemType != null,
+        isLowestLevelNode: false,
+      },
+    ];
 
     parents.reverse().forEach((problemType) => {
-      parent = [{ problemType, parents: parent }];
+      parent = [
+        {
+          problemType,
+          parents: parent,
+          hasParents: problemType.parentProblemType != null,
+          isLowestLevelNode: false,
+        },
+      ];
     });
 
     return parent;
@@ -116,17 +136,26 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('problemTypes') && this.problemTypes != null) {
       this.problemTypeTreeData = [];
-      this.getParentListForProblemTypes();
+      this.createInitTreeData();
+      console.log(this.problemTypes);
+      console.log(this.problemTypeTreeData);
     }
   }
 
-  getParentListForProblemTypes(): void {
-    this.problemTypes.forEach((problemType) =>
-      this.addProblemTypeParentTree(problemType)
-    );
+  createInitTreeData(): void {
+    this.problemTypes.forEach((problemType) => {
+      const node: FileNode = {
+        problemType,
+        parents: [],
+        hasParents: problemType.parentProblemType != null,
+        isLowestLevelNode: true,
+      };
+      this.problemTypeTreeData.push(node);
+      this.problemTypeTreeData = this.problemTypeTreeData.slice();
+    });
   }
 
-  addProblemTypeParentTree(problemType: EntityModelProblemTypeDto): void {
+  addParentTreeToProblemType(problemType: EntityModelProblemTypeDto): void {
     this.problemTypeService
       .getProblemTypeParentList({ id: problemType.id })
       .subscribe(
@@ -137,18 +166,21 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
             if (parentProblemTypes.length > 1) {
               parentNodes = this.buildParentTree(parentProblemTypes);
             }
-            const node: FileNode = {
+            const problemTypeNode = this.problemTypeTreeData.find(
+              (node) => node.problemType.id === problemType.id
+            );
+            const index = this.problemTypeTreeData.indexOf(problemTypeNode);
+            this.problemTypeTreeData[index] = {
               problemType,
               parents: parentNodes,
+              hasParents: true,
+              isLowestLevelNode: true,
             };
-            this.problemTypeTreeData.push(node);
             this.problemTypeTreeData = this.problemTypeTreeData.slice();
+            this.problemTypeTreeComponent.nestedTreeControl.expand(
+              this.problemTypeTreeData[index]
+            );
           }
-          console.log(
-            'Tree data after parent tree api call',
-            this.problemTypeTreeData.length,
-            this.problemTypeTreeData
-          );
         },
         (error) => {
           console.log(error);
@@ -170,6 +202,11 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
 
   addComputeResourceProperty(): void {
     console.log('add compute resource property');
+  }
+
+  getParentsForNode(problemType: EntityModelProblemTypeDto): void {
+    console.log(problemType);
+    this.addParentTreeToProblemType(problemType);
   }
 
   addProblemTypeEvent(): void {

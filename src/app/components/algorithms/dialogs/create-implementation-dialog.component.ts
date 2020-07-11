@@ -1,5 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -20,7 +25,7 @@ export class CreateImplementationDialogComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  get name(): any {
+  get name(): AbstractControl | null {
     return this.implementationForm.get('name');
   }
 

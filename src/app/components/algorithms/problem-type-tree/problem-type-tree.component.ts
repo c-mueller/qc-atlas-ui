@@ -61,12 +61,10 @@ export class ProblemTypeTreeComponent implements OnInit, OnChanges {
 
   addElement(): void {
     this.onAddElement.emit();
-    console.log(this.treeData);
   }
 
   removeElement(): void {
     this.onRemoveElement.emit();
-    console.log(this.treeData);
   }
 
   expandNode(node: FileNode): void {

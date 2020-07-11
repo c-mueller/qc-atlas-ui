@@ -1,4 +1,4 @@
-<div *ngIf="algorithm" class="main-container">
+<div *ngIf="algorithm" class="m-2">
   <div class="header-container p-2">
     <navigation-breadcrumb [links]="links"></navigation-breadcrumb>
     <div>
@@ -15,7 +15,7 @@
   </div>
 
   <mat-tab-group>
-    <mat-tab [label]=tabOptions[0]>
+    <mat-tab label="General">
       <app-algorithm-properties [algorithm]="algorithm"
                                 [applicationAreas]="applicationAreas"
                                 [problemTypes]="problemTypes"
@@ -25,20 +25,23 @@
                                 (addProblemType)="addProblemType($event)"
                                 (removeProblemType)="removeProblemType($event)"></app-algorithm-properties>
     </mat-tab>
-    <mat-tab [label]=tabOptions[1]>
+    <mat-tab label="Implementations">
       <app-algorithm-implementations-list [algorithm]="algorithm"></app-algorithm-implementations-list>
     </mat-tab>
-    <mat-tab [label]=tabOptions[2]>
+    <mat-tab label="Related algorithms">
       <app-algorithm-related-algos-list [algorithm]="algorithm"></app-algorithm-related-algos-list>
     </mat-tab>
-    <mat-tab [label]=tabOptions[3]>
+    <mat-tab label="Publications">
       <app-algorithm-publications-list [algorithm]="algorithm"></app-algorithm-publications-list>
     </mat-tab>
-    <mat-tab [label]=tabOptions[4]>
+    <mat-tab label="NISQ Analyser">
       <h1>NISQ Analyser WIP</h1>
     </mat-tab>
-    <mat-tab [label]=tabOptions[5]>
+    <mat-tab label="Discussion">
       <h1>Discussion WIP</h1>
     </mat-tab>
   </mat-tab-group>
 </div>
+
+
+

@@ -4,7 +4,12 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-add-algorithm-dialog-component',
@@ -19,10 +24,10 @@ export class AddAlgorithmDialogComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  get name(): any {
+  get name(): AbstractControl | null {
     return this.algorithmForm.get('name');
   }
-  get computationModel(): any {
+  get computationModel(): AbstractControl | null {
     return this.algorithmForm.get('computationModel');
   }
 

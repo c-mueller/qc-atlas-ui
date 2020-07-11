@@ -17,15 +17,6 @@ import { UtilService } from '../../../util/util.service';
   styleUrls: ['./algorithm-view.component.scss'],
 })
 export class AlgorithmViewComponent implements OnInit, OnDestroy {
-  tabOptions: string[] = [
-    'General',
-    'Implementations',
-    'Related algorithms',
-    'Publications',
-    'NISQ Analyser',
-    'Discussion',
-  ];
-
   testTags: string[] = ['test tag', 'quantum', 'algorithm'];
 
   algorithm: EntityModelAlgorithmDto;

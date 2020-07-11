@@ -8,18 +8,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { RouterModule } from '@angular/router';
 import { MatSortModule } from '@angular/material/sort';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from '../../app-routing.module';
 import { GenericDataService } from '../../util/generic-data.service';
 import { TextInputComponent } from './property-input/text-input.component';
 import { SelectInputComponent } from './property-input/select-input.component';
+import { CheckboxInputComponent } from './property-input/checkbox-input.component';
 import { DataListComponent } from './data-list/data-list.component';
+import { ChipCollectionComponent } from './chip-collection/chip-collection.component';
 
 @NgModule({
-  declarations: [TextInputComponent, SelectInputComponent, DataListComponent],
+  declarations: [
+    TextInputComponent,
+    SelectInputComponent,
+    CheckboxInputComponent,
+    DataListComponent,
+    ChipCollectionComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,10 +40,20 @@ import { DataListComponent } from './data-list/data-list.component';
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatSortModule,
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+  ],
+  exports: [
+    TextInputComponent,
+    SelectInputComponent,
+    CheckboxInputComponent,
+    DataListComponent,
+    ChipCollectionComponent,
     RouterModule,
     MatSortModule,
   ],
   providers: [GenericDataService],
-  exports: [TextInputComponent, SelectInputComponent, DataListComponent],
 })
 export class GenericsModule {}

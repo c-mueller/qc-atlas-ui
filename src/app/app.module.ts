@@ -42,6 +42,8 @@ import { AlgorithmModule } from './components/algorithms/algorithm.module';
 import { ImplementationViewModule } from './components/algorithms/implementation-view/implementation-view.module';
 import { GenericsModule } from './components/generics/generics.module';
 import { UtilService } from './util/util.service';
+import { ProblemTypesListComponent } from './components/problem-types/problem-types-list/problem-types-list.component';
+import { ProblemTypesViewComponent } from './components/problem-types/problem-types-view/problem-types-view.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { UtilService } from './util/util.service';
     PublicationViewComponent,
     NavigationComponent,
     PublicationListComponent,
+    ProblemTypesListComponent,
+    ProblemTypesViewComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),

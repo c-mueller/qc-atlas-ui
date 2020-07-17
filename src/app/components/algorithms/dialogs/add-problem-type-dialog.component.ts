@@ -23,7 +23,7 @@ export class AddProblemTypeDialogComponent implements OnInit {
   parentProblemTypeControl: FormControl = new FormControl();
   problemTypeControl: FormControl = new FormControl();
   existingProblemTypes: EntityModelProblemTypeDto[];
-  filteredProblemTyped: EntityModelProblemTypeDto[];
+  filteredProblemTypes: EntityModelProblemTypeDto[];
   filteredParentProblemTypes: EntityModelProblemTypeDto[];
   parentName: string;
 
@@ -61,7 +61,7 @@ export class AddProblemTypeDialogComponent implements OnInit {
       });
 
     this.problemTypeControl.valueChanges.subscribe((value) => {
-      this.filteredProblemTyped = this.filterProblemTypes(value);
+      this.filteredProblemTypes = this.filterProblemTypes(value);
     });
     this.parentProblemTypeControl.valueChanges.subscribe((value) => {
       this.filteredParentProblemTypes = this.filterParents(value);

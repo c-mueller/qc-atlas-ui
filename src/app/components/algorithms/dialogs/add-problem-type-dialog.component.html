@@ -10,7 +10,7 @@
         required>
       <mat-autocomplete #autoProblemType="matAutocomplete" >
         <mat-option
-          *ngFor="let type of filteredProblemTyped"
+          *ngFor="let type of filteredProblemTypes"
           [value]="type.name"
           (click)="onProblemTypeSelect(type)">
           {{ type.name }}

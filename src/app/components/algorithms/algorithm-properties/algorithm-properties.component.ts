@@ -75,9 +75,7 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
     private utilService: UtilService
   ) {}
 
-  ngOnInit(): void {
-    this.createDummyCompureResourceProperties();
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('problemTypes') && this.problemTypes != null) {

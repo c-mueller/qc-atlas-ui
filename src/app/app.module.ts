@@ -42,6 +42,7 @@ import { AlgorithmModule } from './components/algorithms/algorithm.module';
 import { ImplementationViewModule } from './components/algorithms/implementation-view/implementation-view.module';
 import { GenericsModule } from './components/generics/generics.module';
 import { UtilService } from './util/util.service';
+import { ComputingResourcePropertyModule } from './components/computation-resource-property/computing-resource-property.module';
 import { ProblemTypesListComponent } from './components/problem-types/problem-types-list/problem-types-list.component';
 import { ProblemTypesViewComponent } from './components/problem-types/problem-types-view/problem-types-view.component';
 
@@ -98,6 +99,7 @@ import { ProblemTypesViewComponent } from './components/problem-types/problem-ty
     AlgorithmModule,
     ImplementationViewModule,
     GenericsModule,
+    ComputingResourcePropertyModule,
   ],
   bootstrap: [AppComponent],
   exports: [],

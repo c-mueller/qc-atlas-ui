@@ -32,19 +32,14 @@ export class NavigationComponent implements OnInit {
         index: 0,
       },
       {
-        label: 'Software platforms',
-        link: './software-platforms',
+        label: 'Execution environments',
+        link: './execution-environments',
         index: 1,
-      },
-      {
-        label: 'Cloud services',
-        link: './cloud-services',
-        index: 2,
       },
       {
         label: 'Publications',
         link: './publications',
-        index: 3,
+        index: 2,
       },
     ];
   }

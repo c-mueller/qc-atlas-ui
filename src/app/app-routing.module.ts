@@ -7,6 +7,9 @@ import { AlgorithmListComponent } from './components/algorithms/algorithm-list/a
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { ImplementationViewComponent } from './components/algorithms/implementation-view/implementation-view.component';
 import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/algorithm-view.component';
+import { ComputeResourceViewComponent } from './components/execution-environments/compute-resource/compute-resource-view/compute-resource-view.component';
+import { ExecutionEnvironmentsListComponent } from './components/execution-environments/execution-environments-list/execution-environments-list.component';
+import {ExecutionEnvironmentSearchComponent} from "./components/execution-environments/execution-environment-search/execution-environment-search.component";
 
 const routes: Routes = [
   { path: 'algorithms', component: AlgorithmListComponent },
@@ -15,8 +18,26 @@ const routes: Routes = [
     path: 'algorithms/:algoId/implementations/:implId',
     component: ImplementationViewComponent,
   },
-  { path: 'software-platforms', component: SoftwarePlatformViewComponent },
-  { path: 'cloud-services', component: CloudServiceViewComponent },
+  {
+    path: 'execution-environments',
+    component: ExecutionEnvironmentsListComponent,
+  },
+  {
+    path: 'execution-environments/search',
+    component: ExecutionEnvironmentSearchComponent,
+  },
+  {
+    path: 'execution-environments/software-platform/:id',
+    component: SoftwarePlatformViewComponent,
+  },
+  {
+    path: 'execution-environments/cloud-service/:id',
+    component: CloudServiceViewComponent,
+  },
+  {
+    path: 'execution-environments/compute-resource/:id',
+    component: ComputeResourceViewComponent,
+  },
   { path: 'publications', component: PublicationListComponent },
   {
     path: '',

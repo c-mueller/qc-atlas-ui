@@ -32,8 +32,6 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { JsonImportDialogComponent } from './components/dialogs/json-import-dialog.component';
 import { MissingEntityDialogComponent } from './components/dialogs/missing-entity-dialog.component';
-import { SoftwarePlatformViewComponent } from './components/execution-environments/software-platforms/software-platform-view/software-platform-view.component';
-import { CloudServiceViewComponent } from './components/execution-environments/cloud-services/cloud-service-view/cloud-service-view.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
@@ -43,6 +41,7 @@ import { ImplementationViewModule } from './components/algorithms/implementation
 import { GenericsModule } from './components/generics/generics.module';
 import { UtilService } from './util/util.service';
 import { ComputingResourcePropertyModule } from './components/computation-resource-property/computing-resource-property.module';
+import { ExecutionEnvironmentsModule } from './components/execution-environments/execution-environments.module';
 
 @NgModule({
   declarations: [
@@ -52,8 +51,6 @@ import { ComputingResourcePropertyModule } from './components/computation-resour
     // dialogs
     JsonImportDialogComponent,
     MissingEntityDialogComponent,
-    SoftwarePlatformViewComponent,
-    CloudServiceViewComponent,
     PublicationViewComponent,
     NavigationComponent,
     PublicationListComponent,
@@ -96,6 +93,7 @@ import { ComputingResourcePropertyModule } from './components/computation-resour
     ImplementationViewModule,
     GenericsModule,
     ComputingResourcePropertyModule,
+    ExecutionEnvironmentsModule,
   ],
   bootstrap: [AppComponent],
   exports: [],

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTabsModule } from '@angular/material/tabs';
+import { GenericsModule } from '../generics/generics.module';
 import { CloudServiceViewComponent } from './cloud-services/cloud-service-view/cloud-service-view.component';
 import { SoftwarePlatformViewComponent } from './software-platforms/software-platform-view/software-platform-view.component';
 import { ExecutionEnvironmentsListComponent } from './execution-environments-list/execution-environments-list.component';
@@ -20,7 +22,7 @@ import { ExecutionEnvironmentSearchComponent } from './execution-environment-sea
     SoftwarePlatformListComponent,
     ExecutionEnvironmentSearchComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, MatTabsModule, GenericsModule],
   exports: [
     SoftwarePlatformViewComponent,
     CloudServiceViewComponent,

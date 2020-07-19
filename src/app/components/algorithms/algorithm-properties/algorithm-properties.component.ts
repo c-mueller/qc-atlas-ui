@@ -179,9 +179,12 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
       .afterClosed()
       .subscribe((dialogResult) => {
         if (dialogResult) {
-          const problemTypeDto: EntityModelProblemTypeDto = {
+          let problemTypeDto: EntityModelProblemTypeDto = {
             name: dialogResult.name,
           };
+          if (dialogResult.existingProblemType != null) {
+            problemTypeDto = dialogResult.existingProblemType;
+          }
           if (
             dialogResult.parentProblemType != null &&
             dialogResult.parentProblemType.id != null
@@ -189,7 +192,6 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
             problemTypeDto.parentProblemType =
               dialogResult.parentProblemType.id;
           }
-
           this.addProblemType.emit(problemTypeDto);
         }
       });

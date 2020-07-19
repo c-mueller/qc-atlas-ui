@@ -24,7 +24,7 @@
     <mat-label>Parent problem type</mat-label>
     <mat-select [formControl]="parentProblemTypeControl">
       <mat-option *ngFor="let type of existingProblemTypes"
-                  [value]="type.id"
+                  [value]="type"
                   (click)="onParentTypeSelect(type)">
         {{type.name}}
       </mat-option>

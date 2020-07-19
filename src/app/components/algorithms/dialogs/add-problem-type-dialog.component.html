@@ -18,9 +18,11 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
-  <mat-form-field class="input-field" appearance="fill">
+  <mat-form-field class="input-field"
+                  appearance="fill"
+                  *ngIf="existingProblemTypes">
     <mat-label>Parent problem type</mat-label>
-    <mat-select *ngIf="existingProblemTypes">
+    <mat-select [formControl]="parentProblemTypeControl">
       <mat-option *ngFor="let type of existingProblemTypes"
                   [value]="type.id"
                   (click)="onParentTypeSelect(type)">

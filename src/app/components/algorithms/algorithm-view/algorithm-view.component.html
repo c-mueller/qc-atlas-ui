@@ -34,8 +34,29 @@
     <mat-tab label="Publications">
       <app-algorithm-publications-list [algorithm]="algorithm"></app-algorithm-publications-list>
     </mat-tab>
-    <mat-tab label="NISQ Analyser">
-      <h1>NISQ Analyser WIP</h1>
+    <mat-tab label="Selection Criteria">
+      <div class="tab-body p-4">
+        <h4>Required information for the NISQ Analyzer</h4>
+        <mat-card class="m-4 w-75">
+          <div class="d-flex justify-content-between">
+            <app-text-input
+              class="p-2 w-100"
+              name="Qubit Count"
+              [(ngModel)]="selectionCriteria.qbitCount"
+            ></app-text-input>
+            <app-text-input
+              class="p-2 w-100"
+              name="T1 (in nanoseconds)"
+              [(ngModel)]="selectionCriteria.t1"
+            ></app-text-input>
+            <app-text-input
+              class="p-2 w-100"
+              name="Max Gate Time (in nanoseconds)"
+              [(ngModel)]="selectionCriteria.maxGateTime"
+            ></app-text-input>
+          </div>
+        </mat-card>
+      </div>
     </mat-tab>
     <mat-tab label="Discussion">
       <h1>Discussion WIP</h1>

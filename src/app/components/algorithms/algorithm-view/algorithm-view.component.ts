@@ -23,6 +23,12 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   applicationAreas: EntityModelApplicationAreaDto[];
   problemTypes: EntityModelProblemTypeDto[];
 
+  selectionCriteria: AlgorithmSelectionCriteria = {
+    maxGateTime: 1231,
+    t1: 2134523,
+    qbitCount: 15,
+  };
+
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
   private routeSub: Subscription;
@@ -204,4 +210,10 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
         );
     });
   }
+}
+
+interface AlgorithmSelectionCriteria {
+  qbitCount: number;
+  t1: number;
+  maxGateTime: number;
 }

@@ -10,14 +10,19 @@ import {
 import { FormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
-import { GenericsModule } from '../../generics/generics.module';
-import { NavigationBreadcrumbModule } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ComputingResourcePropertyModule } from '../../computation-resource-property/computing-resource-property.module';
+import { NavigationBreadcrumbModule } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.module';
+import { GenericsModule } from '../../generics/generics.module';
+import { ImplSelectionCriteriaComponent } from '../impl-selection-criteria/impl-selection-criteria.component';
 import { ImplementationViewComponent } from './implementation-view.component';
 
 @NgModule({
-  declarations: [ImplementationViewComponent],
+  declarations: [ImplementationViewComponent, ImplSelectionCriteriaComponent],
   imports: [
+    CommonModule,
     BreadcrumbModule,
     BadgeModule,
     IconsModule,
@@ -28,8 +33,12 @@ import { ImplementationViewComponent } from './implementation-view.component';
     NavigationBreadcrumbModule,
     GenericsModule,
     FormsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
     ComputingResourcePropertyModule,
     MatCardModule,
+    MatCheckboxModule,
   ],
 })
 export class ImplementationViewModule {}

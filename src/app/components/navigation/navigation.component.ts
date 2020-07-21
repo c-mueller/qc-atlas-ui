@@ -46,11 +46,6 @@ export class NavigationComponent implements OnInit {
         link: './publications',
         index: 3,
       },
-      {
-        label: 'Problem types',
-        link: './problem-types',
-        index: 4,
-      },
     ];
   }
 

@@ -182,15 +182,16 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
           let problemTypeDto: EntityModelProblemTypeDto = {
             name: dialogResult.name,
           };
-          if (dialogResult.existingProblemType != null) {
-            problemTypeDto = dialogResult.existingProblemType;
-          }
           if (
             dialogResult.parentProblemType != null &&
             dialogResult.parentProblemType.id != null
           ) {
             problemTypeDto.parentProblemType =
               dialogResult.parentProblemType.id;
+          }
+          if (dialogResult.selectedProblemType != null) {
+            console.log('if entered');
+            problemTypeDto = dialogResult.selectedProblemType;
           }
           this.addProblemType.emit(problemTypeDto);
         }

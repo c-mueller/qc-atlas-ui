@@ -164,27 +164,43 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
       );
   }
 
-  addProblemType(problemType: ProblemTypeDto): void {
-    this.problemTypeService.createProblemType({ body: problemType }).subscribe(
-      (type) => {
-        this.algorithmService
-          .addProblemType({ algoId: this.algorithm.id, body: type })
-          .subscribe(
-            (types) => {
-              if (types._embedded) {
-                this.problemTypes = types._embedded.problemTypes;
+  addProblemType(problemType: EntityModelProblemTypeDto): void {
+    this.problemTypeService
+      .updateProblemType({ id: problemType.id, body: problemType })
+      .subscribe(
+        (updatedType) => {
+          this.addProblemTypeToAlgorithm(updatedType);
+        },
+        (updateError) => {
+          console.log(updateError);
+          this.problemTypeService
+            .createProblemType({ body: problemType })
+            .subscribe(
+              (createdType) => {
+                this.addProblemTypeToAlgorithm(createdType);
+              },
+              (createError) => {
+                console.log(createError);
               }
-              console.log(types);
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+            );
+        }
+      );
+  }
+
+  addProblemTypeToAlgorithm(problemType: EntityModelProblemTypeDto): void {
+    this.algorithmService
+      .addProblemType({ algoId: this.algorithm.id, body: problemType })
+      .subscribe(
+        (types) => {
+          if (types._embedded) {
+            this.problemTypes = types._embedded.problemTypes;
+          }
+          console.log(types);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   removeProblemType(problemTypes: EntityModelProblemTypeDto[]): void {

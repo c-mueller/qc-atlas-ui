@@ -54,6 +54,7 @@ export class ProblemTypesListComponent implements OnInit {
   }
 
   onElementClicked(problemType: any): void {
+    console.log(problemType);
     this.router.navigate(['problem-types', problemType.id]);
   }
 

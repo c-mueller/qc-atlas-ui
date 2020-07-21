@@ -190,7 +190,6 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
               dialogResult.parentProblemType.id;
           }
           if (dialogResult.selectedProblemType != null) {
-            console.log('if entered');
             problemTypeDto = dialogResult.selectedProblemType;
           }
           this.addProblemType.emit(problemTypeDto);

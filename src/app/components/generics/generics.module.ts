@@ -28,6 +28,7 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog.component';
 import { LinkInputComponent } from './link-input/link-input.component';
 import { PrologInputComponent } from './property-input/prolog-input.component';
 import { PrologValidator } from './prolog.validator';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { PrologValidator } from './prolog.validator';
     MatDialogModule,
     MatAutocompleteModule,
     MatBadgeModule,
+    MatCardModule,
   ],
   exports: [
     TextInputComponent,

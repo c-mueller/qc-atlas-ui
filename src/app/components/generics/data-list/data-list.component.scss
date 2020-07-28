@@ -1,19 +1,7 @@
 @import "theme";
 
-.table-container {
-  position: relative;
-}
-
 .control-button:hover {
   color: white !important;
-}
-
-.delete-button:hover {
-  background-color: red !important;
-}
-
-.add-button:hover {
-  background-color: green !important;
 }
 
 .config-button:hover {
@@ -36,9 +24,9 @@ mat-grid-list {
 }
 
 .data-header {
-  background-color: mat-color($qc-atlas-ui-primary);
+ // background-color: mat-color($qc-atlas-ui-primary);
   font-weight: bold !important;
-  color: white !important;
+ // color: white !important;
 }
 
 .data-element {
@@ -109,17 +97,38 @@ mat-grid-list {
   text-align: center;
 }
 
-.delete-small {
-  width: 15px;
-  height: 15px;
-  line-height: 15px;
-  outline: none !important;
-}
-
-.delete-small:hover {
-  color: red;
-}
 
 a.table-url:hover {
   text-decoration: underline;
 }
+
+#table-header {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  margin-right: auto;
+  margin-top: auto;
+  width: auto;
+  top: 0px;
+  height: 50px;
+  background-color: mat-color($qc-atlas-ui-primary);
+  z-index: 1;
+}
+
+#table {
+  position: absolute;
+  top: 25px;
+}
+
+#table-container {
+  position: relative;
+}
+
+button{
+  outline:none;
+}
+
+button:hover{
+  transform: scale(1.1, 1.1);
+}
+

@@ -98,14 +98,6 @@ export class ProblemTypesListComponent implements OnInit {
     }
   }
 
-  onPageChanged(event): void {
-    this.getProblemTypesHateoas(event);
-  }
-
-  onDatalistConfigChanged(event): void {
-    this.getProblemTypes(event);
-  }
-
   generateDeleteParams(problemTypeId: string): any {
     const params: any = {};
     params.id = problemTypeId;

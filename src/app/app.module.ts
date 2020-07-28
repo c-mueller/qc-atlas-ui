@@ -56,7 +56,6 @@ import { ProblemTypesViewComponent } from './components/problem-types/problem-ty
     SoftwarePlatformViewComponent,
     CloudServiceViewComponent,
     NavigationComponent,
-    PublicationListComponent,
     ProblemTypesListComponent,
     ProblemTypesViewComponent,
   ],

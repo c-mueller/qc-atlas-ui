@@ -32,10 +32,7 @@ export class ApplicationAreasService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getApplicationAreas$Response(params?: {
-    page?: number;
-    size?: number;
-  }): Observable<
+  getApplicationAreas$Response(params?: {}): Observable<
     StrictHttpResponse<{
       _embedded?: { applicationAreas?: Array<EntityModelApplicationAreaDto> };
       page?: PageMetadata;
@@ -47,8 +44,6 @@ export class ApplicationAreasService extends BaseService {
       'get'
     );
     if (params) {
-      rb.query('page', params.page, {});
-      rb.query('size', params.size, {});
     }
     return this.http
       .request(
@@ -76,10 +71,7 @@ export class ApplicationAreasService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getApplicationAreas(params?: {
-    page?: number;
-    size?: number;
-  }): Observable<{
+  getApplicationAreas(params?: {}): Observable<{
     _embedded?: { applicationAreas?: Array<EntityModelApplicationAreaDto> };
     page?: PageMetadata;
   }> {

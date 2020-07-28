@@ -1,10 +1,16 @@
 <div class="m-4">
   <div class="header">
     <label class="mr-4">{{title}}</label>
-    <mat-form-field>
+    <mat-form-field *ngIf="!addLinks">
       <input [(ngModel)]="inputValue" matInput>
     </mat-form-field>
-    <button (click)="addElement()"
+    <app-link-input *ngIf="addLinks"
+      [linkObject]="linkObject"
+      [isDisableable]=false
+      (searchTextChanged)="onSearchTextChanged.emit($event)"
+      (linkElement)="onAddElement.emit($event)">
+    </app-link-input>
+    <button *ngIf="!addLinks" (click)="addElement()"
             mat-button
             matSuffix
             mat-icon-button

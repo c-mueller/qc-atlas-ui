@@ -60,7 +60,7 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
   problemTypeTreeComponent: ProblemTypeTreeComponent;
 
   applicationAreaLinkObject: LinkObject = {
-    title: 'Link application area with algorithm',
+    title: 'Link application area with ',
     subtitle: 'Search application area by name',
     displayVariable: 'name',
     data: [],
@@ -88,6 +88,7 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
+    this.applicationAreaLinkObject.title += this.algorithm.name;
     this.fetchComputeResourceProperties();
 
     // const problem1: EntityModelProblemTypeDto = {

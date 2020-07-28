@@ -127,6 +127,8 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
           this.utilService.callSnackBar(
             'Successfully linked application area "' +
               applicationArea.name +
+              '" to algorithm "' +
+              this.algorithm.name +
               '"'
           );
         }
@@ -143,8 +145,10 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
         (res) => {
           this.getApplicationAreasForAlgorithm(this.algorithm.id);
           this.utilService.callSnackBar(
-            'Successfully removed application area "' +
+            'Successfully removed link to application area "' +
               applicationArea.name +
+              '" from algorithm "' +
+              this.algorithm.name +
               '"'
           );
         },

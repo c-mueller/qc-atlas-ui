@@ -165,5 +165,5 @@ export interface LinkObject {
   title: string;
   subtitle: string;
   displayVariable: string;
-  data: [];
+  data: any[];
 }

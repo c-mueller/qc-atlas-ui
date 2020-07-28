@@ -45,7 +45,7 @@ export class ImplementationPublicationsListComponent implements OnInit {
 
   getLinkedPublications(): void {
     this.algorithmService
-      .getPublications1({
+      .getPublicationsByImplementation({
         algoId: this.algoId,
         implId: this.implementation.id,
       })
@@ -61,7 +61,7 @@ export class ImplementationPublicationsListComponent implements OnInit {
 
   searchUnlinkedPublications(search: string): void {
     if (search) {
-      this.publicationService.getPublications2({ search }).subscribe((data) => {
+      this.publicationService.getPublications({ search }).subscribe((data) => {
         this.updateLinkablePublications(data._embedded);
       });
     } else {
@@ -73,7 +73,7 @@ export class ImplementationPublicationsListComponent implements OnInit {
     // Empty unlinked algorithms
     this.linkObject.data = [];
     this.algorithmService
-      .addPublication1(this.generateLinkParams(publication.id))
+      .addPublication(this.generateLinkParams(publication.id))
       .subscribe((data) => {
         this.getLinkedPublications();
       });
@@ -84,7 +84,7 @@ export class ImplementationPublicationsListComponent implements OnInit {
     for (const publication of event.elements) {
       await // Build params using path ids and perform delete request
       this.algorithmService
-        .deleteReferenceToPublication1(this.generateLinkParams(publication.id))
+        .deleteReferenceToPublication(this.generateLinkParams(publication.id))
         .toPromise();
       this.getLinkedPublications();
     }

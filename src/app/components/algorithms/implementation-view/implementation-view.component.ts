@@ -89,7 +89,7 @@ export class ImplementationViewComponent implements OnInit {
   onDeleteQuantumResource($event: DeleteParams): void {}
 
   onDatalistConfigChanged(params: QueryParams): void {
-    this.publicationService.getPublications2(params).subscribe((data) => {
+    this.publicationService.getPublications(params).subscribe((data) => {
       console.log(data._embedded?.publications);
     });
   }
@@ -109,7 +109,7 @@ export class ImplementationViewComponent implements OnInit {
     property: EntityModelComputingResourcePropertyDto
   ): void {
     this.algorithmService
-      .addComputingResource1({
+      .addComputingResourceByImplementation({
         algoId: this.algo.id,
         implId: this.impl.id,
         body: property,
@@ -123,7 +123,7 @@ export class ImplementationViewComponent implements OnInit {
     property: EntityModelComputingResourcePropertyDto
   ): void {
     this.algorithmService
-      .updateComputingResource1({
+      .updateComputingResourceByImplementation({
         algoId: this.algo.id,
         implId: this.impl.id,
         resourceId: property.id,
@@ -138,7 +138,7 @@ export class ImplementationViewComponent implements OnInit {
     property: EntityModelComputingResourcePropertyDto
   ): void {
     this.algorithmService
-      .deleteComputingResource1({
+      .deleteComputingResourceByImplementation({
         algoId: this.algo.id,
         implId: this.impl.id,
         resourceId: property.id,
@@ -154,7 +154,7 @@ export class ImplementationViewComponent implements OnInit {
 
   fetchComputeResourceProperties(): void {
     this.algorithmService
-      .getComputingResources1({
+      .getComputingResources({
         algoId: this.algo.id,
         implId: this.impl.id,
       })
@@ -167,7 +167,7 @@ export class ImplementationViewComponent implements OnInit {
   }
 
   private loadGeneral(): void {
-    this.softwarePlatformService.getSoftwarePlatforms1().subscribe((list) => {
+    this.softwarePlatformService.getSoftwarePlatforms().subscribe((list) => {
       const softwarePlatforms = list._embedded?.softwarePlatforms || [];
       this.softwarePlatformOptions = softwarePlatforms.map((sp) => ({
         label: sp.name,

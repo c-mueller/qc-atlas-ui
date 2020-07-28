@@ -291,7 +291,7 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
 
   fetchComputeResourceProperties(): void {
     this.algorithmService
-      .getComputingResources({
+      .getComputingResourcesByAlgorithm({
         algoId: this.algorithm.id,
       })
       .subscribe((e) => {

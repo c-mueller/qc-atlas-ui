@@ -7,6 +7,7 @@ import { AlgorithmListComponent } from './components/algorithms/algorithm-list/a
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { ImplementationViewComponent } from './components/algorithms/implementation-view/implementation-view.component';
 import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/algorithm-view.component';
+import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { ProblemTypesListComponent } from './components/problem-types/problem-types-list/problem-types-list.component';
 import { ProblemTypesViewComponent } from './components/problem-types/problem-types-view/problem-types-view.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'software-platforms', component: SoftwarePlatformViewComponent },
   { path: 'cloud-services', component: CloudServiceViewComponent },
   { path: 'publications', component: PublicationListComponent },
+  { path: 'publications/:publicationId', component: PublicationViewComponent },
   { path: 'problem-types', component: ProblemTypesListComponent },
   {
     path: 'problem-types/:problemTypeId',

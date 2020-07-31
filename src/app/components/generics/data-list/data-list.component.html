@@ -1,34 +1,29 @@
 <div id="table-container">
   <!-- Data-Table Header -->
   <mat-card id="table-header" class="z-depth-2 d-flex justify-content-between align-items-center">
-    <div class="row align-items-center">
-      <div>
-        <button mat-mini-fab color="primary">
-          <mat-icon>search</mat-icon>
-        </button>
-        <button mat-mini-fab color="primary">
-          <mat-icon>playlist_add</mat-icon>
-        </button>
-      </div>
-      <div *ngIf="allowSearch">
-        <div class="md-form">
+    <button mat-icon-button class="btn">
+      <mat-icon>add</mat-icon>
+    </button>
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div class="buscar-caja d-flex justify-content-between align-items-center">
+        <mat-icon class="buscar-btn d-flex justify-content-between align-items-center">search</mat-icon>
+        <div class="md-form buscar-txt w-100">
           <input
             type="text"
             [(ngModel)]="searchText"
             (input)="onSearchChange()"
             class="form-control"
-            id="search"
             mdbInput
           />
-          <label for="search">Search</label>
         </div>
       </div>
-      <div>
-        <button mat-mini-fab color="primary">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
     </div>
+    <button mat-icon-button class="btn">
+      <mat-icon>playlist_add</mat-icon>
+    </button>
+    <button mat-icon-button class="btn">
+      <mat-icon>delete</mat-icon>
+    </button>
   </mat-card>
   <!-- Data-Table -->
   <mat-card id="table" class="table-responsive">

@@ -28,6 +28,7 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog.component';
 import { LinkInputComponent } from './link-input/link-input.component';
 import { PrologInputComponent } from './property-input/prolog-input.component';
 import { PrologValidator } from './prolog.validator';
+import { TagsComponent } from './tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PrologValidator } from './prolog.validator';
     ConfirmDialogComponent,
     LinkInputComponent,
     PrologValidator,
+    TagsComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -62,19 +64,20 @@ import { PrologValidator } from './prolog.validator';
     MatAutocompleteModule,
     MatBadgeModule,
   ],
-  exports: [
-    TextInputComponent,
-    PrologInputComponent,
-    SelectInputComponent,
-    CheckboxInputComponent,
-    DataListComponent,
-    ChipCollectionComponent,
-    RouterModule,
-    MatSortModule,
-    ConfirmDialogComponent,
-    LinkInputComponent,
-    PrologValidator,
-  ],
+    exports: [
+        TextInputComponent,
+        PrologInputComponent,
+        SelectInputComponent,
+        CheckboxInputComponent,
+        DataListComponent,
+        ChipCollectionComponent,
+        RouterModule,
+        MatSortModule,
+        ConfirmDialogComponent,
+        LinkInputComponent,
+        PrologValidator,
+        TagsComponent,
+    ],
   providers: [GenericDataService],
 })
 export class GenericsModule {}

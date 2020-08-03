@@ -47,7 +47,7 @@ export class AlgorithmRelatedPatternsComponent implements OnInit {
 
   createPatternRelation(body: PatternRelationDto): void {
     this.algorithmService
-      .createPatternRelation({ algoId: this.algorithm.id, body })
+      .createPatternRelationByAlgorithm({ algoId: this.algorithm.id, body })
       .subscribe((data) => {
         this.getPatternRelations({ algoId: this.algorithm.id });
         this.utilService.callSnackBar('Successfully created pattern relation');
@@ -121,7 +121,7 @@ export class AlgorithmRelatedPatternsComponent implements OnInit {
       if (dialogResult) {
         for (const relation of event.elements) {
           this.algorithmService
-            .deletePatternRelation({
+            .deletePatternRelationByAlgorithm({
               algoId: this.algorithm.id,
               relationId: relation.id,
             })

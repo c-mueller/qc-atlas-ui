@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EntityModelCloudServiceDto } from 'api/models/entity-model-cloud-service-dto';
 import { DeleteParams } from '../../../generics/data-list/data-list.component';
 
 @Component({
@@ -7,7 +8,7 @@ import { DeleteParams } from '../../../generics/data-list/data-list.component';
   styleUrls: ['./cloud-service-list.component.scss'],
 })
 export class CloudServiceListComponent implements OnInit {
-  @Input() cloudServices: any[];
+  @Input() cloudServices: EntityModelCloudServiceDto[];
 
   tableColumns = ['Name', 'Provider', 'Description', 'CostModel', 'URL'];
   variableNames = ['name', 'provider', 'description', 'costModel', 'URL'];
@@ -16,6 +17,7 @@ export class CloudServiceListComponent implements OnInit {
     amountChoices: [10, 25, 50],
     selectedAmount: 10,
   };
+
   constructor() {}
 
   ngOnInit(): void {}

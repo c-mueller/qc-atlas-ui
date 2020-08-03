@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EntityModelComputeResourceDto } from 'api/models/entity-model-compute-resource-dto';
 import { DeleteParams } from '../../../generics/data-list/data-list.component';
 
 @Component({
@@ -7,7 +8,7 @@ import { DeleteParams } from '../../../generics/data-list/data-list.component';
   styleUrls: ['./compute-resource-list.component.scss'],
 })
 export class ComputeResourceListComponent implements OnInit {
-  @Input() computeResources: any[];
+  @Input() computeResources: EntityModelComputeResourceDto[];
 
   tableColumns = ['Name', 'Vendor', 'Technology', 'Quantum Computation Model'];
   variableNames = ['name', 'vendor', 'technology', 'quantumComputationModel'];

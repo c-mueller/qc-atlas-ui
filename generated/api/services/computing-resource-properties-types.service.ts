@@ -25,7 +25,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation getResourcePropertyTypes
    */
   static readonly GetResourcePropertyTypesPath =
-    '/v1/computing-resource-properties-types';
+    '/v1/computing-resource-property-types';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -122,7 +122,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation createComputingResourcePropertyType
    */
   static readonly CreateComputingResourcePropertyTypePath =
-    '/v1/computing-resource-properties-types';
+    '/v1/computing-resource-property-types';
 
   /**
    * Custom ID will be ignored.
@@ -215,7 +215,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation getComputingResourcePropertyType
    */
   static readonly GetComputingResourcePropertyTypePath =
-    '/v1/computing-resource-properties-types/{id}';
+    '/v1/computing-resource-property-types/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -304,7 +304,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation updateComputingResourcePropertyType
    */
   static readonly UpdateComputingResourcePropertyTypePath =
-    '/v1/computing-resource-properties-types/{id}';
+    '/v1/computing-resource-property-types/{id}';
 
   /**
    * Custom ID will be ignored.
@@ -401,7 +401,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation deleteComputingResourcePropertyType
    */
   static readonly DeleteComputingResourcePropertyTypePath =
-    '/v1/computing-resource-properties-types/{id}';
+    '/v1/computing-resource-property-types/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

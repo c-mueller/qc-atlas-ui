@@ -10,6 +10,7 @@ import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/a
 import { ComputeResourceViewComponent } from './components/execution-environments/compute-resource/compute-resource-view/compute-resource-view.component';
 import { ExecutionEnvironmentsListComponent } from './components/execution-environments/execution-environments-list/execution-environments-list.component';
 import { ExecutionEnvironmentSearchComponent } from './components/execution-environments/execution-environment-search/execution-environment-search.component';
+import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 
 const routes: Routes = [
   { path: 'algorithms', component: AlgorithmListComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
     component: ComputeResourceViewComponent,
   },
   { path: 'publications', component: PublicationListComponent },
+  { path: 'publications/:publicationId', component: PublicationViewComponent },
   {
     path: '',
     redirectTo: '/algorithms',

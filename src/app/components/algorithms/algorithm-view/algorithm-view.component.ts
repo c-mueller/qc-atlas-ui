@@ -59,7 +59,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   }
 
   getApplicationAreasForAlgorithm(algoId: string): void {
-    this.algorithmService.getApplicationAreas({ algoId }).subscribe(
+    this.algorithmService.getApplicationAreasByAlgorithm({ algoId }).subscribe(
       (areas) => {
         if (areas._embedded) {
           this.applicationAreas = areas._embedded.applicationAreas;
@@ -75,7 +75,7 @@ export class AlgorithmViewComponent implements OnInit, OnDestroy {
   }
 
   getProblemTypesForAlgorithm(algoId: string): void {
-    this.algorithmService.getProblemTypes({ algoId }).subscribe(
+    this.algorithmService.getProblemTypesByAlgorithm({ algoId }).subscribe(
       (problems) => {
         if (problems._embedded) {
           this.problemTypes = problems._embedded.problemTypes;

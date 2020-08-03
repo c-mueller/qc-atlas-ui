@@ -45,9 +45,8 @@ export class ImplementationPublicationsListComponent implements OnInit {
 
   getLinkedPublications(): void {
     this.algorithmService
-      .getPublicationsByImplementation({
+      .getPublicationsByAlgorithm({
         algoId: this.algoId,
-        implId: this.implementation.id,
       })
       .subscribe((data) => {
         // Read all incoming data

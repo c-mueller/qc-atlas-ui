@@ -122,7 +122,7 @@
   <mat-card class="m-4">
     <app-select-input class="p-2"
                       name="Sketch type"
-                      [(ngModel)]="algorithm.sketch"
+                      [(ngModel)]="algorithm.sketches"
                       [includeEmpty]="true"
                       [choices]="sketchOptions"
                       (onSaveChanges)="onChangesSaved($event, 'sketch')"></app-select-input>

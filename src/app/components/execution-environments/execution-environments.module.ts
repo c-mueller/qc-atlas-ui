@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
 import { GenericsModule } from '../generics/generics.module';
 import { CloudServiceViewComponent } from './cloud-services/cloud-service-view/cloud-service-view.component';
 import { SoftwarePlatformViewComponent } from './software-platforms/software-platform-view/software-platform-view.component';
@@ -22,7 +23,7 @@ import { ExecutionEnvironmentSearchComponent } from './execution-environment-sea
     SoftwarePlatformListComponent,
     ExecutionEnvironmentSearchComponent,
   ],
-  imports: [CommonModule, MatTabsModule, GenericsModule],
+  imports: [CommonModule, MatTabsModule, GenericsModule, MatCardModule],
   exports: [
     SoftwarePlatformViewComponent,
     CloudServiceViewComponent,

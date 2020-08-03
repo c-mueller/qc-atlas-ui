@@ -32,7 +32,6 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { JsonImportDialogComponent } from './components/dialogs/json-import-dialog.component';
 import { MissingEntityDialogComponent } from './components/dialogs/missing-entity-dialog.component';
-import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NavigationBreadcrumbModule } from './components/generics/navigation-breadcrumb/navigation-breadcrumb.module';
 import { AlgorithmModule } from './components/algorithms/algorithm.module';
@@ -51,7 +50,6 @@ import { PublicationModule } from './components/publications/publication.module'
     // dialogs
     JsonImportDialogComponent,
     MissingEntityDialogComponent,
-    PublicationViewComponent,
     NavigationComponent,
   ],
   imports: [

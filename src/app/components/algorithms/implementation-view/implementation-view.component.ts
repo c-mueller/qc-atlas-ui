@@ -3,7 +3,7 @@ import { AlgorithmService } from 'api/services/algorithm.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlgorithmDto } from 'api/models/algorithm-dto';
 import { ImplementationDto } from 'api/models/implementation-dto';
-import { SoftwarePlatformService } from 'api/services/software-platform.service';
+import { ExecutionEnvironmentsService } from 'api/services/execution-environments.service';
 import { PublicationService } from 'api/services/publication.service';
 import { EntityModelComputingResourcePropertyDto } from 'api/models/entity-model-computing-resource-property-dto';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
@@ -53,7 +53,7 @@ export class ImplementationViewComponent implements OnInit {
 
   constructor(
     private algorithmService: AlgorithmService,
-    private softwarePlatformService: SoftwarePlatformService,
+    private executionEnvironmentsService: ExecutionEnvironmentsService,
     private publicationService: PublicationService,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -167,13 +167,15 @@ export class ImplementationViewComponent implements OnInit {
   }
 
   private loadGeneral(): void {
-    this.softwarePlatformService.getSoftwarePlatforms().subscribe((list) => {
-      const softwarePlatforms = list._embedded?.softwarePlatforms || [];
-      this.softwarePlatformOptions = softwarePlatforms.map((sp) => ({
-        label: sp.name,
-        value: sp.id,
-      }));
-    });
+    this.executionEnvironmentsService
+      .getSoftwarePlatforms()
+      .subscribe((list) => {
+        const softwarePlatforms = list._embedded?.softwarePlatforms || [];
+        this.softwarePlatformOptions = softwarePlatforms.map((sp) => ({
+          label: sp.name,
+          value: sp.id,
+        }));
+      });
     this.activatedRoute.params.subscribe(({ algoId, implId }) => {
       this.algorithmService.getAlgorithm({ algoId }).subscribe((algo) => {
         this.algo = algo;

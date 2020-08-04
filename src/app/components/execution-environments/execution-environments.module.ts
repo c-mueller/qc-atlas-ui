@@ -4,17 +4,15 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { GenericsModule } from '../generics/generics.module';
 import { ExecutionEnvironmentsListComponent } from './execution-environments-list/execution-environments-list.component';
-import { ComputeResourceViewComponent } from './compute-resource/compute-resource-view/compute-resource-view.component';
-import { ComputeResourceListComponent } from './compute-resource/compute-resource-list/compute-resource-list.component';
 import { ExecutionEnvironmentSearchComponent } from './execution-environment-search/execution-environment-search.component';
 import { SoftwarePlatformsModule } from './software-platforms/software-platforms.module';
 import { CloudServicesModule } from './cloud-services/cloud-services-module';
+import { ComputeResourcesModule } from './compute-resource/compute-resources.module';
 
 @NgModule({
   declarations: [
     ExecutionEnvironmentsListComponent,
-    ComputeResourceViewComponent,
-    ComputeResourceListComponent,
+
     ExecutionEnvironmentSearchComponent,
   ],
   imports: [
@@ -24,6 +22,7 @@ import { CloudServicesModule } from './cloud-services/cloud-services-module';
     MatCardModule,
     SoftwarePlatformsModule,
     CloudServicesModule,
+    ComputeResourcesModule,
   ],
   exports: [
     ExecutionEnvironmentsListComponent,

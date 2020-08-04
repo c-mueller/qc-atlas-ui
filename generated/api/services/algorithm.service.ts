@@ -13,12 +13,12 @@ import { AlgorithmDto } from '../models/algorithm-dto';
 import { AlgorithmRelationDto } from '../models/algorithm-relation-dto';
 import { ApplicationAreaDto } from '../models/application-area-dto';
 import { ClassicAlgorithmDto } from '../models/classic-algorithm-dto';
-import { ComputingResourcePropertyDto } from '../models/computing-resource-property-dto';
-import { ComputingResourcePropertyTypeDto } from '../models/computing-resource-property-type-dto';
+import { ComputeResourcePropertyDto } from '../models/compute-resource-property-dto';
+import { ComputeResourcePropertyTypeDto } from '../models/compute-resource-property-type-dto';
 import { EntityModelAlgorithmDto } from '../models/entity-model-algorithm-dto';
 import { EntityModelAlgorithmRelationDto } from '../models/entity-model-algorithm-relation-dto';
 import { EntityModelApplicationAreaDto } from '../models/entity-model-application-area-dto';
-import { EntityModelComputingResourcePropertyDto } from '../models/entity-model-computing-resource-property-dto';
+import { EntityModelComputeResourcePropertyDto } from '../models/entity-model-compute-resource-property-dto';
 import { EntityModelImplementationDto } from '../models/entity-model-implementation-dto';
 import { EntityModelPatternRelationDto } from '../models/entity-model-pattern-relation-dto';
 import { EntityModelProblemTypeDto } from '../models/entity-model-problem-type-dto';
@@ -1217,8 +1217,8 @@ export class AlgorithmService extends BaseService {
   }): Observable<
     StrictHttpResponse<{
       _embedded?: {
-        computingResourceProperties?: Array<
-          EntityModelComputingResourcePropertyDto
+        computeResourceProperties?: Array<
+          EntityModelComputeResourcePropertyDto
         >;
       };
       page?: PageMetadata;
@@ -1246,8 +1246,8 @@ export class AlgorithmService extends BaseService {
         map((r: HttpResponse<any>) => {
           return r as StrictHttpResponse<{
             _embedded?: {
-              computingResourceProperties?: Array<
-                EntityModelComputingResourcePropertyDto
+              computeResourceProperties?: Array<
+                EntityModelComputeResourcePropertyDto
               >;
             };
             page?: PageMetadata;
@@ -1270,9 +1270,7 @@ export class AlgorithmService extends BaseService {
     size?: number;
   }): Observable<{
     _embedded?: {
-      computingResourceProperties?: Array<
-        EntityModelComputingResourcePropertyDto
-      >;
+      computeResourceProperties?: Array<EntityModelComputeResourcePropertyDto>;
     };
     page?: PageMetadata;
   }> {
@@ -1281,8 +1279,8 @@ export class AlgorithmService extends BaseService {
         (
           r: StrictHttpResponse<{
             _embedded?: {
-              computingResourceProperties?: Array<
-                EntityModelComputingResourcePropertyDto
+              computeResourceProperties?: Array<
+                EntityModelComputeResourcePropertyDto
               >;
             };
             page?: PageMetadata;
@@ -1290,8 +1288,8 @@ export class AlgorithmService extends BaseService {
         ) =>
           r.body as {
             _embedded?: {
-              computingResourceProperties?: Array<
-                EntityModelComputingResourcePropertyDto
+              computeResourceProperties?: Array<
+                EntityModelComputeResourcePropertyDto
               >;
             };
             page?: PageMetadata;
@@ -1316,12 +1314,12 @@ export class AlgorithmService extends BaseService {
    */
   addComputingResource$Response(params: {
     algoId: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<
     StrictHttpResponse<{
       id?: string;
       value?: string;
-      type: ComputingResourcePropertyTypeDto;
+      type: ComputeResourcePropertyTypeDto;
       _links?: Array<Link>;
     }>
   > {
@@ -1348,7 +1346,7 @@ export class AlgorithmService extends BaseService {
           return r as StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>;
         })
@@ -1365,11 +1363,11 @@ export class AlgorithmService extends BaseService {
    */
   addComputingResource(params: {
     algoId: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<{
     id?: string;
     value?: string;
-    type: ComputingResourcePropertyTypeDto;
+    type: ComputeResourcePropertyTypeDto;
     _links?: Array<Link>;
   }> {
     return this.addComputingResource$Response(params).pipe(
@@ -1378,14 +1376,14 @@ export class AlgorithmService extends BaseService {
           r: StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>
         ) =>
           r.body as {
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }
       )
@@ -1411,7 +1409,7 @@ export class AlgorithmService extends BaseService {
     StrictHttpResponse<{
       id?: string;
       value?: string;
-      type: ComputingResourcePropertyTypeDto;
+      type: ComputeResourcePropertyTypeDto;
       _links?: Array<Link>;
     }>
   > {
@@ -1437,7 +1435,7 @@ export class AlgorithmService extends BaseService {
           return r as StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>;
         })
@@ -1456,7 +1454,7 @@ export class AlgorithmService extends BaseService {
   }): Observable<{
     id?: string;
     value?: string;
-    type: ComputingResourcePropertyTypeDto;
+    type: ComputeResourcePropertyTypeDto;
     _links?: Array<Link>;
   }> {
     return this.getComputingResource$Response(params).pipe(
@@ -1465,14 +1463,14 @@ export class AlgorithmService extends BaseService {
           r: StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>
         ) =>
           r.body as {
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }
       )
@@ -1496,12 +1494,12 @@ export class AlgorithmService extends BaseService {
   updateComputingResource$Response(params: {
     algoId: string;
     resourceId: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<
     StrictHttpResponse<{
       id?: string;
       value?: string;
-      type: ComputingResourcePropertyTypeDto;
+      type: ComputeResourcePropertyTypeDto;
       _links?: Array<Link>;
     }>
   > {
@@ -1529,7 +1527,7 @@ export class AlgorithmService extends BaseService {
           return r as StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>;
         })
@@ -1547,11 +1545,11 @@ export class AlgorithmService extends BaseService {
   updateComputingResource(params: {
     algoId: string;
     resourceId: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<{
     id?: string;
     value?: string;
-    type: ComputingResourcePropertyTypeDto;
+    type: ComputeResourcePropertyTypeDto;
     _links?: Array<Link>;
   }> {
     return this.updateComputingResource$Response(params).pipe(
@@ -1560,14 +1558,14 @@ export class AlgorithmService extends BaseService {
           r: StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>
         ) =>
           r.body as {
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }
       )
@@ -2176,8 +2174,8 @@ export class AlgorithmService extends BaseService {
   }): Observable<
     StrictHttpResponse<{
       _embedded?: {
-        computingResourceProperties?: Array<
-          EntityModelComputingResourcePropertyDto
+        computeResourceProperties?: Array<
+          EntityModelComputeResourcePropertyDto
         >;
       };
       page?: PageMetadata;
@@ -2206,8 +2204,8 @@ export class AlgorithmService extends BaseService {
         map((r: HttpResponse<any>) => {
           return r as StrictHttpResponse<{
             _embedded?: {
-              computingResourceProperties?: Array<
-                EntityModelComputingResourcePropertyDto
+              computeResourceProperties?: Array<
+                EntityModelComputeResourcePropertyDto
               >;
             };
             page?: PageMetadata;
@@ -2231,9 +2229,7 @@ export class AlgorithmService extends BaseService {
     size?: number;
   }): Observable<{
     _embedded?: {
-      computingResourceProperties?: Array<
-        EntityModelComputingResourcePropertyDto
-      >;
+      computeResourceProperties?: Array<EntityModelComputeResourcePropertyDto>;
     };
     page?: PageMetadata;
   }> {
@@ -2242,8 +2238,8 @@ export class AlgorithmService extends BaseService {
         (
           r: StrictHttpResponse<{
             _embedded?: {
-              computingResourceProperties?: Array<
-                EntityModelComputingResourcePropertyDto
+              computeResourceProperties?: Array<
+                EntityModelComputeResourcePropertyDto
               >;
             };
             page?: PageMetadata;
@@ -2251,8 +2247,8 @@ export class AlgorithmService extends BaseService {
         ) =>
           r.body as {
             _embedded?: {
-              computingResourceProperties?: Array<
-                EntityModelComputingResourcePropertyDto
+              computeResourceProperties?: Array<
+                EntityModelComputeResourcePropertyDto
               >;
             };
             page?: PageMetadata;
@@ -2278,12 +2274,12 @@ export class AlgorithmService extends BaseService {
   addComputingResourceByImplementation$Response(params: {
     algoId: string;
     implId: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<
     StrictHttpResponse<{
       id?: string;
       value?: string;
-      type: ComputingResourcePropertyTypeDto;
+      type: ComputeResourcePropertyTypeDto;
       _links?: Array<Link>;
     }>
   > {
@@ -2311,7 +2307,7 @@ export class AlgorithmService extends BaseService {
           return r as StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>;
         })
@@ -2329,11 +2325,11 @@ export class AlgorithmService extends BaseService {
   addComputingResourceByImplementation(params: {
     algoId: string;
     implId: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<{
     id?: string;
     value?: string;
-    type: ComputingResourcePropertyTypeDto;
+    type: ComputeResourcePropertyTypeDto;
     _links?: Array<Link>;
   }> {
     return this.addComputingResourceByImplementation$Response(params).pipe(
@@ -2342,14 +2338,14 @@ export class AlgorithmService extends BaseService {
           r: StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>
         ) =>
           r.body as {
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }
       )
@@ -2376,7 +2372,7 @@ export class AlgorithmService extends BaseService {
     StrictHttpResponse<{
       id?: string;
       value?: string;
-      type: ComputingResourcePropertyTypeDto;
+      type: ComputeResourcePropertyTypeDto;
       _links?: Array<Link>;
     }>
   > {
@@ -2403,7 +2399,7 @@ export class AlgorithmService extends BaseService {
           return r as StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>;
         })
@@ -2423,7 +2419,7 @@ export class AlgorithmService extends BaseService {
   }): Observable<{
     id?: string;
     value?: string;
-    type: ComputingResourcePropertyTypeDto;
+    type: ComputeResourcePropertyTypeDto;
     _links?: Array<Link>;
   }> {
     return this.getComputingResourceByImplementation$Response(params).pipe(
@@ -2432,14 +2428,14 @@ export class AlgorithmService extends BaseService {
           r: StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>
         ) =>
           r.body as {
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }
       )
@@ -2464,12 +2460,12 @@ export class AlgorithmService extends BaseService {
     algoId: string;
     implId: string;
     resourceId: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<
     StrictHttpResponse<{
       id?: string;
       value?: string;
-      type: ComputingResourcePropertyTypeDto;
+      type: ComputeResourcePropertyTypeDto;
       _links?: Array<Link>;
     }>
   > {
@@ -2498,7 +2494,7 @@ export class AlgorithmService extends BaseService {
           return r as StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>;
         })
@@ -2517,11 +2513,11 @@ export class AlgorithmService extends BaseService {
     algoId: string;
     implId: string;
     resourceId: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<{
     id?: string;
     value?: string;
-    type: ComputingResourcePropertyTypeDto;
+    type: ComputeResourcePropertyTypeDto;
     _links?: Array<Link>;
   }> {
     return this.updateComputingResourceByImplementation$Response(params).pipe(
@@ -2530,14 +2526,14 @@ export class AlgorithmService extends BaseService {
           r: StrictHttpResponse<{
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }>
         ) =>
           r.body as {
             id?: string;
             value?: string;
-            type: ComputingResourcePropertyTypeDto;
+            type: ComputeResourcePropertyTypeDto;
             _links?: Array<Link>;
           }
       )

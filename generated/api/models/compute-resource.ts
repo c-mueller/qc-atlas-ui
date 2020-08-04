@@ -1,13 +1,13 @@
 /* tslint:disable */
 import { CloudService } from './cloud-service';
-import { ComputingResourceProperty } from './computing-resource-property';
+import { ComputeResourceProperty } from './compute-resource-property';
 import { SoftwarePlatform } from './software-platform';
 export type ComputeResource = {
   id?: string;
   name?: string;
   vendor?: string;
   technology?: string;
-  providedComputingResourceProperties?: Array<ComputingResourceProperty>;
+  providedComputingResourceProperties?: Array<ComputeResourceProperty>;
   quantumComputationModel?:
     | 'GATE_BASED'
     | 'MEASUREMENT_BASED'

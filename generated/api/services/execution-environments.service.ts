@@ -10,10 +10,11 @@ import { map, filter } from 'rxjs/operators';
 
 import { CloudServiceDto } from '../models/cloud-service-dto';
 import { ComputeResourceDto } from '../models/compute-resource-dto';
-import { ComputingResourcePropertyDto } from '../models/computing-resource-property-dto';
+import { ComputeResourcePropertyDto } from '../models/compute-resource-property-dto';
+import { ComputeResourcePropertyTypeDto } from '../models/compute-resource-property-type-dto';
 import { EntityModelCloudServiceDto } from '../models/entity-model-cloud-service-dto';
 import { EntityModelComputeResourceDto } from '../models/entity-model-compute-resource-dto';
-import { EntityModelComputingResourcePropertyDto } from '../models/entity-model-computing-resource-property-dto';
+import { EntityModelComputeResourcePropertyDto } from '../models/entity-model-compute-resource-property-dto';
 import { EntityModelImplementationDto } from '../models/entity-model-implementation-dto';
 import { EntityModelSoftwarePlatformDto } from '../models/entity-model-software-platform-dto';
 import { Link } from '../models/link';
@@ -34,6 +35,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly GetCloudServicesPath = '/v1/cloud-services';
 
   /**
+   * Retrieve all cloud services
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getCloudServices()` instead.
    *
@@ -95,6 +98,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Retrieve all cloud services
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getCloudServices$Response()` instead.
    *
@@ -146,6 +151,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly CreateCloudServicePath = '/v1/cloud-services';
 
   /**
+   * Define the basic properties of a cloud service. References to sub-objects (e.g. a compute resource) can be added via sub-routes (e.g. /cloud-services/{id}/compute-resources). Custom ID will be ignored.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createCloudService()` instead.
    *
@@ -196,6 +203,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Define the basic properties of a cloud service. References to sub-objects (e.g. a compute resource) can be added via sub-routes (e.g. /cloud-services/{id}/compute-resources). Custom ID will be ignored.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createCloudService$Response()` instead.
    *
@@ -244,6 +253,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly GetCloudServicePath = '/v1/cloud-services/{id}';
 
   /**
+   * Retrieve a specific cloud service and its basic properties.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getCloudService()` instead.
    *
@@ -294,6 +305,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Retrieve a specific cloud service and its basic properties.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getCloudService$Response()` instead.
    *
@@ -342,6 +355,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly UpdateCloudServicePath = '/v1/cloud-services/{id}';
 
   /**
+   * Update the basic properties of a cloud service (e.g. name). References to sub-objects (e.g. a compute resource) are not updated via this operation - use the corresponding sub-route for updating them (e.g. /cloud-services/{id}/compute-resources). Custom ID will be ignored.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `updateCloudService()` instead.
    *
@@ -395,6 +410,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Update the basic properties of a cloud service (e.g. name). References to sub-objects (e.g. a compute resource) are not updated via this operation - use the corresponding sub-route for updating them (e.g. /cloud-services/{id}/compute-resources). Custom ID will be ignored.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `updateCloudService$Response()` instead.
    *
@@ -444,6 +461,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly DeleteCloudServicePath = '/v1/cloud-services/{id}';
 
   /**
+   * Delete a cloud service. This also removes all references to other entities (e.g. compute resource)
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `deleteCloudService()` instead.
    *
@@ -478,6 +497,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Delete a cloud service. This also removes all references to other entities (e.g. compute resource)
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `deleteCloudService$Response()` instead.
    *
@@ -490,11 +511,263 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Path part for operation getComputeResourcesForCloudService
+   */
+  static readonly GetComputeResourcesForCloudServicePath =
+    '/v1/cloud-services/{id}/compute-resources';
+
+  /**
+   * Get referenced compute resources for a software platform.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getComputeResourcesForCloudService()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getComputeResourcesForCloudService$Response(params: {
+    id: string;
+
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<
+    StrictHttpResponse<{
+      _embedded?: { computeResources?: Array<EntityModelComputeResourceDto> };
+      page?: PageMetadata;
+    }>
+  > {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.GetComputeResourcesForCloudServicePath,
+      'get'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.query('search', params.search, {});
+      rb.query('page', params.page, {});
+      rb.query('size', params.size, {});
+      rb.query('sort', params.sort, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/hal+json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<{
+            _embedded?: {
+              computeResources?: Array<EntityModelComputeResourceDto>;
+            };
+            page?: PageMetadata;
+          }>;
+        })
+      );
+  }
+
+  /**
+   * Get referenced compute resources for a software platform.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getComputeResourcesForCloudService$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getComputeResourcesForCloudService(params: {
+    id: string;
+
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<{
+    _embedded?: { computeResources?: Array<EntityModelComputeResourceDto> };
+    page?: PageMetadata;
+  }> {
+    return this.getComputeResourcesForCloudService$Response(params).pipe(
+      map(
+        (
+          r: StrictHttpResponse<{
+            _embedded?: {
+              computeResources?: Array<EntityModelComputeResourceDto>;
+            };
+            page?: PageMetadata;
+          }>
+        ) =>
+          r.body as {
+            _embedded?: {
+              computeResources?: Array<EntityModelComputeResourceDto>;
+            };
+            page?: PageMetadata;
+          }
+      )
+    );
+  }
+
+  /**
+   * Path part for operation addComputeResourceReferenceToCloudService
+   */
+  static readonly AddComputeResourceReferenceToCloudServicePath =
+    '/v1/cloud-services/{id}/compute-resources/{crId}';
+
+  /**
+   * Add a reference to an existing compute resource (that was previously created via a POST on /compute-resources/). Custom ID will be ignored. For the compute resource only the ID is required, other compute resource attributes will not change. If the compute resource doesn't exist yet, a 404 error is thrown.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `addComputeResourceReferenceToCloudService()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  addComputeResourceReferenceToCloudService$Response(params: {
+    id: string;
+    crId: string;
+  }): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.AddComputeResourceReferenceToCloudServicePath,
+      'post'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.path('crId', params.crId, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined,
+          }) as StrictHttpResponse<void>;
+        })
+      );
+  }
+
+  /**
+   * Add a reference to an existing compute resource (that was previously created via a POST on /compute-resources/). Custom ID will be ignored. For the compute resource only the ID is required, other compute resource attributes will not change. If the compute resource doesn't exist yet, a 404 error is thrown.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `addComputeResourceReferenceToCloudService$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  addComputeResourceReferenceToCloudService(params: {
+    id: string;
+    crId: string;
+  }): Observable<void> {
+    return this.addComputeResourceReferenceToCloudService$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
+   * Path part for operation deleteComputeResourceReferenceFromCloudService
+   */
+  static readonly DeleteComputeResourceReferenceFromCloudServicePath =
+    '/v1/cloud-services/{id}/compute-resources/{crId}';
+
+  /**
+   * Get a specific referenced compute resource of a cloud service.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `deleteComputeResourceReferenceFromCloudService()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteComputeResourceReferenceFromCloudService$Response(params: {
+    id: string;
+    crId: string;
+  }): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.DeleteComputeResourceReferenceFromCloudServicePath,
+      'delete'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.path('crId', params.crId, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined,
+          }) as StrictHttpResponse<void>;
+        })
+      );
+  }
+
+  /**
+   * Get a specific referenced compute resource of a cloud service.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `deleteComputeResourceReferenceFromCloudService$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteComputeResourceReferenceFromCloudService(params: {
+    id: string;
+    crId: string;
+  }): Observable<void> {
+    return this.deleteComputeResourceReferenceFromCloudService$Response(
+      params
+    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
+  }
+
+  /**
    * Path part for operation getComputeResources
    */
   static readonly GetComputeResourcesPath = '/v1/compute-resources';
 
   /**
+   * Retrieve all compute resources
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getComputeResources()` instead.
    *
@@ -558,6 +831,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Retrieve all compute resources
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getComputeResources$Response()` instead.
    *
@@ -613,6 +888,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly CreateComputeResourcePath = '/v1/compute-resources';
 
   /**
+   * Define the basic properties of a compute resource. References to sub-objects (e.g. a compute resource property) can be added via sub-routes (e.g. /compute-resources/{id}/compute-resource-properties). Custom ID will be ignored.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createComputeResource()` instead.
    *
@@ -667,6 +944,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Define the basic properties of a compute resource. References to sub-objects (e.g. a compute resource property) can be added via sub-routes (e.g. /compute-resources/{id}/compute-resource-properties). Custom ID will be ignored.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createComputeResource$Response()` instead.
    *
@@ -716,11 +995,171 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Path part for operation updateComputingResourceResourcePropertyOfComputeResource
+   */
+  static readonly UpdateComputingResourceResourcePropertyOfComputeResourcePath =
+    '/v1/compute-resources/{crid}/computing-resource-properties/{resourceId}';
+
+  /**
+   * Update a computing resource of the algorithm. Custom ID will be ignored.For computing resource type only ID is required, other computing resource type attributes will not change.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `updateComputingResourceResourcePropertyOfComputeResource()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateComputingResourceResourcePropertyOfComputeResource$Response(params: {
+    crid: string;
+    resourceId: string;
+    body: ComputeResourcePropertyDto;
+  }): Observable<
+    StrictHttpResponse<{
+      id?: string;
+      value?: string;
+      type: ComputeResourcePropertyTypeDto;
+      _links?: Array<Link>;
+    }>
+  > {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.UpdateComputingResourceResourcePropertyOfComputeResourcePath,
+      'put'
+    );
+    if (params) {
+      rb.path('crid', params.crid, {});
+      rb.path('resourceId', params.resourceId, {});
+
+      rb.body(params.body, 'application/json');
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/hal+json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<{
+            id?: string;
+            value?: string;
+            type: ComputeResourcePropertyTypeDto;
+            _links?: Array<Link>;
+          }>;
+        })
+      );
+  }
+
+  /**
+   * Update a computing resource of the algorithm. Custom ID will be ignored.For computing resource type only ID is required, other computing resource type attributes will not change.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `updateComputingResourceResourcePropertyOfComputeResource$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateComputingResourceResourcePropertyOfComputeResource(params: {
+    crid: string;
+    resourceId: string;
+    body: ComputeResourcePropertyDto;
+  }): Observable<{
+    id?: string;
+    value?: string;
+    type: ComputeResourcePropertyTypeDto;
+    _links?: Array<Link>;
+  }> {
+    return this.updateComputingResourceResourcePropertyOfComputeResource$Response(
+      params
+    ).pipe(
+      map(
+        (
+          r: StrictHttpResponse<{
+            id?: string;
+            value?: string;
+            type: ComputeResourcePropertyTypeDto;
+            _links?: Array<Link>;
+          }>
+        ) =>
+          r.body as {
+            id?: string;
+            value?: string;
+            type: ComputeResourcePropertyTypeDto;
+            _links?: Array<Link>;
+          }
+      )
+    );
+  }
+
+  /**
+   * Path part for operation deleteComputingResourcePropertyFromComputeResource
+   */
+  static readonly DeleteComputingResourcePropertyFromComputeResourcePath =
+    '/v1/compute-resources/{crid}/computing-resource-properties/{resourceId}';
+
+  /**
+   * Delete a computing resource of the algorithm.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `deleteComputingResourcePropertyFromComputeResource()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteComputingResourcePropertyFromComputeResource$Response(params: {
+    crid: string;
+    resourceId: string;
+  }): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.DeleteComputingResourcePropertyFromComputeResourcePath,
+      'delete'
+    );
+    if (params) {
+      rb.path('crid', params.crid, {});
+      rb.path('resourceId', params.resourceId, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined,
+          }) as StrictHttpResponse<void>;
+        })
+      );
+  }
+
+  /**
+   * Delete a computing resource of the algorithm.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `deleteComputingResourcePropertyFromComputeResource$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteComputingResourcePropertyFromComputeResource(params: {
+    crid: string;
+    resourceId: string;
+  }): Observable<void> {
+    return this.deleteComputingResourcePropertyFromComputeResource$Response(
+      params
+    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
+  }
+
+  /**
    * Path part for operation getComputeResource
    */
   static readonly GetComputeResourcePath = '/v1/compute-resources/{id}';
 
   /**
+   * Retrieve a specific compute resource and its basic properties.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getComputeResource()` instead.
    *
@@ -775,6 +1214,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Retrieve a specific compute resource and its basic properties.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getComputeResource$Response()` instead.
    *
@@ -829,6 +1270,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly UpdateComputeResourcePath = '/v1/compute-resources/{id}';
 
   /**
+   * Update the basic properties of a compute resource (e.g. name). References to sub-objects (e.g. a compute resource property) are not updated via this operation - use the corresponding sub-route for updating them (e.g. /compute-resources/{id}/compute-resource-properties). Custom ID will be ignored.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `updateComputeResource()` instead.
    *
@@ -886,6 +1329,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Update the basic properties of a compute resource (e.g. name). References to sub-objects (e.g. a compute resource property) are not updated via this operation - use the corresponding sub-route for updating them (e.g. /compute-resources/{id}/compute-resource-properties). Custom ID will be ignored.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `updateComputeResource$Response()` instead.
    *
@@ -941,6 +1386,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly DeleteComputeResourcePath = '/v1/compute-resources/{id}';
 
   /**
+   * Delete a compute resource. This also removes all references to other entities (e.g. software platform)
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `deleteComputeResource()` instead.
    *
@@ -975,6 +1422,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Delete a compute resource. This also removes all references to other entities (e.g. software platform)
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `deleteComputeResource$Response()` instead.
    *
@@ -993,6 +1442,8 @@ export class ExecutionEnvironmentsService extends BaseService {
     '/v1/compute-resources/{id}/computing-resource-properties';
 
   /**
+   * Get referenced compute resource properties for a compute resource.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getComputingResourcePropertiesForComputeResource()` instead.
    *
@@ -1023,8 +1474,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }): Observable<
     StrictHttpResponse<{
       _embedded?: {
-        computingResourceProperties?: Array<
-          EntityModelComputingResourcePropertyDto
+        computeResourceProperties?: Array<
+          EntityModelComputeResourcePropertyDto
         >;
       };
       page?: PageMetadata;
@@ -1054,8 +1505,8 @@ export class ExecutionEnvironmentsService extends BaseService {
         map((r: HttpResponse<any>) => {
           return r as StrictHttpResponse<{
             _embedded?: {
-              computingResourceProperties?: Array<
-                EntityModelComputingResourcePropertyDto
+              computeResourceProperties?: Array<
+                EntityModelComputeResourcePropertyDto
               >;
             };
             page?: PageMetadata;
@@ -1065,6 +1516,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Get referenced compute resource properties for a compute resource.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getComputingResourcePropertiesForComputeResource$Response()` instead.
    *
@@ -1094,9 +1547,7 @@ export class ExecutionEnvironmentsService extends BaseService {
     sort?: Array<string>;
   }): Observable<{
     _embedded?: {
-      computingResourceProperties?: Array<
-        EntityModelComputingResourcePropertyDto
-      >;
+      computeResourceProperties?: Array<EntityModelComputeResourcePropertyDto>;
     };
     page?: PageMetadata;
   }> {
@@ -1107,8 +1558,8 @@ export class ExecutionEnvironmentsService extends BaseService {
         (
           r: StrictHttpResponse<{
             _embedded?: {
-              computingResourceProperties?: Array<
-                EntityModelComputingResourcePropertyDto
+              computeResourceProperties?: Array<
+                EntityModelComputeResourcePropertyDto
               >;
             };
             page?: PageMetadata;
@@ -1116,8 +1567,8 @@ export class ExecutionEnvironmentsService extends BaseService {
         ) =>
           r.body as {
             _embedded?: {
-              computingResourceProperties?: Array<
-                EntityModelComputingResourcePropertyDto
+              computeResourceProperties?: Array<
+                EntityModelComputeResourcePropertyDto
               >;
             };
             page?: PageMetadata;
@@ -1133,6 +1584,8 @@ export class ExecutionEnvironmentsService extends BaseService {
     '/v1/compute-resources/{id}/computing-resource-properties';
 
   /**
+   * Define the basic properties of a compute resource property and add a reference to the defined compute resource property. Custom ID will be ignored.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `addComputingResourcePropertyToComputeResource()` instead.
    *
@@ -1140,7 +1593,7 @@ export class ExecutionEnvironmentsService extends BaseService {
    */
   addComputingResourcePropertyToComputeResource$Response(params: {
     id: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<
     StrictHttpResponse<{
       id?: string;
@@ -1190,6 +1643,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Define the basic properties of a compute resource property and add a reference to the defined compute resource property. Custom ID will be ignored.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `addComputingResourcePropertyToComputeResource$Response()` instead.
    *
@@ -1197,7 +1652,7 @@ export class ExecutionEnvironmentsService extends BaseService {
    */
   addComputingResourcePropertyToComputeResource(params: {
     id: string;
-    body: ComputingResourcePropertyDto;
+    body: ComputeResourcePropertyDto;
   }): Observable<{
     id?: string;
     name: string;
@@ -1247,6 +1702,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly GetSoftwarePlatformsPath = '/v1/software-platforms';
 
   /**
+   * Retrieve all software platforms
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getSoftwarePlatforms()` instead.
    *
@@ -1310,6 +1767,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Retrieve all software platforms
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getSoftwarePlatforms$Response()` instead.
    *
@@ -1365,7 +1824,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly CreateSoftwarePlatformPath = '/v1/software-platforms';
 
   /**
-   * Custom ID will be ignored.
+   * Define the basic properties of a software platform. References to sub-objects (e.g. a compute resource) can be added via sub-routes (e.g. /software-platforms/{id}/compute-resources). Custom ID will be ignored.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createSoftwarePlatform()` instead.
@@ -1415,7 +1874,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
-   * Custom ID will be ignored.
+   * Define the basic properties of a software platform. References to sub-objects (e.g. a compute resource) can be added via sub-routes (e.g. /software-platforms/{id}/compute-resources). Custom ID will be ignored.
    *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createSoftwarePlatform$Response()` instead.
@@ -1462,6 +1921,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly GetSoftwarePlatformPath = '/v1/software-platforms/{id}';
 
   /**
+   * Retrieve a specific software platform and its basic properties.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getSoftwarePlatform()` instead.
    *
@@ -1510,6 +1971,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Retrieve a specific software platform and its basic properties.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getSoftwarePlatform$Response()` instead.
    *
@@ -1555,7 +2018,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly UpdateSoftwarePlatformPath = '/v1/software-platforms/{id}';
 
   /**
-   * Custom ID will be ignored.
+   * Update the basic properties of a software platform (e.g. name). References to sub-objects (e.g. a compute resource) are not updated via this operation - use the corresponding sub-route for updating them (e.g. /software-platforms/{id}/compute-resources). Custom ID will be ignored.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `updateSoftwarePlatform()` instead.
@@ -1608,7 +2071,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
-   * Custom ID will be ignored.
+   * Update the basic properties of a software platform (e.g. name). References to sub-objects (e.g. a compute resource) are not updated via this operation - use the corresponding sub-route for updating them (e.g. /software-platforms/{id}/compute-resources). Custom ID will be ignored.
    *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `updateSoftwarePlatform$Response()` instead.
@@ -1656,6 +2119,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   static readonly DeleteSoftwarePlatformPath = '/v1/software-platforms/{id}';
 
   /**
+   * Delete a software platform. This also removes all references to other entities (e.g. compute resource)
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `deleteSoftwarePlatform()` instead.
    *
@@ -1690,6 +2155,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Delete a software platform. This also removes all references to other entities (e.g. compute resource)
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `deleteSoftwarePlatform$Response()` instead.
    *
@@ -1708,6 +2175,8 @@ export class ExecutionEnvironmentsService extends BaseService {
     '/v1/software-platforms/{id}/cloud-services';
 
   /**
+   * Get referenced cloud services for a software platform.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getCloudServicesForSoftwarePlatform()` instead.
    *
@@ -1772,6 +2241,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Get referenced cloud services for a software platform.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getCloudServicesForSoftwarePlatform$Response()` instead.
    *
@@ -1820,12 +2291,136 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Path part for operation addCloudServiceReferenceToSoftwarePlatform
+   */
+  static readonly AddCloudServiceReferenceToSoftwarePlatformPath =
+    '/v1/software-platforms/{id}/cloud-services/{csId}';
+
+  /**
+   * Add a reference to an existing cloud service (that was previously created via a POST on /cloud-services/). Custom ID will be ignored. For the cloud service only the ID is required, other cloud service attributes will not change. If the cloud service doesn't exist yet, a 404 error is thrown.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `addCloudServiceReferenceToSoftwarePlatform()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  addCloudServiceReferenceToSoftwarePlatform$Response(params: {
+    id: string;
+    csId: string;
+  }): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.AddCloudServiceReferenceToSoftwarePlatformPath,
+      'post'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.path('csId', params.csId, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined,
+          }) as StrictHttpResponse<void>;
+        })
+      );
+  }
+
+  /**
+   * Add a reference to an existing cloud service (that was previously created via a POST on /cloud-services/). Custom ID will be ignored. For the cloud service only the ID is required, other cloud service attributes will not change. If the cloud service doesn't exist yet, a 404 error is thrown.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `addCloudServiceReferenceToSoftwarePlatform$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  addCloudServiceReferenceToSoftwarePlatform(params: {
+    id: string;
+    csId: string;
+  }): Observable<void> {
+    return this.addCloudServiceReferenceToSoftwarePlatform$Response(
+      params
+    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
+  }
+
+  /**
+   * Path part for operation deleteCloudServiceReferenceFromSoftwarePlatform
+   */
+  static readonly DeleteCloudServiceReferenceFromSoftwarePlatformPath =
+    '/v1/software-platforms/{id}/cloud-services/{csId}';
+
+  /**
+   * Delete a reference to an cloud service of the software platform.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `deleteCloudServiceReferenceFromSoftwarePlatform()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteCloudServiceReferenceFromSoftwarePlatform$Response(params: {
+    id: string;
+    csId: string;
+  }): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.DeleteCloudServiceReferenceFromSoftwarePlatformPath,
+      'delete'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.path('csId', params.csId, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined,
+          }) as StrictHttpResponse<void>;
+        })
+      );
+  }
+
+  /**
+   * Delete a reference to an cloud service of the software platform.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `deleteCloudServiceReferenceFromSoftwarePlatform$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteCloudServiceReferenceFromSoftwarePlatform(params: {
+    id: string;
+    csId: string;
+  }): Observable<void> {
+    return this.deleteCloudServiceReferenceFromSoftwarePlatform$Response(
+      params
+    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
+  }
+
+  /**
    * Path part for operation getComputeResourcesForSoftwarePlatform
    */
   static readonly GetComputeResourcesForSoftwarePlatformPath =
     '/v1/software-platforms/{id}/compute-resources';
 
   /**
+   * Get referenced compute resources for a software platform.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getComputeResourcesForSoftwarePlatform()` instead.
    *
@@ -1892,6 +2487,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Get referenced compute resources for a software platform.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getComputeResourcesForSoftwarePlatform$Response()` instead.
    *
@@ -1944,12 +2541,136 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Path part for operation addComputeResourceReferenceToSoftwarePlatform
+   */
+  static readonly AddComputeResourceReferenceToSoftwarePlatformPath =
+    '/v1/software-platforms/{id}/compute-resources/{crId}';
+
+  /**
+   * Add a reference to an existing compute resource(that was previously created via a POST on /compute-resources/). Custom ID will be ignored. For the compute resource only the ID is required, other compute resource attributes will not change. If the compute resource doesn't exist yet, a 404 error is thrown.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `addComputeResourceReferenceToSoftwarePlatform()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  addComputeResourceReferenceToSoftwarePlatform$Response(params: {
+    id: string;
+    crId: string;
+  }): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.AddComputeResourceReferenceToSoftwarePlatformPath,
+      'post'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.path('crId', params.crId, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined,
+          }) as StrictHttpResponse<void>;
+        })
+      );
+  }
+
+  /**
+   * Add a reference to an existing compute resource(that was previously created via a POST on /compute-resources/). Custom ID will be ignored. For the compute resource only the ID is required, other compute resource attributes will not change. If the compute resource doesn't exist yet, a 404 error is thrown.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `addComputeResourceReferenceToSoftwarePlatform$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  addComputeResourceReferenceToSoftwarePlatform(params: {
+    id: string;
+    crId: string;
+  }): Observable<void> {
+    return this.addComputeResourceReferenceToSoftwarePlatform$Response(
+      params
+    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
+  }
+
+  /**
+   * Path part for operation deleteComputeResourceReferenceFromSoftwarePlatform
+   */
+  static readonly DeleteComputeResourceReferenceFromSoftwarePlatformPath =
+    '/v1/software-platforms/{id}/compute-resources/{crId}';
+
+  /**
+   * Delete a reference to an compute resource of the software platform.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `deleteComputeResourceReferenceFromSoftwarePlatform()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteComputeResourceReferenceFromSoftwarePlatform$Response(params: {
+    id: string;
+    crId: string;
+  }): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.DeleteComputeResourceReferenceFromSoftwarePlatformPath,
+      'delete'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.path('crId', params.crId, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined,
+          }) as StrictHttpResponse<void>;
+        })
+      );
+  }
+
+  /**
+   * Delete a reference to an compute resource of the software platform.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `deleteComputeResourceReferenceFromSoftwarePlatform$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteComputeResourceReferenceFromSoftwarePlatform(params: {
+    id: string;
+    crId: string;
+  }): Observable<void> {
+    return this.deleteComputeResourceReferenceFromSoftwarePlatform$Response(
+      params
+    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
+  }
+
+  /**
    * Path part for operation getImplementationsForSoftwarePlatform
    */
   static readonly GetImplementationsForSoftwarePlatformPath =
     '/v1/software-platforms/{id}/implementations';
 
   /**
+   * Get referenced implementations for a software platform.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getImplementationsForSoftwarePlatform()` instead.
    *
@@ -2016,6 +2737,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Get referenced implementations for a software platform.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getImplementationsForSoftwarePlatform$Response()` instead.
    *
@@ -2068,240 +2791,14 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
-   * Path part for operation addCloudServiceReferenceToSoftwarePlatform
-   */
-  static readonly AddCloudServiceReferenceToSoftwarePlatformPath =
-    '/v1/software-platforms/{id}cloud-services/{csId}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `addCloudServiceReferenceToSoftwarePlatform()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  addCloudServiceReferenceToSoftwarePlatform$Response(params: {
-    id: string;
-    csId: string;
-  }): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ExecutionEnvironmentsService.AddCloudServiceReferenceToSoftwarePlatformPath,
-      'post'
-    );
-    if (params) {
-      rb.path('id', params.id, {});
-      rb.path('csId', params.csId, {});
-    }
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'text',
-          accept: '*/*',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return (r as HttpResponse<any>).clone({
-            body: undefined,
-          }) as StrictHttpResponse<void>;
-        })
-      );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `addCloudServiceReferenceToSoftwarePlatform$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  addCloudServiceReferenceToSoftwarePlatform(params: {
-    id: string;
-    csId: string;
-  }): Observable<void> {
-    return this.addCloudServiceReferenceToSoftwarePlatform$Response(
-      params
-    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
-  }
-
-  /**
-   * Path part for operation deleteCloudServiceReferenceFromSoftwarePlatform
-   */
-  static readonly DeleteCloudServiceReferenceFromSoftwarePlatformPath =
-    '/v1/software-platforms/{id}cloud-services/{csId}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `deleteCloudServiceReferenceFromSoftwarePlatform()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  deleteCloudServiceReferenceFromSoftwarePlatform$Response(params: {
-    id: string;
-    csId: string;
-  }): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ExecutionEnvironmentsService.DeleteCloudServiceReferenceFromSoftwarePlatformPath,
-      'delete'
-    );
-    if (params) {
-      rb.path('id', params.id, {});
-      rb.path('csId', params.csId, {});
-    }
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'text',
-          accept: '*/*',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return (r as HttpResponse<any>).clone({
-            body: undefined,
-          }) as StrictHttpResponse<void>;
-        })
-      );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `deleteCloudServiceReferenceFromSoftwarePlatform$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  deleteCloudServiceReferenceFromSoftwarePlatform(params: {
-    id: string;
-    csId: string;
-  }): Observable<void> {
-    return this.deleteCloudServiceReferenceFromSoftwarePlatform$Response(
-      params
-    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
-  }
-
-  /**
-   * Path part for operation addComputeResourceReferenceToSoftwarePlatform
-   */
-  static readonly AddComputeResourceReferenceToSoftwarePlatformPath =
-    '/v1/software-platforms/{id}compute-resources/{crId}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `addComputeResourceReferenceToSoftwarePlatform()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  addComputeResourceReferenceToSoftwarePlatform$Response(params: {
-    id: string;
-    crId: string;
-  }): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ExecutionEnvironmentsService.AddComputeResourceReferenceToSoftwarePlatformPath,
-      'post'
-    );
-    if (params) {
-      rb.path('id', params.id, {});
-      rb.path('crId', params.crId, {});
-    }
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'text',
-          accept: '*/*',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return (r as HttpResponse<any>).clone({
-            body: undefined,
-          }) as StrictHttpResponse<void>;
-        })
-      );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `addComputeResourceReferenceToSoftwarePlatform$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  addComputeResourceReferenceToSoftwarePlatform(params: {
-    id: string;
-    crId: string;
-  }): Observable<void> {
-    return this.addComputeResourceReferenceToSoftwarePlatform$Response(
-      params
-    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
-  }
-
-  /**
-   * Path part for operation deleteComputeResourceReferenceFromSoftwarePlatform
-   */
-  static readonly DeleteComputeResourceReferenceFromSoftwarePlatformPath =
-    '/v1/software-platforms/{id}compute-resources/{crId}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `deleteComputeResourceReferenceFromSoftwarePlatform()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  deleteComputeResourceReferenceFromSoftwarePlatform$Response(params: {
-    id: string;
-    crId: string;
-  }): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ExecutionEnvironmentsService.DeleteComputeResourceReferenceFromSoftwarePlatformPath,
-      'delete'
-    );
-    if (params) {
-      rb.path('id', params.id, {});
-      rb.path('crId', params.crId, {});
-    }
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'text',
-          accept: '*/*',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return (r as HttpResponse<any>).clone({
-            body: undefined,
-          }) as StrictHttpResponse<void>;
-        })
-      );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `deleteComputeResourceReferenceFromSoftwarePlatform$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  deleteComputeResourceReferenceFromSoftwarePlatform(params: {
-    id: string;
-    crId: string;
-  }): Observable<void> {
-    return this.deleteComputeResourceReferenceFromSoftwarePlatform$Response(
-      params
-    ).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
-  }
-
-  /**
    * Path part for operation getImplementationForSoftwarePlatform
    */
   static readonly GetImplementationForSoftwarePlatformPath =
-    '/v1/software-platforms/{id}implementations/{implId}';
+    '/v1/software-platforms/{id}/implementations/{implId}';
 
   /**
+   * Get a specific referenced implementation of a software platform.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `getImplementationForSoftwarePlatform()` instead.
    *
@@ -2362,6 +2859,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Get a specific referenced implementation of a software platform.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getImplementationForSoftwarePlatform$Response()` instead.
    *
@@ -2421,9 +2920,11 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Path part for operation addImplementationReferenceToSoftwarePlatform
    */
   static readonly AddImplementationReferenceToSoftwarePlatformPath =
-    '/v1/software-platforms/{id}implementations/{implId}';
+    '/v1/software-platforms/{id}/implementations/{implId}';
 
   /**
+   * Add a reference to an existing implementation (that was previously created via a POST on /implementations/). Custom ID will be ignored. For the implementation only the ID is required, other implementation attributes will not change. If the implementation doesn't exist yet, a 404 error is thrown.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `addImplementationReferenceToSoftwarePlatform()` instead.
    *
@@ -2460,6 +2961,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Add a reference to an existing implementation (that was previously created via a POST on /implementations/). Custom ID will be ignored. For the implementation only the ID is required, other implementation attributes will not change. If the implementation doesn't exist yet, a 404 error is thrown.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `addImplementationReferenceToSoftwarePlatform$Response()` instead.
    *
@@ -2478,9 +2981,11 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Path part for operation deleteImplementationReferenceFromSoftwarePlatform
    */
   static readonly DeleteImplementationReferenceFromSoftwarePlatformPath =
-    '/v1/software-platforms/{id}implementations/{implId}';
+    '/v1/software-platforms/{id}/implementations/{implId}';
 
   /**
+   * Delete a reference to an implementation of the software platform.
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `deleteImplementationReferenceFromSoftwarePlatform()` instead.
    *
@@ -2517,6 +3022,8 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Delete a reference to an implementation of the software platform.
+   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `deleteImplementationReferenceFromSoftwarePlatform$Response()` instead.
    *

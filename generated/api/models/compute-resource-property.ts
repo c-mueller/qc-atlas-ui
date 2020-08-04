@@ -1,11 +1,11 @@
 /* tslint:disable */
 import { Algorithm } from './algorithm';
 import { ComputeResource } from './compute-resource';
-import { ComputingResourcePropertyType } from './computing-resource-property-type';
+import { ComputeResourcePropertyType } from './compute-resource-property-type';
 import { Implementation } from './implementation';
-export type ComputingResourceProperty = {
+export type ComputeResourceProperty = {
   id?: string;
-  computingResourcePropertyType?: ComputingResourcePropertyType;
+  computeResourcePropertyType?: ComputeResourcePropertyType;
   algorithm?: Algorithm;
   implementation?: Implementation;
   computeResource?: ComputeResource;

@@ -8,8 +8,8 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { ComputingResourcePropertyTypeDto } from '../models/computing-resource-property-type-dto';
-import { EntityModelComputingResourcePropertyTypeDto } from '../models/entity-model-computing-resource-property-type-dto';
+import { ComputeResourcePropertyTypeDto } from '../models/compute-resource-property-type-dto';
+import { EntityModelComputeResourcePropertyTypeDto } from '../models/entity-model-compute-resource-property-type-dto';
 import { Link } from '../models/link';
 import { PageMetadata } from '../models/page-metadata';
 
@@ -39,8 +39,8 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
   }): Observable<
     StrictHttpResponse<{
       _embedded?: {
-        computingResourcePropertyTypes?: Array<
-          EntityModelComputingResourcePropertyTypeDto
+        computeResourcePropertyTypes?: Array<
+          EntityModelComputeResourcePropertyTypeDto
         >;
       };
       page?: PageMetadata;
@@ -67,8 +67,8 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
         map((r: HttpResponse<any>) => {
           return r as StrictHttpResponse<{
             _embedded?: {
-              computingResourcePropertyTypes?: Array<
-                EntityModelComputingResourcePropertyTypeDto
+              computeResourcePropertyTypes?: Array<
+                EntityModelComputeResourcePropertyTypeDto
               >;
             };
             page?: PageMetadata;
@@ -88,8 +88,8 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
     size?: number;
   }): Observable<{
     _embedded?: {
-      computingResourcePropertyTypes?: Array<
-        EntityModelComputingResourcePropertyTypeDto
+      computeResourcePropertyTypes?: Array<
+        EntityModelComputeResourcePropertyTypeDto
       >;
     };
     page?: PageMetadata;
@@ -99,8 +99,8 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
         (
           r: StrictHttpResponse<{
             _embedded?: {
-              computingResourcePropertyTypes?: Array<
-                EntityModelComputingResourcePropertyTypeDto
+              computeResourcePropertyTypes?: Array<
+                EntityModelComputeResourcePropertyTypeDto
               >;
             };
             page?: PageMetadata;
@@ -108,8 +108,8 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
         ) =>
           r.body as {
             _embedded?: {
-              computingResourcePropertyTypes?: Array<
-                EntityModelComputingResourcePropertyTypeDto
+              computeResourcePropertyTypes?: Array<
+                EntityModelComputeResourcePropertyTypeDto
               >;
             };
             page?: PageMetadata;
@@ -133,7 +133,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   createComputingResourcePropertyType$Response(params: {
-    body: ComputingResourcePropertyTypeDto;
+    body: ComputeResourcePropertyTypeDto;
   }): Observable<
     StrictHttpResponse<{
       id?: string;
@@ -181,7 +181,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   createComputingResourcePropertyType(params: {
-    body: ComputingResourcePropertyTypeDto;
+    body: ComputeResourcePropertyTypeDto;
   }): Observable<{
     id?: string;
     name: string;
@@ -316,7 +316,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    */
   updateComputingResourcePropertyType$Response(params: {
     id: string;
-    body: ComputingResourcePropertyTypeDto;
+    body: ComputeResourcePropertyTypeDto;
   }): Observable<
     StrictHttpResponse<{
       id?: string;
@@ -367,7 +367,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    */
   updateComputingResourcePropertyType(params: {
     id: string;
-    body: ComputingResourcePropertyTypeDto;
+    body: ComputeResourcePropertyTypeDto;
   }): Observable<{
     id?: string;
     name: string;

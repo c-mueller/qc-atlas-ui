@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { GenericsModule } from '../../generics/generics.module';
+import { NavigationBreadcrumbModule } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.module';
 import { CloudServiceViewComponent } from './cloud-service-view/cloud-service-view.component';
 import { CloudServiceListComponent } from './cloud-service-list/cloud-service-list.component';
 import { CloudServiceComputeResourceListComponent } from './cloud-service-compute-resource-list/cloud-service-compute-resource-list.component';
@@ -17,7 +18,13 @@ import { CloudServiceSoftwarePlatformListComponent } from './cloud-service-softw
     CloudServicePropertiesComponent,
     CloudServiceSoftwarePlatformListComponent,
   ],
-  imports: [CommonModule, MatTabsModule, GenericsModule, MatCardModule],
+  imports: [
+    CommonModule,
+    MatTabsModule,
+    GenericsModule,
+    MatCardModule,
+    NavigationBreadcrumbModule,
+  ],
   exports: [CloudServiceViewComponent, CloudServiceListComponent],
 })
 export class CloudServicesModule {}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { GenericsModule } from '../../generics/generics.module';
+import { NavigationBreadcrumbModule } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.module';
 import { SoftwarePlatformViewComponent } from './software-platform-view/software-platform-view.component';
 import { SoftwarePlatformListComponent } from './software-platform-list/software-platform-list.component';
 import { SoftwarePlatformPropertiesComponent } from './software-platform-properties/software-platform-properties.component';
@@ -19,7 +20,13 @@ import { SoftwarePlatformComputeResourceListComponent } from './software-platfor
     SoftwarePlatformCloudServiceListComponent,
     SoftwarePlatformComputeResourceListComponent,
   ],
-  imports: [CommonModule, MatTabsModule, GenericsModule, MatCardModule],
+  imports: [
+    CommonModule,
+    MatTabsModule,
+    GenericsModule,
+    MatCardModule,
+    NavigationBreadcrumbModule,
+  ],
   exports: [SoftwarePlatformViewComponent, SoftwarePlatformListComponent],
 })
 export class SoftwarePlatformsModule {}

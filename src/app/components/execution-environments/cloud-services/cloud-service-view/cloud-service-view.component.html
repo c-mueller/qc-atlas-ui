@@ -1,1 +1,21 @@
-<p>cloud-service-view works!</p>
+<div *ngIf="cloudService" class="m-2">
+  <div class="header-container p-2">
+    <navigation-breadcrumb [links]="links"></navigation-breadcrumb>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="General">
+      <app-cloud-service-properties
+      ></app-cloud-service-properties>
+    </mat-tab>
+    <mat-tab label="Software Platforms">
+      <app-cloud-service-software-platform-list
+      ></app-cloud-service-software-platform-list>
+    </mat-tab>
+    <mat-tab label="Cloud Services">
+      <app-cloud-service-compute-resource-list
+      ></app-cloud-service-compute-resource-list>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+

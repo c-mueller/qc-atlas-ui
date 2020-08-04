@@ -998,7 +998,7 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Path part for operation updateComputingResourceResourcePropertyOfComputeResource
    */
   static readonly UpdateComputingResourceResourcePropertyOfComputeResourcePath =
-    '/v1/compute-resources/{crid}/computing-resource-properties/{resourceId}';
+    '/v1/compute-resources/{crid}/compute-resource-properties/{resourceId}';
 
   /**
    * Update a computing resource of the algorithm. Custom ID will be ignored.For computing resource type only ID is required, other computing resource type attributes will not change.
@@ -1095,7 +1095,7 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Path part for operation deleteComputingResourcePropertyFromComputeResource
    */
   static readonly DeleteComputingResourcePropertyFromComputeResourcePath =
-    '/v1/compute-resources/{crid}/computing-resource-properties/{resourceId}';
+    '/v1/compute-resources/{crid}/compute-resource-properties/{resourceId}';
 
   /**
    * Delete a computing resource of the algorithm.
@@ -1439,7 +1439,7 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Path part for operation getComputingResourcePropertiesForComputeResource
    */
   static readonly GetComputingResourcePropertiesForComputeResourcePath =
-    '/v1/compute-resources/{id}/computing-resource-properties';
+    '/v1/compute-resources/{id}/compute-resource-properties';
 
   /**
    * Get referenced compute resource properties for a compute resource.
@@ -1581,7 +1581,7 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Path part for operation addComputingResourcePropertyToComputeResource
    */
   static readonly AddComputingResourcePropertyToComputeResourcePath =
-    '/v1/compute-resources/{id}/computing-resource-properties';
+    '/v1/compute-resources/{id}/compute-resource-properties';
 
   /**
    * Define the basic properties of a compute resource property and add a reference to the defined compute resource property. Custom ID will be ignored.

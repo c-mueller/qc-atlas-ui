@@ -16,7 +16,7 @@ import { PageMetadata } from '../models/page-metadata';
 @Injectable({
   providedIn: 'root',
 })
-export class ComputingResourcePropertiesTypesService extends BaseService {
+export class ComputeResourcePropertyTypesService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
@@ -25,7 +25,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation getResourcePropertyTypes
    */
   static readonly GetResourcePropertyTypesPath =
-    '/v1/computing-resource-property-types';
+    '/v1/compute-resource-property-types';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -48,7 +48,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ComputingResourcePropertiesTypesService.GetResourcePropertyTypesPath,
+      ComputeResourcePropertyTypesService.GetResourcePropertyTypesPath,
       'get'
     );
     if (params) {
@@ -122,7 +122,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation createComputingResourcePropertyType
    */
   static readonly CreateComputingResourcePropertyTypePath =
-    '/v1/computing-resource-property-types';
+    '/v1/compute-resource-property-types';
 
   /**
    * Custom ID will be ignored.
@@ -145,7 +145,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ComputingResourcePropertiesTypesService.CreateComputingResourcePropertyTypePath,
+      ComputeResourcePropertyTypesService.CreateComputingResourcePropertyTypePath,
       'post'
     );
     if (params) {
@@ -215,7 +215,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation getComputingResourcePropertyType
    */
   static readonly GetComputingResourcePropertyTypePath =
-    '/v1/computing-resource-property-types/{id}';
+    '/v1/compute-resource-property-types/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -236,7 +236,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ComputingResourcePropertiesTypesService.GetComputingResourcePropertyTypePath,
+      ComputeResourcePropertyTypesService.GetComputingResourcePropertyTypePath,
       'get'
     );
     if (params) {
@@ -304,7 +304,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation updateComputingResourcePropertyType
    */
   static readonly UpdateComputingResourcePropertyTypePath =
-    '/v1/computing-resource-property-types/{id}';
+    '/v1/compute-resource-property-types/{id}';
 
   /**
    * Custom ID will be ignored.
@@ -328,7 +328,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ComputingResourcePropertiesTypesService.UpdateComputingResourcePropertyTypePath,
+      ComputeResourcePropertyTypesService.UpdateComputingResourcePropertyTypePath,
       'put'
     );
     if (params) {
@@ -401,7 +401,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
    * Path part for operation deleteComputingResourcePropertyType
    */
   static readonly DeleteComputingResourcePropertyTypePath =
-    '/v1/computing-resource-property-types/{id}';
+    '/v1/compute-resource-property-types/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -414,7 +414,7 @@ export class ComputingResourcePropertiesTypesService extends BaseService {
   }): Observable<StrictHttpResponse<void>> {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ComputingResourcePropertiesTypesService.DeleteComputingResourcePropertyTypePath,
+      ComputeResourcePropertyTypesService.DeleteComputingResourcePropertyTypePath,
       'delete'
     );
     if (params) {

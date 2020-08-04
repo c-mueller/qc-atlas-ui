@@ -1200,7 +1200,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation getComputingResourcesByAlgorithm
    */
   static readonly GetComputingResourcesByAlgorithmPath =
-    '/v1/algorithms/{algoId}/computing-resource-properties';
+    '/v1/algorithms/{algoId}/compute-resource-properties';
 
   /**
    * Retrieve the required computing resources of an algorithm
@@ -1302,7 +1302,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation addComputingResource
    */
   static readonly AddComputingResourcePath =
-    '/v1/algorithms/{algoId}/computing-resource-properties';
+    '/v1/algorithms/{algoId}/compute-resource-properties';
 
   /**
    * Add a computing resource (e.g. a certain number of qubits) that is required by an algorithm. Custom ID will be ignored. For computing resource type only ID is required, other computing resource type attributes will not change.
@@ -1394,7 +1394,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation getComputingResource
    */
   static readonly GetComputingResourcePath =
-    '/v1/algorithms/{algoId}/computing-resource-properties/{resourceId}';
+    '/v1/algorithms/{algoId}/compute-resource-properties/{resourceId}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -1481,7 +1481,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation updateComputingResource
    */
   static readonly UpdateComputingResourcePath =
-    '/v1/algorithms/{algoId}/computing-resource-properties/{resourceId}';
+    '/v1/algorithms/{algoId}/compute-resource-properties/{resourceId}';
 
   /**
    * Update a computing resource of the algorithm. Custom ID will be ignored. For computing resource type only ID is required, other computing resource type attributes will not change.
@@ -1576,7 +1576,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation deleteComputingResource
    */
   static readonly DeleteComputingResourcePath =
-    '/v1/algorithms/{algoId}/computing-resource-properties/{resourceId}';
+    '/v1/algorithms/{algoId}/compute-resource-properties/{resourceId}';
 
   /**
    * Delete a computing resource of the algorithm.
@@ -2156,7 +2156,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation getComputingResources
    */
   static readonly GetComputingResourcesPath =
-    '/v1/algorithms/{algoId}/implementations/{implId}/computing-resource-properties';
+    '/v1/algorithms/{algoId}/implementations/{implId}/compute-resource-properties';
 
   /**
    * Retrieve the required computing resources of an implementation
@@ -2261,7 +2261,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation addComputingResourceByImplementation
    */
   static readonly AddComputingResourceByImplementationPath =
-    '/v1/algorithms/{algoId}/implementations/{implId}/computing-resource-properties';
+    '/v1/algorithms/{algoId}/implementations/{implId}/compute-resource-properties';
 
   /**
    * Add a computing resource (e.g. a certain number of qubits) that is requiered by an implementation. Custom ID will be ignored. For computing resource type only ID is required, other computing resource type attributes will not change
@@ -2356,7 +2356,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation getComputingResourceByImplementation
    */
   static readonly GetComputingResourceByImplementationPath =
-    '/v1/algorithms/{algoId}/implementations/{implId}/computing-resource-properties/{resourceId}';
+    '/v1/algorithms/{algoId}/implementations/{implId}/compute-resource-properties/{resourceId}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -2446,7 +2446,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation updateComputingResourceByImplementation
    */
   static readonly UpdateComputingResourceByImplementationPath =
-    '/v1/algorithms/{algoId}/implementations/{implId}/computing-resource-properties/{resourceId}';
+    '/v1/algorithms/{algoId}/implementations/{implId}/compute-resource-properties/{resourceId}';
 
   /**
    * Update a computing resource of the implementation. Custom ID will be ignored. For computing resource type only ID is required, other computing resource type attributes will not change
@@ -2544,7 +2544,7 @@ export class AlgorithmService extends BaseService {
    * Path part for operation deleteComputingResourceByImplementation
    */
   static readonly DeleteComputingResourceByImplementationPath =
-    '/v1/algorithms/{algoId}/implementations/{implId}/computing-resource-properties/{resourceId}';
+    '/v1/algorithms/{algoId}/implementations/{implId}/compute-resource-properties/{resourceId}';
 
   /**
    * Delete a computing resource of the implementation.

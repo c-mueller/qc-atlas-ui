@@ -11,7 +11,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 import { AlgorithmService } from './services/algorithm.service';
 import { AlgorithmRelationTypeService } from './services/algorithm-relation-type.service';
 import { ApplicationAreasService } from './services/application-areas.service';
-import { ComputingResourcePropertiesTypesService } from './services/computing-resource-properties-types.service';
+import { ComputeResourcePropertyTypesService } from './services/compute-resource-property-types.service';
 import { ExecutionEnvironmentsService } from './services/execution-environments.service';
 import { PatternRelationService } from './services/pattern-relation.service';
 import { PatternRelationTypeService } from './services/pattern-relation-type.service';
@@ -30,7 +30,7 @@ import { RootService } from './services/root.service';
     AlgorithmService,
     AlgorithmRelationTypeService,
     ApplicationAreasService,
-    ComputingResourcePropertiesTypesService,
+    ComputeResourcePropertyTypesService,
     ExecutionEnvironmentsService,
     PatternRelationService,
     PatternRelationTypeService,

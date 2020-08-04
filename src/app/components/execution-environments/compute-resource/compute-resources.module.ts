@@ -9,6 +9,7 @@ import { ComputeResourceCloudServiceListComponent } from './compute-resource-clo
 import { ComputeResourcePropertiesComponent } from './compute-resource-properties/compute-resource-properties.component';
 import { ComputeResourceViewComponent } from './compute-resource-view/compute-resource-view.component';
 import { ComputeResourceListComponent } from './compute-resource-list/compute-resource-list.component';
+import { CreateComputeResourceDialogComponent } from './dialogs/create-compute-resource-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ComputeResourceListComponent } from './compute-resource-list/compute-re
     ComputeResourceSoftwarePlatformListComponent,
     ComputeResourceCloudServiceListComponent,
     ComputeResourcePropertiesComponent,
+    CreateComputeResourceDialogComponent,
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,7 @@ import { SoftwarePlatformPropertiesComponent } from './software-platform-propert
 import { SoftwarePlatformImplListComponent } from './software-platform-impl-list/software-platform-impl-list.component';
 import { SoftwarePlatformCloudServiceListComponent } from './software-platform-cloud-service-list/software-platform-cloud-service-list.component';
 import { SoftwarePlatformComputeResourceListComponent } from './software-platform-compute-resource-list/software-platform-compute-resource-list.component';
+import { CreateSoftwarePlatformDialogComponent } from './dialogs/create-software-platform-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SoftwarePlatformComputeResourceListComponent } from './software-platfor
     SoftwarePlatformImplListComponent,
     SoftwarePlatformCloudServiceListComponent,
     SoftwarePlatformComputeResourceListComponent,
+    CreateSoftwarePlatformDialogComponent,
   ],
   imports: [
     CommonModule,

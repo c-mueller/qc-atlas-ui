@@ -9,6 +9,7 @@ import { CloudServiceListComponent } from './cloud-service-list/cloud-service-li
 import { CloudServiceComputeResourceListComponent } from './cloud-service-compute-resource-list/cloud-service-compute-resource-list.component';
 import { CloudServicePropertiesComponent } from './cloud-service-properties/cloud-service-properties.component';
 import { CloudServiceSoftwarePlatformListComponent } from './cloud-service-software-platform-list/cloud-service-software-platform-list.component';
+import { CreateCloudServiceDialogComponent } from './dialogs/create-cloud-service-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CloudServiceSoftwarePlatformListComponent } from './cloud-service-softw
     CloudServiceComputeResourceListComponent,
     CloudServicePropertiesComponent,
     CloudServiceSoftwarePlatformListComponent,
+    CreateCloudServiceDialogComponent,
   ],
   imports: [
     CommonModule,

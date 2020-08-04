@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EntityModelSoftwarePlatformDto } from 'api/models/entity-model-software-platform-dto';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { ExecutionEnvironmentsService } from 'api/services/execution-environments.service';
 import { BreadcrumbLink } from '../../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 
 @Component({
@@ -12,7 +15,29 @@ export class SoftwarePlatformViewComponent implements OnInit {
 
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
-  constructor() {}
+  private routeSub: Subscription;
 
-  ngOnInit(): void {}
+  constructor(
+    private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe(({ spId }) => {
+      this.executionEnvironmentsService
+        .getSoftwarePlatform({ id: spId })
+        .subscribe(
+          (softwarePlatform: EntityModelSoftwarePlatformDto) => {
+            this.softwarePlatform = softwarePlatform;
+            this.links[0] = {
+              heading: this.softwarePlatform.name,
+              subHeading: '',
+            };
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    });
+  }
 }

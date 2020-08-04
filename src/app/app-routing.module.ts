@@ -28,15 +28,15 @@ const routes: Routes = [
     component: ExecutionEnvironmentSearchComponent,
   },
   {
-    path: 'execution-environments/software-platforms/:id',
+    path: 'execution-environments/software-platforms/:spId',
     component: SoftwarePlatformViewComponent,
   },
   {
-    path: 'execution-environments/cloud-services/:id',
+    path: 'execution-environments/cloud-services/:csId',
     component: CloudServiceViewComponent,
   },
   {
-    path: 'execution-environments/compute-resources/:id',
+    path: 'execution-environments/compute-resources/:crId',
     component: ComputeResourceViewComponent,
   },
   { path: 'publications', component: PublicationListComponent },

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EntityModelCloudServiceDto } from 'api/models/entity-model-cloud-service-dto';
+import { ExecutionEnvironmentsService } from 'api/services/execution-environments.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { BreadcrumbLink } from '../../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 
 @Component({
@@ -12,7 +15,27 @@ export class CloudServiceViewComponent implements OnInit {
 
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
-  constructor() {}
+  private routeSub: Subscription;
 
-  ngOnInit(): void {}
+  constructor(
+    private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe(({ csId }) => {
+      this.executionEnvironmentsService.getCloudService({ id: csId }).subscribe(
+        (cloudService: EntityModelCloudServiceDto) => {
+          this.cloudService = cloudService;
+          this.links[0] = {
+            heading: this.cloudService.name,
+            subHeading: '',
+          };
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+  }
 }

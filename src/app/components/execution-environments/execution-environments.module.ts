@@ -3,31 +3,29 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { GenericsModule } from '../generics/generics.module';
-import { CloudServiceViewComponent } from './cloud-services/cloud-service-view/cloud-service-view.component';
-import { SoftwarePlatformViewComponent } from './software-platforms/software-platform-view/software-platform-view.component';
 import { ExecutionEnvironmentsListComponent } from './execution-environments-list/execution-environments-list.component';
 import { ComputeResourceViewComponent } from './compute-resource/compute-resource-view/compute-resource-view.component';
-import { CloudServiceListComponent } from './cloud-services/cloud-service-list/cloud-service-list.component';
 import { ComputeResourceListComponent } from './compute-resource/compute-resource-list/compute-resource-list.component';
-import { SoftwarePlatformListComponent } from './software-platforms/software-platform-list/software-platform-list.component';
 import { ExecutionEnvironmentSearchComponent } from './execution-environment-search/execution-environment-search.component';
+import { SoftwarePlatformsModule } from './software-platforms/software-platforms.module';
+import { CloudServicesModule } from './cloud-services/cloud-services-module';
 
 @NgModule({
   declarations: [
-    CloudServiceViewComponent,
-    SoftwarePlatformViewComponent,
     ExecutionEnvironmentsListComponent,
     ComputeResourceViewComponent,
-    CloudServiceListComponent,
     ComputeResourceListComponent,
-    SoftwarePlatformListComponent,
     ExecutionEnvironmentSearchComponent,
   ],
-  imports: [CommonModule, MatTabsModule, GenericsModule, MatCardModule],
+  imports: [
+    CommonModule,
+    MatTabsModule,
+    GenericsModule,
+    MatCardModule,
+    SoftwarePlatformsModule,
+    CloudServicesModule,
+  ],
   exports: [
-    SoftwarePlatformViewComponent,
-    CloudServiceViewComponent,
-    ComputeResourceViewComponent,
     ExecutionEnvironmentsListComponent,
     ExecutionEnvironmentSearchComponent,
   ],

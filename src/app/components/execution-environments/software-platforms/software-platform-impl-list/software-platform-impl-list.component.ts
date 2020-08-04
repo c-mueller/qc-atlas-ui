@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-software-platform-impl-list',
   templateUrl: './software-platform-impl-list.component.html',
-  styleUrls: ['./software-platform-impl-list.component.scss']
+  styleUrls: ['./software-platform-impl-list.component.scss'],
 })
 export class SoftwarePlatformImplListComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

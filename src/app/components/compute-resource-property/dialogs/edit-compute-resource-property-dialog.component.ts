@@ -5,7 +5,6 @@ import {
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { ComputingResourcePropertiesTypesService } from 'api/services/computing-resource-properties-types.service';
 import { EntityModelComputeResourcePropertyTypeDto } from 'api/models/entity-model-compute-resource-property-type-dto';
 import {
   AbstractControl,
@@ -15,6 +14,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { ComputeResourcePropertyTypesService } from 'api/services/compute-resource-property-types.service';
 import { Option } from '../../generics/property-input/select-input.component';
 import { CustomErrorStateMatcher } from '../../generics/property-input/default.error-matcher';
 
@@ -109,7 +109,7 @@ export class EditComputeResourcePropertyDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<EditComputeResourcePropertyDialogData>,
     @Inject(MAT_DIALOG_DATA) public data: EditComputeResourcePropertyDialogData,
     public dialog: MatDialog,
-    public propertyTypeService: ComputingResourcePropertiesTypesService
+    public propertyTypeService: ComputeResourcePropertyTypesService
   ) {}
 
   ngOnInit(): void {

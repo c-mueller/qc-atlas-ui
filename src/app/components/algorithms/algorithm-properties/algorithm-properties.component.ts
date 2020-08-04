@@ -293,6 +293,7 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
     this.algorithmService
       .getComputingResourcesByAlgorithm({
         algoId: this.algorithm.id,
+        size: -1,
       })
       .subscribe((e) => {
         if (e._embedded != null) {

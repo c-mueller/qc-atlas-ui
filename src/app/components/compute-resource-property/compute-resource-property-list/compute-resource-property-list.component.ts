@@ -11,11 +11,11 @@ import {
 import { UtilService } from '../../../util/util.service';
 
 @Component({
-  selector: 'app-computation-resource-property-list',
-  templateUrl: './computation-resource-property-list.component.html',
-  styleUrls: ['./computation-resource-property-list.component.scss'],
+  selector: 'app-compute-resource-property-list',
+  templateUrl: './compute-resource-property-list.component.html',
+  styleUrls: ['./compute-resource-property-list.component.scss'],
 })
-export class ComputationResourcePropertyListComponent implements OnInit {
+export class ComputeResourcePropertyListComponent implements OnInit {
   @Input()
   resourceProperties: EntityModelComputeResourcePropertyDto[] = [];
 

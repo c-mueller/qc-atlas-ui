@@ -157,6 +157,7 @@ export class ImplementationViewComponent implements OnInit {
       .getComputingResources({
         algoId: this.algo.id,
         implId: this.impl.id,
+        page: -1,
       })
       .subscribe((e) => {
         if (e._embedded != null) {

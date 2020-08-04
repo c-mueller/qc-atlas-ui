@@ -14,11 +14,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GenericsModule } from '../generics/generics.module';
 import { EditComputeResourcePropertyDialogComponent } from './dialogs/edit-compute-resource-property-dialog.component';
-import { ComputationResourcePropertyListComponent } from './computation-resource-property-list/computation-resource-property-list.component';
+import { ComputeResourcePropertyListComponent } from './compute-resource-property-list/compute-resource-property-list.component';
 
 @NgModule({
   declarations: [
-    ComputationResourcePropertyListComponent,
+    ComputeResourcePropertyListComponent,
     EditComputeResourcePropertyDialogComponent,
   ],
   imports: [
@@ -38,6 +38,6 @@ import { ComputationResourcePropertyListComponent } from './computation-resource
     MatListModule,
     MatTooltipModule,
   ],
-  exports: [ComputationResourcePropertyListComponent],
+  exports: [ComputeResourcePropertyListComponent],
 })
-export class ComputingResourcePropertyModule {}
+export class ComputeResourcePropertyModule {}

@@ -49,6 +49,7 @@ export class EditComputeResourcePropertyDialogComponent implements OnInit {
   get typeName(): string {
     return (this.formGroup.controls.typeName as FormControl).value.toString();
   }
+
   set typeName(name: string) {
     (this.formGroup.controls.typeName as FormControl).setValue(name);
   }
@@ -56,6 +57,7 @@ export class EditComputeResourcePropertyDialogComponent implements OnInit {
   get typeDescription(): string {
     return (this.formGroup.controls.typeDesc as FormControl).value.toString();
   }
+
   set typeDescription(desc: string) {
     (this.formGroup.controls.typeDesc as FormControl).setValue(desc);
   }
@@ -64,6 +66,7 @@ export class EditComputeResourcePropertyDialogComponent implements OnInit {
     return (this.formGroup.controls
       .typeDatatype as FormControl).value.toString();
   }
+
   set typeDatatype(type: 'INTEGER' | 'STRING' | 'FLOAT') {
     const datatypeControl = this.formGroup.controls.typeDatatype as FormControl;
     datatypeControl.setValue(type);
@@ -73,9 +76,11 @@ export class EditComputeResourcePropertyDialogComponent implements OnInit {
   get propertyValue(): string {
     return (this.formGroup.controls.value as FormControl).value.toString();
   }
+
   set propertyValue(value: string) {
     (this.formGroup.controls.value as FormControl).setValue(value);
   }
+
   valueInputInvalid = true;
 
   availableTypes: ValidatingOption[] = [
@@ -123,11 +128,15 @@ export class EditComputeResourcePropertyDialogComponent implements OnInit {
       this.typeDescription = '';
       this.typeName = '';
     }
-    this.propertyTypeService.getResourcePropertyTypes().subscribe((e) => {
-      if (e._embedded != null) {
-        this.types = e._embedded.computeResourcePropertyTypes;
-      }
-    });
+    this.propertyTypeService
+      .getResourcePropertyTypes({
+        page: -1,
+      })
+      .subscribe((e) => {
+        if (e._embedded != null) {
+          this.types = e._embedded.computeResourcePropertyTypes;
+        }
+      });
     this.formGroup.controls.value.setValue('');
     this.validateValueInput();
   }

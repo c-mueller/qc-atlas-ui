@@ -38,7 +38,7 @@ import { AlgorithmModule } from './components/algorithms/algorithm.module';
 import { ImplementationViewModule } from './components/algorithms/implementation-view/implementation-view.module';
 import { GenericsModule } from './components/generics/generics.module';
 import { UtilService } from './util/util.service';
-import { ComputingResourcePropertyModule } from './components/computation-resource-property/computing-resource-property.module';
+import { ComputeResourcePropertyModule } from './components/compute-resource-property/compute-resource-property.module';
 import { ExecutionEnvironmentsModule } from './components/execution-environments/execution-environments.module';
 import { PublicationModule } from './components/publications/publication.module';
 
@@ -90,7 +90,7 @@ import { PublicationModule } from './components/publications/publication.module'
     PublicationModule,
     ImplementationViewModule,
     GenericsModule,
-    ComputingResourcePropertyModule,
+    ComputeResourcePropertyModule,
     ExecutionEnvironmentsModule,
   ],
   bootstrap: [AppComponent],

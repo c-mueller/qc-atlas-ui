@@ -5,27 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatTableModule } from '@angular/material/table';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
-import { MatSortModule } from '@angular/material/sort';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApiModule } from 'api/api.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { MatTreeModule } from '@angular/material/tree';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -68,6 +56,8 @@ import { PublicationModule } from './components/publications/publication.module'
     MatIconModule,
     MatFormFieldModule,
     MatDialogModule,
+    MatSnackBarModule,
+    MatDialogModule,
     // app modules
     NavigationBreadcrumbModule,
     AlgorithmModule,
@@ -76,6 +66,7 @@ import { PublicationModule } from './components/publications/publication.module'
     GenericsModule,
     ComputeResourcePropertyModule,
     ExecutionEnvironmentsModule,
+    MatButtonModule,
   ],
   bootstrap: [AppComponent],
   exports: [],

@@ -4,15 +4,17 @@
                [variableNames]=variableNames
                [dataColumns]=tableColumns
                [allowAdd]=true
+               [allowSelection]=true
                [allowSearch]=true
                [allowSort]=true
                [pagination]=pagingInfo
                [paginatorConfig]=paginatorConfig
-               (elementClicked)="onElementClicked($event)"
-               (addElement)="onAddElement()"
-               (submitSelectedElements)="onDeleteElements($event)"
-               (datalistConfigChanged)="onDatalistConfigChanged($event)"
-               (pageChange)="onPageChanged($event)">
+               [emptyTableMessage]="'No compute resources found'"
+               (elementClicked)="onComputeResourceClicked($event)"
+               (addElement)="onCreateComputeResource()"
+               (submitSelectedElements)="onDeleteComputeResources($event)"
+               (datalistConfigChanged)="getComputeResources($event)"
+               (pageChange)="getComputeResourcesHateoas($event)">
     </app-table>
   </div>
 </mat-card>

@@ -1,6 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EntityModelComputeResourceDto } from 'api/models/entity-model-compute-resource-dto';
-import { DeleteParams } from '../../../generics/data-list/data-list.component';
+import { ExecutionEnvironmentsService } from 'api/services/execution-environments.service';
+import { Router } from '@angular/router';
+import { ComputeResourceDto } from 'api/models/compute-resource-dto';
+import {
+  DeleteParams,
+  QueryParams,
+} from '../../../generics/data-list/data-list.component';
+import { UtilService } from '../../../../util/util.service';
+import { CreateComputeResourceDialogComponent } from '../dialogs/create-compute-resource-dialog.component';
+import { GenericDataService } from '../../../../util/generic-data.service';
 
 @Component({
   selector: 'app-compute-resource-list',
@@ -17,25 +26,80 @@ export class ComputeResourceListComponent implements OnInit {
     amountChoices: [10, 25, 50],
     selectedAmount: 10,
   };
-  constructor() {}
+
+  constructor(
+    private utilService: UtilService,
+    private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private genericDataService: GenericDataService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
-  onElementClicked(computeResource): void {
-    console.log(computeResource);
+  getComputeResources(params: QueryParams): void {
+    this.executionEnvironmentsService
+      .getComputeResources(params)
+      .subscribe((data) => {
+        this.prepareComputeResourceData(data);
+      });
   }
 
-  onAddElement(): void {}
-
-  onDeleteElements(deleteParams: DeleteParams): void {
-    console.log(deleteParams);
+  getComputeResourcesHateoas(url: string): void {
+    this.genericDataService.getData(url).subscribe((data) => {
+      this.prepareComputeResourceData(data);
+    });
   }
 
-  onDatalistConfigChanged(event): void {
-    console.log(event);
+  prepareComputeResourceData(data): void {
+    if (data._embedded) {
+      this.computeResources = data._embedded.computeResources;
+    } else {
+      this.computeResources = [];
+    }
+    this.pagingInfo.page = data.page;
+    this.pagingInfo._links = data._links;
   }
 
-  onPageChanged(event): void {
-    console.log(event);
+  onComputeResourceClicked(computeResource): void {
+    this.router.navigate([
+      'execution-environments',
+      'compute-resources',
+      computeResource.id,
+    ]);
+  }
+
+  onCreateComputeResource(): void {
+    this.utilService
+      .createDialog(CreateComputeResourceDialogComponent, {
+        title: 'Create a new compute resource',
+      })
+      .afterClosed()
+      .subscribe((dialogResult) => {
+        if (dialogResult) {
+          const computeResourceDto: ComputeResourceDto = {
+            name: dialogResult.name,
+          };
+          this.executionEnvironmentsService
+            .createComputeResource({ body: computeResourceDto })
+            .subscribe((computeResource: EntityModelComputeResourceDto) => {
+              this.router.navigate([
+                'execution-environments',
+                'compute-resources',
+                computeResource.id,
+              ]);
+            });
+        }
+      });
+  }
+
+  onDeleteComputeResources(deleteParams: DeleteParams): void {
+    for (const computeResource of deleteParams.elements) {
+      this.executionEnvironmentsService
+        .deleteSoftwarePlatform({ id: computeResource.id })
+        .subscribe(() => {
+          // Refresh Algorithms after delete
+          this.getComputeResources(deleteParams.queryParams);
+        });
+    }
   }
 }

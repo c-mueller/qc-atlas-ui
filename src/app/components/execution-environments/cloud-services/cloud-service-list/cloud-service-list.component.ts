@@ -1,6 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EntityModelCloudServiceDto } from 'api/models/entity-model-cloud-service-dto';
-import { DeleteParams } from '../../../generics/data-list/data-list.component';
+import { ExecutionEnvironmentsService } from 'api/services/execution-environments.service';
+import { Router } from '@angular/router';
+import { CloudServiceDto } from 'api/models/cloud-service-dto';
+import { UtilService } from '../../../../util/util.service';
+import {
+  DeleteParams,
+  QueryParams,
+} from '../../../generics/data-list/data-list.component';
+import { CreateCloudServiceDialogComponent } from '../dialogs/create-cloud-service-dialog.component';
+import { GenericDataService } from '../../../../util/generic-data.service';
 
 @Component({
   selector: 'app-cloud-service-list',
@@ -17,26 +26,81 @@ export class CloudServiceListComponent implements OnInit {
     amountChoices: [10, 25, 50],
     selectedAmount: 10,
   };
+  externalLinkVariables = ['link'];
 
-  constructor() {}
+  constructor(
+    private utilService: UtilService,
+    private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private genericDataService: GenericDataService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
-  onElementClicked(cloudService): void {
-    console.log(cloudService);
+  getCloudServices(params: QueryParams): void {
+    this.executionEnvironmentsService
+      .getCloudServices(params)
+      .subscribe((data) => {
+        this.prepareCloudServiceData(data);
+      });
   }
 
-  onAddElement(): void {}
-
-  onDeleteElements(deleteParams: DeleteParams): void {
-    console.log(deleteParams);
+  getCloudServicesHateoas(url: string): void {
+    this.genericDataService.getData(url).subscribe((data) => {
+      this.prepareCloudServiceData(data);
+    });
   }
 
-  onDatalistConfigChanged(event): void {
-    console.log(event);
+  prepareCloudServiceData(data): void {
+    if (data._embedded) {
+      this.cloudServices = data._embedded.cloudServices;
+    } else {
+      this.cloudServices = [];
+    }
+    this.pagingInfo.page = data.page;
+    this.pagingInfo._links = data._links;
   }
 
-  onPageChanged(event): void {
-    console.log(event);
+  onCloudServiceClicked(cloudService): void {
+    this.router.navigate([
+      'execution-environments',
+      'cloud-services',
+      cloudService.id,
+    ]);
+  }
+
+  onCreateCloudService(): void {
+    this.utilService
+      .createDialog(CreateCloudServiceDialogComponent, {
+        title: 'Create a new cloud service',
+      })
+      .afterClosed()
+      .subscribe((dialogResult) => {
+        if (dialogResult) {
+          const cloudServiceDto: CloudServiceDto = {
+            name: dialogResult.name,
+          };
+          this.executionEnvironmentsService
+            .createCloudService({ body: cloudServiceDto })
+            .subscribe((cloudService: EntityModelCloudServiceDto) => {
+              this.router.navigate([
+                'execution-environments',
+                'cloud-services',
+                cloudService.id,
+              ]);
+            });
+        }
+      });
+  }
+
+  onDeleteCloudServices(deleteParams: DeleteParams): void {
+    for (const cloudService of deleteParams.elements) {
+      this.executionEnvironmentsService
+        .deleteCloudService({ id: cloudService.id })
+        .subscribe(() => {
+          // Refresh Algorithms after delete
+          this.getCloudServices(deleteParams.queryParams);
+        });
+    }
   }
 }

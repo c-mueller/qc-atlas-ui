@@ -3,16 +3,19 @@
     <app-table [data]=cloudServices
                [variableNames]=variableNames
                [dataColumns]=tableColumns
+               [externalLinkVariables]=externalLinkVariables
                [allowAdd]=true
+               [allowSelection]=true
                [allowSearch]=true
                [allowSort]=true
                [pagination]=pagingInfo
                [paginatorConfig]=paginatorConfig
-               (elementClicked)="onElementClicked($event)"
-               (addElement)="onAddElement()"
-               (submitSelectedElements)="onDeleteElements($event)"
-               (datalistConfigChanged)="onDatalistConfigChanged($event)"
-               (pageChange)="onPageChanged($event)">
+               [emptyTableMessage]="'No cloud services found'"
+               (elementClicked)="onCloudServiceClicked($event)"
+               (addElement)="onCreateCloudService()"
+               (submitSelectedElements)="onDeleteCloudServices($event)"
+               (datalistConfigChanged)="getCloudServices($event)"
+               (pageChange)="getCloudServicesHateoas($event)">
     </app-table>
   </div>
 </mat-card>

@@ -43,7 +43,17 @@ export class SoftwarePlatformImplListComponent implements OnInit {
     this.getLinkedImplementations({ id: this.softwarePlatform.id });
   }
 
-  getImplementations(): void {}
+  getImplementations(): void {
+    this.algorithmService
+      .getAllImplementations({ page: -1 })
+      .subscribe((implementations) => {
+        if (implementations._embedded) {
+          this.implementations = implementations._embedded.implementations;
+        } else {
+          this.implementations = [];
+        }
+      });
+  }
 
   getLinkedImplementations(params: any): void {
     this.executionEnvironmentsService
@@ -86,9 +96,9 @@ export class SoftwarePlatformImplListComponent implements OnInit {
   async unlinkImplementations(event: DeleteParams): Promise<void> {
     for (const implementation of event.elements) {
       await this.executionEnvironmentsService
-        .deleteCloudServiceReferenceFromSoftwarePlatform({
+        .deleteImplementationReferenceFromSoftwarePlatform({
           id: this.softwarePlatform.id,
-          csId: implementation.id,
+          implId: implementation.id,
         })
         .toPromise();
       this.getLinkedImplementations({ id: this.softwarePlatform.id });
@@ -102,7 +112,16 @@ export class SoftwarePlatformImplListComponent implements OnInit {
   }
 
   onElementClicked(implementation: ImplementationDto): void {
-    this.router.navigate(['algorithms', 'implementations', implementation.id]);
+    this.algorithmService
+      .getImplementedAlgorithm({ id: implementation.id })
+      .subscribe((algo) => {
+        this.router.navigate([
+          'algorithms',
+          algo.id,
+          'implementations',
+          implementation.id,
+        ]);
+      });
   }
 
   onToggleLink(): void {

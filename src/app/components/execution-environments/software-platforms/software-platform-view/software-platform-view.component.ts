@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ExecutionEnvironmentsService } from 'api/services/execution-environments.service';
 import { BreadcrumbLink } from '../../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
+import { UpdateFieldEventService } from '../../../../services/update-field-event.service';
+import { FieldUpdate } from '../../../../util/FieldUpdate';
 
 @Component({
   selector: 'app-software-platform-view',
@@ -16,9 +18,11 @@ export class SoftwarePlatformViewComponent implements OnInit {
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
   private routeSub: Subscription;
+  private fieldUpdateSubscription: Subscription;
 
   constructor(
     private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private updateFieldService: UpdateFieldEventService,
     private route: ActivatedRoute
   ) {}
 
@@ -39,5 +43,28 @@ export class SoftwarePlatformViewComponent implements OnInit {
           }
         );
     });
+
+    this.fieldUpdateSubscription = this.updateFieldService.updateSoftwarePlatformFieldChannel.subscribe(
+      (fieldUpdate: FieldUpdate) => {
+        this.updateSoftwarePlatformField(fieldUpdate);
+      }
+    );
+  }
+
+  updateSoftwarePlatformField(fieldUpdate: FieldUpdate): void {
+    this.softwarePlatform[fieldUpdate.field] = fieldUpdate.value;
+    this.executionEnvironmentsService
+      .updateSoftwarePlatform({
+        id: this.softwarePlatform.id,
+        body: this.softwarePlatform,
+      })
+      .subscribe(
+        (sp) => {
+          this.softwarePlatform = sp;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

@@ -11,6 +11,7 @@
     </mat-tab>
     <mat-tab label="Implementations">
       <app-software-platform-impl-list
+        [softwarePlatform]="softwarePlatform"
       ></app-software-platform-impl-list>
     </mat-tab>
     <mat-tab label="Cloud Services">
@@ -20,6 +21,7 @@
     </mat-tab>
     <mat-tab label="Compute Resources">
       <app-software-platform-compute-resource-list
+        [softwarePlatform]="softwarePlatform"
       ></app-software-platform-compute-resource-list>
     </mat-tab>
   </mat-tab-group>

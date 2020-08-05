@@ -19,7 +19,7 @@ export class SoftwarePlatformPropertiesComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onChangesSaved(field: string, value: any): void {
+  onChangesSaved(value: any, field: string): void {
     this.updateFieldService.updateSoftwarePlatformFieldChannel.emit({
       field,
       value,

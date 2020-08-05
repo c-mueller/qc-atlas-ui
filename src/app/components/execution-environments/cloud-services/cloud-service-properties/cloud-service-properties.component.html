@@ -1,11 +1,11 @@
 <div class="p-4">
   <mat-card class="m-4">
-    <app-text-input
+    <!--<app-text-input
       class="w-100 p-2"
       name="Name"
       [(ngModel)]="cloudService.name"
       (onSaveChanges)="onChangesSaved($event, 'name')"
-    ></app-text-input>
+    ></app-text-input>-->
     <app-text-input
       class="w-100 p-2"
       name="Description"
@@ -23,6 +23,7 @@
     <app-text-input
       class="w-100 p-2"
       name="URL"
+      [isLink]="true"
       [(ngModel)]="cloudService.url"
       (onSaveChanges)="onChangesSaved($event, 'url')"
     ></app-text-input>

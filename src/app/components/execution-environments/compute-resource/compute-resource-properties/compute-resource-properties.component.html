@@ -1,11 +1,11 @@
 <div class="p-4">
   <mat-card class="m-4">
-    <app-text-input
+    <!--<app-text-input
       class="w-100 p-2"
       name="Name"
       [(ngModel)]="computeResource.name"
       (onSaveChanges)="onChangesSaved($event, 'name')"
-    ></app-text-input>
+    ></app-text-input>-->
     <app-text-input
       class="w-100 p-2"
       name="Vendor"
@@ -18,11 +18,12 @@
       [(ngModel)]="computeResource.technology"
       (onSaveChanges)="onChangesSaved($event, 'technology')"
     ></app-text-input>
-    <app-select-input class="p-2"
-                      name="Quantum computation model"
-                      [(ngModel)]="computeResource.quantumComputationModel"
-                      [choices]="availableQuantumComputationModelOptions"
-                      (onSaveChanges)="onChangesSaved($event, 'quantumComputationModel')"
+    <app-select-input
+      class="p-2"
+      name="Quantum computation model"
+      [(ngModel)]="computeResource.quantumComputationModel"
+      [choices]="availableQuantumComputationModelOptions"
+      (onSaveChanges)="onChangesSaved($event, 'quantumComputationModel')"
     ></app-select-input>
   </mat-card>
 

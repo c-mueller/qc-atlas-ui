@@ -4364,6 +4364,128 @@ export class AlgorithmService extends BaseService {
   }
 
   /**
+   * Path part for operation getSoftwarePlatforms
+   */
+  static readonly GetSoftwarePlatformsPath = '/v1/implementations';
+
+  /**
+   * Retrieve all implementations
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getSoftwarePlatforms()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getSoftwarePlatforms$Response(params?: {
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<
+    StrictHttpResponse<{
+      _embedded?: { implementations?: Array<EntityModelImplementationDto> };
+      page?: PageMetadata;
+    }>
+  > {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      AlgorithmService.GetSoftwarePlatformsPath,
+      'get'
+    );
+    if (params) {
+      rb.query('search', params.search, {});
+      rb.query('page', params.page, {});
+      rb.query('size', params.size, {});
+      rb.query('sort', params.sort, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/hal+json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<{
+            _embedded?: {
+              implementations?: Array<EntityModelImplementationDto>;
+            };
+            page?: PageMetadata;
+          }>;
+        })
+      );
+  }
+
+  /**
+   * Retrieve all implementations
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getSoftwarePlatforms$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getSoftwarePlatforms(params?: {
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<{
+    _embedded?: { implementations?: Array<EntityModelImplementationDto> };
+    page?: PageMetadata;
+  }> {
+    return this.getSoftwarePlatforms$Response(params).pipe(
+      map(
+        (
+          r: StrictHttpResponse<{
+            _embedded?: {
+              implementations?: Array<EntityModelImplementationDto>;
+            };
+            page?: PageMetadata;
+          }>
+        ) =>
+          r.body as {
+            _embedded?: {
+              implementations?: Array<EntityModelImplementationDto>;
+            };
+            page?: PageMetadata;
+          }
+      )
+    );
+  }
+
+  /**
    * Path part for operation getImplementedAlgorithm
    */
   static readonly GetImplementedAlgorithmPath = '/v1/implementations/{id}';

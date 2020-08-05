@@ -761,20 +761,20 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
-   * Path part for operation getSoftwarePlatformsForComputeResource
+   * Path part for operation getSoftwarePlatformsForCloudService
    */
-  static readonly GetSoftwarePlatformsForComputeResourcePath =
+  static readonly GetSoftwarePlatformsForCloudServicePath =
     '/v1/cloud-services/{id}/software-platforms';
 
   /**
    * Get referenced software platform for a  cloud service
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getSoftwarePlatformsForComputeResource()` instead.
+   * To access only the response body, use `getSoftwarePlatformsForCloudService()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatformsForComputeResource$Response(params: {
+  getSoftwarePlatformsForCloudService$Response(params: {
     id: string;
 
     /**
@@ -803,7 +803,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ExecutionEnvironmentsService.GetSoftwarePlatformsForComputeResourcePath,
+      ExecutionEnvironmentsService.GetSoftwarePlatformsForCloudServicePath,
       'get'
     );
     if (params) {
@@ -836,11 +836,11 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Get referenced software platform for a  cloud service
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getSoftwarePlatformsForComputeResource$Response()` instead.
+   * To access the full response (for headers, for example), `getSoftwarePlatformsForCloudService$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatformsForComputeResource(params: {
+  getSoftwarePlatformsForCloudService(params: {
     id: string;
 
     /**
@@ -865,7 +865,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   }): Observable<{
     _embedded?: { softwarePlatforms?: Array<EntityModelSoftwarePlatformDto> };
   }> {
-    return this.getSoftwarePlatformsForComputeResource$Response(params).pipe(
+    return this.getSoftwarePlatformsForCloudService$Response(params).pipe(
       map(
         (
           r: StrictHttpResponse<{
@@ -1937,20 +1937,20 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
-   * Path part for operation getSoftwarePlatformsForComputeResource1
+   * Path part for operation getSoftwarePlatformsForComputeResource
    */
-  static readonly GetSoftwarePlatformsForComputeResource1Path =
+  static readonly GetSoftwarePlatformsForComputeResourcePath =
     '/v1/compute-resources/{id}/software-platforms';
 
   /**
    * Get referenced software platform for a compute resource
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getSoftwarePlatformsForComputeResource1()` instead.
+   * To access only the response body, use `getSoftwarePlatformsForComputeResource()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatformsForComputeResource1$Response(params: {
+  getSoftwarePlatformsForComputeResource$Response(params: {
     id: string;
 
     /**
@@ -1979,7 +1979,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ExecutionEnvironmentsService.GetSoftwarePlatformsForComputeResource1Path,
+      ExecutionEnvironmentsService.GetSoftwarePlatformsForComputeResourcePath,
       'get'
     );
     if (params) {
@@ -2012,11 +2012,11 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Get referenced software platform for a compute resource
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getSoftwarePlatformsForComputeResource1$Response()` instead.
+   * To access the full response (for headers, for example), `getSoftwarePlatformsForComputeResource$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatformsForComputeResource1(params: {
+  getSoftwarePlatformsForComputeResource(params: {
     id: string;
 
     /**
@@ -2041,7 +2041,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   }): Observable<{
     _embedded?: { softwarePlatforms?: Array<EntityModelSoftwarePlatformDto> };
   }> {
-    return this.getSoftwarePlatformsForComputeResource1$Response(params).pipe(
+    return this.getSoftwarePlatformsForComputeResource$Response(params).pipe(
       map(
         (
           r: StrictHttpResponse<{
@@ -2060,19 +2060,19 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
-   * Path part for operation getSoftwarePlatforms
+   * Path part for operation getSoftwarePlatforms1
    */
-  static readonly GetSoftwarePlatformsPath = '/v1/software-platforms';
+  static readonly GetSoftwarePlatforms1Path = '/v1/software-platforms';
 
   /**
    * Retrieve all software platforms
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getSoftwarePlatforms()` instead.
+   * To access only the response body, use `getSoftwarePlatforms1()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatforms$Response(params?: {
+  getSoftwarePlatforms1$Response(params?: {
     /**
      * Filter criteria for this query
      */
@@ -2100,7 +2100,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ExecutionEnvironmentsService.GetSoftwarePlatformsPath,
+      ExecutionEnvironmentsService.GetSoftwarePlatforms1Path,
       'get'
     );
     if (params) {
@@ -2133,11 +2133,11 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Retrieve all software platforms
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getSoftwarePlatforms$Response()` instead.
+   * To access the full response (for headers, for example), `getSoftwarePlatforms1$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatforms(params?: {
+  getSoftwarePlatforms1(params?: {
     /**
      * Filter criteria for this query
      */
@@ -2161,7 +2161,7 @@ export class ExecutionEnvironmentsService extends BaseService {
     _embedded?: { softwarePlatforms?: Array<EntityModelSoftwarePlatformDto> };
     page?: PageMetadata;
   }> {
-    return this.getSoftwarePlatforms$Response(params).pipe(
+    return this.getSoftwarePlatforms1$Response(params).pipe(
       map(
         (
           r: StrictHttpResponse<{

@@ -4,6 +4,7 @@ import { ExecutionEnvironmentsService } from 'api/services/execution-environment
 import { Router } from '@angular/router';
 import { EntityModelImplementationDto } from 'api/models/entity-model-implementation-dto';
 import { ImplementationDto } from 'api/models/implementation-dto';
+import { AlgorithmService } from 'api/services/algorithm.service';
 import {
   DeleteParams,
   LinkObject,
@@ -32,6 +33,7 @@ export class SoftwarePlatformImplListComponent implements OnInit {
 
   constructor(
     private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private algorithmService: AlgorithmService,
     private router: Router
   ) {}
 

@@ -37,13 +37,24 @@ export class SoftwarePlatformImplListComponent implements OnInit {
 
   ngOnInit(): void {
     this.linkObject.title += this.softwarePlatform.name;
-    this.getImplementation();
+    this.getImplementations();
     this.getLinkedImplementations({ id: this.softwarePlatform.id });
   }
 
-  getImplementation(): void {}
+  getImplementations(): void {}
 
-  getLinkedImplementations(params: any): void {}
+  getLinkedImplementations(params: any): void {
+    this.executionEnvironmentsService
+      .getImplementationsForSoftwarePlatform(params)
+      .subscribe((implementations) => {
+        if (implementations._embedded) {
+          this.linkedImplementations =
+            implementations._embedded.implementations;
+        } else {
+          this.linkedImplementations = [];
+        }
+      });
+  }
 
   searchUnlinkedImplementations(search: string): void {
     if (search) {
@@ -60,6 +71,14 @@ export class SoftwarePlatformImplListComponent implements OnInit {
 
   linkImplementation(implementation: ImplementationDto): void {
     this.linkObject.data = [];
+    this.executionEnvironmentsService
+      .addImplementationReferenceToSoftwarePlatform({
+        id: this.softwarePlatform.id,
+        implId: implementation.id,
+      })
+      .subscribe((data) => {
+        this.getLinkedImplementations({ id: this.softwarePlatform.id });
+      });
   }
 
   async unlinkImplementations(event: DeleteParams): Promise<void> {

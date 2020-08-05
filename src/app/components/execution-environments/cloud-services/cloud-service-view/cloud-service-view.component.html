@@ -12,10 +12,12 @@
     </mat-tab>
     <mat-tab label="Software Platforms">
       <app-cloud-service-software-platform-list
+        [cloudService]="cloudService"
       ></app-cloud-service-software-platform-list>
     </mat-tab>
-    <mat-tab label="Cloud Services">
+    <mat-tab label="Compute Resources">
       <app-cloud-service-compute-resource-list
+        [cloudService]="cloudService"
       ></app-cloud-service-compute-resource-list>
     </mat-tab>
   </mat-tab-group>

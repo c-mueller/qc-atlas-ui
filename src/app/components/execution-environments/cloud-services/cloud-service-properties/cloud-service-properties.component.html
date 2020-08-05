@@ -1,1 +1,36 @@
-<p>cloud-service-properties works!</p>
+<div class="p-4">
+  <mat-card class="m-4">
+    <app-text-input
+      class="w-100 p-2"
+      name="Name"
+      [(ngModel)]="cloudService.name"
+      (onSaveChanges)="onChangesSaved($event, 'name')"
+    ></app-text-input>
+    <app-text-input
+      class="w-100 p-2"
+      name="Description"
+      [multiline]="true"
+      [maxLines]="5"
+      [(ngModel)]="cloudService.description"
+      (onSaveChanges)="onChangesSaved($event, 'description')"
+    ></app-text-input>
+    <app-text-input
+      class="w-100 p-2"
+      name="Provider"
+      [(ngModel)]="cloudService.provider"
+      (onSaveChanges)="onChangesSaved($event, 'provider')"
+    ></app-text-input>
+    <app-text-input
+      class="w-100 p-2"
+      name="URL"
+      [(ngModel)]="cloudService.url"
+      (onSaveChanges)="onChangesSaved($event, 'url')"
+    ></app-text-input>
+    <app-text-input
+      class="w-100 p-2"
+      name="Cost Model"
+      [(ngModel)]="cloudService.costModel"
+      (onSaveChanges)="onChangesSaved($event, 'costModel')"
+    ></app-text-input>
+  </mat-card>
+</div>

@@ -38,4 +38,18 @@ export class CloudServiceViewComponent implements OnInit {
       );
     });
   }
+
+  updateField(event: { field; value }): void {
+    this.cloudService[event.field] = event.value;
+    this.executionEnvironmentsService
+      .updateCloudService({ id: this.cloudService.id, body: this.cloudService })
+      .subscribe(
+        (cloudSvc) => {
+          this.cloudService = cloudSvc;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
 }

@@ -40,4 +40,18 @@ export class ComputeResourceViewComponent implements OnInit {
         );
     });
   }
+
+  updateField(event: { field; value }): void {
+    this.computeResource[event.field] = event.value;
+    this.executionEnvironmentsService
+      .updateComputeResource({ id: this.computeResource.id, body: this.computeResource })
+      .subscribe(
+        (computeRes) => {
+          this.computeResource = computeRes;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
 }

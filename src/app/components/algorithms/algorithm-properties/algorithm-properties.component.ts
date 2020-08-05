@@ -24,6 +24,10 @@ import { Option } from '../../generics/property-input/select-input.component';
 import { AddProblemTypeDialogComponent } from '../dialogs/add-problem-type-dialog.component';
 import { RemoveProblemTypeDialogComponent } from '../dialogs/remove-problem-type-dialog.component';
 import { UtilService } from '../../../util/util.service';
+import {
+  quantumComputationModelOptions,
+  sketchOptions,
+} from '../../../util/options';
 
 @Component({
   selector: 'app-algorithm-properties',
@@ -55,16 +59,9 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
   @ViewChild('problemTypeTree')
   problemTypeTreeComponent: ProblemTypeTreeComponent;
 
-  sketchOptions: Option[] = [
-    { value: 'PSEUDOCODE', label: 'Pseudocode' },
-    { value: 'CIRCUIT', label: 'Circuit' },
-    { value: 'ISING_MODEL', label: 'Ising model' },
-  ];
-  quantumComputationModelOptions: Option[] = [
-    { value: 'GATE_BASED', label: 'Gate based' },
-    { value: 'MEASUREMENT_BASED', label: 'Measurement based' },
-    { value: 'QUANTUM_ANNEALING', label: 'Quantum Annealing' },
-  ];
+  availableSketchOptions: Option[] = sketchOptions;
+  availableQuantumComputationModelOptions: Option[] = quantumComputationModelOptions;
+
   computeResourceProperties: EntityModelComputeResourcePropertyDto[] = [];
 
   problemTypeTreeData: FileNode[] = [];
@@ -77,37 +74,6 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.fetchComputeResourceProperties();
-
-    // const problem1: EntityModelProblemTypeDto = {
-    //   name: 'ProblemTestType1',
-    // };
-    // const problem2: EntityModelProblemTypeDto = {
-    //   name: 'ProblemTestType2',
-    // };
-    // const problem3: EntityModelProblemTypeDto = {
-    //   name: 'ProblemParentTestType1',
-    // };
-    // const problem4: EntityModelProblemTypeDto = {
-    //   name: 'ProblemParentTestType2',
-    // };
-    // const problem5: EntityModelProblemTypeDto = {
-    //   name: 'ProblemParentTestType3',
-    // };
-    // const problem6: EntityModelProblemTypeDto = {
-    //   name: 'ProblemParentTestType4',
-    // };
-    // const problem7: EntityModelProblemTypeDto = {
-    //   name: 'ProblemParentTestType5',
-    // };
-    // this.problemTypes = [problem1, problem2]; //
-    // this.problemTypes.forEach((problemType) => {
-    //   const node: FileNode = {
-    //     problemType,
-    //     parents: this.buildParentTree([problem2, problem3, problem4, problem5]),
-    //   };
-    //   this.problemTypeTreeData.push(JSON.parse(JSON.stringify(node)));
-    // });
-    // console.log(this.problemTypeTreeData);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

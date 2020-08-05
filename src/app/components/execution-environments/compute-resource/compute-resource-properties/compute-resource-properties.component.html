@@ -1,1 +1,38 @@
-<p>compute-resource-properties works!</p>
+<div class="p-4">
+  <mat-card class="m-4">
+    <app-text-input
+      class="w-100 p-2"
+      name="Name"
+      [(ngModel)]="computeResource.name"
+      (onSaveChanges)="onChangesSaved($event, 'name')"
+    ></app-text-input>
+    <app-text-input
+      class="w-100 p-2"
+      name="Vendor"
+      [(ngModel)]="computeResource.vendor"
+      (onSaveChanges)="onChangesSaved($event, 'vendor')"
+    ></app-text-input>
+    <app-text-input
+      class="w-100 p-2"
+      name="Provider"
+      [(ngModel)]="computeResource.technology"
+      (onSaveChanges)="onChangesSaved($event, 'technology')"
+    ></app-text-input>
+    <app-select-input class="p-2"
+                      name="Quantum computation model"
+                      [(ngModel)]="computeResource.quantumComputationModel"
+                      [choices]="availableQuantumComputationModelOptions"
+                      (onSaveChanges)="onChangesSaved($event, 'quantumComputationModel')"
+    ></app-select-input>
+  </mat-card>
+
+  <mat-card class="m-4">
+    <app-compute-resource-property-list
+      (addProperty)="addComputeResourceProperty($event)"
+      (updateProperty)="updateComputeResourceProperty($event)"
+      (deleteProperty)="deleteComputeResourceProperty($event)"
+      [resourceProperties]="computeResourceProperties"
+    >
+    </app-compute-resource-property-list>
+  </mat-card>
+</div>

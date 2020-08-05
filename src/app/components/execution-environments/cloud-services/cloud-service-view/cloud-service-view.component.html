@@ -6,6 +6,8 @@
   <mat-tab-group>
     <mat-tab label="General">
       <app-cloud-service-properties
+        [cloudService]="cloudService"
+        (updateCloudServiceField)="updateField($event)"
       ></app-cloud-service-properties>
     </mat-tab>
     <mat-tab label="Software Platforms">

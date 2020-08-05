@@ -29,6 +29,7 @@ import { UtilService } from './util/util.service';
 import { ComputeResourcePropertyModule } from './components/compute-resource-property/compute-resource-property.module';
 import { ExecutionEnvironmentsModule } from './components/execution-environments/execution-environments.module';
 import { PublicationModule } from './components/publications/publication.module';
+import { ServicesModule } from './services/services.module';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { PublicationModule } from './components/publications/publication.module'
     MatDialogModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatButtonModule,
     // app modules
     NavigationBreadcrumbModule,
     AlgorithmModule,
@@ -66,7 +68,7 @@ import { PublicationModule } from './components/publications/publication.module'
     GenericsModule,
     ComputeResourcePropertyModule,
     ExecutionEnvironmentsModule,
-    MatButtonModule,
+    ServicesModule,
   ],
   bootstrap: [AppComponent],
   exports: [],

@@ -6,6 +6,7 @@ import { ExecutionEnvironmentsService } from 'api/services/execution-environment
 import { ComputeResourceDto } from 'api/models/compute-resource-dto';
 import { EntityModelComputeResourcePropertyDto } from 'api/models/entity-model-compute-resource-property-dto';
 import { quantumComputationModelOptions } from '../../../../util/options';
+import { UpdateFieldEventService } from '../../../../services/update-field-event.service';
 
 @Component({
   selector: 'app-compute-resource-properties',
@@ -15,17 +16,14 @@ import { quantumComputationModelOptions } from '../../../../util/options';
 export class ComputeResourcePropertiesComponent implements OnInit {
   @Input()
   public computeResource: ComputeResourceDto;
-  @Output() updateComputeResourceField: EventEmitter<{
-    field;
-    value;
-  }> = new EventEmitter<{ field; value }>();
 
   computeResourceProperties: EntityModelComputeResourcePropertyDto[] = [];
 
   availableQuantumComputationModelOptions = quantumComputationModelOptions;
 
   constructor(
-    private executionEnvironmentService: ExecutionEnvironmentsService
+    private executionEnvironmentService: ExecutionEnvironmentsService,
+    private updateFieldService: UpdateFieldEventService
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +31,10 @@ export class ComputeResourcePropertiesComponent implements OnInit {
   }
 
   onChangesSaved(value: any, field: string): void {
-    this.updateComputeResourceField.emit({ field, value });
+    this.updateFieldService.updateComputeResourceFieldChannel.emit({
+      field,
+      value,
+    });
   }
 
   addComputeResourceProperty(

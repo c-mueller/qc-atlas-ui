@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CloudServiceDto } from 'api/models/cloud-service-dto';
+import { UpdateFieldEventService } from '../../../../services/update-field-event.service';
 
 @Component({
   selector: 'app-cloud-service-properties',
@@ -14,11 +15,14 @@ export class CloudServicePropertiesComponent implements OnInit {
     value;
   }> = new EventEmitter<{ field; value }>();
 
-  constructor() {}
+  constructor(private updateFieldService: UpdateFieldEventService) {}
 
   ngOnInit(): void {}
 
   onChangesSaved(value: any, field: string): void {
-    this.updateCloudServiceField.emit({ field, value });
+    this.updateFieldService.updateCloudServiceFieldChannel.emit({
+      field,
+      value,
+    });
   }
 }

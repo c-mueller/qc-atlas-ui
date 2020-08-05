@@ -4,6 +4,8 @@ import { ExecutionEnvironmentsService } from 'api/services/execution-environment
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BreadcrumbLink } from '../../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
+import { FieldUpdate } from '../../../../util/FieldUpdate';
+import { UpdateFieldEventService } from '../../../../services/update-field-event.service';
 
 @Component({
   selector: 'app-compute-resource-view',
@@ -16,9 +18,11 @@ export class ComputeResourceViewComponent implements OnInit {
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
   private routeSub: Subscription;
+  private fieldUpdateSubscription: Subscription;
 
   constructor(
     private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private updateFieldService: UpdateFieldEventService,
     private route: ActivatedRoute
   ) {}
 
@@ -39,10 +43,16 @@ export class ComputeResourceViewComponent implements OnInit {
           }
         );
     });
+
+    this.fieldUpdateSubscription = this.updateFieldService.updateComputeResourceFieldChannel.subscribe(
+      (fieldUpdate: FieldUpdate) => {
+        this.updateComputeResourceField(fieldUpdate);
+      }
+    );
   }
 
-  updateField(event: { field; value }): void {
-    this.computeResource[event.field] = event.value;
+  updateComputeResourceField(fieldUpdate: FieldUpdate): void {
+    this.computeResource[fieldUpdate.field] = fieldUpdate.value;
     this.executionEnvironmentsService
       .updateComputeResource({
         id: this.computeResource.id,

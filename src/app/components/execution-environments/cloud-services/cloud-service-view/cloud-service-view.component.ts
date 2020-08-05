@@ -4,6 +4,8 @@ import { ExecutionEnvironmentsService } from 'api/services/execution-environment
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BreadcrumbLink } from '../../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
+import { UpdateFieldEventService } from '../../../../services/update-field-event.service';
+import { FieldUpdate } from '../../../../util/FieldUpdate';
 
 @Component({
   selector: 'app-cloud-service-view',
@@ -16,9 +18,11 @@ export class CloudServiceViewComponent implements OnInit {
   links: BreadcrumbLink[] = [{ heading: '', subHeading: '' }];
 
   private routeSub: Subscription;
+  private fieldUpdateSubscription: Subscription;
 
   constructor(
     private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private updateFieldService: UpdateFieldEventService,
     private route: ActivatedRoute
   ) {}
 
@@ -37,10 +41,16 @@ export class CloudServiceViewComponent implements OnInit {
         }
       );
     });
+
+    this.fieldUpdateSubscription = this.updateFieldService.updateCloudServiceFieldChannel.subscribe(
+      (fieldUpdate: FieldUpdate) => {
+        this.updateCloudServiceField(fieldUpdate);
+      }
+    );
   }
 
-  updateField(event: { field; value }): void {
-    this.cloudService[event.field] = event.value;
+  updateCloudServiceField(fieldUpdate: FieldUpdate): void {
+    this.cloudService[fieldUpdate.field] = fieldUpdate.value;
     this.executionEnvironmentsService
       .updateCloudService({ id: this.cloudService.id, body: this.cloudService })
       .subscribe(

@@ -16,6 +16,7 @@ import {
 })
 export class SoftwarePlatformCloudServiceListComponent implements OnInit {
   @Input() softwarePlatform: EntityModelSoftwarePlatformDto;
+  cloudServices: EntityModelCloudServiceDto[];
   linkedCloudServices: EntityModelCloudServiceDto[] = [];
 
   tableColumns = ['Name', 'Provider', 'Description', 'CostModel', 'URL'];
@@ -36,7 +37,20 @@ export class SoftwarePlatformCloudServiceListComponent implements OnInit {
 
   ngOnInit(): void {
     this.linkObject.title += this.softwarePlatform.name;
+    this.getCloudServices();
     this.getLinkedCloudServices({ id: this.softwarePlatform.id });
+  }
+
+  getCloudServices(): void {
+    this.executionEnvironmentsService
+      .getCloudServices({ page: -1 })
+      .subscribe((cloudServices) => {
+        if (cloudServices._embedded) {
+          this.cloudServices = cloudServices._embedded.cloudServices;
+        } else {
+          this.cloudServices = [];
+        }
+      });
   }
 
   getLinkedCloudServices(params: any): void {
@@ -53,11 +67,12 @@ export class SoftwarePlatformCloudServiceListComponent implements OnInit {
 
   searchUnlinkedCloudServices(search: string): void {
     if (search) {
-      this.executionEnvironmentsService
-        .getCloudServices({ search })
-        .subscribe((data) => {
-          this.updateLinkableCloudServices(data._embedded);
-        });
+      search = search.toLocaleLowerCase();
+      this.linkObject.data = this.cloudServices.filter(
+        (cloudService: EntityModelCloudServiceDto) =>
+          cloudService.name.toLocaleLowerCase().startsWith(search) &&
+          !this.linkedCloudServices.includes(cloudService)
+      );
     } else {
       this.linkObject.data = [];
     }
@@ -99,22 +114,6 @@ export class SoftwarePlatformCloudServiceListComponent implements OnInit {
       'cloud-services',
       cloudService.id,
     ]);
-  }
-
-  updateLinkableCloudServices(cloudServiceData: {
-    cloudServices?: EntityModelCloudServiceDto[];
-  }): void {
-    console.log(cloudServiceData);
-    this.linkObject.data = [];
-    if (cloudServiceData) {
-      for (const publication of cloudServiceData.cloudServices) {
-        if (
-          !this.linkedCloudServices.some((publ) => publ.id === publication.id)
-        ) {
-          this.linkObject.data.push(publication);
-        }
-      }
-    }
   }
 
   onToggleLink(): void {

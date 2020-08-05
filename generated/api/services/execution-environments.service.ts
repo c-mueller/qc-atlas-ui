@@ -2060,19 +2060,19 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
-   * Path part for operation getSoftwarePlatforms1
+   * Path part for operation getSoftwarePlatforms
    */
-  static readonly GetSoftwarePlatforms1Path = '/v1/software-platforms';
+  static readonly GetSoftwarePlatformsPath = '/v1/software-platforms';
 
   /**
    * Retrieve all software platforms
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getSoftwarePlatforms1()` instead.
+   * To access only the response body, use `getSoftwarePlatforms()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatforms1$Response(params?: {
+  getSoftwarePlatforms$Response(params?: {
     /**
      * Filter criteria for this query
      */
@@ -2100,7 +2100,7 @@ export class ExecutionEnvironmentsService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      ExecutionEnvironmentsService.GetSoftwarePlatforms1Path,
+      ExecutionEnvironmentsService.GetSoftwarePlatformsPath,
       'get'
     );
     if (params) {
@@ -2133,11 +2133,11 @@ export class ExecutionEnvironmentsService extends BaseService {
    * Retrieve all software platforms
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getSoftwarePlatforms1$Response()` instead.
+   * To access the full response (for headers, for example), `getSoftwarePlatforms$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatforms1(params?: {
+  getSoftwarePlatforms(params?: {
     /**
      * Filter criteria for this query
      */
@@ -2161,7 +2161,7 @@ export class ExecutionEnvironmentsService extends BaseService {
     _embedded?: { softwarePlatforms?: Array<EntityModelSoftwarePlatformDto> };
     page?: PageMetadata;
   }> {
-    return this.getSoftwarePlatforms1$Response(params).pipe(
+    return this.getSoftwarePlatforms$Response(params).pipe(
       map(
         (
           r: StrictHttpResponse<{

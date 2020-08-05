@@ -4364,19 +4364,19 @@ export class AlgorithmService extends BaseService {
   }
 
   /**
-   * Path part for operation getSoftwarePlatforms
+   * Path part for operation getAllImplementations
    */
-  static readonly GetSoftwarePlatformsPath = '/v1/implementations';
+  static readonly GetAllImplementationsPath = '/v1/implementations';
 
   /**
    * Retrieve all implementations
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getSoftwarePlatforms()` instead.
+   * To access only the response body, use `getAllImplementations()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatforms$Response(params?: {
+  getAllImplementations$Response(params?: {
     /**
      * Filter criteria for this query
      */
@@ -4404,7 +4404,7 @@ export class AlgorithmService extends BaseService {
   > {
     const rb = new RequestBuilder(
       this.rootUrl,
-      AlgorithmService.GetSoftwarePlatformsPath,
+      AlgorithmService.GetAllImplementationsPath,
       'get'
     );
     if (params) {
@@ -4437,11 +4437,11 @@ export class AlgorithmService extends BaseService {
    * Retrieve all implementations
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getSoftwarePlatforms$Response()` instead.
+   * To access the full response (for headers, for example), `getAllImplementations$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSoftwarePlatforms(params?: {
+  getAllImplementations(params?: {
     /**
      * Filter criteria for this query
      */
@@ -4465,7 +4465,7 @@ export class AlgorithmService extends BaseService {
     _embedded?: { implementations?: Array<EntityModelImplementationDto> };
     page?: PageMetadata;
   }> {
-    return this.getSoftwarePlatforms$Response(params).pipe(
+    return this.getAllImplementations$Response(params).pipe(
       map(
         (
           r: StrictHttpResponse<{

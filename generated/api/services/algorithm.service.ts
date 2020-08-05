@@ -4362,4 +4362,83 @@ export class AlgorithmService extends BaseService {
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
+
+  /**
+   * Path part for operation getImplementedAlgorithm
+   */
+  static readonly GetImplementedAlgorithmPath = '/v1/implementations/{id}';
+
+  /**
+   * Retrieve a specific algorithm and its basic properties.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getImplementedAlgorithm()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getImplementedAlgorithm$Response(params: {
+    id: string;
+  }): Observable<
+    StrictHttpResponse<
+      { _links?: Array<Link> } & (ClassicAlgorithmDto | QuantumAlgorithmDto)
+    >
+  > {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      AlgorithmService.GetImplementedAlgorithmPath,
+      'get'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/hal+json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<
+            { _links?: Array<Link> } & (
+              | ClassicAlgorithmDto
+              | QuantumAlgorithmDto
+            )
+          >;
+        })
+      );
+  }
+
+  /**
+   * Retrieve a specific algorithm and its basic properties.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getImplementedAlgorithm$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getImplementedAlgorithm(params: {
+    id: string;
+  }): Observable<
+    { _links?: Array<Link> } & (ClassicAlgorithmDto | QuantumAlgorithmDto)
+  > {
+    return this.getImplementedAlgorithm$Response(params).pipe(
+      map(
+        (
+          r: StrictHttpResponse<
+            { _links?: Array<Link> } & (
+              | ClassicAlgorithmDto
+              | QuantumAlgorithmDto
+            )
+          >
+        ) =>
+          r.body as { _links?: Array<Link> } & (
+            | ClassicAlgorithmDto
+            | QuantumAlgorithmDto
+          )
+      )
+    );
+  }
 }

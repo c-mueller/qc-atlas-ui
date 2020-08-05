@@ -761,6 +761,129 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Path part for operation getSoftwarePlatformsForComputeResource
+   */
+  static readonly GetSoftwarePlatformsForComputeResourcePath =
+    '/v1/cloud-services/{id}/software-platforms';
+
+  /**
+   * Get referenced software platform for a  cloud service
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getSoftwarePlatformsForComputeResource()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getSoftwarePlatformsForComputeResource$Response(params: {
+    id: string;
+
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<
+    StrictHttpResponse<{
+      _embedded?: { softwarePlatforms?: Array<EntityModelSoftwarePlatformDto> };
+    }>
+  > {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.GetSoftwarePlatformsForComputeResourcePath,
+      'get'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.query('search', params.search, {});
+      rb.query('page', params.page, {});
+      rb.query('size', params.size, {});
+      rb.query('sort', params.sort, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/hal+json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<{
+            _embedded?: {
+              softwarePlatforms?: Array<EntityModelSoftwarePlatformDto>;
+            };
+          }>;
+        })
+      );
+  }
+
+  /**
+   * Get referenced software platform for a  cloud service
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getSoftwarePlatformsForComputeResource$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getSoftwarePlatformsForComputeResource(params: {
+    id: string;
+
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<{
+    _embedded?: { softwarePlatforms?: Array<EntityModelSoftwarePlatformDto> };
+  }> {
+    return this.getSoftwarePlatformsForComputeResource$Response(params).pipe(
+      map(
+        (
+          r: StrictHttpResponse<{
+            _embedded?: {
+              softwarePlatforms?: Array<EntityModelSoftwarePlatformDto>;
+            };
+          }>
+        ) =>
+          r.body as {
+            _embedded?: {
+              softwarePlatforms?: Array<EntityModelSoftwarePlatformDto>;
+            };
+          }
+      )
+    );
+  }
+
+  /**
    * Path part for operation getComputeResources
    */
   static readonly GetComputeResourcesPath = '/v1/compute-resources';
@@ -1436,6 +1559,123 @@ export class ExecutionEnvironmentsService extends BaseService {
   }
 
   /**
+   * Path part for operation getCloudServicesForComputeResource
+   */
+  static readonly GetCloudServicesForComputeResourcePath =
+    '/v1/compute-resources/{id}/cloud-services';
+
+  /**
+   * Get referenced cloud services for a compute resource
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getCloudServicesForComputeResource()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getCloudServicesForComputeResource$Response(params: {
+    id: string;
+
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<
+    StrictHttpResponse<{
+      _embedded?: { cloudServices?: Array<EntityModelCloudServiceDto> };
+    }>
+  > {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.GetCloudServicesForComputeResourcePath,
+      'get'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.query('search', params.search, {});
+      rb.query('page', params.page, {});
+      rb.query('size', params.size, {});
+      rb.query('sort', params.sort, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/hal+json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<{
+            _embedded?: { cloudServices?: Array<EntityModelCloudServiceDto> };
+          }>;
+        })
+      );
+  }
+
+  /**
+   * Get referenced cloud services for a compute resource
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getCloudServicesForComputeResource$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getCloudServicesForComputeResource(params: {
+    id: string;
+
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<{
+    _embedded?: { cloudServices?: Array<EntityModelCloudServiceDto> };
+  }> {
+    return this.getCloudServicesForComputeResource$Response(params).pipe(
+      map(
+        (
+          r: StrictHttpResponse<{
+            _embedded?: { cloudServices?: Array<EntityModelCloudServiceDto> };
+          }>
+        ) =>
+          r.body as {
+            _embedded?: { cloudServices?: Array<EntityModelCloudServiceDto> };
+          }
+      )
+    );
+  }
+
+  /**
    * Path part for operation getComputingResourcePropertiesForComputeResource
    */
   static readonly GetComputingResourcePropertiesForComputeResourcePath =
@@ -1691,6 +1931,129 @@ export class ExecutionEnvironmentsService extends BaseService {
               | 'MEASUREMENT_BASED'
               | 'QUANTUM_ANNEALING';
             _links?: Array<Link>;
+          }
+      )
+    );
+  }
+
+  /**
+   * Path part for operation getSoftwarePlatformsForComputeResource1
+   */
+  static readonly GetSoftwarePlatformsForComputeResource1Path =
+    '/v1/compute-resources/{id}/software-platforms';
+
+  /**
+   * Get referenced software platform for a compute resource
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getSoftwarePlatformsForComputeResource1()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getSoftwarePlatformsForComputeResource1$Response(params: {
+    id: string;
+
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<
+    StrictHttpResponse<{
+      _embedded?: { softwarePlatforms?: Array<EntityModelSoftwarePlatformDto> };
+    }>
+  > {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ExecutionEnvironmentsService.GetSoftwarePlatformsForComputeResource1Path,
+      'get'
+    );
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.query('search', params.search, {});
+      rb.query('page', params.page, {});
+      rb.query('size', params.size, {});
+      rb.query('sort', params.sort, {});
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/hal+json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<{
+            _embedded?: {
+              softwarePlatforms?: Array<EntityModelSoftwarePlatformDto>;
+            };
+          }>;
+        })
+      );
+  }
+
+  /**
+   * Get referenced software platform for a compute resource
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getSoftwarePlatformsForComputeResource1$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getSoftwarePlatformsForComputeResource1(params: {
+    id: string;
+
+    /**
+     * Filter criteria for this query
+     */
+    search?: string;
+
+    /**
+     * Zero-based page index (0..N)
+     */
+    page?: number;
+
+    /**
+     * The size of the page to be returned
+     */
+    size?: number;
+
+    /**
+     * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     */
+    sort?: Array<string>;
+  }): Observable<{
+    _embedded?: { softwarePlatforms?: Array<EntityModelSoftwarePlatformDto> };
+  }> {
+    return this.getSoftwarePlatformsForComputeResource1$Response(params).pipe(
+      map(
+        (
+          r: StrictHttpResponse<{
+            _embedded?: {
+              softwarePlatforms?: Array<EntityModelSoftwarePlatformDto>;
+            };
+          }>
+        ) =>
+          r.body as {
+            _embedded?: {
+              softwarePlatforms?: Array<EntityModelSoftwarePlatformDto>;
+            };
           }
       )
     );

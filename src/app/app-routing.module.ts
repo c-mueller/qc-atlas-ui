@@ -8,9 +8,11 @@ import { PublicationListComponent } from './components/publications/publication-
 import { ImplementationViewComponent } from './components/algorithms/implementation-view/implementation-view.component';
 import { AlgorithmViewComponent } from './components/algorithms/algorithm-view/algorithm-view.component';
 import { ComputeResourceViewComponent } from './components/execution-environments/compute-resource/compute-resource-view/compute-resource-view.component';
-import { ExecutionEnvironmentsListComponent } from './components/execution-environments/execution-environments-list/execution-environments-list.component';
 import { ExecutionEnvironmentSearchComponent } from './components/execution-environments/execution-environment-search/execution-environment-search.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
+import { SoftwarePlatformListComponent } from './components/execution-environments/software-platforms/software-platform-list/software-platform-list.component';
+import { CloudServiceListComponent } from './components/execution-environments/cloud-services/cloud-service-list/cloud-service-list.component';
+import { ComputeResourceListComponent } from './components/execution-environments/compute-resource/compute-resource-list/compute-resource-list.component';
 
 const routes: Routes = [
   { path: 'algorithms', component: AlgorithmListComponent },
@@ -21,19 +23,32 @@ const routes: Routes = [
   },
   {
     path: 'execution-environments',
-    component: ExecutionEnvironmentsListComponent,
+    redirectTo: '/execution-environments/search',
+    pathMatch: 'full',
   },
   {
     path: 'execution-environments/search',
     component: ExecutionEnvironmentSearchComponent,
   },
   {
+    path: 'execution-environments/software-platforms',
+    component: SoftwarePlatformListComponent,
+  },
+  {
     path: 'execution-environments/software-platforms/:spId',
     component: SoftwarePlatformViewComponent,
   },
   {
+    path: 'execution-environments/cloud-services',
+    component: CloudServiceListComponent,
+  },
+  {
     path: 'execution-environments/cloud-services/:csId',
     component: CloudServiceViewComponent,
+  },
+  {
+    path: 'execution-environments/compute-resources',
+    component: ComputeResourceListComponent,
   },
   {
     path: 'execution-environments/compute-resources/:crId',

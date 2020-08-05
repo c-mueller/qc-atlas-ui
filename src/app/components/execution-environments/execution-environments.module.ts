@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import { InputsModule } from 'angular-bootstrap-md';
 import { GenericsModule } from '../generics/generics.module';
 import { ExecutionEnvironmentsListComponent } from './execution-environments-list/execution-environments-list.component';
 import { ExecutionEnvironmentSearchComponent } from './execution-environment-search/execution-environment-search.component';
@@ -23,6 +25,8 @@ import { ComputeResourcesModule } from './compute-resource/compute-resources.mod
     SoftwarePlatformsModule,
     CloudServicesModule,
     ComputeResourcesModule,
+    FormsModule,
+    InputsModule,
   ],
   exports: [
     ExecutionEnvironmentsListComponent,

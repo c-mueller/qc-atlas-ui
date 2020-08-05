@@ -1,1 +1,51 @@
-<p>execution-environment-search works!</p>
+<mat-card class="m-4">
+  <div class="md-form mx-3">
+    <label for="search">Search</label>
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      class="form-control"
+      id="search"
+      mdbInput
+    />
+  </div>
+
+  <div class="mx-3">
+    <app-table [data]=softwarePlatforms
+               [variableNames]=variableNamesSoftwarePlatform
+               [dataColumns]=tableColumnsSoftwarePlatform
+               [allowSelection]=true
+               [pagination]=pagingInfo
+               [paginatorConfig]=paginatorConfig
+               (elementClicked)="onElementClicked($event)"
+               (datalistConfigChanged)="onDatalistConfigChanged($event)"
+               (pageChange)="onPageChanged($event)">
+    </app-table>
+  </div>
+
+  <div class="mx-3">
+    <app-table [data]=cloudServices
+               [variableNames]=variableNamesCloudServices
+               [dataColumns]=tableColumnsCloudServices
+               [allowSelection]=true
+               [pagination]=pagingInfo
+               [paginatorConfig]=paginatorConfig
+               (elementClicked)="onElementClicked($event)"
+               (datalistConfigChanged)="onDatalistConfigChanged($event)"
+               (pageChange)="onPageChanged($event)">
+    </app-table>
+  </div>
+
+  <div class="mx-3">
+    <app-table [data]=computeResources
+               [variableNames]=variableNamesComputeResources
+               [dataColumns]=tableColumnsComputeResources
+               [allowSelection]=true
+               [pagination]=pagingInfo
+               [paginatorConfig]=paginatorConfig
+               (elementClicked)="onElementClicked($event)"
+               (datalistConfigChanged)="onDatalistConfigChanged($event)"
+               (pageChange)="onPageChanged($event)">
+    </app-table>
+  </div>
+</mat-card>

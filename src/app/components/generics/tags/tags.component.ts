@@ -1,13 +1,39 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TagsDialogComponent } from './dialog/tags-dialog.component';
 
 // placeholder content
-const PLACEHOLDER_TAGS: Tag[] = [
+const PLACEHOLDER_ALL_TAGS: Tag[] = [
+  {
+    category: 'Machine Learning',
+    value: 'Naive Bayes',
+  },
+  {
+    category: 'Machine Learning',
+    value: 'Classification',
+  },
+  {
+    category: 'Learning',
+    value: 'Eager Learning',
+  },
+  {
+    category: 'Cryptography',
+    value: 'Factorization',
+  },
+  {
+    category: 'Topic',
+    value: 'Data Science',
+  },
+  {
+    category: 'Topic',
+    value: 'NLP',
+  },
+  {
+    category: 'Topic',
+    value: 'RSA',
+  },
+];
+const PLACEHOLDER_INPUT_TAGS: Tag[] = [
   {
     category: 'Machine Learning',
     value: 'Naive Bayes',
@@ -31,15 +57,19 @@ const PLACEHOLDER_TAGS: Tag[] = [
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
 })
-export class TagsComponent implements OnChanges {
+export class TagsComponent {
   @Input() allowRemoving = true;
-  @Input() tags: Tag[] = PLACEHOLDER_TAGS;
+  @Input() tags: Tag[] = PLACEHOLDER_INPUT_TAGS;
 
   @Output() onRemove: EventEmitter<Tag> = new EventEmitter<Tag>();
 
-  showCategories = true;
+  // TODO fetch this as soon as backend part is finished
+  all_tags: Tag[] = PLACEHOLDER_ALL_TAGS;
+
+  localStorageKey = 'atlas-tag-categories';
+  showCategories = false;
   categoryToColor: Record<string, string>;
-  assignedRandoms: number[] = [];
+  assignedColors: string[] = [];
   // unfortunately there is no quick way to extract angular mat-colors form sass
   colorPalette: string[] = [
     '#e57373', // corresponds to mat colors mat-* 300
@@ -63,44 +93,76 @@ export class TagsComponent implements OnChanges {
     '#90a4ae',
   ];
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     // retrieve generated colors from local storage or set them if empty
-    const localStorageKey = 'atlas-tag-categories';
-    if (localStorage.getItem(localStorageKey)) {
-      this.categoryToColor = JSON.parse(localStorage.getItem(localStorageKey));
+    if (localStorage.getItem(this.localStorageKey)) {
+      this.refreshColors();
+    } else if (!this.categoryToColor) {
+      this.categoryToColor = this.toColorMap(this.all_tags);
+      localStorage.setItem(
+        this.localStorageKey,
+        JSON.stringify(this.categoryToColor)
+      );
+    }
+  }
+
+  refreshColors(): void {
+    if (!this.hasStorageAllCategories()) {
+      const tmp = this.toColorMap(this.all_tags);
+      this.categoryToColor = tmp;
+      localStorage.removeItem(this.localStorageKey);
+      localStorage.setItem(this.localStorageKey, JSON.stringify(tmp));
     } else {
-      if (!this.categoryToColor) {
-        this.initColors();
-        localStorage.setItem(
-          localStorageKey,
-          JSON.stringify(this.categoryToColor)
-        );
-        console.log(JSON.stringify(this.categoryToColor));
-      }
+      this.categoryToColor = JSON.parse(
+        localStorage.getItem(this.localStorageKey)
+      );
     }
   }
 
-  ngOnChanges(): void {
-    // check if every category has color
-  }
+  /**
+   * quick comparison of tags which were fetched and assigned
+   * category colors in the local storage
+   * e.g. the local storage contains not all categories
+   */
+  hasStorageAllCategories(): boolean {
+    const localStorageKeys = Object.keys(
+      JSON.parse(localStorage.getItem(this.localStorageKey))
+    ).sort();
+    const localKeys = Object.keys(this.toColorMap(this.all_tags)).sort();
 
-  initColors(): void {
-    this.categoryToColor = {};
-    for (const tag of this.tags) {
-      if (!(tag.category in this.categoryToColor)) {
-        const i = this.getUniqueRandom();
-        this.categoryToColor[tag.category] = this.colorPalette[i];
+    if (localKeys.length !== localStorageKeys.length) {
+      return false;
+    }
+
+    for (let i = 0; i <= localKeys.length; i++) {
+      if (localStorageKeys[i] !== localKeys[i]) {
+        return false;
       }
     }
+    return true;
   }
 
-  getUniqueRandom(): number {
+  toColorMap(tags: Tag[]): Record<string, string> {
+    const result: Record<string, string> = this.categoryToColor || {};
+    for (const tag of tags) {
+      if (!(tag.category in result)) {
+        result[tag.category] = this.generateColor(Object.values(result));
+      }
+    }
+    return result;
+  }
+
+  generateColor(usedColors: string[]): string {
     const rand = Math.floor(Math.random() * (this.colorPalette.length - 1)) + 1;
-    if (this.assignedRandoms.find((num) => num === rand)) {
-      return this.getUniqueRandom();
+    if (usedColors.length >= this.colorPalette.length) {
+      // too many categories, some have the same color now
+      return this.colorPalette[rand];
+    } else {
+      if (this.colorPalette[rand] in usedColors) {
+        return this.generateColor(usedColors);
+      }
     }
-    this.assignedRandoms.push(rand);
-    return rand;
+    return this.colorPalette[rand];
   }
 
   removeTag(tag: Tag): void {
@@ -109,14 +171,41 @@ export class TagsComponent implements OnChanges {
   }
 
   addTag(): void {
-    // TODO
+    this.dialog
+      .open(TagsDialogComponent, {
+        width: '400px',
+        autoFocus: false,
+        data: {
+          allTags: this.all_tags,
+          categoryToColor: this.categoryToColor,
+        },
+      })
+      .afterClosed()
+      .subscribe((addedTag: Tag) => {
+        if (addedTag) {
+          const tmp = this.tags.find((tag) => tag.value === addedTag.value);
+          if (!tmp) {
+            this.tags.push(addedTag);
+            // TODO this is really bad, will be removed anyway once backend callbacks are built
+            const tmp2 = this.all_tags.find(
+              (tag) => tag.value === addedTag.value
+            );
+            if (!tmp2) {
+              this.all_tags.push(addedTag);
+            }
+            this.refreshColors();
+          }
+        }
+      });
   }
 
   /**
    * workaround see: https://github.com/angular/angular/issues/17725
    */
   getCategories(): string[] {
-    return Object.keys(this.categoryToColor);
+    return Object.keys(this.categoryToColor).filter((s) =>
+      this.tags.find((t) => t.category === s)
+    );
   }
 
   toggleCategories(): void {
@@ -127,7 +216,4 @@ export class TagsComponent implements OnChanges {
 export interface Tag {
   value: string;
   category: string;
-
-  // not used in backend - will be filled automatically
-  color?: string;
 }

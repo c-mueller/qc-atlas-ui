@@ -29,6 +29,7 @@ import { LinkInputComponent } from './link-input/link-input.component';
 import { PrologInputComponent } from './property-input/prolog-input.component';
 import { PrologValidator } from './prolog.validator';
 import { TagsComponent } from './tags/tags.component';
+import { TagsDialogComponent } from './tags/dialog/tags-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TagsComponent } from './tags/tags.component';
     LinkInputComponent,
     PrologValidator,
     TagsComponent,
+    TagsDialogComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -77,6 +79,7 @@ import { TagsComponent } from './tags/tags.component';
     LinkInputComponent,
     PrologValidator,
     TagsComponent,
+    TagsDialogComponent,
   ],
   providers: [GenericDataService],
 })

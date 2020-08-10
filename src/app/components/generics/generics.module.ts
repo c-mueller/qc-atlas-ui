@@ -17,6 +17,8 @@ import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from '../../app-routing.module';
 import { GenericDataService } from '../../util/generic-data.service';
 import { TextInputComponent } from './property-input/text-input.component';
@@ -28,9 +30,6 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog.component';
 import { LinkInputComponent } from './link-input/link-input.component';
 import { PrologInputComponent } from './property-input/prolog-input.component';
 import { PrologValidator } from './prolog.validator';
-import { MatDividerModule } from '@angular/material/divider';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -65,7 +64,6 @@ import { MatListModule } from '@angular/material/list';
     MatAutocompleteModule,
     MatBadgeModule,
     MatDividerModule,
-    ScrollingModule,
     MatListModule,
   ],
   exports: [

@@ -92,7 +92,8 @@ export class PublicationListComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Confirm Deletion',
-        message: 'Are you sure you want to delete the following publications: ',
+        message:
+          'Are you sure you want to delete the following publication(s): ',
         data: event.elements,
         variableName: 'title',
         yesButtonText: 'yes',
@@ -109,7 +110,9 @@ export class PublicationListComponent implements OnInit {
             .subscribe(() => {
               // Refresh Algorithms after delete
               this.getPublications(event.queryParams);
-              this.utilService.callSnackBar('Successfully removed publication');
+              this.utilService.callSnackBar(
+                'Successfully removed publication(s)'
+              );
             });
         }
       }

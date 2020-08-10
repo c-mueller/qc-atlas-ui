@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { PublicationDto } from 'api/models/publication-dto';
 import { LinkObject } from '../../generics/data-list/data-list.component';
 import { UtilService } from '../../../util/util.service';
+import { ConfirmDialogComponent } from '../../generics/dialogs/confirm-dialog.component';
 
 @Component({
   selector: 'app-algorithm-publications-list',

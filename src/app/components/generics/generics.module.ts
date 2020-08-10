@@ -28,6 +28,9 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog.component';
 import { LinkInputComponent } from './link-input/link-input.component';
 import { PrologInputComponent } from './property-input/prolog-input.component';
 import { PrologValidator } from './prolog.validator';
+import { MatDividerModule } from '@angular/material/divider';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { PrologValidator } from './prolog.validator';
     MatDialogModule,
     MatAutocompleteModule,
     MatBadgeModule,
+    MatDividerModule,
+    ScrollingModule,
+    MatListModule,
   ],
   exports: [
     TextInputComponent,

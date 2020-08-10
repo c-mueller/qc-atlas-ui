@@ -92,10 +92,9 @@ export class PublicationListComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Confirm Deletion',
-        message:
-          'Are you sure you want to delete ' +
-          event.elements.length +
-          ' publications',
+        message: 'Are you sure you want to delete the following publications: ',
+        data: event.elements,
+        variableName: 'title',
         yesButtonText: 'yes',
         noButtonText: 'no',
       },

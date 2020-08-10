@@ -75,7 +75,9 @@ export class ImplementationViewComponent implements OnInit {
         implId: this.impl.id,
         body: this.impl,
       })
-      .subscribe();
+      .subscribe(() => {
+        this.utilService.callSnackBar('Successfully updated implementation');
+      });
     // live refresh name
     this.links[1] = {
       heading: this.impl.name,

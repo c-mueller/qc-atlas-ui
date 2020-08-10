@@ -14,12 +14,14 @@ import {
 } from 'api-atlas/services';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 import { UtilService } from '../../../util/util.service';
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-algorithm-view',
   templateUrl: './algorithm-view.component.html',
   styleUrls: ['./algorithm-view.component.scss'],
 })
 export class AlgorithmViewComponent implements OnInit, OnDestroy {
+  isNisqUsed = environment.nisqAnalyzer;
   testTags: string[] = ['test tag', 'quantum', 'algorithm'];
 
   algorithm: EntityModelAlgorithmDto;

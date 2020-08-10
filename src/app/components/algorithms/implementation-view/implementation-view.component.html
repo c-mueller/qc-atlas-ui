@@ -85,7 +85,7 @@
         <h1>Discussion WIP</h1>
       </div>
     </mat-tab>
-    <mat-tab label="Selection Criteria">
+    <mat-tab [hidden]="isNisqUsed" label="Selection Criteria">
       <div class="tab-body p-4">
         <app-impl-selection-criteria
           [params]="this.placeholderInputParams"

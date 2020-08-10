@@ -25,7 +25,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatTreeModule } from '@angular/material/tree';
-import { ApiModule } from 'api-atlas/api.module';
+import { ApiModule as AtlasApiModule } from 'api-atlas/api.module';
+import { ApiModule as NisqApiModule } from 'api-nisq/api.module';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -62,7 +63,8 @@ import { PublicationModule } from './components/publications/publication.module'
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ApiModule.forRoot({ rootUrl: environment.API_URL }),
+    AtlasApiModule.forRoot({ rootUrl: environment.API_URL }),
+    NisqApiModule.forRoot({ rootUrl: environment.NISQ_API_URL }),
     AppRoutingModule,
     // material modules
     MatToolbarModule,

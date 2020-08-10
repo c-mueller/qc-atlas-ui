@@ -17,12 +17,14 @@ import {
   QueryParams,
 } from '../../generics/data-list/data-list.component';
 import { InputParameter } from '../impl-selection-criteria/impl-selection-criteria.component';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   templateUrl: './implementation-view.component.html',
   styleUrls: ['./implementation-view.component.scss'],
 })
 export class ImplementationViewComponent implements OnInit {
+  isNisqUsed = environment.nisqAnalyzer;
   impl: ImplementationDto;
   algo: AlgorithmDto;
   softwarePlatformOptions: Option[];

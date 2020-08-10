@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EntityModelPublicationDto } from 'api/models/entity-model-publication-dto';
 import { Router } from '@angular/router';
-import { PublicationService } from 'api/services/publication.service';
-import { AlgorithmService } from 'api/services/algorithm.service';
-import { EntityModelImplementationDto } from 'api/models/entity-model-implementation-dto';
+import {
+  EntityModelImplementationDto,
+  EntityModelPublicationDto,
+} from 'api-atlas/models';
+import { AlgorithmService, PublicationService } from 'api-atlas/services';
 import { GenericDataService } from '../../../util/generic-data.service';
 
 @Component({

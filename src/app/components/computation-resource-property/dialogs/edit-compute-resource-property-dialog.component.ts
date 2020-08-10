@@ -1,12 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { EntityModelComputingResourcePropertyDto } from 'api/models/entity-model-computing-resource-property-dto';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { ComputingResourcePropertiesTypesService } from 'api/services/computing-resource-properties-types.service';
-import { EntityModelComputingResourcePropertyTypeDto } from 'api/models/entity-model-computing-resource-property-type-dto';
 import {
   AbstractControl,
   FormControl,
@@ -15,6 +12,11 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import {
+  EntityModelComputingResourcePropertyDto,
+  EntityModelComputingResourcePropertyTypeDto,
+} from 'api-atlas/models';
+import { ComputingResourcePropertiesTypesService } from 'api-atlas/services';
 import { Option } from '../../generics/property-input/select-input.component';
 import { CustomErrorStateMatcher } from '../../generics/property-input/default.error-matcher';
 

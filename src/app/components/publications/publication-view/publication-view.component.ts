@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PublicationService } from 'api/services/publication.service';
-import { EntityModelPublicationDto } from 'api/models/entity-model-publication-dto';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { EntityModelPublicationDto } from 'api-atlas/models';
+import { PublicationService } from 'api-atlas/services';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 
 @Component({

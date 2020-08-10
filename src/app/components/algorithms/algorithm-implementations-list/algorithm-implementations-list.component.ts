@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AlgorithmService } from 'api/services/algorithm.service';
-import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
-import { EntityModelImplementationDto } from 'api/models/entity-model-implementation-dto';
-import { ImplementationDto } from 'api/models/implementation-dto';
 import { Router } from '@angular/router';
+import {
+  EntityModelAlgorithmDto,
+  EntityModelImplementationDto,
+  ImplementationDto,
+} from 'api-atlas/models';
+import { AlgorithmService } from 'api-atlas/services';
 import { UtilService } from '../../../util/util.service';
 import { CreateImplementationDialogComponent } from '../dialogs/create-implementation-dialog.component';
 

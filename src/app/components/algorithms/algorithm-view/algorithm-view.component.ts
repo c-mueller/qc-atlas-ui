@@ -1,16 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
-import { AlgorithmService } from 'api/services/algorithm.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { EntityModelApplicationAreaDto } from 'api/models/entity-model-application-area-dto';
-import { ApplicationAreasService } from 'api/services/application-areas.service';
-import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
-import { ProblemTypeService } from 'api/services/problem-type.service';
-import { ProblemTypeDto } from 'api/models/problem-type-dto';
+import {
+  EntityModelAlgorithmDto,
+  EntityModelApplicationAreaDto,
+  EntityModelProblemTypeDto,
+  ProblemTypeDto,
+} from 'api-atlas/models';
+import {
+  AlgorithmService,
+  ApplicationAreasService,
+  ProblemTypeService,
+} from 'api-atlas/services';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 import { UtilService } from '../../../util/util.service';
-
 @Component({
   selector: 'app-algorithm-view',
   templateUrl: './algorithm-view.component.html',

@@ -1,16 +1,10 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { EntityModelProblemTypeDto } from 'api/models/entity-model-problem-type-dto';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { EntityModelProblemTypeDto } from 'api-atlas/models';
 
 @Component({
   selector: 'app-remove-problem-type-dialog',

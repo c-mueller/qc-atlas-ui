@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EntityModelAlgorithmDto } from 'api/models/entity-model-algorithm-dto';
-import { AlgorithmService } from 'api/services/algorithm.service';
-import { EntityModelAlgorithmRelationDto } from 'api/models/entity-model-algorithm-relation-dto';
+import {
+  EntityModelAlgorithmDto,
+  EntityModelAlgorithmRelationDto,
+} from 'api-atlas/models';
+import { AlgorithmService } from 'api-atlas/services';
 
 @Component({
   selector: 'app-algorithm-related-algos-list',

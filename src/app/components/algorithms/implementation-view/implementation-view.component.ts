@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AlgorithmService } from 'api/services/algorithm.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlgorithmDto } from 'api/models/algorithm-dto';
-import { ImplementationDto } from 'api/models/implementation-dto';
-import { SoftwarePlatformService } from 'api/services/software-platform.service';
-import { PublicationService } from 'api/services/publication.service';
-import { EntityModelComputingResourcePropertyDto } from 'api/models/entity-model-computing-resource-property-dto';
+import {
+  AlgorithmDto,
+  EntityModelComputingResourcePropertyDto,
+  ImplementationDto,
+} from 'api-atlas/models';
+import {
+  AlgorithmService,
+  PublicationService,
+  SoftwarePlatformService,
+} from 'api-atlas/services';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 import { Option } from '../../generics/property-input/select-input.component';
 import {

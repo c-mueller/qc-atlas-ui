@@ -1,11 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AlgorithmDto } from 'api/models/algorithm-dto';
-import { EntityModelPatternRelationDto } from 'api/models/entity-model-pattern-relation-dto';
 import { MatDialog } from '@angular/material/dialog';
-import { PatternRelationTypeService } from 'api/services/pattern-relation-type.service';
-import { AlgorithmService } from 'api/services/algorithm.service';
-import { PatternRelationTypeDto } from 'api/models/pattern-relation-type-dto';
-import { PatternRelationDto } from 'api/models';
+import {
+  AlgorithmDto,
+  EntityModelPatternRelationDto,
+  PatternRelationDto,
+  PatternRelationTypeDto,
+} from 'api-atlas/models';
+import {
+  AlgorithmService,
+  PatternRelationTypeService,
+} from 'api-atlas/services';
 import { AddPatternRelationDialogComponent } from '../dialogs/add-pattern-relation-dialog.component';
 import { UtilService } from '../../../util/util.service';
 import { ConfirmDialogComponent } from '../../generics/dialogs/confirm-dialog.component';

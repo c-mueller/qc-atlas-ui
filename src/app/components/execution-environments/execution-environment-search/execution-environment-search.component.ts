@@ -49,6 +49,7 @@ export class ExecutionEnvironmentSearchComponent implements OnInit {
     'quantumComputationModel',
   ];
   pagingInfoComputeResources: any = {};
+
   searchText = '';
 
   constructor(
@@ -161,5 +162,26 @@ export class ExecutionEnvironmentSearchComponent implements OnInit {
 
   onDatalistConfigChanged(event): void {
     console.log(event);
+  }
+
+  onSearch(): void {
+    if (this.searchText.trim() === '') {
+      return;
+    }
+    this.getSoftwarePlatforms({
+      page: 0,
+      size: 10,
+      search: this.searchText.trim(),
+    });
+    this.getCloudServices({
+      page: 0,
+      size: 10,
+      search: this.searchText.trim(),
+    });
+    this.getComputeResources({
+      page: 0,
+      size: 10,
+      search: this.searchText.trim(),
+    });
   }
 }

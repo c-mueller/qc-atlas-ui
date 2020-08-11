@@ -1,13 +1,17 @@
 <mat-card class="m-4">
-  <div class="md-form mx-3">
-    <label for="search">Search</label>
-    <input
-      type="text"
-      [(ngModel)]="searchText"
-      class="form-control"
-      id="search"
-      mdbInput
-    />
+  <div class="d-flex mx-3 mb-4">
+    <button mat-icon-button (click)="onSearch()"><mat-icon>search</mat-icon></button>
+    <div class="md-form w-100 my-0">
+      <input
+        type="text"
+        class="form-control"
+        id="search"
+        [(ngModel)]="searchText"
+        (keyup.enter)="onSearch()"
+        mdbInput
+      />
+      <label for="search">Search</label>
+    </div>
   </div>
 
   <div class="mx-3">
@@ -21,6 +25,7 @@
                (datalistConfigChanged)="onDatalistConfigChanged($event)"
                (pageChange)="getSoftwarePlatformsHateoas($event)">
     </app-table>
+    <ng-template> #noSoftwarePlatforms</ng-template>
   </div>
 
   <div class="mx-3">
@@ -34,6 +39,7 @@
                (datalistConfigChanged)="onDatalistConfigChanged($event)"
                (pageChange)="getCloudServicesHateoas($event)">
     </app-table>
+    <ng-template> #noCloudServices</ng-template>
   </div>
 
   <div class="mx-3">
@@ -47,5 +53,6 @@
                (datalistConfigChanged)="onDatalistConfigChanged($event)"
                (pageChange)="getComputeResourcesHateoas($event)">
     </app-table>
+    <ng-template> #noComputeResources</ng-template>
   </div>
 </mat-card>

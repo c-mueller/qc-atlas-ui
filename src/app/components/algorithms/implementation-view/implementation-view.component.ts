@@ -6,6 +6,7 @@ import { ImplementationDto } from 'api/models/implementation-dto';
 import { SoftwarePlatformService } from 'api/services/software-platform.service';
 import { PublicationService } from 'api/services/publication.service';
 import { EntityModelComputingResourcePropertyDto } from 'api/models/entity-model-computing-resource-property-dto';
+import { MatDialog } from '@angular/material/dialog';
 import { BreadcrumbLink } from '../../generics/navigation-breadcrumb/navigation-breadcrumb.component';
 import { Option } from '../../generics/property-input/select-input.component';
 import {
@@ -13,6 +14,8 @@ import {
   QueryParams,
 } from '../../generics/data-list/data-list.component';
 import { InputParameter } from '../impl-selection-criteria/impl-selection-criteria.component';
+import { UtilService } from '../../../util/util.service';
+import { ConfirmDialogComponent } from '../../generics/dialogs/confirm-dialog.component';
 
 @Component({
   templateUrl: './implementation-view.component.html',
@@ -56,7 +59,9 @@ export class ImplementationViewComponent implements OnInit {
     private softwarePlatformService: SoftwarePlatformService,
     private publicationService: PublicationService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private utilService: UtilService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -70,7 +75,9 @@ export class ImplementationViewComponent implements OnInit {
         implId: this.impl.id,
         body: this.impl,
       })
-      .subscribe();
+      .subscribe(() => {
+        this.utilService.callSnackBar('Successfully updated implementation');
+      });
     // live refresh name
     this.links[1] = {
       heading: this.impl.name,
@@ -115,6 +122,7 @@ export class ImplementationViewComponent implements OnInit {
       })
       .subscribe((e) => {
         this.fetchComputeResourceProperties();
+        this.utilService.callSnackBar('Successfully added property');
       });
   }
 
@@ -129,24 +137,41 @@ export class ImplementationViewComponent implements OnInit {
       })
       .subscribe((e) => {
         this.fetchComputeResourceProperties();
+        this.utilService.callSnackBar('Successfully updated property');
       });
   }
 
   deleteComputeResourceProperty(
     property: EntityModelComputingResourcePropertyDto
   ): void {
-    this.algorithmService
-      .deleteComputingResource({
-        algoId: this.algo.id,
-        resourceId: property.id,
-      })
-      .subscribe((e) => {
-        this.computeResourceProperties = this.computeResourceProperties.filter(
-          (elem: EntityModelComputingResourcePropertyDto) =>
-            elem.id !== property.id
-        );
-        this.fetchComputeResourceProperties();
-      });
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirm Deletion',
+        message: 'Are you sure you want to delete the following property: ',
+        data: [property.type],
+        variableName: 'name',
+        yesButtonText: 'yes',
+        noButtonText: 'no',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((dialogResult) => {
+      if (dialogResult) {
+        this.algorithmService
+          .deleteComputingResource({
+            algoId: this.algo.id,
+            resourceId: property.id,
+          })
+          .subscribe((e) => {
+            this.computeResourceProperties = this.computeResourceProperties.filter(
+              (elem: EntityModelComputingResourcePropertyDto) =>
+                elem.id !== property.id
+            );
+            this.fetchComputeResourceProperties();
+            this.utilService.callSnackBar('Successfully deleted property');
+          });
+      }
+    });
   }
 
   fetchComputeResourceProperties(): void {

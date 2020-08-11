@@ -49,12 +49,6 @@ export class ExecutionEnvironmentSearchComponent implements OnInit {
     'quantumComputationModel',
   ];
   pagingInfoComputeResources: any = {};
-
-  paginatorConfig: any = {
-    amountChoices: [10],
-    selectedAmount: 10,
-  };
-
   searchText = '';
 
   constructor(

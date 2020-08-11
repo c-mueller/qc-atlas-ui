@@ -16,6 +16,7 @@ import {
 } from 'api/models';
 import { ProblemTypeService } from 'api/services/problem-type.service';
 import { AlgorithmService } from 'api/services/algorithm.service';
+import { ApplicationAreasService } from 'api/services/application-areas.service';
 import {
   FileNode,
   ProblemTypeTreeComponent,
@@ -28,6 +29,7 @@ import {
   quantumComputationModelOptions,
   sketchOptions,
 } from '../../../util/options';
+import { LinkObject } from '../../generics/data-list/data-list.component';
 
 @Component({
   selector: 'app-algorithm-properties',
@@ -35,9 +37,9 @@ import {
   styleUrls: ['./algorithm-properties.component.scss'],
 })
 export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
-  @Output() addApplicationArea: EventEmitter<string> = new EventEmitter<
-    string
-  >();
+  @Output() addApplicationArea: EventEmitter<
+    EntityModelApplicationAreaDto
+  > = new EventEmitter<EntityModelApplicationAreaDto>();
   @Output() removeApplicationArea: EventEmitter<
     EntityModelApplicationAreaDto
   > = new EventEmitter<EntityModelApplicationAreaDto>();
@@ -53,7 +55,7 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
   }> = new EventEmitter<{ field; value }>();
 
   @Input() algorithm: EntityModelAlgorithmDto;
-  @Input() applicationAreas: EntityModelApplicationAreaDto[];
+  @Input() linkedApplicationAreas: EntityModelApplicationAreaDto[];
   @Input() problemTypes: EntityModelProblemTypeDto[];
 
   @ViewChild('problemTypeTree')
@@ -64,15 +66,24 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
 
   computeResourceProperties: EntityModelComputeResourcePropertyDto[] = [];
 
+  applicationAreaLinkObject: LinkObject = {
+    title: 'Link application area with ',
+    subtitle: 'Search application area by name',
+    displayVariable: 'name',
+    data: [],
+  };
+
   problemTypeTreeData: FileNode[] = [];
 
   constructor(
     private algorithmService: AlgorithmService,
+    private applicationAreaService: ApplicationAreasService,
     private problemTypeService: ProblemTypeService,
     private utilService: UtilService
   ) {}
 
   ngOnInit(): void {
+    this.applicationAreaLinkObject.title += this.algorithm.name;
     this.fetchComputeResourceProperties();
   }
 
@@ -157,8 +168,41 @@ export class AlgorithmPropertiesComponent implements OnInit, OnChanges {
     this.updateAlgorithmField.emit({ field, value });
   }
 
-  addApplicationAreaEvent(applicationArea: string): void {
+  addApplicationAreaEvent(
+    applicationArea: EntityModelApplicationAreaDto
+  ): void {
     this.addApplicationArea.emit(applicationArea);
+  }
+
+  searchUnlinkedApplicationAreas(search: string): void {
+    // Search for unlinked algorithms if search-text is not empty
+    if (search) {
+      this.applicationAreaService
+        .getApplicationAreas({ search })
+        .subscribe((data) => {
+          this.updateLinkableApplicationAreas(data._embedded);
+        });
+    } else {
+      this.applicationAreaLinkObject.data = [];
+    }
+  }
+
+  updateLinkableApplicationAreas(applicationAreasData): void {
+    // Clear list of linkable algorithms
+    this.applicationAreaLinkObject.data = [];
+    // If linkable algorithms found
+    if (applicationAreasData) {
+      // Search algorithms and filter only those that are not already linked
+      for (const applicationArea of applicationAreasData.applicationAreas) {
+        if (
+          !this.linkedApplicationAreas.some(
+            (applArea) => applArea.id === applicationArea.id
+          )
+        ) {
+          this.applicationAreaLinkObject.data.push(applicationArea);
+        }
+      }
+    }
   }
 
   removeApplicationAreaEvent(applicationArea: any): void {

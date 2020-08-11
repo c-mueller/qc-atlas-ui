@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 import { UtilService } from '../../../util/util.service';
 import { AddAlgorithmRelationDialogComponent } from '../dialogs/add-algorithm-relation-dialog.component';
 import { ConfirmDialogComponent } from '../../generics/dialogs/confirm-dialog.component';
-import { UrlData } from '../../generics/data-list/data-list.component';
 
 @Component({
   selector: 'app-algorithm-related-algos-list',
@@ -138,9 +137,9 @@ export class AlgorithmRelatedAlgosListComponent implements OnInit {
       data: {
         title: 'Confirm Deletion',
         message:
-          'Are you sure you want to delete ' +
-          event.elements.length +
-          ' algorithm relation(s)',
+          'Are you sure you want to delete the following algorithm relation(s):',
+        data: event.elements,
+        variableName: 'name',
         yesButtonText: 'yes',
         noButtonText: 'no',
       },

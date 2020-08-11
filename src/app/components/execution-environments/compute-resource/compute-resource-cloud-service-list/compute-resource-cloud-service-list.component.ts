@@ -8,6 +8,7 @@ import {
   DeleteParams,
   LinkObject,
 } from '../../../generics/data-list/data-list.component';
+import { UtilService } from '../../../../util/util.service';
 
 @Component({
   selector: 'app-compute-resource-cloud-service-list',
@@ -32,6 +33,7 @@ export class ComputeResourceCloudServiceListComponent implements OnInit {
 
   constructor(
     private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private utilService: UtilService,
     private router: Router
   ) {}
 
@@ -87,6 +89,7 @@ export class ComputeResourceCloudServiceListComponent implements OnInit {
       })
       .subscribe((data) => {
         this.getLinkedCloudServices({ id: this.computeResource.id });
+        this.utilService.callSnackBar('Successfully linked compute resource');
       });
   }
 
@@ -99,6 +102,7 @@ export class ComputeResourceCloudServiceListComponent implements OnInit {
         })
         .toPromise();
       this.getLinkedCloudServices({ id: this.computeResource.id });
+      this.utilService.callSnackBar('Successfully unlinked compute resource');
     }
   }
 

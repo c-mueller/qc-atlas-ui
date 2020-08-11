@@ -10,6 +10,7 @@ import {
 import { UtilService } from '../../../../util/util.service';
 import { CreateSoftwarePlatformDialogComponent } from '../dialogs/create-software-platform-dialog.component';
 import { GenericDataService } from '../../../../util/generic-data.service';
+import { ConfirmDialogComponent } from '../../../generics/dialogs/confirm-dialog.component';
 
 @Component({
   selector: 'app-software-platform-list',
@@ -90,19 +91,42 @@ export class SoftwarePlatformListComponent implements OnInit {
                 'software-platforms',
                 softwarePlatform.id,
               ]);
+              this.utilService.callSnackBar(
+                'Successfully created software platform "' +
+                  softwarePlatform.name +
+                  '"'
+              );
             });
         }
       });
   }
 
   onDeleteSoftwarePlatforms(deleteParams: DeleteParams): void {
-    for (const softwarePlatform of deleteParams.elements) {
-      this.executionEnvironmentsService
-        .deleteSoftwarePlatform({ id: softwarePlatform.id })
-        .subscribe(() => {
-          // Refresh Algorithms after delete
-          this.getSoftwarePlatforms(deleteParams.queryParams);
-        });
-    }
+    this.utilService
+      .createDialog(ConfirmDialogComponent, {
+        title: 'Confirm Deletion',
+        message:
+          'Are you sure you want to delete the following software platform(s): ',
+        data: deleteParams.elements,
+        variableName: 'title',
+        yesButtonText: 'yes',
+        noButtonText: 'no',
+      })
+      .afterClosed()
+      .subscribe((dialogResult) => {
+        if (dialogResult) {
+          for (const softwarePlatform of deleteParams.elements) {
+            this.executionEnvironmentsService
+              .deleteSoftwarePlatform({ id: softwarePlatform.id })
+              .subscribe(() => {
+                // Refresh Algorithms after delete
+                this.getSoftwarePlatforms(deleteParams.queryParams);
+                this.utilService.callSnackBar(
+                  'Successfully deleted software platform(s)'
+                );
+              });
+          }
+        }
+      });
   }
 }

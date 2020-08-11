@@ -8,6 +8,7 @@ import {
   DeleteParams,
   LinkObject,
 } from '../../../generics/data-list/data-list.component';
+import { UtilService } from '../../../../util/util.service';
 
 @Component({
   selector: 'app-compute-resource-software-platform-list',
@@ -32,6 +33,7 @@ export class ComputeResourceSoftwarePlatformListComponent implements OnInit {
 
   constructor(
     private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private utilService: UtilService,
     private router: Router
   ) {}
 
@@ -89,6 +91,7 @@ export class ComputeResourceSoftwarePlatformListComponent implements OnInit {
       })
       .subscribe((data) => {
         this.getLinkedSoftwarePlatforms({ id: this.computeResource.id });
+        this.utilService.callSnackBar('Successfully linked software platform');
       });
   }
 
@@ -101,6 +104,7 @@ export class ComputeResourceSoftwarePlatformListComponent implements OnInit {
         })
         .toPromise();
       this.getLinkedSoftwarePlatforms({ id: this.computeResource.id });
+      this.utilService.callSnackBar('Successfully unlinked software platform');
     }
   }
 

@@ -9,6 +9,7 @@ import {
   DeleteParams,
   LinkObject,
 } from '../../../generics/data-list/data-list.component';
+import { UtilService } from '../../../../util/util.service';
 
 @Component({
   selector: 'app-software-platform-impl-list',
@@ -34,6 +35,7 @@ export class SoftwarePlatformImplListComponent implements OnInit {
   constructor(
     private executionEnvironmentsService: ExecutionEnvironmentsService,
     private algorithmService: AlgorithmService,
+    private utilService: UtilService,
     private router: Router
   ) {}
 
@@ -90,6 +92,7 @@ export class SoftwarePlatformImplListComponent implements OnInit {
       })
       .subscribe((data) => {
         this.getLinkedImplementations({ id: this.softwarePlatform.id });
+        this.utilService.callSnackBar('Successfully linked implementation');
       });
   }
 
@@ -102,6 +105,7 @@ export class SoftwarePlatformImplListComponent implements OnInit {
         })
         .toPromise();
       this.getLinkedImplementations({ id: this.softwarePlatform.id });
+      this.utilService.callSnackBar('Successfully unlinked implementation');
     }
   }
 

@@ -10,6 +10,7 @@ import {
 } from '../../../generics/data-list/data-list.component';
 import { CreateCloudServiceDialogComponent } from '../dialogs/create-cloud-service-dialog.component';
 import { GenericDataService } from '../../../../util/generic-data.service';
+import { ConfirmDialogComponent } from '../../../generics/dialogs/confirm-dialog.component';
 
 @Component({
   selector: 'app-cloud-service-list',
@@ -88,19 +89,40 @@ export class CloudServiceListComponent implements OnInit {
                 'cloud-services',
                 cloudService.id,
               ]);
+              this.utilService.callSnackBar(
+                'Successfully created cloud service "' + cloudService.name + '"'
+              );
             });
         }
       });
   }
 
   onDeleteCloudServices(deleteParams: DeleteParams): void {
-    for (const cloudService of deleteParams.elements) {
-      this.executionEnvironmentsService
-        .deleteCloudService({ id: cloudService.id })
-        .subscribe(() => {
-          // Refresh Algorithms after delete
-          this.getCloudServices(deleteParams.queryParams);
-        });
-    }
+    this.utilService
+      .createDialog(ConfirmDialogComponent, {
+        title: 'Confirm Deletion',
+        message:
+          'Are you sure you want to delete the following cloud service(s): ',
+        data: deleteParams.elements,
+        variableName: 'title',
+        yesButtonText: 'yes',
+        noButtonText: 'no',
+      })
+      .afterClosed()
+      .subscribe((dialogResult) => {
+        if (dialogResult) {
+          for (const cloudService of deleteParams.elements) {
+            this.executionEnvironmentsService
+              .deleteCloudService({ id: cloudService.id })
+              .subscribe(() => {
+                // Refresh Algorithms after delete
+                this.getCloudServices(deleteParams.queryParams);
+                this.utilService.callSnackBar(
+                  'Successfully deleted cloud service(s)'
+                );
+              });
+          }
+        }
+      });
   }
 }

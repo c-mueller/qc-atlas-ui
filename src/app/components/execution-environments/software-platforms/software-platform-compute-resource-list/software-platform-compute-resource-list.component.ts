@@ -3,12 +3,12 @@ import { EntityModelSoftwarePlatformDto } from 'api/models/entity-model-software
 import { ExecutionEnvironmentsService } from 'api/services/execution-environments.service';
 import { Router } from '@angular/router';
 import { EntityModelComputeResourceDto } from 'api/models/entity-model-compute-resource-dto';
-import { EntityModelCloudServiceDto } from 'api/models/entity-model-cloud-service-dto';
 import { ComputeResourceDto } from 'api/models/compute-resource-dto';
 import {
   DeleteParams,
   LinkObject,
 } from '../../../generics/data-list/data-list.component';
+import { UtilService } from '../../../../util/util.service';
 
 @Component({
   selector: 'app-software-platform-compute-resource-list',
@@ -33,6 +33,7 @@ export class SoftwarePlatformComputeResourceListComponent implements OnInit {
 
   constructor(
     private executionEnvironmentsService: ExecutionEnvironmentsService,
+    private utilService: UtilService,
     private router: Router
   ) {}
 
@@ -89,6 +90,7 @@ export class SoftwarePlatformComputeResourceListComponent implements OnInit {
       })
       .subscribe((data) => {
         this.getLinkedComputeResources({ id: this.softwarePlatform.id });
+        this.utilService.callSnackBar('Successfully linked compute resource');
       });
   }
 
@@ -101,6 +103,7 @@ export class SoftwarePlatformComputeResourceListComponent implements OnInit {
         })
         .toPromise();
       this.getLinkedComputeResources({ id: this.softwarePlatform.id });
+      this.utilService.callSnackBar('Successfully unlinked compute resource');
     }
   }
 

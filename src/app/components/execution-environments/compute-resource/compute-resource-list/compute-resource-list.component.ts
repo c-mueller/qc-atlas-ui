@@ -10,6 +10,7 @@ import {
 import { UtilService } from '../../../../util/util.service';
 import { CreateComputeResourceDialogComponent } from '../dialogs/create-compute-resource-dialog.component';
 import { GenericDataService } from '../../../../util/generic-data.service';
+import { ConfirmDialogComponent } from '../../../generics/dialogs/confirm-dialog.component';
 
 @Component({
   selector: 'app-compute-resource-list',
@@ -89,19 +90,42 @@ export class ComputeResourceListComponent implements OnInit {
                 'compute-resources',
                 computeResource.id,
               ]);
+              this.utilService.callSnackBar(
+                'Successfully created compute resource "' +
+                  computeResource.name +
+                  '"'
+              );
             });
         }
       });
   }
 
   onDeleteComputeResources(deleteParams: DeleteParams): void {
-    for (const computeResource of deleteParams.elements) {
-      this.executionEnvironmentsService
-        .deleteSoftwarePlatform({ id: computeResource.id })
-        .subscribe(() => {
-          // Refresh Algorithms after delete
-          this.getComputeResources(deleteParams.queryParams);
-        });
-    }
+    this.utilService
+      .createDialog(ConfirmDialogComponent, {
+        title: 'Confirm Deletion',
+        message:
+          'Are you sure you want to delete the following compute resource(s): ',
+        data: deleteParams.elements,
+        variableName: 'title',
+        yesButtonText: 'yes',
+        noButtonText: 'no',
+      })
+      .afterClosed()
+      .subscribe((dialogResult) => {
+        if (dialogResult) {
+          for (const computeResource of deleteParams.elements) {
+            this.executionEnvironmentsService
+              .deleteSoftwarePlatform({ id: computeResource.id })
+              .subscribe(() => {
+                // Refresh Algorithms after delete
+                this.getComputeResources(deleteParams.queryParams);
+                this.utilService.callSnackBar(
+                  'Successfully deleted compute resource(s)'
+                );
+              });
+          }
+        }
+      });
   }
 }

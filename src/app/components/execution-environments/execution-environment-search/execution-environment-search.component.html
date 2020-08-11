@@ -11,41 +11,41 @@
   </div>
 
   <div class="mx-3">
+    <h5>Software Platforms</h5>
     <app-table [data]=softwarePlatforms
                [variableNames]=variableNamesSoftwarePlatform
                [dataColumns]=tableColumnsSoftwarePlatform
-               [allowSelection]=true
-               [pagination]=pagingInfo
+               [pagination]=pagingInfoSoftwarePlatforms
                [paginatorConfig]=paginatorConfig
-               (elementClicked)="onElementClicked($event)"
+               (elementClicked)="onSoftwarePlatformClicked($event)"
                (datalistConfigChanged)="onDatalistConfigChanged($event)"
-               (pageChange)="onPageChanged($event)">
+               (pageChange)="getSoftwarePlatformsHateoas($event)">
     </app-table>
   </div>
 
   <div class="mx-3">
+    <h5>Cloud Services</h5>
     <app-table [data]=cloudServices
                [variableNames]=variableNamesCloudServices
                [dataColumns]=tableColumnsCloudServices
-               [allowSelection]=true
-               [pagination]=pagingInfo
+               [pagination]=pagingInfoCloudServices
                [paginatorConfig]=paginatorConfig
-               (elementClicked)="onElementClicked($event)"
+               (elementClicked)="onCloudServiceClicked($event)"
                (datalistConfigChanged)="onDatalistConfigChanged($event)"
-               (pageChange)="onPageChanged($event)">
+               (pageChange)="getCloudServicesHateoas($event)">
     </app-table>
   </div>
 
   <div class="mx-3">
+    <h5>Compute Resources</h5>
     <app-table [data]=computeResources
                [variableNames]=variableNamesComputeResources
                [dataColumns]=tableColumnsComputeResources
-               [allowSelection]=true
-               [pagination]=pagingInfo
+               [pagination]=pagingInfoComputeResources
                [paginatorConfig]=paginatorConfig
-               (elementClicked)="onElementClicked($event)"
+               (elementClicked)="onComputeResourceClicked($event)"
                (datalistConfigChanged)="onDatalistConfigChanged($event)"
-               (pageChange)="onPageChanged($event)">
+               (pageChange)="getComputeResourcesHateoas($event)">
     </app-table>
   </div>
 </mat-card>

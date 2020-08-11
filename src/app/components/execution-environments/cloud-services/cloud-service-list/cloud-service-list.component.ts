@@ -61,7 +61,7 @@ export class CloudServiceListComponent implements OnInit {
     this.pagingInfo._links = data._links;
   }
 
-  onCloudServiceClicked(cloudService): void {
+  onCloudServiceClicked(cloudService: EntityModelCloudServiceDto): void {
     this.router.navigate([
       'execution-environments',
       'cloud-services',

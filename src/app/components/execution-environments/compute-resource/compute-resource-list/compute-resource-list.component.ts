@@ -60,7 +60,9 @@ export class ComputeResourceListComponent implements OnInit {
     this.pagingInfo._links = data._links;
   }
 
-  onComputeResourceClicked(computeResource): void {
+  onComputeResourceClicked(
+    computeResource: EntityModelComputeResourceDto
+  ): void {
     this.router.navigate([
       'execution-environments',
       'compute-resources',

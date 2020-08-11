@@ -1,8 +1,8 @@
 <div>
-  <div class="d-flex justify-content-center">
-    <h1 mat-dialog-title>{{data.title}}</h1>
-  </div>
-  <div  mat-dialog-content>{{data.message}}
+  <mat-card id="title-container">
+    <h1 mat-dialog-title id="title" >{{data.title}}</h1>
+  </mat-card>
+  <div mat-dialog-content id="content-container">{{data.message}}
     <div *ngIf="data.data && data.variableName" class="list-content">
       <mat-list>
         <mat-list-item *ngFor="let item of data.data">
